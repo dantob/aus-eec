@@ -34,14 +34,13 @@ SYM   E "HSO_TIME"
 SYM   F "HSO_TIMEH"
 
 #--Code-------------------------------------------------------------------------
-
 sub   20A2 "reset"
 sub   219E "init"  
 sub   21A6 "EEC_main_loop"
 sub   21BF "WATCHDOG_HANG"
 sub   21c1 "main_loop_selection"
 
-word  2004 2005 "FIXSUM" 
+word  2004 2005 "FIXSUM"
 word  2006 2007
 word  2008 2009
 word  200A 200B "ROM_TO"
