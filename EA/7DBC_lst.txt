@@ -113,7 +113,7 @@
 20a3: ff                nop                  
 20a4: 11,0c             clrb  Rc             HSI_MASK = 0;                  #all HSI inputs disabled
 20a6: a1,12,00,10       ldw   R10,12         STACK_POINTER = 12;            #temporarily point the SP at 0012; we are going to use it to clear memory
-20aa: c6,11,00          stb   0,[R10++]      [STACK_POINTER++] = 0;         #set current location (GPR) to NULL and increment SP
+20aa: c6,11,00          stb   0,[R10++]      [STACK_POINTER++] = 0;         #set current memory location to NULL and increment SP
 20ad: 17,05             incb  R5             WD_TIMER++;                    #inc WD timer
 20af: 3e,2a,03          jb    B6,R2a,20b5    if (B6_R2a) goto 20b5;         #if VIP_mode_flag (NO_START_TESTS) is set (KOEO), dont clear R2A
 20b2: 35,2a,08          jnb   B5,R2a,20bd    if (!B5_R2a) goto 20bd;        #if VIP_mode_flag (RUNNING_TESTS) is set (KOER), dont clear R2A
