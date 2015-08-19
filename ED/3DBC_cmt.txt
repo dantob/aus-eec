@@ -1,0 +1,69 @@
+0000 |################################################################################
+   1 |# 0000-00FF 8061 Internal Registers (256 Bytes)
+   1 |################################################################################
+   1 |
+   1 |#ADDR	Size	Read				Size	Write
+   1 |#-------------------------------------------------------------------------------
+   1 |#0000	B/W	Zero
+0001 |#0001	B/W	Zero
+0002 |#0002	B	LSO port (Non-bidirectional)	B	LSO port (Non-bidirectional)
+0003 |#0003	B	Bidirectional I/O port		B	Bidirectional I/O port
+0004 |#0004	B	A/D Result Lo			B	A/D command (Channel #)
+0005 |#0005	B	A/D Result Hi			B	Watchdog timer
+0006 |#0006	W	Master I/O timer 
+0008 |#0008	B	Interrupt mask			B	Interrupt mask
+0009 |#0009	B	Interrupt pending		B	Interrupt pending
+000A |#000A	B	I/O status			B	I/O status
+000B |#000B	B	HSI sample register
+000C |#000C	B	HSI data mask			B	HSI data mask
+000D |#000D	B	HSI data hold			B	HSO command hold
+000E |#000E	W	HSI time hold			W	HSO time hold
+0010 |#0010	B/W	Stack Pointer Lo byte		B/W	Stack Pointer Lo byte
+0011 |#0011	B/W	Stack Pointer Hi byte		B/W	Stack Pointer Hi byte
+0012 |#0012	B/W 	General purpose registers	B/W 	General purpose registers
+00FF |#00FF	B/W 	General purpose registers	B/W 	General purpose registers
+
+2000 |
+   1 |################################################################################
+   1 |# 2000-2003 EEC ROM Entry Point
+   1 |################################################################################
+
+2003 |
+   1 |################################################################################
+2004  #usually zero
+2006  #unknown; same value as A9L
+2008  #unknown; same value as A9L
+200A  #checksum?
+200C  #same value as A9L
+200E  #calibration console, same value as A9L
+
+200F |
+   1 |################################################################################
+   1 |# 2010-201F Interrupt Vectors
+   1 |################################################################################
+
+201E |
+   1 |################################################################################
+
+2021 |
+   1 |################################################################################
+   1 |# 2022-2031 Calibration Pointers
+   1 |################################################################################
+
+2031 |
+   1 |################################################################################
+
+
+20A1 |
+20A1 |# Code -------------------------------------------------------------------------
+
+878F |
+878F |# Data -------------------------------------------------------------------------
+8C31 |# Values are in lambda, multiply by 14.64 to get AFR
+8C8B |# Values are in lambda, multiply by 14.64 to get AFR
+8CDB |# Values are negative lamba adder (richen mixture), multiply by 14.64 to get AFR
+910B |# Values are a fraction of 100%
+922B |# Values are in lambda, multiply by 14.64 to get AFR
+9E73 |# Values are degrees of ignition advance
+9EDF |# Values are degrees of ignition advance
+9F4B |# Values are degrees of ignition advance
