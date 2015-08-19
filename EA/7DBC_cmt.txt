@@ -64,7 +64,7 @@
 20A2  #disable interupts, (they were already disabled, seems redundant?)
 20A4  #all HSI inputs disabled
 20A6  #temporarily point the SP at 0012; we are going to use it to clear memory
-20AA  #set current location (GPR) to NULL and increment SP
+20AA  #set current memory location to NULL and increment SP
 20AD  #inc WD timer
 20AF  #if VIP_mode_flag (NO_START_TESTS) is set (KOEO), dont clear R2A
 20B2  #if VIP_mode_flag (RUNNING_TESTS) is set (KOER), dont clear R2A
