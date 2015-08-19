@@ -1,0 +1,227 @@
+0000 |################################################################################
+   1 |# 0000-00FF 8061 Internal Registers (256 Bytes)
+   1 |################################################################################
+   1 |
+   1 |#ADDR	Size	Read				Size	Write
+   1 |#-------------------------------------------------------------------------------
+   1 |#0000	B/W	Zero
+0001 |#0001	B/W	Zero
+0002 |#0002	B	LSO port (Non-bidirectional)	B	LSO port (Non-bidirectional)
+0003 |#0003	B	Bidirectional I/O port		B	Bidirectional I/O port
+0004 |#0004	B	A/D Result Lo			B	A/D command (Channel #)
+0005 |#0005	B	A/D Result Hi			B	Watchdog timer
+0006 |#0006	W	Master I/O timer 
+0008 |#0008	B	Interrupt mask			B	Interrupt mask
+0009 |#0009	B	Interrupt pending		B	Interrupt pending
+000A |#000A	B	I/O status			B	I/O status
+000B |#000B	B	HSI sample register
+000C |#000C	B	HSI data mask			B	HSI data mask
+000D |#000D	B	HSI data hold			B	HSO command hold
+000E |#000E	W	HSI time hold			W	HSO time hold
+0010 |#0010	B/W	Stack Pointer Lo byte		B/W	Stack Pointer Lo byte
+0011 |#0011	B/W	Stack Pointer Hi byte		B/W	Stack Pointer Hi byte
+0012 |#0012	B/W 	General purpose registers	B/W 	General purpose registers
+00FF |#00FF	B/W 	General purpose registers	B/W 	General purpose registers
+
+2000 |
+   1 |################################################################################
+   1 |# 2000-2003 EEC ROM Entry Point
+   1 |################################################################################
+
+2003 |
+   1 |################################################################################
+2004  #usually zero
+2006  #unknown; same value as A9L
+2008  #unknown; same value as A9L
+200A  #checksum?
+200C  #same value as A9L
+200E  #calibration console, same value as A9L
+
+200F |
+   1 |################################################################################
+   1 |# 2010-201F Interrupt Vectors
+   1 |################################################################################
+
+201E |
+   1 |################################################################################
+
+2021 |
+   1 |################################################################################
+   1 |# 2022-2031 Calibration Pointers
+   1 |################################################################################
+
+2031 |
+   1 |################################################################################
+
+20A1 |
+   1 |################################################################################
+   1 |# Reset:
+   1 |# 1: clear memory from 0012 - 02A0, SP is temporarily used, ends up back at 02A0 when done
+   1 |# 2: load initial memory state from ROM
+   1 |
+   1 |#R2A - is VIP_mode_flag (Vehicle Interface Port / DLC control)
+   1 |################################################################################
+20A2  #disable interupts, (they were already disabled, seems redundant?)
+20A4  #all HSI inputs disabled
+20A6  #temporarily point the SP at 0012; we are going to use it to clear memory
+20AA  #set current location (GPR) to NULL and increment SP
+20AD  #inc WD timer
+20AF  #if VIP_mode_flag (NO_START_TESTS) is set (KOEO), dont clear R2A
+20B2  #if VIP_mode_flag (RUNNING_TESTS) is set (KOER), dont clear R2A
+20B9  #if current location = R2A (VIP_mode_flag)
+20BB  #inc SP and skip clearing VIP_mode_flag if NO_START_TESTS or RUNNING_TESTS
+20BD  #inc WD timer
+20C3  #if SP less than 02A0, not finished clearing memory, else done
+   1 |#-------------------------------------------------------------------------------
+20C5  #R14 points to init table in rom
+20C9  #if R14 points to FFFF (EOF), break
+20CD  #while we are less than FFFF
+20CF  #R1A is 0000
+20D2  #R16 is 6A90, passed end of table
+20D5  #
+20D8  #while we are not passed the end of table
+
+219D |
+   1 |################################################################################
+   1 |#Init: we jump here from 2000 after disabling interrupts
+   1 |#R2A - is VIP_mode_flag (Vehicle Interface Port / DLC control)
+   1 |################################################################################
+219E  #clear the VIP_mode_flag; all bits
+21A0  #initialise stack pointer at 02A2
+21A4  #reset (setup inital state); enables interrupts before returning (20A2)
+
+21A5 |
+   1 |################################################################################
+   1 |#EEC_main_loop: cycles through routines, should never terminate
+   1 |#R94 - is current routine offset, will be 0 first time through
+   1 |#R72 - is current RAM address pointer
+   1 |#R30 - is the calculated next routine address
+   1 |################################################################################
+21A6  #loop sanity check
+21A9  #21D6 + offset 7C equals 2252; we are out of array bounds, goto HANG
+21AB  #R30 = copy of current routine offset
+21AE  #R30 = array start address + current routine offset
+21B2  #save EEC_main_loop address to stack
+21B5  #save calculated subroutine address to stack
+21B7  #reset RAM pointer after every function call; 0180 start of RAM
+21BB  #increment to next routine offset address (ready for next loop)
+21BE  #jump to calculated subroutine address
+21BF  #infinite loop for watchdog (we crashed!)
+
+21C0 |
+   1 |################################################################################
+   1 |#main_loop_selection: update run-mode loop selection and restart from beginning
+   1 |#possible run modes are NORMAL NO_START_TESTS(KOEO) RUNNING_TESTS(KOER)
+   1 |#R2A - is VIP_mode_flag (Vehicle Interface Port / DLC control)
+   1 |#R94 - is current routine offset
+   1 |################################################################################
+21C1  #if VIP_mode_flag (NO_START_TESTS) is set (KOEO); else break
+21C4  #if VIP_mode_flag (VEHICLE_SPEED_CONTROL_TESTS) (cruise) not set; break
+21C7  #set routine to loop B (2212; on-demand KOEO self tests)
+21CA  #return to EEC_main_loop
+21CB  #if VIP_mode_flag (RUNNING_TESTS) not set (KOER); break
+21CE  #set routine to loop C (222E; on-demand KOER self tests)
+21D1  #return to EEC_main_loop
+21D2  #set routine to loop A (21D6; normal operation)
+21D5  #return to EEC_main_loop
+
+21D5 |
+   1 |################################################################################
+   1 |#EEC main loop A (normal operation)
+   1 |################################################################################
+2210  #update main loop selection and restart
+
+2211 |
+   1 |################################################################################
+   1 |#EEC main loop B (on-demand KOEO self tests; NO_START_TESTS, VEHICLE_SPEED_CONTROL_TESTS)
+   1 |################################################################################
+222C  #update main loop selection and restart
+
+222D |
+   1 |################################################################################
+   1 |#EEC main loop C (on-demand KOER self tests; RUNNING_TESTS)
+   1 |################################################################################
+2250  #update main loop selection and restart
+
+2251 |
+   1 |################################################################################
+
+38C6  #Scaler_for_RPM
+38D4  #Scaler_for_Abs_Exh_Pressure
+38E7  #Volumetric_Efficiency_Table
+
+3CED  #Scaler_for_RPM
+3D08  #Scaler_for_MAP
+
+3E26 |
+   1 |#starting at 3E27 is choosing fueling table(s)
+3E3B  #Scaler_for_ECTorACT
+3E4D  #Scaler_for_Load_(fuel)
+3E61  #Fuel_Table_Base_(OL)
+3E70  #Scaler_for_RPM
+3E7E  #Scaler_for_Load_(fuel)
+3E8F  #MFA_Fuel_Multiplier_Table
+3EC0  #Scaler_for_ECTorACT
+3ED2  #Scaler_for_Time(fuel)
+3EE3  #Fuel_Table_Startup
+3EF9  #Scaler_for_RPM
+3F07  #Scaler_for_Load_(fuelstable)
+3F18  #Fuel_Table_Stabilised_(CL)
+
+3FE6  #Scaler_for_Abs_Exh_Pressure
+400A  #Scaler_for_RPM
+
+41D8  #Scaler_for_RPM
+41E6  #Scaler_for_Abs_Exh_Pressure
+
+45B2  #Scaler_for_ECTorACT
+45C5  #Scaler_for_MAP
+
+478C  #Scaler_for_RPM
+479A  #Scaler_for_MAP
+47AB  #TBL7F49_(unused?)
+47C2  #TBL7F3F
+
+4A26 |
+   1 |#Starting at 4A58 is choosing spark table(s)
+4A5B  ##Scaler_for_RPM
+4A69  #Scaler_for_MAP
+4A80  #TBL7BB6_(OL_unused?)
+4A88  #TBL7FB8_(CL_unused?)
+4ACC  #Spark_Table_Alt_(OL)
+4AD4  #Spark_Table_Base_(CL)
+4B0D  #Spark_Table_Borderline_Knock
+4b24  #Spark_Table_??(wot-adder?)
+
+6F4F |
+6F4F |# Data -------------------------------------------------------------------------
+
+7011 |#				??	Row
+702D |#				??	Row
+70ED |#				Seconds	 Row
+7101 |#				??	Row
+7121 |#				??	Row
+7151 |#				 ??	 Row
+7169 |#				??	Row
+7185 |#				RPM	 Row
+71A1 |#				Load %	 Row
+71BD |#				Load %	 Row
+71D9 |#				inHga	 Row
+71F1 |#				 ??	Row
+
+729F |# Values are a fraction of 100%; Columns=RPM(716A), Rows=MAP(7122)
+7857 |# Columns=??(7102), Rows=??(7816)
+79E7 |# Values are in lambda, multiply by 14.64 to get AFR; Columns=RPM(716A), Rows=Load%(71A2)
+7A41 |# Values are in lambda, multiply by 14.64 to get AFR; Columns=Temp(7152), Rows=Load%(7186)
+7A91 |# Values are negative lamba adder (richen mixture), multiply by 14.64 to get AFR; Columns=Temp(7152), Rows=Time(70D2)
+7AFD |# Values are in lambda, multiply by 14.64 to get AFR; Columns=RPM(716A), Rows=Load%(7186)
+7B49 |# Columns=??(70EE), Rows=??(7AFE)
+7BB5 |# Values are degrees of ignition advance; Columns=RPM(716A), Rows=MAP(71BE)
+7C21 |# Values are degrees of ignition advance; Columns=RPM(716A), Rows=MAP(71BE)
+7C8D |# Values are degrees of ignition advance; Columns=RPM(716A), Rows=MAP(71BE)
+7CF9 |# Values are degrees of ignition advance; Columns=RPM(716A), Rows=MAP(71BE)
+7D65 |# Values are degrees of ignition advance; Columns=RPM(716A), Rows=MAP(71BE)
+7FB4 |# Columns=RPM(716A), Rows=MAP(71BE)
+8023 |# Values are degrees of ignition advance; Columns=RPM(716A), Rows=MAP(71BE)
+
+

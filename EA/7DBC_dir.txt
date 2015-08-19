@@ -1,0 +1,359 @@
+opts   :C N P S
+
+#--Read-Symbols-----------------------------------------------------------------
+SYM   0 "ZERO"
+SYM   1 "ZERO"
+SYM   2 "LSO_PORT"
+SYM   2 "CPU_OK" :T +6
+SYM   3 "BIO_PORT"
+SYM   4 "AD_LO"
+SYM   5 "AD_HI"
+SYM   6 "IO_TIMER"
+SYM   8 "INT_MASK"
+SYM   9 "INT_PEND"
+SYM   A "IO_STATUS"
+SYM   A "HSO_OVF" :T +0
+SYM   A "HSI_OVF" :T +1
+SYM   A "HSI_RDY" :T +2
+SYM   A "AD_RDY" :T +3
+SYM   A "INT_STATUS" :T +4
+SYM   A "INT_PRIO" :T +5
+SYM   B "HSI_SAMPLE"
+SYM   C "HSI_MASK"
+SYM   D "HSI_DATA"
+SYM   E "HSI_TIME"
+SYM   F "HSI_TIME_HI"
+SYM   10 "STACK_POINTER"
+SYM   D00 "CC_PRESENT" #Calibration Console
+
+#--Write-symbols---------------------------------------------------------------- 
+SYM   4 "AD_CMD"
+SYM   5 "WD_TIMER"
+SYM   D "HSO_CMD"
+SYM   E "HSO_TIME"
+SYM   F "HSO_TIMEH"
+
+#--Code-------------------------------------------------------------------------
+
+sub   20A2 "reset"
+sub   219E "init"  
+sub   21A6 "EEC_main_loop"
+sub   21BF "WATCHDOG_HANG"
+sub   21c1 "main_loop_selection"
+
+word  2004 2005 "FIXSUM" 
+word  2006 2007
+word  2008 2009
+word  200A 200B "ROM_TO"
+word  200C 200D "SMP_Base_Address"
+word  200E 200F "CC_EXECUTION_TIME"
+#vect 2010 2011 "IPT_HSO_2"
+#vect 2012 2013 "IPT_IO_Timer_OVF"
+#vect 2014 2015 "IPT_END_AD_CONV"
+#vect 2016 2017 "IPT_HSI_READY"
+#vect 2018 2019 "IPT_EXTERNAL"
+#vect 201A 201B "IPT_HSO_1"
+#vect 201C 201D "IPT_HSI_1"
+#vect 201E 201F "IPT_HSI_0"
+byte  2020      "NUM_OF_LEVELS"
+byte  2021      "NUM_OF_CALIBRATIONS"
+word  2022 2023 "RF0"
+word  2024 2025 "RF2"
+word  2026 2027 "RF4"
+word  2028 2029 "RF6"
+word  202A 202B "RF8"
+word  202C 202D "RFA"
+word  202E 202F "RFC"
+word  2030 2031 "RFE"
+fill  2032 20A1
+code  20A2 21D5
+vect  21D6 2251
+#code  2252 2286 #some areas are not code?
+#code  2287 22B5 #some areas are not code?
+#code  22B6 6A61 #some areas are not code?
+xcode 6A62 6B05 #what is this?
+code  6B06 6B8B
+xcode 6F50 804B #data section
+
+#init table
+word  6A62 6A63
+word  6A64 6A65
+byte  6A66 6A8F
+
+#--Data-------------------------------------------------------------------------
+#--RF0--------------------------------------------------------------------------
+word  6F50 6F51 "CP_RF0_Header_Points_to_CP_RF2"
+func  6F52 6F57 :Y
+func  6F58 6F73 :W
+func  6F74 6F7F :Y
+func  6F80 6F95 :Y
+func  6F96 6FA3 :Y
+func  6FA4 6FB7 :W
+func  6FB8 6FCF :W
+word  6FD0 6FD1
+func  6FD2 6FED :W
+func  6FEE 7011 :W :W V+256
+func  7012 702D :W :W V+256
+func  702E 7045 :W
+func  7046 705D :W
+func  705E 7079 :W
+func  707A 7085 :Y
+func  7086 7091 :Y
+func  7092 70B9 "ECT/ACT_Transfer" :W
+func  70BA 70D1 "BAP_Transfer" :W
+func  70D2 70EA "Scaler_for_Time(fuel)" :W V+1 :W V+256
+func  70EE 7101 "Scaler_for_TBL7B12" :W :W V+256
+func  7102 7121 "Scaler_for_TBL782E" :W :W V+256
+func  7122 7151 "Scaler_for_Abs_Exh_Pressure" :W V+4 :W V+256 #IDK whether this is % or pressure
+func  7152 7169 "Scaler_for_ECTorACT" :W :W V+256 #??
+func  716A 7185 "Scaler_for_RPM" :W V+4 :W V+256
+func  7186 71A1 "Scaler_for_Load_(fuel)":W V+1.28 :W V+256
+func  71A2 71BD "Scaler_for_Load_(fuelstable)" :W V+1.28 :W V+256
+func  71BE 71D9 "Scaler_for_MAP" :W V+8 :W V+256
+func  71DA 71F1 "Scaler_for_??" :W :W V+256
+func  71F2 7205 :W
+func  7206 7221 :W
+
+#--RF2----------------------------------------------------------------------TODO
+word  7222 7223 "CP_RF2_Header_Points_to_CP_RF4"
+
+word  722E 722F "Engine_Displacement"
+
+table 7234 729F "Volumetric_Efficiency_Table" :Y X O+12 V+2.56
+
+word  72AA 72AB "Injector_Slope"
+
+word  72BC 72BD "RPM_Limit"
+word  72BE 72BF "RPM_Limit_Hysteresis"
+
+table 72C9 7322  "??" :Y X O+10 #map/act
+table 7323 737C  "??" :Y X O+10 #map/act
+
+#--RF4--------------------------------------------------------------------------
+word  7524 7525 "CP_RF4_Header_Points_to_CP_RF6"
+byte  7526
+#7527 ??
+func  7528 754F :W
+func  7550 757B :W
+func  757C 75A3 :W
+func  75A4 75CB :W
+func  75CC 75E7 :W
+func  75E8 7603 :W
+func  7604 7611 :Y
+word  7612 7613
+func  7614 762B :W
+func  762C 7647 :W
+func  7648 765B :W
+func  765C 7673 :W
+func  7674 768B :W
+func  768C 769F :W
+func  76A0 76B3 :W
+
+#--RF6--------------------------------------------------------------------------
+word  76B4 76B5 "CP_RF6_Header_Points_to_CP_RF8"
+#76B6 ??
+func  76C0 76C9 :Y
+func  76CA 76DB "Injector_comp_batt_volts" :Y
+func  76DC 76EF :W
+func  76F0 7707 :W
+func  7708 7711 :Y
+func  7712 7735 :W
+func  7736 7741 :W
+func  7742 7751 :Y
+func  7752 7761 :Y
+func  7762 7771 :Y
+func  7772 7781 :Y
+func  7782 778B :Y
+func  778C 7795 :Y
+word  7796 7797
+word  7798 7799
+byte  779A
+func  779B 77A4 :Y
+#77A5 ??
+func  77A6 77C9 :W
+func  77CA 77ED :W
+func  77EE 77F9 :Y
+func  77FA 7815 :W
+func  7816 782D "Scaler_for_TBL782E" :W
+table 782E 7857 "TBL782E_(ISC_Airflow_multiplier?)" :Y X O+7
+func  7858 7873 :W
+func  7874 788F :W
+func  7890 7897 :Y
+func  7898 78B3 :W
+func  78B4 78CF :W
+func  78D0 78EB :W
+func  78EC 7913 :W
+func  7914 793B :W
+func  793C 7957 :W
+func  7958 7973 "Dashpot_Decay_Rate" :W
+#7974 ??
+byte  7975
+
+#--RF8--------------------------------------------------------------------------
+word  7976 7977 "CP_RF8_Header_Points_to_CP_RFA"
+byte  7978
+byte  7979
+byte  797A
+byte  797B
+table 797C 79E7 "Fuel_Table_Stabilised_(CL)" :Y X O+12 V+128
+table 79E8 7A41 "Fuel_Table_Base_(OL)" :Y X O+10 V+128
+table 7A42 7A91 "Fuel_Table_Startup" :Y X O+10 V+128
+table 7A92 7AFD "MFA_Fuel_Multiplier_Table" :Y X O+12 V+128
+func  7AFE 7B11 "Scaler_for_TBL7B12" :W
+table 7B12 7B49 "TBL7B12" :Y X O+8 
+table 7B4A 7BB5 "Spark_Table_Alt_(OL)" :Y X O+12 V+4
+table 7BB6 7C21 "TBL7BB6_(OL_unused?)" :Y X O+12 #unused spark
+table 7C22 7C8D "Spark_Table_Borderline_Knock" :Y X O+12 V+4
+table 7C8E 7CF9 "Spark_Table_Base_(CL)" :Y X O+12 V+4
+table 7CFA 7D65 "Spark_Table_??(wot-adder?)" :Y X O+12 V+4
+table 7D66 7D93 "TBL7D66" :W X #cant figure this out
+func  7D94 7DA7 :W
+table 7DA8 7E13 "??" :Y X O+9 #Adaptive_Learning_Fuel_Table doesnt seem right, cant see scales?
+
+#--RFA----------------------------------------------------------------------TODO
+word  7E14 7E15 "CP_RFA_Header_Points_to_CP_RFC"
+word  7E16 7E17
+word  7E18 7E19    
+word  7E1A 7E1B
+word  7E1C 7E1D
+word  7E1E 7E1F
+word  7E20 7E21
+word  7E22 7E23
+word  7E24 7E25
+word  7E26 7E27
+word  7E28 7E29
+word  7E2A 7E2B
+byte  7E2C   
+byte  7E2D
+byte  7E2E
+byte  7E2F
+word  7E30 7E31  
+word  7E32 7E33
+word  7E34 7E35
+word  7E36 7E37
+byte  7E38
+#7E39 ??
+word  7E3A 7E3B
+#7E3C ??  
+byte  7E3D
+byte  7E3E
+byte  7E3F
+byte  7E40
+byte  7E41
+byte  7E42  
+byte  7E43
+word  7E44 7E45
+table 7E46 7E59 :Y O+4
+byte  7E5A
+byte  7E5B
+word  7E5C 7E5D
+#7E5E 
+word  7E60 7E61
+word  7E62 7E63
+word  7E64 7E65
+word  7E66 7E67
+word  7E68 7E69
+word  7E6A 7E6B
+byte  7E6C
+#7E6D ??
+word  7E6E 7E6F
+word  7E70 7E71
+word  7E72 7E73
+word  7E74 7E75
+word  7E76 7E77
+word  7E78 7E79
+byte  7E7A
+byte  7E7B  
+byte  7E7C
+byte  7E7D   
+byte  7E7E
+byte  7E7F
+word  7E80 7E81
+word  7E82 7E83
+byte  7E84
+byte  7E85
+byte  7E86
+byte  7E87
+word  7E88 7E89  
+byte  7E8A
+byte  7E8B  
+word  7E8C 7E8D
+word  7E8E 7E8F
+#7E90   
+#7E92
+#7E93  
+#7E94 
+word  7E96 7E97
+#7E98
+word  7E9A 7E9B 
+word  7E9C 7E9D  
+word  7E9E 7E9F
+#7EA0  
+#7EBA
+#7EBE 
+word  7EC4 7EC5 "Idle_Speed_Neutral"
+word  7EC6 7EC7 "Idle_Speed_Drive"
+#7ECE
+#7ED0
+#7ED2
+#7ED4
+#7ED6
+#7ED7
+#7ED8
+#7ED9
+#7EDA
+#7EDC
+#7EE4
+#7EEA
+#7EEC
+#7EEE   
+#7EF0 
+#7EF2
+#7EF4
+#7EF6
+
+#--RFC--------------------------------------------------------------------------
+word  7EF8 7EF9 "CP_RFC_Header_Points_to_CP_RFE"
+func  7EFA 7F15 :W
+func  7F16 7F21 :W
+
+#--RFE--------------------------------------------------------------------------
+word  7F22 7F23 "CP_RFE_Header_Points_to_EOF"
+word  7F24 7F25
+word  7F26 7F27
+word  7F28 7F29
+word  7F2A 7F2B
+word  7F2C 7F2D
+byte  7F2E
+byte  7F2F
+byte  7F30
+byte  7F31
+byte  7F32
+byte  7F33
+word  7F34 7F35
+byte  7F36
+byte  7F37
+word  7F38 7F39
+word  7F3A 7F3B
+word  7F3C 7F3D
+byte  7F3E
+func  7F3F 7F48 "FN7F3F" :Y
+table 7F49 7FB4 "TBL7F49_(unused?)" :Y X O+12 #rpm&map
+word  7FB6 7FB7
+table 7FB8 8023 "TBL7FB8_(CL_unused?)" :Y X O+12 #unused spark
+word  8024 8025
+word  8026 8027
+word  8028 8029
+word  802A 802B
+word  802C 802D
+word  802E 802F
+word  8030 8031
+word  8032 8033
+word  8034 8035
+word  8036 8037
+table 8038 803F :W
+table 8040 8045 :W
+table 8046 804A :W
+byte  804B
+
+fill  804C FFFF
