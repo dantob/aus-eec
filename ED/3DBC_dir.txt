@@ -1,3 +1,5 @@
+opts   :C N P S
+
 #--Read-Symbols-----------------------------------------------------------------
 SYM   0 "ZERO"
 SYM   1 "ZERO"
@@ -32,28 +34,32 @@ SYM   E "HSO_TIME"
 SYM   F "HSO_TIMEH"
 
 #--Code-------------------------------------------------------------------------
-xcode 2004 2009
-word  200A 200B "CHECKSUM"
+sub  2173  "init"
+
+word  2004 2005 "FIXSUM"
+word  2006 2007
+word  2008 2009
+word  200A 200B "ROM_TO"
 word  200C 200D "SMP_Base_Address"
-word  200E 200F "CC_EXECUTION_TIME" #Calibration Console
-#vect  2010 2011 "IPT_HSO_2"
-#vect  2012 2013 "IPT_IO_Timer_OVF"
-#vect  2014 2015 "IPT_END_AD_CONV"
-#vect  2016 2017 "IPT_HSI_READY"
-#vect  2018 2019 "IPT_EXTERNAL"
-#vect  201A 201B "IPT_HSO_1"
-#vect  201C 201D "IPT_HSI_1"
-#vect  201E 201F "IPT_HSI_0"
+word  200E 200F "CC_EXECUTION_TIME"
+#vect 2010 2011 "IPT_HSO_2"
+#vect 2012 2013 "IPT_IO_Timer_OVF"
+#vect 2014 2015 "IPT_END_AD_CONV"
+#vect 2016 2017 "IPT_HSI_READY"
+#vect 2018 2019 "IPT_EXTERNAL"
+#vect 201A 201B "IPT_HSO_1"
+#vect 201C 201D "IPT_HSI_1"
+#vect 201E 201F "IPT_HSI_0"
 byte  2020      "NUM_OF_LEVELS"
 byte  2021      "NUM_OF_CALIBRATIONS"
-#vect  2022 2023 "RF0"
-#vect  2024 2025 "RF2"
-#vect  2026 2027 "RF4"
-#vect  2028 2029 "RF6"
-#vect  202A 202B "RF8"
-#vect  202C 202D "RFA"
-#vect  202E 202F "RFC"
-#vect  2030 2031 "RFE"
+word  2022 2023 "RF0"
+word  2024 2025 "RF2"
+word  2026 2027 "RF4"
+word  2028 2029 "RF6"
+word  202A 202B "RF8"
+word  202C 202D "RFA"
+word  202E 202F "RFC"
+word  2030 2031 "RFE"
 fill  2032 20A1
 
 code  20A2 2233
@@ -70,8 +76,6 @@ code  7b60 8465
 #???  8466 847D
 code  847E 8775  
 fill  8776 878F
-
-sub  2173  "Entry_Point" 
 
 #--Data-------------------------------------------------------------------------
 

@@ -34,15 +34,17 @@
 ################################################################################
 2000: ff                nop                  
 2001: fa                di                   disable ints;
-2002: 21,6f             sjmp  2173           goto Entry_Point;
+2002: 21,6f             sjmp  2173           goto init;
 
 
 
 ################################################################################
 
-2004: 00,00,ff,df,00,ff ??      0,  0,255,223,  0,255      0, -8193,  -256, #usually zero #unknown; same value as A9L #unknown; same value as A9L
-
-  CHECKSUM:
+  FIXSUM:
+2004: 00,00             word                                                #usually zero
+2006: ff,df             word                                                #unknown; same value as A9L
+2008: 00,ff             word                                                #unknown; same value as A9L
+  ROM_TO:
 200a: bb,25             word                                                #checksum?
   SMP_Base_Address:
 200c: 00,a0             word                                                #same value as A9L
@@ -73,14 +75,22 @@
 # 2022-2031 Calibration Pointers
 ################################################################################
 
-2022: 90,87             word  8790
-2024: 4c,8a             word  8a4c
-2026: 40,8b             word  8b40
-2028: 22,8d             word  8d22
-202a: 64,8f             word  8f64
-202c: f8,8f             word  8ff8
-202e: c6,93             word  93c6
-2030: a6,9c             word  9ca6
+  RF0:
+2022: 90,87             word  
+  RF2:
+2024: 4c,8a             word  
+  RF4:
+2026: 40,8b             word  
+  RF6:
+2028: 22,8d             word  
+  RF8:
+202a: 64,8f             word  
+  RFA:
+202c: f8,8f             word  
+  RFC:
+202e: c6,93             word  
+  RFE:
+2030: a6,9c             word  
 
 ################################################################################
 
@@ -137,7 +147,7 @@
 2110: a3,31,72,84,14    ldw   R14,[R30+8472] R14 = [R30+8472];
 2115: 20,04             sjmp  211b           goto 211b; } }
 
-2117: a1,22,20,14       ldw   R14,2022       R14 = 2022;
+2117: a1,22,20,14       ldw   R14,2022       R14 = RF0;
 211b: a1,f0,00,18       ldw   R18,f0         R18 = f0;
 211f: b3,01,20,20,1a    ldb   R1a,[2020]     R1a = NUM_OF_LEVELS;
 2124: a2,15,1c          ldw   R1c,[R14++]    R1c = [R14++];
@@ -171,7 +181,7 @@
 216e: a1,6e,04,72       ldw   R72,46e        R72 = 46e;
 2172: f0                ret                  return;
 
-  Entry_Point:
+  init:
 2173: 11,2a             clrb  R2a            R2a = 0;
 2175: a1,ee,03,10       ldw   R10,3ee        STACK_POINTER = 3ee;
 2179: 2f,27             scall 20a2           Sub33();
@@ -9773,7 +9783,7 @@
 84bd: a3,31,72,84,14    ldw   R14,[R30+8472] R14 = [R30+8472];
 84c2: 20,04             sjmp  84c8           goto 84c8; }
 
-84c4: a1,22,20,14       ldw   R14,2022       R14 = 2022;
+84c4: a1,22,20,14       ldw   R14,2022       R14 = RF0;
 84c8: fb                ei                   enable ints;
 84c9: a1,f0,00,18       ldw   R18,f0         R18 = f0;
 84cd: b3,01,20,20,1a    ldb   R1a,[2020]     R1a = NUM_OF_LEVELS;
