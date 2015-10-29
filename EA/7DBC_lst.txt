@@ -102,7 +102,8 @@
 
 ################################################################################
 # Reset:
-# 1: clear memory from 0012 - 02A0, SP is temporarily used, ends up back at 02A0 when done
+# 1: clear memory from 0012 - 02A0, SP is temporarily used, ends up at 02A0 when done
+	   (weirdly the stack pointer was initialised at 02A2, so it ends up 2 bytes earlier?)
 # 2: load initial memory state from ROM
 
 #R2A - is VIP_mode_flag (Vehicle Interface Port / DLC control)
