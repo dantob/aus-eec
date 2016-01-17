@@ -131,7 +131,7 @@ table 7323 737C  "??" :Y X O+10 #map/act
 #--RF4--------------------------------------------------------------------------
 word  7524 7525 "CP_RF4_Header_Points_to_CP_RF6"
 byte  7526
-#7527 ??
+fill  7527 #word must be aligned with even byte
 func  7528 754F :W
 func  7550 757B :W
 func  757C 75A3 :W
@@ -148,7 +148,7 @@ func  7674 768B :W
 func  768C 769F :W
 func  76A0 76B3 :W
 
-#--RF6--------------------------------------------------------------------------
+#--RF6----------------------------------------------------------------------TODO
 word  76B4 76B5 "CP_RF6_Header_Points_to_CP_RF8"
 #76B6 ??
 func  76C0 76C9 :Y
@@ -168,7 +168,7 @@ word  7796 7797
 word  7798 7799
 byte  779A
 func  779B 77A4 :Y
-#77A5 ??
+fill  77A5 #word must be aligned with even byte
 func  77A6 77C9 :W
 func  77CA 77ED :W
 func  77EE 77F9 :Y
@@ -207,7 +207,7 @@ table 7C8E 7CF9 "Spark_Table_Base_(CL)" :Y X O+12 V+4
 table 7CFA 7D65 "Spark_Table_??(wot-adder?)" :Y X O+12 V+4
 table 7D66 7D93 "TBL7D66" :W X #cant figure this out
 func  7D94 7DA7 :W
-table 7DA8 7E13 "??" :Y X O+9 #Adaptive_Learning_Fuel_Table doesnt seem right, cant see scales?
+table 7DA8 7E13 "TBL7DA8" :Y X O+9 #Adaptive_Learning_Fuel_Table doesnt seem right, cant see scales?
 
 #--RFA----------------------------------------------------------------------TODO
 word  7E14 7E15 "CP_RFA_Header_Points_to_CP_RFC"
@@ -231,9 +231,9 @@ word  7E32 7E33
 word  7E34 7E35
 word  7E36 7E37
 byte  7E38
-#7E39 ??
+fill  7E39 #word must be aligned with even byte
 word  7E3A 7E3B
-#7E3C ??  
+byte  7E3C
 byte  7E3D
 byte  7E3E
 byte  7E3F
@@ -246,7 +246,8 @@ table 7E46 7E59 :Y O+4
 byte  7E5A
 byte  7E5B
 word  7E5C 7E5D
-#7E5E 
+byte  7E5E
+fill  7E5F #word must be aligned with even byte
 word  7E60 7E61
 word  7E62 7E63
 word  7E64 7E65
@@ -254,7 +255,7 @@ word  7E66 7E67
 word  7E68 7E69
 word  7E6A 7E6B
 byte  7E6C
-#7E6D ??
+fill  7E6D #word must be aligned with even byte
 word  7E6E 7E6F
 word  7E70 7E71
 word  7E72 7E73
@@ -308,7 +309,8 @@ word  7EC6 7EC7 "Idle_Speed_Drive"
 #7EEE   
 #7EF0 
 #7EF2
-#7EF4
+fill  7EF3 #word must be aligned with even byte
+word  7EF4 7EF5
 #7EF6
 
 #--RFC--------------------------------------------------------------------------
@@ -338,6 +340,7 @@ word  7F3C 7F3D
 byte  7F3E
 func  7F3F 7F48 "FN7F3F" :Y
 table 7F49 7FB4 "TBL7F49_(unused?)" :Y X O+12 #rpm&map
+fill  7FB5 #word must be aligned with even byte
 word  7FB6 7FB7
 table 7FB8 8023 "TBL7FB8_(CL_unused?)" :Y X O+12 #unused spark
 word  8024 8025
