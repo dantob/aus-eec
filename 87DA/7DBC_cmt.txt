@@ -185,8 +185,13 @@
 
 4A26 |
    1 |#Starting at 4A58 is choosing spark table(s)
-4A5B  ##Scaler_for_RPM
+4A5B  #Scaler_for_RPM
+4A60  #RAE = engine RPM * 4
+4A63  #2D interpolation routine (R32=Table,R34=InVar,R38=OutVar)
+4A66  #Table column no. set based on RPM result
 4A69  #Scaler_for_MAP
+4A71  #2D interpolation routine (R32=Table,R34=InVar,R38=OutVar)
+4A74  #Table row no. set based on MAP result
 4A80  #TBL7BB6_(OL_unused?)
 4A88  #TBL7FB8_(CL_unused?)
 4ACC  #Spark_Table_Alt_(OL)

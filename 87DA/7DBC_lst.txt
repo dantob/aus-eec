@@ -3821,14 +3821,14 @@
 4a56: 20,03             sjmp  4a5b           goto 4a5b; } } } }
 
 4a58: 71,df,26          an2b  R26,df         R26 &= df;
-4a5b: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = 716a;                    ##Scaler_for_RPM
-4a60: a0,ae,34          ldw   R34,Rae        R34 = Rae;
-4a63: ef,38,e6          call  309e           UUWordLU();
-4a66: a0,38,a8          ldw   Ra8,R38        Ra8 = R38;
+4a5b: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = 716a;                    #Scaler_for_RPM
+4a60: a0,ae,34          ldw   R34,Rae        R34 = Rae;                     #RAE = engine RPM * 4
+4a63: ef,38,e6          call  309e           UUWordLU();                    #2D interpolation routine (R32=Table,R34=InVar,R38=OutVar)
+4a66: a0,38,a8          ldw   Ra8,R38        Ra8 = R38;                     #Table column no. set based on RPM result
 4a69: 45,6e,02,f0,32    ad3w  R32,Rf0,26e    R32 = 71be;                    #Scaler_for_MAP
 4a6e: ac,b4,34          ldzbw R34,Rb4        R34 = (uns)Rb4;
-4a71: ef,2a,e6          call  309e           UUWordLU();
-4a74: a0,38,aa          ldw   Raa,R38        Raa = R38;
+4a71: ef,2a,e6          call  309e           UUWordLU();                    #2D interpolation routine (R32=Table,R34=InVar,R38=OutVar)
+4a74: a0,38,aa          ldw   Raa,R38        Raa = R38;                     #Table row no. set based on MAP result
 4a77: a0,a8,30          ldw   R30,Ra8        R30 = Ra8;
 4a7a: a0,aa,32          ldw   R32,Raa        R32 = Raa;
 4a7d: ad,0c,34          ldzbw R34,c          R34 = (uns)c;
