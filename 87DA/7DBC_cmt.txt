@@ -23,7 +23,7 @@
 0012 |#0012	B/W 	General purpose registers	B/W 	General purpose registers
 00FF |#00FF	B/W 	General purpose registers	B/W 	General purpose registers
 
-2000 |
+1FFF |
    1 |################################################################################
    1 |# 2000-2003 EEC ROM Entry Point
    1 |################################################################################
