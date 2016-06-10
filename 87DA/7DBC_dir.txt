@@ -118,15 +118,15 @@ word  7222 7223 "CP_RF2_Header_Points_to_CP_RF4"
 
 word  722E 722F "Engine_Displacement"
 
-table 7234 729F "Volumetric_Efficiency_Table" :Y X O +12 V +2.56
+table 7234 729F "Volumetric_Efficiency_Table" :Y X O +12 V +2.56 P +3
 
 word  72AA 72AB "Injector_Slope"
 
 word  72BC 72BD "RPM_Limit"
 word  72BE 72BF "RPM_Limit_Hysteresis"
 
-table 72C9 7322  "TBL72C9" :Y X O +10 #map/act
-table 7323 737C  "TBL7323" :Y X O +10 #map/act
+table 72C9 7322  "TBL72C9" :Y X O +10 P +3 #map/act
+table 7323 737C  "TBL7323" :Y X O +10 P +3 #map/act
 
 #--RF4--------------------------------------------------------------------------
 word  7524 7525 "CP_RF4_Header_Points_to_CP_RF6"
@@ -174,7 +174,7 @@ func  77CA 77ED :W
 func  77EE 77F9 :Y
 func  77FA 7815 :W
 func  7816 782D "Scaler_for_TBL782E" :W
-table 782E 7857 "TBL782E_(ISC_Airflow_multiplier?)" :Y O +7
+table 782E 7857 "TBL782E_(ISC_Airflow_multiplier?)" :Y O +7 P +3
 func  7858 7873 :W
 func  7874 788F :W
 func  7890 7897 :Y
@@ -194,20 +194,20 @@ byte  7978
 byte  7979
 byte  797A
 byte  797B
-table 797C 79E7 "Fuel_Table_Stabilised_(CL)" :Y X O +12 V +128
-table 79E8 7A41 "Fuel_Table_Base_(OL)" :Y X O +10 V +128
-table 7A42 7A91 "Fuel_Table_Startup" :Y X O +10 V +128
-table 7A92 7AFD "MFA_Fuel_Multiplier_Table" :Y X O +12 V +128
+table 797C 79E7 "Fuel_Table_Stabilised_(CL)" :Y X O +12 V +128 P +3
+table 79E8 7A41 "Fuel_Table_Base_(OL)" :Y X O +10 V +128 P +3
+table 7A42 7A91 "Fuel_Table_Startup" :Y X O +10 V +128 P +3
+table 7A92 7AFD "MFA_Fuel_Multiplier_Table" :Y X O +12 V +128 P +3
 func  7AFE 7B11 "Scaler_for_TBL7B12" :W
-table 7B12 7B49 "TBL7B12" :Y X O +8
-table 7B4A 7BB5 "Spark_Table_Alt_(OL)" :Y X O +12 V +4
-table 7BB6 7C21 "TBL7BB6_(OL_unused?)" :Y X O +12 #unused spark
-table 7C22 7C8D "Spark_Table_Borderline_Knock" :Y X O +12 V +4
-table 7C8E 7CF9 "Spark_Table_Base_(CL)" :Y X O +12 V +4
-table 7CFA 7D65 "Spark_Table_??(wot-adder?)" :Y X O +12 V +4
-table 7D66 7D93 "TBL7D66" :W X #cant figure this out
+table 7B12 7B49 "TBL7B12" :Y X O +8 P +3
+table 7B4A 7BB5 "Spark_Table_Alt_(OL)" :Y X O +12 V +4 P +3
+table 7BB6 7C21 "TBL7BB6_(OL_unused?)" :Y X O +12 P +3
+table 7C22 7C8D "Spark_Table_Borderline_Knock" :Y X O +12 V +4 P +3
+table 7C8E 7CF9 "Spark_Table_Base_(CL)" :Y X O +12 V +4 P +3
+table 7CFA 7D65 "Spark_Table_??(wot-adder?)" :Y X O +12 V +4 P +3
+table 7D66 7D93 "TBL7D66" :W X P +3
 func  7D94 7DA7 :W
-table 7DA8 7E13 "TBL7DA8" :Y X O +9 #Adaptive_Learning_Fuel_Table doesnt seem right, cant see scales?
+table 7DA8 7E13 "TBL7DA8" :Y X O +9 P +3 #Adaptive_Learning_Fuel_Table doesnt seem right, cant see scales?
 
 #--RFA----------------------------------------------------------------------TODO
 word  7E14 7E15 "CP_RFA_Header_Points_to_CP_RFC"
@@ -339,10 +339,10 @@ word  7F3A 7F3B
 word  7F3C 7F3D
 byte  7F3E
 func  7F3F 7F48 "FN7F3F" :Y
-table 7F49 7FB4 "TBL7F49_(unused?)" :Y X O +12 #rpm&map
+table 7F49 7FB4 "TBL7F49_(unused?)" :Y X O +12 P +3 #rpm&map
 fill  7FB5 #word must be aligned with even byte
 word  7FB6 7FB7
-table 7FB8 8023 "TBL7FB8_(CL_unused?)" :Y X O +12 #unused spark
+table 7FB8 8023 "TBL7FB8_(CL_unused?)" :Y X O +12 P +3 #unused spark
 word  8024 8025
 word  8026 8027
 word  8028 8029
