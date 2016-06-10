@@ -11,21 +11,21 @@
 #0000	B/W	Zero
 #0001	B/W	Zero
 #0002	B	LSO port (Non-bidirectional)	B	LSO port (Non-bidirectional)
-#0003	B	Bidirectional I/O port		B	Bidirectional I/O port
-#0004	B	A/D Result Lo			B	A/D command (Channel #)
-#0005	B	A/D Result Hi			B	Watchdog timer
+#0003	B	Bidirectional I/O port			B	Bidirectional I/O port
+#0004	B	A/D Result Lo					B	A/D command (Channel #)
+#0005	B	A/D Result Hi					B	Watchdog timer
 #0006	W	Master I/O timer 
-#0008	B	Interrupt mask			B	Interrupt mask
-#0009	B	Interrupt pending		B	Interrupt pending
-#000A	B	I/O status			B	I/O status
+#0008	B	Interrupt mask					B	Interrupt mask
+#0009	B	Interrupt pending				B	Interrupt pending
+#000A	B	I/O status						B	I/O status
 #000B	B	HSI sample register
-#000C	B	HSI data mask			B	HSI data mask
-#000D	B	HSI data hold			B	HSO command hold
-#000E	W	HSI time hold			W	HSO time hold
-#0010	B/W	Stack Pointer Lo byte		B/W	Stack Pointer Lo byte
-#0011	B/W	Stack Pointer Hi byte		B/W	Stack Pointer Hi byte
-#0012	B/W 	General purpose registers	B/W 	General purpose registers
-#00FF	B/W 	General purpose registers	B/W 	General purpose registers
+#000C	B	HSI data mask					B	HSI data mask
+#000D	B	HSI data hold					B	HSO command hold
+#000E	W	HSI time hold					W	HSO time hold
+#0010	B/W	Stack Pointer Lo byte			B/W	Stack Pointer Lo byte
+#0011	B/W	Stack Pointer Hi byte			B/W	Stack Pointer Hi byte
+#0012	B/W General purpose registers		B/W General purpose registers
+#00FF	B/W General purpose registers		B/W General purpose registers
 
 ################################################################################
 # 2000-2003 EEC ROM Entry Point
@@ -2284,16 +2284,16 @@
 38bd: b0,b2,34          ldb   R34,Rb2        R34 = Rb2;
 38c0: ef,7b,f7          call  303e           UUByteLU();
 38c3: 7c,38,3c          ml2b  R3c,R38        R3c *= R38;
-38c6: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;          #Scaler_for_RPM
+38c6: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;
 38cb: a0,ae,34          ldw   R34,Rae        R34 = Rae;
 38ce: ef,cd,f7          call  309e           SSWordLU();
 38d1: a0,38,30          ldw   R30,R38        R30 = R38;
-38d4: 45,d2,01,f0,32    ad3w  R32,Rf0,1d2    R32 = Scaler_for_Abs_Exh_Pressure; #Scaler_for_Abs_Exh_Pressure
+38d4: 45,d2,01,f0,32    ad3w  R32,Rf0,1d2    R32 = Scaler_for_Abs_Exh_Pressure;
 38d9: af,01,a3,01,34    ldzbw R34,[1a3]      R34 = (uns)[1a3];
 38de: ef,bd,f7          call  309e           SSWordLU();
 38e1: a0,38,32          ldw   R32,R38        R32 = R38;
 38e4: ad,0c,34          ldzbw R34,c          R34 = (uns)c;
-38e7: 45,12,00,f2,38    ad3w  R38,Rf2,12     R38 = Volumetric_Efficiency_Table; #Volumetric_Efficiency_Table
+38e7: 45,12,00,f2,38    ad3w  R38,Rf2,12     R38 = Volumetric_Efficiency_Table;
 38ec: ef,2d,f8          call  311c           UTabLU();
 38ef: 69,80,00,3a       sb2w  R3a,80         R3a -= 80;
 38f3: 6c,3a,3c          ml2w  R3c,R3a        R3cL *= R3a;
@@ -2603,7 +2603,7 @@
 3cec: f0                ret                  return;
 
   Sub69:
-3ced: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;          #Scaler_for_RPM
+3ced: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;
 3cf2: a0,ae,34          ldw   R34,Rae        R34 = Rae;
 3cf5: ef,a0,f3          call  3098           UUWordLU();
 3cf8: a0,38,30          ldw   R30,R38        R30 = R38;
@@ -2611,7 +2611,7 @@
 3cfe: 89,00,03,30       cmpw  R30,300        
 3d02: d1,04             jleu  3d08           if ((uns) R30 > 300 )  {
 3d04: a1,00,03,30       ldw   R30,300        R30 = 300; }
-3d08: 45,6e,02,f0,32    ad3w  R32,Rf0,26e    R32 = Scaler_for_MAP;          #Scaler_for_MAP
+3d08: 45,6e,02,f0,32    ad3w  R32,Rf0,26e    R32 = Scaler_for_MAP;
 3d0d: ac,b4,34          ldzbw R34,Rb4        R34 = (uns)Rb4;
 3d10: ef,85,f3          call  3098           UUWordLU();
 3d13: a0,38,32          ldw   R32,R38        R32 = R38;
@@ -2710,31 +2710,31 @@
 3e32: a1,01,00,3c       ldw   R3c,1          R3c = 1; }
 3e36: 21,35             sjmp  3f6d           goto 3f6d;
 3e38: 3d,2b,35          jb    B5,R2b,3e70    if (!B5_R2b)  {
-3e3b: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECTorACT;     #Scaler_for_ECTorACT
+3e3b: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECTorACT;
 3e40: b3,f3,a0,00,36    ldb   R36,[Rf2+a0]   R36 = [72c2];
 3e45: 29,33             scall 3f7a           Sub60();
 3e47: ef,4e,f2          call  3098           UUWordLU();
 3e4a: a0,38,30          ldw   R30,R38        R30 = R38;
-3e4d: 45,36,02,f0,32    ad3w  R32,Rf0,236    R32 = Scaler_for_Load_(fuel);  #Scaler_for_Load_(fuel)
+3e4d: 45,36,02,f0,32    ad3w  R32,Rf0,236    R32 = Scaler_for_Load_(fuel);
 3e52: ac,a3,34          ldzbw R34,Ra3        R34 = (uns)Ra3;
 3e55: ef,46,f2          call  309e           SSWordLU();
 3e58: a0,38,3c          ldw   R3c,R38        R3c = R38;
 3e5b: a0,3c,32          ldw   R32,R3c        R32 = R3c;
 3e5e: ad,0a,34          ldzbw R34,a          R34 = (uns)a;
-3e61: 45,72,00,f8,38    ad3w  R38,Rf8,72     R38 = Fuel_Table_Base_(OL);    #Fuel_Table_Base_(OL)
+3e61: 45,72,00,f8,38    ad3w  R38,Rf8,72     R38 = Fuel_Table_Base_(OL);
 3e66: ef,b3,f2          call  311c           UTabLU();
 3e69: 49,80,00,3a,3c    sb3w  R3c,R3a,80     R3c = R3a - 80;
 3e6e: 20,50             sjmp  3ec0           goto 3ec0; }
-3e70: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;          #Scaler_for_RPM
+3e70: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;
 3e75: a0,ae,34          ldw   R34,Rae        R34 = Rae;
 3e78: ef,1d,f2          call  3098           UUWordLU();
 3e7b: a0,38,30          ldw   R30,R38        R30 = R38;
-3e7e: 45,36,02,f0,32    ad3w  R32,Rf0,236    R32 = Scaler_for_Load_(fuel);  #Scaler_for_Load_(fuel)
+3e7e: 45,36,02,f0,32    ad3w  R32,Rf0,236    R32 = Scaler_for_Load_(fuel);
 3e83: ac,a3,34          ldzbw R34,Ra3        R34 = (uns)Ra3;
 3e86: ef,15,f2          call  309e           SSWordLU();
 3e89: a0,38,32          ldw   R32,R38        R32 = R38;
 3e8c: ad,0c,34          ldzbw R34,c          R34 = (uns)c;
-3e8f: 45,1c,01,f8,38    ad3w  R38,Rf8,11c    R38 = MFA_Fuel_Multiplier_Table; #MFA_Fuel_Multiplier_Table
+3e8f: 45,1c,01,f8,38    ad3w  R38,Rf8,11c    R38 = MFA_Fuel_Multiplier_Table;
 3e94: ef,85,f2          call  311c           UTabLU();
 3e97: 49,80,00,3a,3c    sb3w  R3c,R3a,80     R3c = R3a - 80;
 3e9c: a3,01,04,02,3a    ldw   R3a,[204]      R3a = [204];
@@ -2748,33 +2748,33 @@
 3eb5: d1,04             jleu  3ebb           if ((uns) R3a > 200 )  {
 3eb7: a1,00,02,3a       ldw   R3a,200        R3a = 200; }
 3ebb: c3,01,04,02,3a    stw   R3a,[204]      [204] = R3a;
-3ec0: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECTorACT;     #Scaler_for_ECTorACT
+3ec0: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECTorACT;
 3ec5: b3,f3,a1,00,36    ldb   R36,[Rf2+a1]   R36 = [72c3];
 3eca: 28,ae             scall 3f7a           Sub60();
 3ecc: ef,c9,f1          call  3098           UUWordLU();
 3ecf: a0,38,30          ldw   R30,R38        R30 = R38;
-3ed2: 45,82,01,f0,32    ad3w  R32,Rf0,182    R32 = Scaler_for_Time(fuel);   #Scaler_for_Time(fuel)
+3ed2: 45,82,01,f0,32    ad3w  R32,Rf0,182    R32 = Scaler_for_Time(fuel);
 3ed7: ac,cb,34          ldzbw R34,Rcb        R34 = (uns)Rcb;
 3eda: ef,c1,f1          call  309e           SSWordLU();
 3edd: a0,38,32          ldw   R32,R38        R32 = R38;
 3ee0: ad,0a,34          ldzbw R34,a          R34 = (uns)a;
-3ee3: 45,cc,00,f8,38    ad3w  R38,Rf8,cc     R38 = Fuel_Table_Startup;      #Fuel_Table_Startup
+3ee3: 45,cc,00,f8,38    ad3w  R38,Rf8,cc     R38 = Fuel_Table_Startup;
 3ee8: ef,31,f2          call  311c           UTabLU();
 3eeb: 69,80,00,3a       sb2w  R3a,80         R3a -= 80;
 3eef: 68,3a,3c          sb2w  R3c,R3a        R3c -= R3a;
 3ef2: db,02             jc    3ef6           if ((uns) R3c < R3a)  {
 3ef4: 01,3c             clrw  R3c            R3c = 0; }
 3ef6: 3d,2b,31          jb    B5,R2b,3f2a    if (!B5_R2b)  {
-3ef9: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;          #Scaler_for_RPM
+3ef9: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;
 3efe: a0,ae,34          ldw   R34,Rae        R34 = Rae;
 3f01: ef,9a,f1          call  309e           SSWordLU();
 3f04: a0,38,30          ldw   R30,R38        R30 = R38;
-3f07: 45,52,02,f0,32    ad3w  R32,Rf0,252    R32 = Scaler_for_Load_(fuelstable); #Scaler_for_Load_(fuelstable)
+3f07: 45,52,02,f0,32    ad3w  R32,Rf0,252    R32 = Scaler_for_Load_(fuelstable);
 3f0c: ac,a3,34          ldzbw R34,Ra3        R34 = (uns)Ra3;
 3f0f: ef,8c,f1          call  309e           SSWordLU();
 3f12: a0,38,32          ldw   R32,R38        R32 = R38;
 3f15: ad,0c,34          ldzbw R34,c          R34 = (uns)c;
-3f18: 45,06,00,f8,38    ad3w  R38,Rf8,6      R38 = Fuel_Table_Stabilised_(CL); #Fuel_Table_Stabilised_(CL)
+3f18: 45,06,00,f8,38    ad3w  R38,Rf8,6      R38 = Fuel_Table_Stabilised_(CL);
 3f1d: ef,fc,f1          call  311c           UTabLU();
 3f20: 49,80,00,3a,40    sb3w  R40,R3a,80     R40 = R3a - 80;
 3f25: b0,41,38          ldb   R38,R41        R38 = R41;
@@ -2843,7 +2843,7 @@
 3fd8: a3,01,9e,00,38    ldw   R38,[9e]       R38 = [9e];
 3fdd: 6d,03,01,38       ml2w  R38,103        R38L *= 103;
 3fe1: c3,01,9e,00,38    stw   R38,[9e]       [9e] = R38;
-3fe6: 45,d2,01,f0,32    ad3w  R32,Rf0,1d2    R32 = Scaler_for_Abs_Exh_Pressure; #Scaler_for_Abs_Exh_Pressure
+3fe6: 45,d2,01,f0,32    ad3w  R32,Rf0,1d2    R32 = Scaler_for_Abs_Exh_Pressure;
 3feb: af,01,a3,01,34    ldzbw R34,[1a3]      R34 = (uns)[1a3];
 3ff0: ef,ab,f0          call  309e           SSWordLU();
 3ff3: a0,38,aa          ldw   Raa,R38        Raa = R38;
@@ -2852,7 +2852,7 @@
 3fff: 64,3a,38          ad2w  R38,R3a        R38 += R3a;
 4002: c7,01,8b,02,39    stb   R39,[28b]      [28b] = R39;
 4007: c4,30,39          stb   R39,R30        R30 = R39;
-400a: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;          #Scaler_for_RPM
+400a: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;
 400f: a0,ae,34          ldw   R34,Rae        R34 = Rae;
 4012: ef,89,f0          call  309e           SSWordLU();
 4015: a0,38,a8          ldw   Ra8,R38        Ra8 = R38;
@@ -2986,11 +2986,11 @@
 41cf: 28,bb             scall 428c           Sub73();
 41d1: af,33,a6,02,3a    ldzbw R3a,[R32+2a6]  R3a = (uns)[R32+2a6];
 41d6: 20,79             sjmp  4251           goto 4251;
-41d8: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;          #Scaler_for_RPM
+41d8: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;
 41dd: a0,ae,34          ldw   R34,Rae        R34 = Rae;
 41e0: ef,bb,ee          call  309e           SSWordLU();
 41e3: a0,38,a8          ldw   Ra8,R38        Ra8 = R38;
-41e6: 45,d2,01,f0,32    ad3w  R32,Rf0,1d2    R32 = Scaler_for_Abs_Exh_Pressure; #Scaler_for_Abs_Exh_Pressure
+41e6: 45,d2,01,f0,32    ad3w  R32,Rf0,1d2    R32 = Scaler_for_Abs_Exh_Pressure;
 41eb: af,01,a3,01,34    ldzbw R34,[1a3]      R34 = (uns)[1a3];
 41f0: ef,ab,ee          call  309e           SSWordLU();
 41f3: a0,38,aa          ldw   Raa,R38        Raa = R38;
@@ -3305,12 +3305,12 @@
 45ac: 71,f7,28          an2b  R28,f7         R28 &= f7;
 45af: 01,98             clrw  R98            R98 = 0;
 45b1: f0                ret                  return;
-45b2: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECTorACT;     #Scaler_for_ECTorACT
+45b2: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECTorACT;
 45b7: b3,f3,8a,01,36    ldb   R36,[Rf2+18a]  R36 = [73ac];
 45bc: ef,bb,f9          call  3f7a           Sub60();
 45bf: ef,d6,ea          call  3098           UUWordLU();
 45c2: a0,38,a8          ldw   Ra8,R38        Ra8 = R38;
-45c5: 45,6e,02,f0,32    ad3w  R32,Rf0,26e    R32 = Scaler_for_MAP;          #Scaler_for_MAP
+45c5: 45,6e,02,f0,32    ad3w  R32,Rf0,26e    R32 = Scaler_for_MAP;
 45ca: ac,b4,34          ldzbw R34,Rb4        R34 = (uns)Rb4;
 45cd: ef,ce,ea          call  309e           SSWordLU();
 45d0: a0,38,aa          ldw   Raa,R38        Raa = R38;
@@ -3452,22 +3452,22 @@
 4783: b1,ff,3b          ldb   R3b,ff         R3b = ff; }
 4786: c4,d8,3b          stb   R3b,Rd8        Rd8 = R3b;
 4789: ef,68,01          call  48f4           Sub77();
-478c: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;          #Scaler_for_RPM
+478c: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;
 4791: a0,ae,34          ldw   R34,Rae        R34 = Rae;
 4794: ef,07,e9          call  309e           SSWordLU();
 4797: a0,38,30          ldw   R30,R38        R30 = R38;
-479a: 45,6e,02,f0,32    ad3w  R32,Rf0,26e    R32 = Scaler_for_MAP;          #Scaler_for_MAP
+479a: 45,6e,02,f0,32    ad3w  R32,Rf0,26e    R32 = Scaler_for_MAP;
 479f: ac,b4,34          ldzbw R34,Rb4        R34 = (uns)Rb4;
 47a2: ef,f9,e8          call  309e           SSWordLU();
 47a5: a0,38,32          ldw   R32,R38        R32 = R38;
 47a8: ad,0c,34          ldzbw R34,c          R34 = (uns)c;
-47ab: 45,27,00,fe,38    ad3w  R38,Rfe,27     R38 = TBL7F49_(unused?);       #TBL7F49_(unused?)
+47ab: 45,27,00,fe,38    ad3w  R38,Rfe,27     R38 = TBL7F49_(unused?);
 47b0: ef,69,e9          call  311c           UTabLU();
 47b3: 45,1e,00,fc,32    ad3w  R32,Rfc,1e     R32 = 7f16;
 47b8: b0,b2,34          ldb   R34,Rb2        R34 = Rb2;
 47bb: ef,80,e8          call  303e           UUByteLU();
 47be: 5c,3b,38,3e       ml3b  R3e,R38,R3b    R3eW = R38B * R3bB;
-47c2: 45,1d,00,fe,32    ad3w  R32,Rfe,1d     R32 = FN7F3F;                  #TBL7F3F
+47c2: 45,1d,00,fe,32    ad3w  R32,Rfe,1d     R32 = FN7F3F;
 47c7: b3,01,d9,00,34    ldb   R34,[d9]       R34 = [d9];
 47cc: ef,7a,e8          call  3049           SSByteLU();
 47cf: 11,39             clrb  R39            R39 = 0;
@@ -3682,20 +3682,20 @@
 4a53: 91,20,26          orb   R26,20         R26 |= 20;
 4a56: 20,03             sjmp  4a5b           goto 4a5b; } } } }
 4a58: 71,df,26          an2b  R26,df         R26 &= df;
-4a5b: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;          #Scaler_for_RPM
+4a5b: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;          #Pointer to table
 4a60: a0,ae,34          ldw   R34,Rae        R34 = Rae;                     #RAE = engine RPM * 4
 4a63: ef,38,e6          call  309e           SSWordLU();                    #2D interpolation routine (R32=Table,R34=InVar,R38=OutVar)
 4a66: a0,38,a8          ldw   Ra8,R38        Ra8 = R38;                     #Table column no. set based on RPM result
-4a69: 45,6e,02,f0,32    ad3w  R32,Rf0,26e    R32 = Scaler_for_MAP;          #Scaler_for_MAP
+4a69: 45,6e,02,f0,32    ad3w  R32,Rf0,26e    R32 = Scaler_for_MAP;          #Pointer to table
 4a6e: ac,b4,34          ldzbw R34,Rb4        R34 = (uns)Rb4;
 4a71: ef,2a,e6          call  309e           SSWordLU();                    #2D interpolation routine (R32=Table,R34=InVar,R38=OutVar)
 4a74: a0,38,aa          ldw   Raa,R38        Raa = R38;                     #Table row no. set based on MAP result
 4a77: a0,a8,30          ldw   R30,Ra8        R30 = Ra8;
 4a7a: a0,aa,32          ldw   R32,Raa        R32 = Raa;
 4a7d: ad,0c,34          ldzbw R34,c          R34 = (uns)c;
-4a80: 45,40,02,f8,38    ad3w  R38,Rf8,240    R38 = TBL7BB6_(OL_unused?);    #TBL7BB6_(OL_unused?)
+4a80: 45,40,02,f8,38    ad3w  R38,Rf8,240    R38 = TBL7BB6_(OL_unused?);
 4a85: 35,2b,05          jnb   B5,R2b,4a8d    if (B5_R2b)  {
-4a88: 45,96,00,fe,38    ad3w  R38,Rfe,96     R38 = TBL7FB8_(CL_unused?); }  #TBL7FB8_(CL_unused?)
+4a88: 45,96,00,fe,38    ad3w  R38,Rfe,96     R38 = TBL7FB8_(CL_unused?); }
 4a8d: ef,8c,e6          call  311c           UTabLU();
 4a90: 5d,c8,d8,34       ml3b  R34,Rd8,c8     R34W = Rd8B * c8B;
 4a94: 01,36             clrw  R36            R36 = 0;
@@ -3715,9 +3715,9 @@
 4ac3: a0,a8,30          ldw   R30,Ra8        R30 = Ra8;
 4ac6: a0,aa,32          ldw   R32,Raa        R32 = Raa;
 4ac9: ad,0c,34          ldzbw R34,c          R34 = (uns)c;
-4acc: 45,d4,01,f8,38    ad3w  R38,Rf8,1d4    R38 = Spark_Table_Alt_(OL);    #Spark_Table_Alt_(OL)
+4acc: 45,d4,01,f8,38    ad3w  R38,Rf8,1d4    R38 = Spark_Table_Alt_(OL);
 4ad1: 35,2b,05          jnb   B5,R2b,4ad9    if (B5_R2b)  {
-4ad4: 45,18,03,f8,38    ad3w  R38,Rf8,318    R38 = Spark_Table_Base_(CL); } #Spark_Table_Base_(CL)
+4ad4: 45,18,03,f8,38    ad3w  R38,Rf8,318    R38 = Spark_Table_Base_(CL); }
 4ad9: ef,40,e6          call  311c           UTabLU();
 4adc: ac,3b,3c          ldzbw R3c,R3b        R3c = (uns)R3b;
 4adf: b3,f3,b6,01,36    ldb   R36,[Rf2+1b6]  R36 = [73d8];
@@ -3733,14 +3733,14 @@
 4b04: a0,a8,30          ldw   R30,Ra8        R30 = Ra8;
 4b07: a0,aa,32          ldw   R32,Raa        R32 = Raa;
 4b0a: ad,0c,34          ldzbw R34,c          R34 = (uns)c;
-4b0d: 45,ac,02,f8,38    ad3w  R38,Rf8,2ac    R38 = Spark_Table_Borderline_Knock; #Spark_Table_Borderline_Knock
+4b0d: 45,ac,02,f8,38    ad3w  R38,Rf8,2ac    R38 = Spark_Table_Borderline_Knock;
 4b12: ef,07,e6          call  311c           UTabLU();
 4b15: ac,3b,3c          ldzbw R3c,R3b        R3c = (uns)R3b;
 4b18: 09,03,3c          shlw  R3c,3          R3c *= 8;
 4b1b: a0,a8,30          ldw   R30,Ra8        R30 = Ra8;
 4b1e: a0,aa,32          ldw   R32,Raa        R32 = Raa;
 4b21: ad,0c,34          ldzbw R34,c          R34 = (uns)c;
-4b24: 45,84,03,f8,38    ad3w  R38,Rf8,384    R38 = Spark_Table_??(wot-adder?); #Spark_Table_??(wot-adder?)
+4b24: 45,84,03,f8,38    ad3w  R38,Rf8,384    R38 = Spark_Table_??(wot-adder?);
 4b29: ef,f0,e5          call  311c           UTabLU();
 4b2c: b3,f3,b6,01,36    ldb   R36,[Rf2+1b6]  R36 = [73d8];
 4b31: fe,5f,fa,6a,36,34 sml3b R34,R36,[Rfa+6a] R34W = R36B * [7e7e]B;
@@ -6899,7 +6899,7 @@
 7146: 00,00,00,00  func       0   ,0   
 714a: 00,00,00,00  func       0   ,0   
 714e: 00,00,00,00  func       0   ,0   
-#				 ??	 Row
+#				??	 Row
 
 
   Scaler_for_ECTorACT:
@@ -6963,7 +6963,7 @@
 71e6: 00,80,00,00  func       32768,0   
 71ea: 00,80,00,00  func       32768,0   
 71ee: 00,80,00,00  func       32768,0   
-#				 ??	Row
+#				??	Row
 
 71f2: ff,ff,00,af  func       65535,44800
 71f6: a0,00,00,af  func       160,44800
