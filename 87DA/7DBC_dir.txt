@@ -65,13 +65,7 @@ word  202C 202D "RFA"
 word  202E 202F "RFC"
 word  2030 2031 "RFE"
 fill  2032 20A1
-code  20A2 21D5
-vect  21D6 2251
-#code  2252 2286 #some areas are not code?
-#code  2287 22B5 #some areas are not code?
-#code  22B6 6A61 #some areas are not code?
-xcode 6A62 6B05 #what is this?
-code  6B06 6B8B
+
 xcode 6F50 804B #data section
 
 #init table

@@ -163,7 +163,7 @@
 2165: a1,80,a2,30       ldw   R30,a280       R30 = a280;
 2169: c3,01,3c,03,30    stw   R30,[33c]      [33c] = R30;
 216e: c7,01,de,01,b4    stb   Rb4,[1de]      [1de] = Rb4;
-2173: ef,90,49          call  6b06           Sub28();
+2173: ef,90,49          call  6b06           Sub1();
 2176: 11,09             clrb  R9             INT_PEND = 0;
 2178: 32,0a,06          jnb   B2,Ra,2181     if (HSI_RDY)  {
 217b: b0,0d,00          ldb   0,Rd           ZERO = HSI_DATA;
@@ -235,72 +235,72 @@
 ################################################################################
 
 
-21d6: 4d,68             vect  684d,          Sub1
-21d8: d3,68             vect  68d3,          Sub2
-21da: d6,23             vect  23d6,          Sub3
-21dc: 8d,31             vect  318d,          Sub4
-21de: e1,31             vect  31e1,          Sub5
-21e0: 52,22             vect  2252,          Sub6
-21e2: 8e,5d             vect  5d8e,          Sub7
-21e4: 2b,32             vect  322b,          Sub8
-21e6: e8,32             vect  32e8,          Sub9
-21e8: f5,33             vect  33f5,          Sub10
-21ea: ca,53             vect  53ca,          Sub11
-21ec: a0,55             vect  55a0,          Sub12
-21ee: 28,68             vect  6828,          Sub13
-21f0: 72,38             vect  3872,          Sub14
-21f2: a6,38             vect  38a6,          Sub15
-21f4: e5,68             vect  68e5,          Sub16
-21f6: ce,3a             vect  3ace,          Sub17
-21f8: c1,3b             vect  3bc1,          Sub18
-21fa: 92,3f             vect  3f92,          Sub19
-21fc: a3,42             vect  42a3,          Sub20
-21fe: be,46             vect  46be,          Sub21
-2200: d1,46             vect  46d1,          Sub22
-2202: 86,49             vect  4986,          Sub23
-2204: 27,4a             vect  4a27,          Sub24
-2206: 50,58             vect  5850,          Sub25
-2208: 18,53             vect  5318,          Sub26
-220a: f1,4b             vect  4bf1,          Sub27
-220c: 06,6b             vect  6b06,          Sub28
+21d6: 4d,68             vect  684d,          Sub2
+21d8: d3,68             vect  68d3,          Sub3
+21da: d6,23             vect  23d6,          Sub4
+21dc: 8d,31             vect  318d,          Sub5
+21de: e1,31             vect  31e1,          Sub6
+21e0: 52,22             vect  2252,          Sub7
+21e2: 8e,5d             vect  5d8e,          Sub8
+21e4: 2b,32             vect  322b,          Sub9
+21e6: e8,32             vect  32e8,          Sub10
+21e8: f5,33             vect  33f5,          Sub11
+21ea: ca,53             vect  53ca,          Sub12
+21ec: a0,55             vect  55a0,          Sub13
+21ee: 28,68             vect  6828,          Sub14
+21f0: 72,38             vect  3872,          Sub15
+21f2: a6,38             vect  38a6,          Sub16
+21f4: e5,68             vect  68e5,          Sub17
+21f6: ce,3a             vect  3ace,          Sub18
+21f8: c1,3b             vect  3bc1,          Sub19
+21fa: 92,3f             vect  3f92,          Sub20
+21fc: a3,42             vect  42a3,          Sub21
+21fe: be,46             vect  46be,          Sub22
+2200: d1,46             vect  46d1,          Sub23
+2202: 86,49             vect  4986,          Sub24
+2204: 27,4a             vect  4a27,          Sub25
+2206: 50,58             vect  5850,          Sub26
+2208: 18,53             vect  5318,          Sub27
+220a: f1,4b             vect  4bf1,          Sub28
+220c: 06,6b             vect  6b06,          Sub1
 220e: 0c,5a             vect  5a0c,          Sub29
 2210: c1,21             vect  21c1,          main_loop_selection            #update main loop selection and restart
 
 ################################################################################
 #EEC main loop B (on-demand KOEO self tests; NO_START_TESTS, VEHICLE_SPEED_CONTROL_TESTS)
 ################################################################################
-2212: 4d,68             vect  684d,          Sub1
-2214: d3,68             vect  68d3,          Sub2
-2216: 8d,31             vect  318d,          Sub4
-2218: 52,22             vect  2252,          Sub6
-221a: 2b,32             vect  322b,          Sub8
-221c: f5,33             vect  33f5,          Sub10
-221e: ca,53             vect  53ca,          Sub11
-2220: a0,55             vect  55a0,          Sub12
-2222: 28,68             vect  6828,          Sub13
-2224: ce,3a             vect  3ace,          Sub17
-2226: a3,42             vect  42a3,          Sub20
-2228: be,46             vect  46be,          Sub21
+2212: 4d,68             vect  684d,          Sub2
+2214: d3,68             vect  68d3,          Sub3
+2216: 8d,31             vect  318d,          Sub5
+2218: 52,22             vect  2252,          Sub7
+221a: 2b,32             vect  322b,          Sub9
+221c: f5,33             vect  33f5,          Sub11
+221e: ca,53             vect  53ca,          Sub12
+2220: a0,55             vect  55a0,          Sub13
+2222: 28,68             vect  6828,          Sub14
+2224: ce,3a             vect  3ace,          Sub18
+2226: a3,42             vect  42a3,          Sub21
+2228: be,46             vect  46be,          Sub22
 222a: 0c,5a             vect  5a0c,          Sub29
 222c: c1,21             vect  21c1,          main_loop_selection            #update main loop selection and restart
 
 ################################################################################
 #EEC main loop C (on-demand KOER self tests; RUNNING_TESTS)
 ################################################################################
-222e: 4d,68             vect  684d,          Sub1
-2230: d3,68             vect  68d3,          Sub2
-2232: 52,22             vect  2252,          Sub6
-2234: 2b,32             vect  322b,          Sub8
-2236: e8,32             vect  32e8,          Sub9
-2238: f5,33             vect  33f5,          Sub10
-223a: ca,53             vect  53ca,          Sub11
-223c: a0,55             vect  55a0,          Sub12
-223e: 28,68             vect  6828,          Sub13
-2240: a6,38             vect  38a6,          Sub15
-2242: ce,3a             vect  3ace,          Sub17
+222e: 4d,68             vect  684d,          Sub2
+2230: d3,68             vect  68d3,          Sub3
+2232: 52,22             vect  2252,          Sub7
+2234: 2b,32             vect  322b,          Sub9
+2236: e8,32             vect  32e8,          Sub10
+2238: f5,33             vect  33f5,          Sub11
+223a: ca,53             vect  53ca,          Sub12
+223c: a0,55             vect  55a0,          Sub13
+223e: 28,68             vect  6828,          Sub14
+2240: a6,38             vect  38a6,          Sub16
+2242: ce,3a             vect  3ace,          Sub18
 2244: 17,43             vect  4317,          Sub30
-2246: be,46             vect  46be,          Sub21
-2248: f1,4b             vect  4bf1,          Sub27
+2246: be,46             vect  46be,          Sub22
+2248: f1,4b             vect  4bf1,          Sub28
 224a: 7b,66             vect  667b,          Sub31
 224c: 66,66             vect  6666,          Sub32
 224e: 0c,5a             vect  5a0c,          Sub29
@@ -309,7 +309,7 @@
 ################################################################################
 
 
-  Sub6:
+  Sub7:
 2252: a1,87,22,30       ldw   R30,2287       R30 = 2287;
 2256: 31,28,04          jnb   B1,R28,225d    if (B1_R28)  {
 2259: a1,8a,22,30       ldw   R30,228a       R30 = 228a; }
@@ -460,7 +460,7 @@
 23d0: c7,01,ef,01,39    stb   R39,[1ef]      [1ef] = R39;
 23d5: f0                ret                  return;
 
-  Sub3:
+  Sub4:
 23d6: a1,eb,02,22       ldw   R22,2eb        R22 = 2eb;
 23da: 71,7f,28          an2b  R28,7f         R28 &= 7f;
 23dd: b1,aa,42          ldb   R42,aa         R42 = aa;
@@ -1701,7 +1701,7 @@
 318b: f9                stc                  CY = 1;
 318c: f0                ret                  return;
 
-  Sub4:
+  Sub5:
 318d: 71,f7,24          an2b  R24,f7         R24 &= f7;
 3190: 37,2c,0e          jnb   B7,R2c,31a1    if (!B7_R2c) goto 31a1;
 3193: 8b,fe,1a,ae       cmpw  Rae,[Rfe+1a]   
@@ -1733,7 +1733,7 @@
 31dd: 71,fe,24          an2b  R24,fe         R24 &= fe;
 31e0: f0                ret                  return;
 
-  Sub5:
+  Sub6:
 31e1: a3,01,1c,01,30    ldw   R30,[11c]      R30 = [11c];
 31e6: 4b,f2,7e,30,32    sb3w  R32,R30,[Rf2+7e] R32 = R30 - [72a0];
 31eb: d9,0d             jgtu  31fa           if ((uns) R30 <= [72a0])  {
@@ -1761,7 +1761,7 @@
 3227: 91,80,27          orb   R27,80         R27 |= 80; }
 322a: f0                ret                  return;
 
-  Sub8:
+  Sub9:
 322b: a3,01,1a,01,30    ldw   R30,[11a]      R30 = [11a];
 3230: 3c,2d,0f          jb    B4,R2d,3242    if (!B4_R2d)  {
 3233: a3,01,ca,01,32    ldw   R32,[1ca]      R32 = [1ca];
@@ -1813,12 +1813,12 @@
 32d5: 9b,fa,4a,38       cmpb  R38,[Rfa+4a]   
 32d9: d1,05             jleu  32e0           if ((uns) R38 > [7e5e] )  {
 32db: 91,10,a2          orb   Ra2,10         Ra2 |= 10;
-32de: 20,08             sjmp  32e8           goto Sub9; } }
+32de: 20,08             sjmp  32e8           goto Sub10; } }
 32e0: 88,00,e4          cmpw  Re4,0          
 32e3: d7,03             jne   32e8           if (Re4 == ZERO)  {
 32e5: 71,ef,a2          an2b  Ra2,ef         Ra2 &= ef; }
 
-  Sub9:
+  Sub10:
 32e8: 3f,2c,1a          jb    B7,R2c,3305    if (!B7_R2c)  {
 32eb: af,fe,18,36       ldzbw R36,[Rfe+18]   R36 = (uns)[7f3a];
 32ef: 88,e4,36          cmpw  R36,Re4        
@@ -1899,7 +1899,7 @@
 33f1: 91,08,4a          orb   R4a,8          R4a |= 8; }
 33f4: f0                ret                  return;
 
-  Sub10:
+  Sub11:
 33f5: b3,f3,fa,02,39    ldb   R39,[Rf2+2fa]  R39 = [751c];
 33fa: 3f,2d,20          jb    B7,R2d,341d    if (!B7_R2d)  {
 33fd: a3,01,10,01,34    ldw   R34,[110]      R34 = [110];
@@ -2256,7 +2256,7 @@
 386f: e6,00,2d          ??    230,  0, 45  11520,
 
 
-  Sub14:
+  Sub15:
 3872: a3,01,be,01,30    ldw   R30,[1be]      R30 = [1be];
 3877: a3,f3,88,00,36    ldw   R36,[Rf2+88]   R36 = [72aa];
 387c: a1,a2,b3,3a       ldw   R3a,b3a2       R3a = b3a2;
@@ -2273,7 +2273,7 @@
 38a0: c3,01,da,01,30    stw   R30,[1da]      [1da] = R30;
 38a5: f0                ret                  return;
 
-  Sub15:
+  Sub16:
 38a6: 37,2c,01          jnb   B7,R2c,38aa    if (B7_R2c)  {
 38a9: f0                ret                  return; }
 38aa: 45,02,00,f6,32    ad3w  R32,Rf6,2      R32 = 76b6;
@@ -2438,7 +2438,7 @@
 3ac8: c7,01,a3,01,34    stb   R34,[1a3]      [1a3] = R34;
 3acd: f0                ret                  return;
 
-  Sub17:
+  Sub18:
 3ace: 37,2c,02          jnb   B7,R2c,3ad3    if (B7_R2c)  {
 3ad1: 20,7b             sjmp  3b4e           goto 3b4e; }
 3ad3: a3,01,00,01,32    ldw   R32,[100]      R32 = [100];
@@ -2505,7 +2505,7 @@
 3bbd: 91,08,2d          orb   R2d,8          R2d |= 8; }
 3bc0: f0                ret                  return;
 
-  Sub18:
+  Sub19:
 3bc1: 3f,2c,06          jb    B7,R2c,3bca    if (!B7_R2c)  {
 3bc4: 8b,fa,1c,d2       cmpw  Rd2,[Rfa+1c]   
 3bc8: d1,05             jleu  3bcf           if ((uns) Rd2 <= [7e30]) goto 3bcf; }
@@ -2818,7 +2818,7 @@
 3f8e: 64,36,34          ad2w  R34,R36        R34 += R36;
 3f91: f0                ret                  return;
 
-  Sub19:
+  Sub20:
 3f92: 3f,2c,16          jb    B7,R2c,3fab    if (!B7_R2c)  {
 3f95: 38,24,13          jb    B0,R24,3fab    if (!B0_R24)  {
 3f98: 9b,f3,ea,02,b2    cmpb  Rb2,[Rf2+2ea]  
@@ -3055,7 +3055,7 @@
 429f: a0,34,32          ldw   R32,R34        R32 = R34; }
 42a2: f0                ret                  return;
 
-  Sub20:
+  Sub21:
 42a3: 88,ae,00          cmpw  0,Rae          
 42a6: df,06             je    42ae           if (ZERO != Rae)  {
 42a8: 9b,fa,46,cb       cmpb  Rcb,[Rfa+46]   
@@ -3384,7 +3384,7 @@
 46bb: 03,98             negw  R98            R98 = -R98; }
 46bd: f0                ret                  return;
 
-  Sub21:
+  Sub22:
 46be: a3,01,2a,01,14    ldw   R14,[12a]      R14 = [12a];
 46c3: 89,00,04,14       cmpw  R14,400        
 46c7: d3,04             jnc   46cd           if ((uns) R14 >= 400)  {
@@ -3393,7 +3393,7 @@
 46cd: 91,80,46          orb   R46,80         R46 |= 80;
 46d0: f0                ret                  return;
 
-  Sub22:
+  Sub23:
 46d1: 37,2c,02          jnb   B7,R2c,46d6    if (B7_R2c)  {
 46d4: 20,b3             sjmp  4789           goto 4789; }
 46d6: 4f,01,c2,01,9a,34 ml3w  R34,R9a,[1c2]  R34L = R9a * [1c2];
@@ -3612,7 +3612,7 @@
 4982: 71,fe,28          an2b  R28,fe         R28 &= fe;
 4985: f0                ret                  return;
 
-  Sub23:
+  Sub24:
 4986: 38,26,0a          jb    B0,R26,4993    if (!B0_R26)  {
 4989: b3,01,e0,01,30    ldb   R30,[1e0]      R30 = [1e0];
 498e: 98,00,30          cmpb  R30,0          
@@ -3662,7 +3662,7 @@
 #Starting at 4A58 is choosing spark table(s)
 
 
-  Sub24:
+  Sub25:
 4a27: 30,24,0a          jnb   B0,R24,4a34    if (!B0_R24) goto 4a34;
 4a2a: 37,2c,03          jnb   B7,R2c,4a30    if (B7_R2c)  {
 4a2d: 71,fb,25          an2b  R25,fb         R25 &= fb; }
@@ -3807,7 +3807,7 @@
 4bec: a1,00,ff,16       ldw   R16,ff00       R16 = ff00; }
 4bf0: f0                ret                  return;
 
-  Sub27:
+  Sub28:
 4bf1: 35,2f,01          jnb   B5,R2f,4bf5    if (B5_R2f)  {
 4bf4: f0                ret                  return; }
 4bf5: 45,8c,00,fa,74    ad3w  R74,Rfa,8c     R74 = 7ea0;
@@ -4352,7 +4352,7 @@
 5316: f8,f0             ??    248,-16  -3848,
 
 
-  Sub26:
+  Sub27:
 5318: 3f,2c,3b          jb    B7,R2c,5356    if (B7_R2c) goto 5356;
 531b: b3,f3,cc,01,14    ldb   R14,[Rf2+1cc]  R14 = [73ee];
 5320: 7b,f3,cd,01,14    sb2b  R14,[Rf2+1cd]  R14 -= [73ef];
@@ -4410,7 +4410,7 @@
 53c4: c7,01,a8,01,33    stb   R33,[1a8]      [1a8] = R33;
 53c9: f0                ret                  return;
 
-  Sub11:
+  Sub12:
 53ca: 3f,2c,02          jb    B7,R2c,53cf    if (!B7_R2c)  {
 53cd: 20,11             sjmp  53e0           goto 53e0; }
 53cf: 11,cb             clrb  Rcb            Rcb = 0;
@@ -4561,7 +4561,7 @@
 559c: 91,08,2b          orb   R2b,8          R2b |= 8; } } } } } }
 559f: f0                ret                  return;
 
-  Sub12:
+  Sub13:
 55a0: a3,01,30,01,3c    ldw   R3c,[130]      R3c = [130];
 55a5: a1,53,56,30       ldw   R30,5653       R30 = 5653;
 55a9: a0,06,36          ldw   R36,R6         R36 = IO_TIMER;
@@ -4801,7 +4801,7 @@
 5849: 67,01,6c,01,7c    ad2w  R7c,[16c]      R7c += [16c];
 584e: 27,f4             sjmp  5844           goto 5844;
 
-  Sub25:
+  Sub26:
 5850: 45,24,01,f4,32    ad3w  R32,Rf4,124    R32 = 7648;
 5855: a0,ae,34          ldw   R34,Rae        R34 = Rae;
 5858: ef,43,d8          call  309e           SSWordLU();
@@ -5304,7 +5304,7 @@
 5d8c: fd,67             vect  67fd,          Sub117
 
 
-  Sub7:
+  Sub8:
 5d8e: 2f,25             scall 5cb5           Sub92();
 5d90: 3a,2a,01          jb    B2,R2a,5d94    if (!B2_R2a)  {
 5d93: f0                ret                  return; }
@@ -5820,7 +5820,7 @@
 6275: 89,1b,41,3e       cmpw  R3e,411b       
 6279: db,0b             jc    6286           if ((uns) R3e < 411b)  {
 627b: ef,0e,fa          call  5c8c           Sub97();
-627e: ef,d1,bf          call  2252           Sub6();
+627e: ef,d1,bf          call  2252           Sub7();
 6281: ef,db,f9          call  5c5f           Sub95();
 6284: 27,eb             sjmp  6271           goto 6271; }
 6286: f0                ret                  return;
@@ -6402,7 +6402,7 @@
 6824: e7,7f,b9          jump  21a6           goto EEC_main_loop;
 6827: f0                ret                  return;
 
-  Sub13:
+  Sub14:
 6828: 37,4e,08          jnb   B7,R4e,6833    if (B7_R4e)  {
 682b: 71,7f,4e          an2b  R4e,7f         R4e &= 7f;
 682e: c3,01,2a,01,00    stw   0,[12a]        [12a] = ZERO; }
@@ -6415,7 +6415,7 @@
 6847: c7,01,ab,01,00    stb   0,[1ab]        [1ab] = ZERO; }
 684c: f0                ret                  return;
 
-  Sub1:
+  Sub2:
 684d: fa                di                   disable ints;
 684e: a3,01,00,0d,14    ldw   R14,[d00]      R14 = [CC_PRESENT];
 6853: 99,2a,15          cmpb  R15,2a         
@@ -6459,7 +6459,7 @@
 68cd: c7,01,32,02,00    stb   0,[232]        [232] = ZERO;
 68d2: f0                ret                  return;
 
-  Sub2:
+  Sub3:
 68d3: a3,01,f2,1f,30    ldw   R30,[1ff2]     R30 = [1ff2];
 68d8: 89,1c,1f,30       cmpw  R30,1f1c       
 68dc: d7,06             jne   68e4           if (R30 == 1f1c)  {
@@ -6469,7 +6469,7 @@
   Sub162:
 68e4: f0                ret                  return;
 
-  Sub16:
+  Sub17:
 68e5: a1,eb,02,22       ldw   R22,2eb        R22 = 2eb;
 68e9: b3,22,44,14       ldb   R14,[R22+44]   R14 = [R22+44];
 68ed: a3,01,24,01,16    ldw   R16,[124]      R16 = [124];
@@ -6662,7 +6662,7 @@
 6b03: ff,ff,ff          fill  
 
 
-  Sub28:
+  Sub1:
 6b06: 01,38             clrw  R38            R38 = 0;
 6b08: 67,01,34,03,38    ad2w  R38,[334]      R38 += [334];
 6b0d: 67,01,36,03,38    ad2w  R38,[336]      R38 += [336];
