@@ -33,8 +33,11 @@ SYM   D "HSO_CMD"
 SYM   E "HSO_TIME"
 SYM   F "HSO_TIMEH"
 
+SYM   2A "VIP_mode_flag"
+
 #--Code-------------------------------------------------------------------------
-sub   20A2 "reset"
+sub   2000 "reset"
+sub   20A2 "setup_initial_state"
 sub   219E "init"  
 sub   21A6 "EEC_main_loop"
 sub   21BF "WATCHDOG_HANG"
@@ -66,12 +69,43 @@ word  202E 202F "RFC"
 word  2030 2031 "RFE"
 fill  2032 20A1
 
-xcode 6F50 804B #data section
-
-#init table
+#init table #1
 word  6A62 6A63
 word  6A64 6A65
 byte  6A66 6A8F
+
+#pointer to init table #2
+word  6A90 6A91
+fill 6A92 6A99
+
+#init table #2
+word  6A9A 6A9B
+word  6A9C 6A9D
+byte  6A9E 6ABD
+
+#pointer to init table #3
+word  6ABE 6ABF
+fill  6AC0 6AC7
+
+#init table #3
+word  6AC8 6AC9
+word  6ACA 6ACB
+byte  6ACC 6AEB
+
+#pointer to init table #4
+word  6AEC 6AED
+fill  6AEE 6AF5
+
+#init table #4
+word  6AF6 6AF7
+word  6AF8 6AF9
+byte  6AFA 6AFB
+
+#pointer to next table (which is null)
+word 6AFC 6AFD
+fill 6AFE 6B04
+
+xcode 6F50 804B #data section
 
 #--Data-------------------------------------------------------------------------
 #--RF0--------------------------------------------------------------------------

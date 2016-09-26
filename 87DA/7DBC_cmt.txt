@@ -25,7 +25,7 @@
 
 1FFF |
    1 |################################################################################
-   1 |# 2000-2003 EEC ROM Entry Point
+   1 |# 2000-2003 reset entry point
    1 |################################################################################
 
 2003 |
@@ -56,8 +56,8 @@
 20A1 |
    1 |################################################################################
    1 |# Reset:
-   1 |# 1: clear memory from 0012 - 02A0, SP is temporarily used, ends up at 02A0 when done
-   1 |	   (weirdly the stack pointer was initialised at 02A2, so it ends up 2 bytes earlier?)
+   1 |# 1: clear memory from 0012 - 02A0, SP is temporarily used, ends up back at 02A2 when done
+   1 |#    note that we did not clear 02A2 which holds our return address (top of stack)
    1 |# 2: load initial memory state from ROM
    1 |
    1 |#R2A - is VIP_mode_flag (Vehicle Interface Port / DLC control)
@@ -65,22 +65,32 @@
 20A2  #disable interupts, (they were already disabled, seems redundant?)
 20A4  #all HSI inputs disabled
 20A6  #temporarily point the SP at 0012; we are going to use it to clear memory
-20AA  #set current memory location to NULL and increment SP
+20AA  #clear current memory location and increment SP
 20AD  #inc WD timer
-20AF  #if VIP_mode_flag (NO_START_TESTS) is set (KOEO), dont clear R2A
-20B2  #if VIP_mode_flag (RUNNING_TESTS) is set (KOER), dont clear R2A
-20B9  #if current location = R2A (VIP_mode_flag)
-20BB  #inc SP and skip clearing VIP_mode_flag if NO_START_TESTS or RUNNING_TESTS
+20AF  #if VIP_mode_flag (NO_START_TESTS) is set (KOEO)
+20B2  #and/or if VIP_mode_flag (RUNNING_TESTS) is set (KOER)
+20B5  #and sp points at = R2A (VIP_mode_flag)
+20B9  #
+20BB  #inc SP and skip clearing VIP_mode_flag
 20BD  #inc WD timer
 20C3  #if SP less than 02A0, not finished clearing memory, else done
    1 |#-------------------------------------------------------------------------------
-20C5  #R14 points to init table in rom
-20C9  #if R14 points to FFFF (EOF), break
-20CD  #while we are less than FFFF
-20CF  #R1A is 0000
-20D2  #R16 is 6A90, passed end of table
+20C5  #R14 points to first init table in rom
+20C9  #if R14 points to FFFF (no more table to process, break)
+20CD  #
+20CF  #R1A is RAM offset high byte (0000), low byte is overwritten
+20D2  #R16 is 6A90, last entry in table (contains address of next table)
 20D5  #
 20D8  #while we are not passed the end of table
+20DA  #pointer to next byte in list
+20DD  #store the bytes value into R1C, this value will be RAM location low byte
+20E0  #the next byte is the data, or it with current value (but we've just cleared mem so should have no effect?)
+20E3  #store the value (2nd byte) into the register (1st byte)
+20E6  #contine until end of list
+20E8  #R1C should never be larger than R14, oops.
+20EA  #R14 now points at next table in ROM
+20ED  #continue til we've processed all init tables
+
 
 219D |
    1 |################################################################################
@@ -88,8 +98,8 @@
    1 |#R2A - is VIP_mode_flag (Vehicle Interface Port / DLC control)
    1 |################################################################################
 219E  #clear the VIP_mode_flag; all bits
-21A0  #initialise stack pointer at 02A2
-21A4  #reset (setup inital state); enables interrupts before returning (20A2)
+21A0  #initialise stack pointer at 02A2, stack grows downwards
+21A4  #save return address to stack; interrupts enabled before returning
 
 21A5 |
    1 |################################################################################
@@ -159,6 +169,16 @@
 4A69  #Pointer to table
 4A71  #2D interpolation routine (R32=Table,R34=InVar,R38=OutVar)
 4A74  #Table row no. set based on MAP result
+
+6A61 |
+   1 |################################################################################
+   1 |#init tables
+   1 |#first word is high byte of memory offset to store data
+   1 |#second word is pointer to end of table
+   1 |#word at the end contains address of next table
+   1 |#rest of the byte pairs are first byte = low byte memory offest
+   1 |#                          second byte = data to store at memory location
+   1 |################################################################################
 
 6F4F |
 6F4F |# Data -------------------------------------------------------------------------

@@ -28,8 +28,10 @@
 #00FF	B/W General purpose registers		B/W General purpose registers
 
 ################################################################################
-# 2000-2003 EEC ROM Entry Point
+# 2000-2003 reset entry point
 ################################################################################
+
+  reset:
 2000: ff                nop                  
 2001: fa                di                   disable ints;
 2002: 21,9a             sjmp  219e           goto init;
@@ -85,48 +87,48 @@
 
 ################################################################################
 # Reset:
-# 1: clear memory from 0012 - 02A0, SP is temporarily used, ends up at 02A0 when done
-	   (weirdly the stack pointer was initialised at 02A2, so it ends up 2 bytes earlier?)
+# 1: clear memory from 0012 - 02A0, SP is temporarily used, ends up back at 02A2 when done
+#    note that we did not clear 02A2 which holds our return address (top of stack)
 # 2: load initial memory state from ROM
 
 #R2A - is VIP_mode_flag (Vehicle Interface Port / DLC control)
 ################################################################################
 
 
-  reset:
+  setup_initial_state:
 20a2: fa                di                   disable ints;                  #disable interupts, (they were already disabled, seems redundant?)
 20a3: ff                nop                  
 20a4: 11,0c             clrb  Rc             HSI_MASK = 0;                  #all HSI inputs disabled
 20a6: a1,12,00,10       ldw   R10,12         STACK_POINTER = 12;            #temporarily point the SP at 0012; we are going to use it to clear memory
-20aa: c6,11,00          stb   0,[R10++]      [STACK_POINTER++] = ZERO;      #set current memory location to NULL and increment SP
+20aa: c6,11,00          stb   0,[R10++]      [STACK_POINTER++] = ZERO;      #clear current memory location and increment SP
 20ad: 17,05             incb  R5             WD_TIMER++;                    #inc WD timer
-20af: 3e,2a,03          jb    B6,R2a,20b5    if (!B6_R2a)  {                #if VIP_mode_flag (NO_START_TESTS) is set (KOEO), dont clear R2A
-20b2: 35,2a,08          jnb   B5,R2a,20bd    if (!B5_R2a) goto 20bd; }      #if VIP_mode_flag (RUNNING_TESTS) is set (KOER), dont clear R2A
-20b5: 89,2a,00,10       cmpw  R10,2a         
-20b9: d7,02             jne   20bd           if (STACK_POINTER == 2a)  {    #if current location = R2A (VIP_mode_flag)
-20bb: 17,10             incb  R10            STACK_POINTER++; }             #inc SP and skip clearing VIP_mode_flag if NO_START_TESTS or RUNNING_TESTS
-                                                                            
+20af: 3e,2a,03          jb    B6,R2a,20b5    if (!B6_VIP_mode_flag)  {      #if VIP_mode_flag (NO_START_TESTS) is set (KOEO)
+20b2: 35,2a,08          jnb   B5,R2a,20bd    if (!B5_VIP_mode_flag) goto 20bd; } #and/or if VIP_mode_flag (RUNNING_TESTS) is set (KOER)
+20b5: 89,2a,00,10       cmpw  R10,2a                                        #and sp points at = R2A (VIP_mode_flag)
+20b9: d7,02             jne   20bd           if (STACK_POINTER == 2a)  {    #
+20bb: 17,10             incb  R10            STACK_POINTER++; }             #inc SP and skip clearing VIP_mode_flag
 20bd: 17,05             incb  R5             WD_TIMER++;                    #inc WD timer
 20bf: 89,a0,02,10       cmpw  R10,2a0        
 20c3: d3,e5             jnc   20aa           if ((uns) STACK_POINTER < 2a0) goto 20aa; #if SP less than 02A0, not finished clearing memory, else done
 #-------------------------------------------------------------------------------
-20c5: a1,62,6a,14       ldw   R14,6a62       R14 = 6a62;                    #R14 points to init table in rom
-20c9: 89,ff,ff,14       cmpw  R14,ffff                                      #if R14 points to FFFF (EOF), break
-20cd: df,20             je    20ef           if (R14 == ffff) goto 20ef;    #while we are less than FFFF
-20cf: a2,15,1a          ldw   R1a,[R14++]    R1a = [R14++];                 #R1A is 0000
-20d2: a2,15,16          ldw   R16,[R14++]    R16 = [R14++];                 #R16 is 6A90, passed end of table
+20c5: a1,62,6a,14       ldw   R14,6a62       R14 = 6a62;                    #R14 points to first init table in rom
+20c9: 89,ff,ff,14       cmpw  R14,ffff                                      #if R14 points to FFFF (no more table to process, break)
+20cd: df,20             je    20ef           if (R14 == ffff) goto 20ef;    #
+20cf: a2,15,1a          ldw   R1a,[R14++]    R1a = [R14++];                 #R1A is RAM offset high byte (0000), low byte is overwritten
+20d2: a2,15,16          ldw   R16,[R14++]    R16 = [R14++];                 #R16 is 6A90, last entry in table (contains address of next table)
 20d5: 88,16,14          cmpw  R14,R16                                       #
 20d8: db,0e             jc    20e8           if ((uns) R14 < R16)  {        #while we are not passed the end of table
-20da: b2,15,1a          ldb   R1a,[R14++]    R1a = [R14++];
-20dd: b2,1a,1c          ldb   R1c,[R1a]      R1c = [R1a];
-20e0: 92,15,1c          orb   R1c,[R14++]    R1c |= [R14++];
-20e3: c6,1a,1c          stb   R1c,[R1a]      [R1a] = R1c;
-20e6: 27,ed             sjmp  20d5           goto 20d5; }
-20e8: d9,b8             jgtu  20a2           if ((uns) R1c > [R14] ) goto reset;
-20ea: a2,16,14          ldw   R14,[R16]      R14 = [R16];
-20ed: 27,da             sjmp  20c9           goto 20c9;
-20ef: 3d,2a,06          jb    B5,R2a,20f8    if (!B5_R2a)  {
-20f2: 3e,2a,03          jb    B6,R2a,20f8    if (!B6_R2a)  {
+20da: b2,15,1a          ldb   R1a,[R14++]    R1a = [R14++];                 #pointer to next byte in list
+20dd: b2,1a,1c          ldb   R1c,[R1a]      R1c = [R1a];                   #store the bytes value into R1C, this value will be RAM location low byte
+20e0: 92,15,1c          orb   R1c,[R14++]    R1c |= [R14++];                #the next byte is the data, or it with current value (but we've just clear
+                                                                            ed mem so should have no effect?)
+20e3: c6,1a,1c          stb   R1c,[R1a]      [R1a] = R1c;                   #store the value (2nd byte) into the register (1st byte)
+20e6: 27,ed             sjmp  20d5           goto 20d5; }                   #contine until end of list
+20e8: d9,b8             jgtu  20a2           if ((uns) R1c > [R14] ) goto setup_initial_state; #R1C should never be larger than R14, oops.
+20ea: a2,16,14          ldw   R14,[R16]      R14 = [R16];                   #R14 now points at next table in ROM
+20ed: 27,da             sjmp  20c9           goto 20c9;                     #continue til we've processed all init tables
+20ef: 3d,2a,06          jb    B5,R2a,20f8    if (!B5_VIP_mode_flag)  {
+20f2: 3e,2a,03          jb    B6,R2a,20f8    if (!B6_VIP_mode_flag)  {
 20f5: 91,01,a2          orb   Ra2,1          Ra2 |= 1; } }
 20f8: a3,01,00,0d,14    ldw   R14,[d00]      R14 = [CC_PRESENT];
 20fd: 99,2a,15          cmpb  R15,2a         
@@ -186,9 +188,9 @@
 ################################################################################
 
   init:
-219e: 11,2a             clrb  R2a            R2a = 0;                       #clear the VIP_mode_flag; all bits
-21a0: a1,a2,02,10       ldw   R10,2a2        STACK_POINTER = 2a2;           #initialise stack pointer at 02A2
-21a4: 2e,fc             scall 20a2           reset();                       #reset (setup inital state); enables interrupts before returning (20A2)
+219e: 11,2a             clrb  R2a            VIP_mode_flag = 0;             #clear the VIP_mode_flag; all bits
+21a0: a1,a2,02,10       ldw   R10,2a2        STACK_POINTER = 2a2;           #initialise stack pointer at 02A2, stack grows downwards
+21a4: 2e,fc             scall 20a2           setup_initial_state();         #save return address to stack; interrupts enabled before returning
 
 ################################################################################
 #EEC_main_loop: cycles through routines, should never terminate
@@ -220,11 +222,12 @@
 ################################################################################
 
   main_loop_selection:
-21c1: 3e,2a,03          jb    B6,R2a,21c7    if (!B6_R2a)  {                #if VIP_mode_flag (NO_START_TESTS) is set (KOEO); else break
-21c4: 31,2a,04          jnb   B1,R2a,21cb    if (!B1_R2a) goto 21cb; }      #if VIP_mode_flag (VEHICLE_SPEED_CONTROL_TESTS) (cruise) not set; break
+21c1: 3e,2a,03          jb    B6,R2a,21c7    if (!B6_VIP_mode_flag)  {      #if VIP_mode_flag (NO_START_TESTS) is set (KOEO); else break
+21c4: 31,2a,04          jnb   B1,R2a,21cb    if (!B1_VIP_mode_flag) goto 21cb; } #if VIP_mode_flag (VEHICLE_SPEED_CONTROL_TESTS) (cruise) not set; bre
+                                                                            ak
 21c7: b1,3c,94          ldb   R94,3c         R94 = 3c;                      #set routine to loop B (2212; on-demand KOEO self tests)
 21ca: f0                ret                  return;                        #return to EEC_main_loop
-21cb: 35,2a,04          jnb   B5,R2a,21d2    if (B5_R2a)  {                 #if VIP_mode_flag (RUNNING_TESTS) not set (KOER); break
+21cb: 35,2a,04          jnb   B5,R2a,21d2    if (B5_VIP_mode_flag)  {       #if VIP_mode_flag (RUNNING_TESTS) not set (KOER); break
 21ce: b1,58,94          ldb   R94,58         R94 = 58;                      #set routine to loop C (222E; on-demand KOER self tests)
 21d1: f0                ret                  return; }                      #return to EEC_main_loop
 21d2: b1,00,94          ldb   R94,0          R94 = 0;                       #set routine to loop A (21D6; normal operation)
@@ -3241,7 +3244,7 @@
 44d5: 36,a1,32          jnb   B6,Ra1,450a    if (!B6_Ra1) goto 450a;
 44d8: 32,27,2f          jnb   B2,R27,450a    if (!B2_R27) goto 450a;
 44db: 3f,a1,2c          jb    B7,Ra1,450a    if (B7_Ra1) goto 450a;
-44de: 3d,2a,29          jb    B5,R2a,450a    if (B5_R2a) goto 450a;
+44de: 3d,2a,29          jb    B5,R2a,450a    if (B5_VIP_mode_flag) goto 450a;
 44e1: b3,01,95,01,30    ldb   R30,[195]      R30 = [195];
 44e6: 9b,f3,65,01,30    cmpb  R30,[Rf2+165]  
 44eb: d1,1d             jleu  450a           if ((uns) R30 <= [7387]) goto 450a;
@@ -3878,7 +3881,7 @@
 4ccb: 9b,f3,0a,02,cb    cmpb  Rcb,[Rf2+20a]  
 4cd0: db,05             jc    4cd7           if ((uns) Rcb < [742c])  {
 4cd2: 67,f3,04,02,40    ad2w  R40,[Rf2+204]  R40 += [7426]; }
-4cd7: 35,2a,09          jnb   B5,R2a,4ce3    if (B5_R2a)  {
+4cd7: 35,2a,09          jnb   B5,R2a,4ce3    if (B5_VIP_mode_flag)  {
 4cda: a3,73,82,00,40    ldw   R40,[R72+82]   R40 = [R72+82];
 4cdf: 6b,74,24,40       sb2w  R40,[R74+24]   R40 -= [R74+24]; }
 4ce3: 91,80,26          orb   R26,80         R26 |= 80;
@@ -3893,7 +3896,7 @@
 4cfe: 8b,72,10,34       cmpw  R34,[R72+10]   
 4d02: db,26             jc    4d2a           if ((uns) R34 >= [R72+10]) goto 4d2a;
 4d04: a3,74,28,36       ldw   R36,[R74+28]   R36 = [R74+28];
-4d08: 35,2a,0c          jnb   B5,R2a,4d17    if (B5_R2a)  {
+4d08: 35,2a,0c          jnb   B5,R2a,4d17    if (B5_VIP_mode_flag)  {
 4d0b: 8b,f3,c2,02,00    cmpw  0,[Rf2+2c2]    
 4d10: df,05             je    4d17           if (ZERO != [74e4])  {
 4d12: a3,f3,c2,02,36    ldw   R36,[Rf2+2c2]  R36 = [74e4]; } }
@@ -4007,7 +4010,7 @@
 4e91: 71,f7,26          an2b  R26,f7         R26 &= f7;
 4e94: c3,72,0a,16       stw   R16,[R72+a]    [R72+a] = R16;
 4e98: c3,01,06,02,20    stw   R20,[206]      [206] = R20;
-4e9d: 3d,2a,22          jb    B5,R2a,4ec2    if (B5_R2a) goto 4ec2;
+4e9d: 3d,2a,22          jb    B5,R2a,4ec2    if (B5_VIP_mode_flag) goto 4ec2;
 4ea0: 45,f2,00,f6,32    ad3w  R32,Rf6,f2     R32 = 77a6;
 4ea5: 9b,f3,fe,02,00    cmpb  0,[Rf2+2fe]    
 4eaa: d7,08             jne   4eb4           if (ZERO == [7520])  {
@@ -4235,7 +4238,7 @@
 518d: d3,78             jnc   5207           if ((uns) R1c < R38) goto 5207;
 518f: 01,1c             clrw  R1c            R1c = 0;
 5191: c3,72,0c,1c       stw   R1c,[R72+c]    [R72+c] = R1c;
-5195: 3d,2a,06          jb    B5,R2a,519e    if (!B5_R2a)  {
+5195: 3d,2a,06          jb    B5,R2a,519e    if (!B5_VIP_mode_flag)  {
 5198: 89,70,7d,e2       cmpw  Re2,7d70       
 519c: db,69             jc    5207           if ((uns) Re2 >= 7d70) goto 5207; }
 519e: 48,ae,40,34       sb3w  R34,R40,Rae    R34 = R40 - Rae;
@@ -4687,7 +4690,7 @@
 5719: 89,99,99,58       cmpw  R58,9999       
 571d: db,22             jc    5741           if ((uns) R58 >= 9999) return;
 571f: 4d,00,e0,c4,54    ml3w  R54,Rc4,e000   R54L = Rc4 * e000;
-5724: 6d,00,20,58       ml2w  R58,2000       R58L *= 2000;
+5724: 6d,00,20,58       ml2w  R58,2000       R58L *= reset;
 5728: 44,56,5a,c4       ad3w  Rc4,R5a,R56    Rc4 = R5a + R56;
 572c: 89,33,73,c4       cmpw  Rc4,7333       
 5730: db,05             jc    5737           if ((uns) Rc4 < 7333)  {
@@ -4932,12 +4935,12 @@
   Sub29:
 5a0c: 2a,a7             scall 5cb5           Sub92();
 5a0e: 71,ef,2e          an2b  R2e,ef         R2e &= ef;
-5a11: 3a,2a,0c          jb    B2,R2a,5a20    if (!B2_R2a)  {
+5a11: 3a,2a,0c          jb    B2,R2a,5a20    if (!B2_VIP_mode_flag)  {
 5a14: a3,72,a4,42       ldw   R42,[R72+a4]   R42 = [R72-5c];
 5a18: 99,10,43          cmpb  R43,10         
 5a1b: d3,03             jnc   5a20           if ((uns) R43 >= 10)  {
-5a1d: 91,04,2a          orb   R2a,4          R2a |= 4; } }
-5a20: 36,2a,17          jnb   B6,R2a,5a3a    if (!B6_R2a) goto 5a3a;
+5a1d: 91,04,2a          orb   R2a,4          VIP_mode_flag |= 4; } }
+5a20: 36,2a,17          jnb   B6,R2a,5a3a    if (!B6_VIP_mode_flag) goto 5a3a;
 5a23: 33,92,08          jnb   B3,R92,5a2e    if (!B3_R92) goto 5a2e;
 5a26: 3f,2c,03          jb    B7,R2c,5a2c    if (!B7_R2c)  {
 5a29: 30,24,0b          jnb   B0,R24,5a37    if (!B0_R24) goto 5a37; }
@@ -4946,7 +4949,7 @@
 5a31: 35,4a,03          jnb   B5,R4a,5a37    if (!B5_R4a) goto 5a37; }
 5a34: ef,ce,05          call  6005           Sub33();
 5a37: e7,c9,0d          jump  6803           goto 6803;
-5a3a: 35,2a,0d          jnb   B5,R2a,5a4a    if (B5_R2a)  {
+5a3a: 35,2a,0d          jnb   B5,R2a,5a4a    if (B5_VIP_mode_flag)  {
 5a3d: 33,92,f7          jnb   B3,R92,5a37    if (!B3_R92) goto 5a37;
 5a40: 3e,a1,f4          jb    B6,Ra1,5a37    if (B6_Ra1) goto 5a37;
 5a43: ef,de,05          call  6024           Sub93(82,2);
@@ -4955,14 +4958,14 @@
 5a4a: 3f,2c,16          jb    B7,R2c,5a63    if (!B7_R2c)  {
 5a4d: 38,24,13          jb    B0,R24,5a63    if (!B0_R24)  {
 5a50: 33,92,2b          jnb   B3,R92,5a7e    if (!B3_R92) return;
-5a53: 32,2a,28          jnb   B2,R2a,5a7e    if (!B2_R2a) return;
-5a56: 3b,2a,22          jb    B3,R2a,5a7b    if (B3_R2a) goto 5a7b;
-5a59: 91,20,2a          orb   R2a,20         R2a |= 20;
+5a53: 32,2a,28          jnb   B2,R2a,5a7e    if (!B2_VIP_mode_flag) return;
+5a56: 3b,2a,22          jb    B3,R2a,5a7b    if (B3_VIP_mode_flag) goto 5a7b;
+5a59: 91,20,2a          orb   R2a,20         VIP_mode_flag |= 20;
 5a5c: 28,21             scall 5a7f           Sub94();
 5a5e: cb,3b,50,5d       push  [R3a+5d50]     push([R3a+5d50]);
 5a62: f0                ret                  return; } }
 5a63: 33,92,0c          jnb   B3,R92,5a72    if (B3_R92)  {
-5a66: 3c,2a,15          jb    B4,R2a,5a7e    if (B4_R2a) return;
+5a66: 3c,2a,15          jb    B4,R2a,5a7e    if (B4_VIP_mode_flag) return;
 5a69: 28,14             scall 5a7f           Sub94();
 5a6b: cb,3b,3e,5d       push  [R3a+5d3e]     push([R3a+5d3e]);
 5a6f: f0                ret                  return;
@@ -5041,7 +5044,7 @@
 5b10: 34,e0,1e          jnb   B4,Re0,5b31    if (!B4_Re0) goto 5b31;
 5b13: 30,de,1b          jnb   B0,Rde,5b31    if (!B0_Rde) goto 5b31;
 5b16: 71,ef,e0          an2b  Re0,ef         Re0 &= ef;
-5b19: 36,2a,08          jnb   B6,R2a,5b24    if (B6_R2a)  {
+5b19: 36,2a,08          jnb   B6,R2a,5b24    if (B6_VIP_mode_flag)  {
 5b1c: 31,2e,05          jnb   B1,R2e,5b24    if (B1_R2e)  {
 5b1f: b1,01,39          ldb   R39,1          R39 = 1;
 5b22: 21,9b             sjmp  5cbf           goto 5cbf; } }
@@ -5054,14 +5057,14 @@
 5b34: 32,de,11          jnb   B2,Rde,5b48    if (!B2_Rde) goto 5b48;
 5b37: 71,ef,e0          an2b  Re0,ef         Re0 &= ef;
 5b3a: 71,fb,de          an2b  Rde,fb         Rde &= fb;
-5b3d: 36,2a,03          jnb   B6,R2a,5b43    if (B6_R2a)  {
+5b3d: 36,2a,03          jnb   B6,R2a,5b43    if (B6_VIP_mode_flag)  {
 5b40: 91,02,2e          orb   R2e,2          R2e |= 2; }
 5b43: 31,de,19          jnb   B1,Rde,5b5f    if (!B1_Rde) goto 5b5f;
 5b46: 27,95             sjmp  5add           goto 5add;
 5b48: 34,e0,1c          jnb   B4,Re0,5b67    if (!B4_Re0) goto Sub125;
 5b4b: 31,de,19          jnb   B1,Rde,5b67    if (!B1_Rde) goto Sub125;
 5b4e: 71,ef,e0          an2b  Re0,ef         Re0 &= ef;
-5b51: 36,2a,0b          jnb   B6,R2a,5b5f    if (B6_R2a)  {
+5b51: 36,2a,0b          jnb   B6,R2a,5b5f    if (B6_VIP_mode_flag)  {
 5b54: 31,2e,08          jnb   B1,R2e,5b5f    if (B1_R2e)  {
 5b57: 91,04,de          orb   Rde,4          Rde |= 4;
 5b5a: b1,05,39          ldb   R39,5          R39 = 5;
@@ -5175,7 +5178,7 @@
 5c45: 91,20,4a          orb   R4a,20         R4a |= 20;
 5c48: 3d,4a,13          jb    B5,R4a,5c5e    if (B5_R4a) return;
 5c4b: 33,a2,06          jnb   B3,Ra2,5c54    if (B3_Ra2)  {
-5c4e: 35,2a,03          jnb   B5,R2a,5c54    if (B5_R2a)  {
+5c4e: 35,2a,03          jnb   B5,R2a,5c54    if (B5_VIP_mode_flag)  {
 5c51: 3b,de,0a          jb    B3,Rde,5c5e    if (B3_Rde) return; } }
 5c54: c8,14             push  R14            push(R14);
 5c56: c8,40             push  R40            push(R40);
@@ -5306,7 +5309,7 @@
 
   Sub8:
 5d8e: 2f,25             scall 5cb5           Sub92();
-5d90: 3a,2a,01          jb    B2,R2a,5d94    if (!B2_R2a)  {
+5d90: 3a,2a,01          jb    B2,R2a,5d94    if (!B2_VIP_mode_flag)  {
 5d93: f0                ret                  return; }
 5d94: ef,0b,04          call  61a2           Sub129(3a,92,e,1);
 5d97: 3a,92,0e,01       #args  
@@ -5597,7 +5600,7 @@
 6076: ef,a1,ff          call  601a           Sub131();
 6079: ef,23,06          call  669f           Sub132();
 607c: ef,e0,fb          call  5c5f           Sub95();
-607f: 34,2a,05          jnb   B4,R2a,6087    if (B4_R2a)  {
+607f: 34,2a,05          jnb   B4,R2a,6087    if (B4_VIP_mode_flag)  {
 6082: ef,8d,ff          call  6012           Sub148();
 6085: 27,fb             sjmp  6082           goto 6082; }
 6087: ef,38,00          call  60c2           Sub158();
@@ -5612,9 +5615,9 @@
 609d: 28,10             scall 60af           Sub160();
 609f: fb                ei                   enable ints; }
 60a0: 91,40,2e          orb   R2e,40         R2e |= 40;
-60a3: 32,2a,08          jnb   B2,R2a,60ae    if (B2_R2a)  {
+60a3: 32,2a,08          jnb   B2,R2a,60ae    if (B2_VIP_mode_flag)  {
 60a6: 3f,46,05          jb    B7,R46,60ae    if (!B7_R46)  {
-60a9: 91,40,2a          orb   R2a,40         R2a |= 40;
+60a9: 91,40,2a          orb   R2a,40         VIP_mode_flag |= 40;
 60ac: 20,79             sjmp  6127           goto 6127; } }
 60ae: f0                ret                  return;
 
@@ -6087,8 +6090,8 @@
 64fa: 8b,1e,02,42       cmpw  R42,[R1e+2]    
 64fe: d3,03             jnc   6503           if ((uns) R42 >= [R1e+2])  {
 6500: b1,35,1a          ldb   R1a,35         R1a = 35; }
-6503: 51,60,2a,42       an3b  R42,R2a,60     R42 = R2a & 60;
-6507: df,02             je    650b           if (R2a != 60)  {
+6503: 51,60,2a,42       an3b  R42,R2a,60     R42 = VIP_mode_flag & 60;
+6507: df,02             je    650b           if (VIP_mode_flag != 60)  {
 6509: 2d,fa             scall 6305           Sub137(); }
 650b: f0                ret                  return;
 650c: c7,72,0b,00       stb   0,[R72+b]      [R72+b] = ZERO;
@@ -6345,7 +6348,7 @@
 6795: a1,0b,02,32       ldw   R32,20b        R32 = 20b;
 6799: 9a,32,30          cmpb  R30,[R32]      
 679c: df,1c             je    67ba           if (R30 == [R32]) goto 67ba; } } } } } } } } } } }
-679e: 91,10,2a          orb   R2a,10         R2a |= 10;
+679e: 91,10,2a          orb   R2a,10         VIP_mode_flag |= 10;
 67a1: 20,51             sjmp  67f4           goto 67f4;
 
   Sub157:
@@ -6391,13 +6394,13 @@
 6804: ff                nop                  
 6805: a1,a2,02,10       ldw   R10,2a2        STACK_POINTER = 2a2;
 6809: ef,7b,fa          call  6287           Sub138();
-680c: ef,93,b8          call  20a2           reset();
-680f: 35,2a,06          jnb   B5,R2a,6818    if (B5_R2a)  {
-6812: 71,db,2a          an2b  R2a,db         R2a &= db;
-6815: 91,08,2a          orb   R2a,8          R2a |= 8; }
-6818: 36,2a,06          jnb   B6,R2a,6821    if (B6_R2a)  {
-681b: 71,bb,2a          an2b  R2a,bb         R2a &= bb;
-681e: 91,10,2a          orb   R2a,10         R2a |= 10; }
+680c: ef,93,b8          call  20a2           setup_initial_state();
+680f: 35,2a,06          jnb   B5,R2a,6818    if (B5_VIP_mode_flag)  {
+6812: 71,db,2a          an2b  R2a,db         VIP_mode_flag &= db;
+6815: 91,08,2a          orb   R2a,8          VIP_mode_flag |= 8; }
+6818: 36,2a,06          jnb   B6,R2a,6821    if (B6_VIP_mode_flag)  {
+681b: 71,bb,2a          an2b  R2a,bb         VIP_mode_flag &= bb;
+681e: 91,10,2a          orb   R2a,10         VIP_mode_flag |= 10; }
 6821: ef,f6,f7          call  601a           Sub131();
 6824: e7,7f,b9          jump  21a6           goto EEC_main_loop;
 6827: f0                ret                  return;
@@ -6589,6 +6592,15 @@
 6a5e: b1,80,3e          ldb   R3e,80         R3e = 80; }
 6a61: f0                ret                  return;
 
+################################################################################
+#init tables
+#first word is high byte of memory offset to store data
+#second word is pointer to end of table
+#word at the end contains address of next table
+#rest of the byte pairs are first byte = low byte memory offest
+#                          second byte = data to store at memory location
+################################################################################
+
 
 6a62: 00,00             word  0
 6a64: 90,6a             word  6a90
@@ -6636,28 +6648,101 @@
 6a8e: c9                byte  c9
 6a8f: 01                byte  1
 
-6a90: 9a,6a,ff,ff,ff    ??    154,106,255,255, -1  27290,    -1,    -1,
-6a95: ff,ff,ff,ff,ff    fill  
-6a9a: 00,01,be,6a,31    ??      0,  1,190,106, 49    256, 27326,  2097,
-6a9f: 08,01,41,02,80    ??      8,  1, 65,  2,-128  16641,-32766,
-6aa4: 03,a2,7a,40,7b    ??      3,162,122, 64,123 -24061, 16506,  1659,
-6aa9: 06,1e,80,1f,3e    ??      6, 30,128, 31, 62 -32738, 15903,
-6aae: 23,d8,6a,99,6b    ??     35,216,106,153,107 -10205,-26262, 31083,
-6ab3: 79,a0,ff,a1,ff    ??    121,160,255,161, -1    -96,   -95,
-6ab8: 9e,7f,9f,7f,ba    ??    158,127,159,127,-70  32670, 32671,-32582,
-6abd: 80,c8,6a,ff,ff    ??    128,200,106,255, -1  27336,    -1,
-6ac2: ff,ff,ff,ff,ff    fill  
-6ac7: ff,00,02,ec,6a    ??    255,  0,  2,236,106    512, 27372,
-6acc: 28,01,20,28,22    ??     40,  1, 32, 40, 34    296, 10272,  -222,
-6ad1: ff,2c,ff,36,ff    ??    255, 44,255, 54, -1   -212,  -202,
-6ad6: 49,58,4d,1c,3c    ??     73, 88, 77, 28, 60  22601,  7245, 10300,
-6adb: 28,3d,68,42,ff    ??     40, 61,104, 66, -1  26685,  -190,
-6ae0: 4e,ff,5a,ff,82    ??     78,255, 90,255,-126   -178,  -166,-32638,
-6ae5: 80,83,a2,84,80    ??    128,131,162,132,-128 -23933,-32636,
-6aea: 85,a2,f6,6a,ff    ??    133,162,246,106, -1 -23931, 27382,    -1,
-6aef: ff,ff,ff,ff,ff    fill  
-6af4: ff,ff,00,09,fc    ??    255,255,  0,  9, -4     -1,  2304, 27388,
-6af9: 6a,2f,10,ff,ff    ??    106, 47, 16,255, -1   4143,    -1,
+6a90: 9a,6a             word  6a9a
+
+6a92: ff,ff,ff,ff,ff    fill  
+6a97: ff,ff,ff          fill  
+
+6a9a: 00,01             word  100
+6a9c: be,6a             word  6abe
+
+6a9e: 31                byte  31
+6a9f: 08                byte  8
+6aa0: 01                byte  1
+6aa1: 41                byte  41
+6aa2: 02                byte  2
+6aa3: 80                byte  80
+6aa4: 03                byte  3
+6aa5: a2                byte  a2
+6aa6: 7a                byte  7a
+6aa7: 40                byte  40
+6aa8: 7b                byte  7b
+6aa9: 06                byte  6
+6aaa: 1e                byte  1e
+6aab: 80                byte  80
+6aac: 1f                byte  1f
+6aad: 3e                byte  3e
+6aae: 23                byte  23
+6aaf: d8                byte  d8
+6ab0: 6a                byte  6a
+6ab1: 99                byte  99
+6ab2: 6b                byte  6b
+6ab3: 79                byte  79
+6ab4: a0                byte  a0
+6ab5: ff                byte  ff
+6ab6: a1                byte  a1
+6ab7: ff                byte  ff
+6ab8: 9e                byte  9e
+6ab9: 7f                byte  7f
+6aba: 9f                byte  9f
+6abb: 7f                byte  7f
+6abc: ba                byte  ba
+6abd: 80                byte  80
+
+6abe: c8,6a             word  6ac8
+
+6ac0: ff,ff,ff,ff,ff    fill  
+6ac5: ff,ff,ff          fill  
+
+6ac8: 00,02             word  200
+6aca: ec,6a             word  6aec
+
+6acc: 28                byte  28
+6acd: 01                byte  1
+6ace: 20                byte  20
+6acf: 28                byte  28
+6ad0: 22                byte  22
+6ad1: ff                byte  ff
+6ad2: 2c                byte  2c
+6ad3: ff                byte  ff
+6ad4: 36                byte  36
+6ad5: ff                byte  ff
+6ad6: 49                byte  49
+6ad7: 58                byte  58
+6ad8: 4d                byte  4d
+6ad9: 1c                byte  1c
+6ada: 3c                byte  3c
+6adb: 28                byte  28
+6adc: 3d                byte  3d
+6add: 68                byte  68
+6ade: 42                byte  42
+6adf: ff                byte  ff
+6ae0: 4e                byte  4e
+6ae1: ff                byte  ff
+6ae2: 5a                byte  5a
+6ae3: ff                byte  ff
+6ae4: 82                byte  82
+6ae5: 80                byte  80
+6ae6: 83                byte  83
+6ae7: a2                byte  a2
+6ae8: 84                byte  84
+6ae9: 80                byte  80
+6aea: 85                byte  85
+6aeb: a2                byte  a2
+
+6aec: f6,6a             word  6af6
+
+6aee: ff,ff,ff,ff,ff    fill  
+6af3: ff,ff,ff          fill  
+
+6af6: 00,09             word  900
+6af8: fc,6a             word  6afc
+
+6afa: 2f                byte  2f
+6afb: 10                byte  10
+
+6afc: ff,ff             word  ffff
+
 6afe: ff,ff,ff,ff,ff    fill  
 6b03: ff,ff,ff          fill  
 
