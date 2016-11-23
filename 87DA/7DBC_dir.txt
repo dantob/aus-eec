@@ -132,7 +132,7 @@ func  70D2 70EA "Scaler_for_Time(fuel)" :W V +1 :W V +256
 func  70EE 7101 "Scaler_for_TBL7B12" :W :W V +256
 func  7102 7121 "Scaler_for_TBL782E" :W :W V +256
 func  7122 7151 "Scaler_for_Abs_Exh_Pressure" :W V +4 :W V +256 #IDK whether this is % or pressure
-func  7152 7169 "Scaler_for_ECTorACT" :W :W V +256 #??
+func  7152 7169 "Scaler_for_ECT/ACT" :W :W V +256 #??
 func  716A 7185 "Scaler_for_RPM" :W V +4 :W V +256
 func  7186 71A1 "Scaler_for_Load_(fuel)":W V +1.28 :W V +256
 func  71A2 71BD "Scaler_for_Load_(fuelstable)" :W V +1.28 :W V +256

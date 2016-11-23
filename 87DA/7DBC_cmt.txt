@@ -212,4 +212,3 @@
 7FB4 |# Columns=RPM(716A), Rows=MAP(71BE)
 8023 |# Values are degrees of ignition advance; Columns=RPM(716A), Rows=MAP(71BE)
 
-
