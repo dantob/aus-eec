@@ -116,9 +116,9 @@ word  8B46 8B47 "Injector_Slope"
 word  8B5E 8B5F "RPM_Limit_Neutral"
 word  8B60 8B61 "RPM_Limit_Drive"
 
-table 8BC6 8C31 "Fuel_Table_Stabilised_(CL)" :Y X O +12 V +128
-table 8C32 8C8B "Fuel_Table_Base_(OL)" :Y X O +10 V +128
-table 8C8C 8CDB "Fuel_Table_Startup" :Y X O +10 V +128
+table 8BC6 8C31 "Fuel_Table_Stabilised_(CL)" :Y X O +12 V +128 P +3
+table 8C32 8C8B "Fuel_Table_Base_(OL)" :Y X O +10 V +128 P +3
+table 8C8C 8CDB "Fuel_Table_Startup" :Y X O +10 V +128 P +3
 
 word  8D5A 8D5B "Idle_Speed_Neutral"
 word  8D5C 8D5D "Idle_Speed_Drive"
@@ -141,8 +141,8 @@ word  8FFA 8FFB "Engine_Displacement"
 
 func  9084 908D "VE_Multiplier_for_ACT" :Y
 
-table 90A0 910B "Volumetric_Efficiency_Table" :Y X O +12 V +2.56
-table 91C0 922B "MFA_Fuel_Multiplier_Table" :Y X O +12 V +128
+table 90A0 910B "Volumetric_Efficiency_Table" :Y X O +12 V +2.56 P +3
+table 91C0 922B "MFA_Fuel_Multiplier_Table" :Y X O +12 V +128 P +3
 
 func  9266 9289 "FN9266_(signed)" :W
 func  928A 92AD "FN928A_(unsigned)" :W
@@ -195,9 +195,9 @@ func  9DC8 9DE3 "FN9DC8_(unsigned)" :W
 func  9DE4 9DFb "FN9DE4_(unsigned)" :W 
 func  9DFC 9E07 "FN9DFC_(signed)" :Y
 
-table 9E08 9E73 "Spark_Table_Alt" :Y X O +12 V +4
-table 9E74 9EDF "Spark_Table_Borderline_Knock" :Y X O +12 V +4
-table 9EE0 9F4B "Spark_Table_Base" :Y X O +12 V +4
+table 9E08 9E73 "Spark_Table_Alt" :Y X O +12 V +4 P +3
+table 9E74 9EDF "Spark_Table_Borderline_Knock" :Y X O +12 V +4 P +3
+table 9EE0 9F4B "Spark_Table_Base" :Y X O +12 V +4 P +3
 table 9F4C 9F7B "TABLE9F4C" :Y X O +12
 table 9F7C 9FAB "TABLE9F7C" :Y X O +12
 
