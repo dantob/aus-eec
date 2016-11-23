@@ -33,6 +33,8 @@ SYM   D "HSO_CMD"
 SYM   E "HSO_TIME"
 SYM   F "HSO_TIMEH"
 
+SYM   2A "VIP_mode_flag"
+
 #--Code-------------------------------------------------------------------------
 sub  2173  "init"
 
@@ -62,19 +64,19 @@ word  202E 202F "RFC"
 word  2030 2031 "RFE"
 fill  2032 20A1
 
-code  20A2 2233
-vect  2234 22BB
-code  22BC 2381
+#code  20A2 2233
+#vect  2234 22BB
+#code  22BC 2381
 #???  2382 23E1
-code  23E2 28E3
+#code  23E2 28E3
 #???  28E4 28E9
-code  28EA 2A8A
+#code  28EA 2A8A
 #???  2A8B 2AAF
-code  2AB0 7B16
+#code  2AB0 7B16
 #???  7B17 7B5F
-code  7b60 8465
+#code  7b60 8465
 #???  8466 847D
-code  847E 8775  
+#code  847E 8775
 fill  8776 878F
 
 #--Data-------------------------------------------------------------------------
@@ -112,9 +114,9 @@ word  8B46 8B47 "Injector_Slope"
 word  8B5E 8B5F "RPM_Limit_Neutral"
 word  8B60 8B61 "RPM_Limit_Drive"
 
-table 8BC6 8C31 "Fuel_Table_Stabilised_(CL)" :Y X O+12 V+128
-table 8C32 8C8B "Fuel_Table_Base_(OL)" :Y X O+10 V+128
-table 8C8C 8CDB "Fuel_Table_Startup" :Y X O+10 V+128
+table 8BC6 8C31 "Fuel_Table_Stabilised_(CL)" :Y X O +12 V +128
+table 8C32 8C8B "Fuel_Table_Base_(OL)" :Y X O +10 V +128
+table 8C8C 8CDB "Fuel_Table_Startup" :Y X O +10 V +128
 
 word  8D5A 8D5B "Idle_Speed_Neutral"
 word  8D5C 8D5D "Idle_Speed_Drive"
@@ -137,8 +139,8 @@ word  8FFA 8FFB "Engine_Displacement"
 
 func  9084 908D "VE_Multiplier_for_ACT" :Y
 
-table 90A0 910B "Volumetric_Efficiency_Table" :Y X O+12 V+2.56
-table 91C0 922B "MFA_Fuel_Multiplier_Table" :Y X O+12 V+128
+table 90A0 910B "Volumetric_Efficiency_Table" :Y X O +12 V +2.56
+table 91C0 922B "MFA_Fuel_Multiplier_Table" :Y X O +12 V +128
 
 func  9266 9289 "FN9266_(signed)" :W
 func  928A 92AD "FN928A_(unsigned)" :W
@@ -148,40 +150,40 @@ func  92CE 92DD "FN92CE_(unsigned)" :Y
 func  92DE 92F5 "FN92DE_(unsigned)" :W
 func  92F6 9309 "FN92F6_(signed)" :W
 
-table 930A 9341 "TABLE930A" :Y X O+8
-table 9342 93AD "Adaptive_Learning_Fuel_Table" :Y O+9
+table 930A 9341 "TABLE930A" :Y X O +8
+table 9342 93AD "Adaptive_Learning_Fuel_Table" :Y O +9
 func  93AE 93B9 "FN93AE_()" :Y
 
 func  94B2 94DD "FN94B2_(unsigned)" :W
 
-func  94DE 9505 "Trans_shift_schedule_1-2_econ" :W X V+4
-func  9506 952D "Trans_shift_schedule_2-3_econ" :W X V+4
-func  952E 9555 "Trans_shift_schedule_3-4_econ" :W X V+4
-func  9556 957D "Trans_shift_schedule_4-3_econ" :W X V+4
-func  957E 95A5 "Trans_shift_schedule_3-2_econ" :W X V+4
-func  95A6 95CD "Trans_shift_schedule_2-1_econ" :W X V+4
-func  95CE 95F5 "Trans_shift_schedule_1-2_power" :W X V+4
-func  95F6 961D "Trans_shift_schedule_2-3_power" :W X V+4
-func  961E 9645 "Trans_shift_schedule_3-4_power" :W X V+4
-func  9646 966D "Trans_shift_schedule_4-3_power" :W X V+4
-func  966E 9695 "Trans_shift_schedule_3-2_power" :W X V+4
-func  9696 96BD "Trans_shift_schedule_2-1_power" :W X V+4
-func  96BE 96E5 "Trans_TC_lock_curve_4th_power"   :W X V+4
-func  96E6 970D "Trans_TC_lock_curve_4th_econ"    :W X V+4
-func  970E 9735 "Trans_TC_unlock_curve_4th_power" :W X V+4
-func  9736 975D "Trans_TC_unlock_curve_4th_econ"  :W X V+4
-func  975E 9785 "Trans_TC_lock_curve_3rd_power"   :W X V+4
-func  9786 97AD "Trans_TC_lock_curve_3rd_econ"    :W X V+4
-func  97AE 97D5 "Trans_TC_unlock_curve_3rd_power" :W X V+4
-func  97D6 97FD "Trans_TC_unlock_curve_3rd_econ"  :W X V+4
+func  94DE 9505 "Trans_shift_schedule_1-2_econ" :W X V +4
+func  9506 952D "Trans_shift_schedule_2-3_econ" :W X V +4
+func  952E 9555 "Trans_shift_schedule_3-4_econ" :W X V +4
+func  9556 957D "Trans_shift_schedule_4-3_econ" :W X V +4
+func  957E 95A5 "Trans_shift_schedule_3-2_econ" :W X V +4
+func  95A6 95CD "Trans_shift_schedule_2-1_econ" :W X V +4
+func  95CE 95F5 "Trans_shift_schedule_1-2_power" :W X V +4
+func  95F6 961D "Trans_shift_schedule_2-3_power" :W X V +4
+func  961E 9645 "Trans_shift_schedule_3-4_power" :W X V +4
+func  9646 966D "Trans_shift_schedule_4-3_power" :W X V +4
+func  966E 9695 "Trans_shift_schedule_3-2_power" :W X V +4
+func  9696 96BD "Trans_shift_schedule_2-1_power" :W X V +4
+func  96BE 96E5 "Trans_TC_lock_curve_4th_power"   :W X V +4
+func  96E6 970D "Trans_TC_lock_curve_4th_econ"    :W X V +4
+func  970E 9735 "Trans_TC_unlock_curve_4th_power" :W X V +4
+func  9736 975D "Trans_TC_unlock_curve_4th_econ"  :W X V +4
+func  975E 9785 "Trans_TC_lock_curve_3rd_power"   :W X V +4
+func  9786 97AD "Trans_TC_lock_curve_3rd_econ"    :W X V +4
+func  97AE 97D5 "Trans_TC_unlock_curve_3rd_power" :W X V +4
+func  97D6 97FD "Trans_TC_unlock_curve_3rd_econ"  :W X V +4
 func  97FE 9825 "FN97FE_(signed)" :W
 func  9826 9839 "FN9826_(unsigned)" :W
 func  983A 9865 "FN983A_(unsigned)" :W
 func  9866 9891 "Scaler_for_RPM_(Transmission)" :W
 func  98A2 98C1 "FN98A2_(signed)" :W
 
-table 9B6E 9BFD "Trans_line_pressure_econ" :Y X O+12
-table 9BFE 9C8D "Trans_line_pressure_power" :Y X O+12
+table 9B6E 9BFD "Trans_line_pressure_econ" :Y X O +12
+table 9BFE 9C8D "Trans_line_pressure_power" :Y X O +12
 
 func  9D82 9D9D "FN9D82_(signed)" :W
 func  9D9E 9DB9 "WOT_Spark_Adder_for_RPM" :W
@@ -191,10 +193,10 @@ func  9DC8 9DE3 "FN9DC8_(unsigned)" :W
 func  9DE4 9DFb "FN9DE4_(unsigned)" :W 
 func  9DFC 9E07 "FN9DFC_(signed)" :Y
 
-table 9E08 9E73 "Spark_Table_Alt" :Y X O+12 V+4
-table 9E74 9EDF "Spark_Table_Borderline_Knock" :Y X O+12 V+4
-table 9EE0 9F4B "Spark_Table_Base" :Y X O+12 V+4
-table 9F4C 9F7B "TABLE9F4C" :Y X O+12 
-table 9F7C 9FAB "TABLE9F7C" :Y X O+12
+table 9E08 9E73 "Spark_Table_Alt" :Y X O +12 V +4
+table 9E74 9EDF "Spark_Table_Borderline_Knock" :Y X O +12 V +4
+table 9EE0 9F4B "Spark_Table_Base" :Y X O +12 V +4
+table 9F4C 9F7B "TABLE9F4C" :Y X O +12
+table 9F7C 9FAB "TABLE9F7C" :Y X O +12
 
 fill  9FAC FFFF
