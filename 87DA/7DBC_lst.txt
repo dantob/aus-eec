@@ -1137,11 +1137,11 @@
 2b4c: 37,56,38          jnb   B7,R56,2b87    if (!B7_R56) goto 2b87;
 2b4f: a3,f2,06,56       ldw   R56,[Rf2+6]    R56 = [7228];
 2b53: 88,56,ae          cmpw  Rae,R56        
-2b56: d9,11             jgtu  2b69           if ((uns) Rae > R56 ) goto 2b69;
+2b56: d9,11             jgtu  2b69           if ((uns) Engine_RPM > R56 ) goto 2b69;
 2b58: 6b,f2,08,56       sb2w  R56,[Rf2+8]    R56 -= [722a];
 2b5c: d3,08             jnc   2b66           if ((uns) R56 >= [722a])  {
 2b5e: 88,56,ae          cmpw  Rae,R56        
-2b61: db,03             jc    2b66           if ((uns) Rae < R56)  {
+2b61: db,03             jc    2b66           if ((uns) Engine_RPM < R56)  {
 2b63: 71,fe,51          an2b  R51,fe         R51 &= fe; } }
 2b66: 30,51,1e          jnb   B0,R51,2b87    if (!B0_R51) goto 2b87;
 2b69: 91,01,51          orb   R51,1          R51 |= 1;
@@ -1709,20 +1709,20 @@
 318d: 71,f7,24          an2b  R24,f7         R24 &= f7;
 3190: 37,2c,0e          jnb   B7,R2c,31a1    if (!B7_R2c) goto 31a1;
 3193: 8b,fe,1a,ae       cmpw  Rae,[Rfe+1a]   
-3197: d1,07             jleu  31a0           if ((uns) Rae > [7f3c] )  {
+3197: d1,07             jleu  31a0           if ((uns) Engine_RPM > [7f3c] )  {
 3199: 9b,f3,93,01,b6    cmpb  Rb6,[Rf2+193]  
 319e: db,14             jc    31b4           if ((uns) Rb6 >= [73b5]) goto 31b4; }
 31a0: f0                ret                  return;
 31a1: 8b,fa,50,ae       cmpw  Rae,[Rfa+50]   
-31a5: d9,0d             jgtu  31b4           if ((uns) Rae > [7e64] ) goto 31b4;
+31a5: d9,0d             jgtu  31b4           if ((uns) Engine_RPM > [7e64] ) goto 31b4;
 31a7: 30,24,03          jnb   B0,R24,31ad    if (B0_R24)  {
 31aa: 91,08,24          orb   R24,8          R24 |= 8; }
 31ad: 91,80,2c          orb   R2c,80         R2c |= 80;
 31b0: 91,01,24          orb   R24,1          R24 |= 1;
 31b3: f0                ret                  return;
 31b4: 3f,2c,07          jb    B7,R2c,31be    if (!B7_R2c)  {
-31b7: 4b,fa,4c,ae,30    sb3w  R30,Rae,[Rfa+4c] R30 = Rae - [7e60];
-31bc: db,0d             jc    31cb           if ((uns) Rae >= [7e60]) goto 31cb; }
+31b7: 4b,fa,4c,ae,30    sb3w  R30,Rae,[Rfa+4c] R30 = Engine_RPM - [7e60];
+31bc: db,0d             jc    31cb           if ((uns) Engine_RPM >= [7e60]) goto 31cb; }
 31be: 38,24,03          jb    B0,R24,31c4    if (!B0_R24)  {
 31c1: 91,02,50          orb   R50,2          R50 |= 2; }
 31c4: 71,7f,2c          an2b  R2c,7f         R2c &= 7f;
@@ -2113,7 +2113,7 @@
 36a0: 89,00,04,b8       cmpw  Rb8,400        
 36a4: d1,32             jleu  36d8           if ((uns) Rb8 <= 400) goto 36d8;
 36a6: 8b,fe,1a,ae       cmpw  Rae,[Rfe+1a]   
-36aa: d1,1f             jleu  36cb           if ((uns) Rae <= [7f3c]) goto 36cb;
+36aa: d1,1f             jleu  36cb           if ((uns) Engine_RPM <= [7f3c]) goto 36cb;
 36ac: 99,0a,e6          cmpb  Re6,a          
 36af: db,15             jc    36c6           if ((uns) Re6 < a)  {
 36b1: 17,e6             incb  Re6            Re6++;
@@ -2125,7 +2125,7 @@
 36c6: 91,80,c8          orb   Rc8,80         Rc8 |= 80;
 36c9: 20,0d             sjmp  36d8           goto 36d8;
 36cb: 8b,fa,50,ae       cmpw  Rae,[Rfa+50]   
-36cf: d9,09             jgtu  36da           if ((uns) Rae > [7e64] ) goto 36da;
+36cf: d9,09             jgtu  36da           if ((uns) Engine_RPM > [7e64] ) goto 36da;
 36d1: 11,b1             clrb  Rb1            Rb1 = 0;
 36d3: c3,01,8c,02,00    stw   0,[28c]        [28c] = ZERO;
 36d8: 11,e6             clrb  Re6            Re6 = 0;
@@ -2232,14 +2232,14 @@
 3823: 8c,3a,34          divw  R34,R3a        R34 = R34L / R3a;
 3826: 01,36             clrw  R36            R36 = 0;
 3828: 0d,30,34          shldw R34,R30        R34L = R34L << R30;
-382b: a0,36,ae          ldw   Rae,R36        Rae = R36;
+382b: a0,36,ae          ldw   Rae,R36        Engine_RPM = R36;
 382e: 08,06,36          shrw  R36,6          R36 = R36 / 40;
 3831: 98,00,37          cmpb  R37,0          
 3834: df,03             je    3839           if (R37 != ZERO)  {
 3836: b1,ff,36          ldb   R36,ff         R36 = ff; }
 3839: c7,01,a2,01,36    stb   R36,[1a2]      [1a2] = R36;
 383e: a3,01,7a,01,32    ldw   R32,[17a]      R32 = [17a];
-3843: a0,ae,34          ldw   R34,Rae        R34 = Rae;
+3843: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 3846: a1,7d,06,36       ldw   R36,67d        R36 = 67d;
 384a: ef,99,f8          call  30e6           Sub62();
 384d: c3,01,7a,01,3e    stw   R3e,[17a]      [17a] = R3e;
@@ -2247,7 +2247,7 @@
 3855: 91,04,29          orb   R29,4          R29 |= 4;
 3858: a3,fa,52,34       ldw   R34,[Rfa+52]   R34 = [7e66];
 385c: 88,ae,34          cmpw  R34,Rae        
-385f: db,03             jc    3864           if ((uns) R34 < Rae)  {
+385f: db,03             jc    3864           if ((uns) R34 < Engine_RPM)  {
 3861: 91,02,29          orb   R29,2          R29 |= 2; } }
 3864: f0                ret                  return;
 
@@ -2289,7 +2289,7 @@
 38c0: ef,7b,f7          call  303e           UUByteLU();
 38c3: 7c,38,3c          ml2b  R3c,R38        R3c *= R38;
 38c6: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;
-38cb: a0,ae,34          ldw   R34,Rae        R34 = Rae;
+38cb: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 38ce: ef,cd,f7          call  309e           SSWordLU();
 38d1: a0,38,30          ldw   R30,R38        R30 = R38;
 38d4: 45,d2,01,f0,32    ad3w  R32,Rf0,1d2    R32 = Scaler_for_Abs_Exh_Pressure;
@@ -2303,7 +2303,7 @@
 38f3: 6c,3a,3c          ml2w  R3c,R3a        R3cL *= R3a;
 38f6: 4f,f2,0c,3e,3c    ml3w  R3c,R3e,[Rf2+c] R3cL = R3e * [722e];
 38fb: 4f,f2,0e,3e,3c    ml3w  R3c,R3e,[Rf2+e] R3cL = R3e * [7230];
-3900: 4c,ae,3e,3c       ml3w  R3c,R3e,Rae    R3cL = R3e * Rae;
+3900: 4c,ae,3e,3c       ml3w  R3c,R3e,Rae    R3cL = R3e * Engine_RPM;
 3904: 0d,02,3c          shldw R3c,2          R3cL *= 4;
 3907: ac,b4,38          ldzbw R38,Rb4        R38 = (uns)Rb4;
 390a: 09,04,38          shlw  R38,4          R38 *= 10;
@@ -2337,7 +2337,7 @@
 396d: 67,fa,12,38       ad2w  R38,[Rfa+12]   R38 += [7e26];
 3971: db,1c             jc    398f           if ((uns) R38 >= [7e26]) goto 398f;
 3973: 88,ae,38          cmpw  R38,Rae        
-3976: db,17             jc    398f           if ((uns) R38 >= Rae) goto 398f; } }
+3976: db,17             jc    398f           if ((uns) R38 >= Engine_RPM) goto 398f; } }
 3978: 71,bf,29          an2b  R29,bf         R29 &= bf;
 397b: 8b,ff,04,01,3e    cmpw  R3e,[Rfe+104]  
 3980: d1,0a             jleu  398c           if ((uns) R3e > [8026] )  {
@@ -2352,7 +2352,7 @@
 39a1: a3,01,48,01,38    ldw   R38,[148]      R38 = [148];
 39a6: 67,fa,10,38       ad2w  R38,[Rfa+10]   R38 += [7e24];
 39aa: 88,ae,38          cmpw  R38,Rae        
-39ad: d3,52             jnc   3a01           if ((uns) R38 < Rae) goto 3a01;
+39ad: d3,52             jnc   3a01           if ((uns) R38 < Engine_RPM) goto 3a01;
 39af: c7,01,4e,01,00    stb   0,[14e]        [14e] = ZERO;
 39b4: 91,40,29          orb   R29,40         R29 |= 40;
 39b7: af,ff,08,01,30    ldzbw R30,[Rfe+108]  R30 = (uns)[802a];
@@ -2451,7 +2451,7 @@
 3adf: ef,04,f6          call  30e6           Sub62();
 3ae2: c3,01,00,01,3e    stw   R3e,[100]      [100] = R3e;
 3ae7: 89,08,07,ae       cmpw  Rae,708        
-3aeb: d1,0c             jleu  3af9           if ((uns) Rae > 708 )  {
+3aeb: d1,0c             jleu  3af9           if ((uns) Engine_RPM > 708 )  {
 3aed: 8b,01,1e,01,3e    cmpw  R3e,[11e]      
 3af2: db,05             jc    3af9           if ((uns) R3e < [11e])  {
 3af4: c3,01,1e,01,3e    stw   R3e,[11e]      [11e] = R3e; } }
@@ -2489,7 +2489,7 @@
 3b71: a3,01,48,01,30    ldw   R30,[148]      R30 = [148];
 3b76: 67,fa,64,30       ad2w  R30,[Rfa+64]   R30 += [7e78];
 3b7a: 88,30,ae          cmpw  Rae,R30        
-3b7d: d9,29             jgtu  3ba8           if ((uns) Rae > R30 ) goto 3ba8;
+3b7d: d9,29             jgtu  3ba8           if ((uns) Engine_RPM > R30 ) goto 3ba8;
 3b7f: 9b,f3,a8,01,b2    cmpb  Rb2,[Rf2+1a8]  
 3b84: de,22             jlt   3ba8           if (Rb2 < [73ca]) goto 3ba8;
 3b86: a3,01,12,01,34    ldw   R34,[112]      R34 = [112];
@@ -2608,7 +2608,7 @@
 
   Sub69:
 3ced: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;
-3cf2: a0,ae,34          ldw   R34,Rae        R34 = Rae;
+3cf2: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 3cf5: ef,a0,f3          call  3098           UUWordLU();
 3cf8: a0,38,30          ldw   R30,R38        R30 = R38;
 3cfb: 08,01,30          shrw  R30,1          R30 = R30 / 2;
@@ -2633,7 +2633,7 @@
 3d3d: ef,5b,f3          call  309b           UUWordLU(); }
 3d40: a0,38,40          ldw   R40,R38        R40 = R38;
 3d43: 45,3c,00,f6,32    ad3w  R32,Rf6,3c     R32 = 76f0;
-3d48: a0,ae,34          ldw   R34,Rae        R34 = Rae;
+3d48: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 3d4b: ef,50,f3          call  309e           SSWordLU();
 3d4e: a0,38,3c          ldw   R3c,R38        R3c = R38;
 3d51: 45,02,00,f0,32    ad3w  R32,Rf0,2      R32 = 6f52;
@@ -2665,7 +2665,7 @@
 3d9a: 8c,3c,38          divw  R38,R3c        R38 = R38L / R3c;
 3d9d: d5,03             jnv   3da2           if (OV)  {
 3d9f: bd,ff,38          ldsbw R38,ff         R38 = (int)ff; }
-3da2: 6c,ae,38          ml2w  R38,Rae        R38L *= Rae;
+3da2: 6c,ae,38          ml2w  R38,Rae        R38L *= Engine_RPM;
 3da5: 4b,01,b0,01,06,34 sb3w  R34,R6,[1b0]   R34 = IO_TIMER - [1b0];
 3dab: 6d,55,32,34       ml2w  R34,3255       R34L *= 3255;
 3daf: a0,36,34          ldw   R34,R36        R34 = R36;
@@ -2674,7 +2674,7 @@
 3db8: b0,20,35          ldb   R35,R20        R35 = R20;
 3dbb: 11,34             clrb  R34            R34 = 0;
 3dbd: 6d,78,00,34       ml2w  R34,78         R34L *= 78;
-3dc1: 8c,ae,34          divw  R34,Rae        R34 = R34L / Rae;
+3dc1: 8c,ae,34          divw  R34,Rae        R34 = R34L / Engine_RPM;
 3dc4: a3,01,e2,01,36    ldw   R36,[1e2]      R36 = [1e2];
 3dc9: c3,01,e2,01,00    stw   0,[1e2]        [1e2] = ZERO;
 3dce: 8b,01,2e,01,34    cmpw  R34,[12e]      
@@ -2714,7 +2714,7 @@
 3e32: a1,01,00,3c       ldw   R3c,1          R3c = 1; }
 3e36: 21,35             sjmp  3f6d           goto 3f6d;
 3e38: 3d,2b,35          jb    B5,R2b,3e70    if (!B5_R2b)  {
-3e3b: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECTorACT;
+3e3b: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECT/ACT;
 3e40: b3,f3,a0,00,36    ldb   R36,[Rf2+a0]   R36 = [72c2];
 3e45: 29,33             scall 3f7a           Sub60();
 3e47: ef,4e,f2          call  3098           UUWordLU();
@@ -2730,7 +2730,7 @@
 3e69: 49,80,00,3a,3c    sb3w  R3c,R3a,80     R3c = R3a - 80;
 3e6e: 20,50             sjmp  3ec0           goto 3ec0; }
 3e70: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;
-3e75: a0,ae,34          ldw   R34,Rae        R34 = Rae;
+3e75: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 3e78: ef,1d,f2          call  3098           UUWordLU();
 3e7b: a0,38,30          ldw   R30,R38        R30 = R38;
 3e7e: 45,36,02,f0,32    ad3w  R32,Rf0,236    R32 = Scaler_for_Load_(fuel);
@@ -2752,7 +2752,7 @@
 3eb5: d1,04             jleu  3ebb           if ((uns) R3a > 200 )  {
 3eb7: a1,00,02,3a       ldw   R3a,200        R3a = 200; }
 3ebb: c3,01,04,02,3a    stw   R3a,[204]      [204] = R3a;
-3ec0: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECTorACT;
+3ec0: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECT/ACT;
 3ec5: b3,f3,a1,00,36    ldb   R36,[Rf2+a1]   R36 = [72c3];
 3eca: 28,ae             scall 3f7a           Sub60();
 3ecc: ef,c9,f1          call  3098           UUWordLU();
@@ -2770,7 +2770,7 @@
 3ef4: 01,3c             clrw  R3c            R3c = 0; }
 3ef6: 3d,2b,31          jb    B5,R2b,3f2a    if (!B5_R2b)  {
 3ef9: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;
-3efe: a0,ae,34          ldw   R34,Rae        R34 = Rae;
+3efe: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 3f01: ef,9a,f1          call  309e           SSWordLU();
 3f04: a0,38,30          ldw   R30,R38        R30 = R38;
 3f07: 45,52,02,f0,32    ad3w  R32,Rf0,252    R32 = Scaler_for_Load_(fuelstable);
@@ -2857,7 +2857,7 @@
 4002: c7,01,8b,02,39    stb   R39,[28b]      [28b] = R39;
 4007: c4,30,39          stb   R39,R30        R30 = R39;
 400a: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;
-400f: a0,ae,34          ldw   R34,Rae        R34 = Rae;
+400f: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 4012: ef,89,f0          call  309e           SSWordLU();
 4015: a0,38,a8          ldw   Ra8,R38        Ra8 = R38;
 4018: 65,80,00,38       ad2w  R38,80         R38 += 80;
@@ -2991,7 +2991,7 @@
 41d1: af,33,a6,02,3a    ldzbw R3a,[R32+2a6]  R3a = (uns)[R32+2a6];
 41d6: 20,79             sjmp  4251           goto 4251;
 41d8: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;
-41dd: a0,ae,34          ldw   R34,Rae        R34 = Rae;
+41dd: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 41e0: ef,bb,ee          call  309e           SSWordLU();
 41e3: a0,38,a8          ldw   Ra8,R38        Ra8 = R38;
 41e6: 45,d2,01,f0,32    ad3w  R32,Rf0,1d2    R32 = Scaler_for_Abs_Exh_Pressure;
@@ -3061,7 +3061,7 @@
 
   Sub21:
 42a3: 88,ae,00          cmpw  0,Rae          
-42a6: df,06             je    42ae           if (ZERO != Rae)  {
+42a6: df,06             je    42ae           if (ZERO != Engine_RPM)  {
 42a8: 9b,fa,46,cb       cmpb  Rcb,[Rfa+46]   
 42ac: d3,0a             jnc   42b8           if ((uns) Rcb < [7e5a]) goto 42b8; }
 42ae: 71,ef,24          an2b  R24,ef         R24 &= ef;
@@ -3119,7 +3119,7 @@
 4348: 37,3b,04          jnb   B7,R3b,434f    if (B7_R3b)  {
 434b: 01,38             clrw  R38            R38 = 0;
 434d: 01,3a             clrw  R3a            R3a = 0; }
-434f: 4f,f3,88,00,ae,34 ml3w  R34,Rae,[Rf2+88] R34L = Rae * [72aa];
+434f: 4f,f3,88,00,ae,34 ml3w  R34,Rae,[Rf2+88] R34L = Engine_RPM * [72aa];
 4355: af,f4,02,34       ldzbw R34,[Rf4+2]    R34 = (uns)[7526];
 4359: 6c,36,34          ml2w  R34,R36        R34L *= R36;
 435c: 0c,01,34          shrdw R34,1          R34 = R34L / 2;
@@ -3160,11 +3160,11 @@
 43c5: bd,ff,38          ldsbw R38,ff         R38 = (int)ff; }
 43c8: a3,f3,9a,00,3a    ldw   R3a,[Rf2+9a]   R3a = [72bc];
 43cd: 8b,01,ae,00,3a    cmpw  R3a,[ae]       
-43d2: db,03             jc    43d7           if ((uns) R3a < [ae])  {
+43d2: db,03             jc    43d7           if ((uns) R3a < [Engine_RPM])  {
 43d4: 91,04,2b          orb   R2b,4          R2b |= 4; }
 43d7: 6b,f3,9c,00,3a    sb2w  R3a,[Rf2+9c]   R3a -= [72be];
 43dc: 8b,01,ae,00,3a    cmpw  R3a,[ae]       
-43e1: d1,03             jleu  43e6           if ((uns) R3a > [ae] )  {
+43e1: d1,03             jleu  43e6           if ((uns) R3a > [Engine_RPM] )  {
 43e3: 71,fb,2b          an2b  R2b,fb         R2b &= fb; }
 43e6: 01,3a             clrw  R3a            R3a = 0;
 43e8: 3a,2b,18          jb    B2,R2b,4403    if (!B2_R2b)  {
@@ -3213,7 +3213,7 @@
 446c: 91,40,28          orb   R28,40         R28 |= 40; }
 446f: a3,f3,5c,01,1a    ldw   R1a,[Rf2+15c]  R1a = [737e];
 4474: 67,f3,5e,01,1a    ad2w  R1a,[Rf2+15e]  R1a += [7380];
-4479: a0,ae,30          ldw   R30,Rae        R30 = Rae;
+4479: a0,ae,30          ldw   R30,Rae        R30 = Engine_RPM;
 447c: 6b,01,48,01,30    sb2w  R30,[148]      R30 -= [148];
 4481: d3,12             jnc   4495           if ((uns) R30 < [148]) goto 4495;
 4483: 88,1a,30          cmpw  R30,R1a        
@@ -3309,7 +3309,7 @@
 45ac: 71,f7,28          an2b  R28,f7         R28 &= f7;
 45af: 01,98             clrw  R98            R98 = 0;
 45b1: f0                ret                  return;
-45b2: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECTorACT;
+45b2: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECT/ACT;
 45b7: b3,f3,8a,01,36    ldb   R36,[Rf2+18a]  R36 = [73ac];
 45bc: ef,bb,f9          call  3f7a           Sub60();
 45bf: ef,d6,ea          call  3098           UUWordLU();
@@ -3457,7 +3457,7 @@
 4786: c4,d8,3b          stb   R3b,Rd8        Rd8 = R3b;
 4789: ef,68,01          call  48f4           Sub77();
 478c: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;
-4791: a0,ae,34          ldw   R34,Rae        R34 = Rae;
+4791: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 4794: ef,07,e9          call  309e           SSWordLU();
 4797: a0,38,30          ldw   R30,R38        R30 = R38;
 479a: 45,6e,02,f0,32    ad3w  R32,Rf0,26e    R32 = Scaler_for_MAP;
@@ -3687,7 +3687,7 @@
 4a56: 20,03             sjmp  4a5b           goto 4a5b; } } } }
 4a58: 71,df,26          an2b  R26,df         R26 &= df;
 4a5b: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;          #Pointer to table
-4a60: a0,ae,34          ldw   R34,Rae        R34 = Rae;                     #RAE = engine RPM * 4
+4a60: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;              #RAE = engine RPM * 4
 4a63: ef,38,e6          call  309e           SSWordLU();                    #2D interpolation routine (R32=Table,R34=InVar,R38=OutVar)
 4a66: a0,38,a8          ldw   Ra8,R38        Ra8 = R38;                     #Table column no. set based on RPM result
 4a69: 45,6e,02,f0,32    ad3w  R32,Rf0,26e    R32 = Scaler_for_MAP;          #Pointer to table
@@ -3775,7 +3775,7 @@
 4b85: 44,42,40,3c       ad3w  R3c,R40,R42    R3c = R40 + R42;
 4b89: 37,27,0e          jnb   B7,R27,4b9a    if (B7_R27)  {
 4b8c: 45,82,00,f0,32    ad3w  R32,Rf0,82     R32 = 6fd2;
-4b91: a0,ae,34          ldw   R34,Rae        R34 = Rae;
+4b91: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 4b94: ef,04,e5          call  309b           UUWordLU();
 4b97: 64,38,3c          ad2w  R3c,R38        R3c += R38; }
 4b9a: af,fa,66,38       ldzbw R38,[Rfa+66]   R38 = (uns)[7e7a];
@@ -4057,7 +4057,7 @@
 4f34: ef,af,e1          call  30e6           Sub62();
 4f37: c3,72,06,3e       stw   R3e,[R72+6]    [R72+6] = R3e;
 4f3b: 3b,27,51          jb    B3,R27,4f8f    if (B3_R27) goto 4f8f;
-4f3e: c3,72,0e,ae       stw   Rae,[R72+e]    [R72+e] = Rae;
+4f3e: c3,72,0e,ae       stw   Rae,[R72+e]    [R72+e] = Engine_RPM;
 4f42: c7,72,03,00       stb   0,[R72+3]      [R72+3] = ZERO;
 4f46: c7,01,4f,01,00    stb   0,[14f]        [14f] = ZERO;
 4f4b: a3,74,1c,32       ldw   R32,[R74+1c]   R32 = [R74+1c];
@@ -4071,7 +4071,7 @@
 4f65: 0d,02,3c          shldw R3c,2          R3cL *= 4;
 4f68: 67,74,10,3e       ad2w  R3e,[R74+10]   R3e += [R74+10];
 4f6c: 45,1e,04,f8,32    ad3w  R32,Rf8,41e    R32 = 7d94;
-4f71: a0,ae,34          ldw   R34,Rae        R34 = Rae;
+4f71: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 4f74: ef,27,e1          call  309e           SSWordLU();
 4f77: 88,38,3e          cmpw  R3e,R38        
 4f7a: d1,03             jleu  4f7f           if ((uns) R3e <= R38) goto 4f7f; }
@@ -4092,7 +4092,7 @@
 4fa9: c3,72,08,1c       stw   R1c,[R72+8]    [R72+8] = R1c;
 4fad: 47,74,16,40,38    ad3w  R38,R40,[R74+16] R38 = R40 + [R74+16];
 4fb2: 88,38,ae          cmpw  Rae,R38        
-4fb5: d9,05             jgtu  4fbc           if ((uns) Rae <= R38)  {
+4fb5: d9,05             jgtu  4fbc           if ((uns) Engine_RPM <= R38)  {
 4fb7: b1,01,38          ldb   R38,1          R38 = 1;
 4fba: 20,7b             sjmp  5037           goto 5037; }
 4fbc: 9b,72,03,00       cmpb  0,[R72+3]      
@@ -4102,12 +4102,12 @@
 4fc7: b3,01,4f,01,38    ldb   R38,[14f]      R38 = [14f];
 4fcc: 9b,74,1f,38       cmpb  R38,[R74+1f]   
 4fd0: d3,19             jnc   4feb           if ((uns) R38 < [R74+1f]) goto 4feb;
-4fd2: 4b,72,0e,ae,38    sb3w  R38,Rae,[R72+e] R38 = Rae - [R72+e];
-4fd7: db,02             jc    4fdb           if ((uns) Rae < [R72+e])  {
+4fd2: 4b,72,0e,ae,38    sb3w  R38,Rae,[R72+e] R38 = Engine_RPM - [R72+e];
+4fd7: db,02             jc    4fdb           if ((uns) Engine_RPM < [R72+e])  {
 4fd9: 03,38             negw  R38            R38 = -R38; }
 4fdb: 8b,f3,fc,01,38    cmpw  R38,[Rf2+1fc]  
 4fe0: d1,24             jleu  5006           if ((uns) R38 <= [741e]) goto 5006;
-4fe2: c3,72,0e,ae       stw   Rae,[R72+e]    [R72+e] = Rae;
+4fe2: c3,72,0e,ae       stw   Rae,[R72+e]    [R72+e] = Engine_RPM;
 4fe6: c7,01,4f,01,00    stb   0,[14f]        [14f] = ZERO;
 4feb: b1,ff,38          ldb   R38,ff         R38 = ff;
 4fee: c7,72,03,38       stb   R38,[R72+3]    [R72+3] = R38;
@@ -4127,7 +4127,7 @@
 501e: b1,ff,38          ldb   R38,ff         R38 = ff; } }
 5021: 98,38,b4          cmpb  Rb4,R38        
 5024: db,0e             jc    5034           if ((uns) Rb4 < R38)  {
-5026: c3,72,0e,ae       stw   Rae,[R72+e]    [R72+e] = Rae;
+5026: c3,72,0e,ae       stw   Rae,[R72+e]    [R72+e] = Engine_RPM;
 502a: c7,01,4f,01,00    stb   0,[14f]        [14f] = ZERO;
 502f: b1,ff,38          ldb   R38,ff         R38 = ff;
 5032: 20,03             sjmp  5037           goto 5037; }
@@ -4173,7 +4173,7 @@
 50b2: b3,33,34,03,3c    ldb   R3c,[R32+334]  R3c = [R32+334];
 50b7: b3,33,35,03,3d    ldb   R3d,[R32+335]  R3d = [R32+335];
 50bc: 0a,01,3c          asrw  R3c,1          R3c = R3c / 2; }
-50bf: a0,ae,34          ldw   R34,Rae        R34 = Rae;
+50bf: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 50c2: 45,a4,01,f6,32    ad3w  R32,Rf6,1a4    R32 = 7858;
 50c7: 3e,a1,05          jb    B6,Ra1,50cf    if (!B6_Ra1)  {
 50ca: 45,c0,01,f6,32    ad3w  R32,Rf6,1c0    R32 = 7874; }
@@ -4213,8 +4213,8 @@
 5137: c3,72,0c,1c       stw   R1c,[R72+c]    [R72+c] = R1c;
 513b: 11,16             clrb  R16            R16 = 0;
 513d: a3,01,48,01,40    ldw   R40,[148]      R40 = [148];
-5142: 48,ae,40,14       sb3w  R14,R40,Rae    R14 = R40 - Rae;
-5146: db,02             jc    514a           if ((uns) R40 < Rae)  {
+5142: 48,ae,40,14       sb3w  R14,R40,Rae    R14 = R40 - Engine_RPM;
+5146: db,02             jc    514a           if ((uns) R40 < Engine_RPM)  {
 5148: 17,16             incb  R16            R16++; }
 514a: 3e,26,11          jb    B6,R26,515e    if (!B6_R26)  {
 514d: 45,e4,01,f6,32    ad3w  R32,Rf6,1e4    R32 = 7898;
@@ -4242,7 +4242,7 @@
 5195: 3d,2a,06          jb    B5,R2a,519e    if (!B5_VIP_mode_flag)  {
 5198: 89,70,7d,e2       cmpw  Re2,7d70       
 519c: db,69             jc    5207           if ((uns) Re2 >= 7d70) goto 5207; }
-519e: 48,ae,40,34       sb3w  R34,R40,Rae    R34 = R40 - Rae;
+519e: 48,ae,40,34       sb3w  R34,R40,Rae    R34 = R40 - Engine_RPM;
 51a2: 45,46,01,f6,32    ad3w  R32,Rf6,146    R32 = 77fa;
 51a7: ef,e9,de          call  3093           UUWordLU();
 51aa: 6c,14,38          ml2w  R38,R14        R38L *= R14;
@@ -4361,7 +4361,7 @@
 531b: b3,f3,cc,01,14    ldb   R14,[Rf2+1cc]  R14 = [73ee];
 5320: 7b,f3,cd,01,14    sb2b  R14,[Rf2+1cd]  R14 -= [73ef];
 5325: 8b,f3,ce,01,ae    cmpw  Rae,[Rf2+1ce]  
-532a: d3,05             jnc   5331           if ((uns) Rae >= [73f0])  {
+532a: d3,05             jnc   5331           if ((uns) Engine_RPM >= [73f0])  {
 532c: 98,9b,14          cmpb  R14,R9b        
 532f: d1,03             jleu  5334           if ((uns) R14 <= R9b) goto 5334; }
 5331: 71,df,25          an2b  R25,df         R25 &= df;
@@ -4455,11 +4455,11 @@
 5437: 37,a0,1d          jnb   B7,Ra0,5457    if (!B7_Ra0) goto 5457;
 543a: a3,f3,a2,00,38    ldw   R38,[Rf2+a2]   R38 = [72c4];
 543f: 88,38,ae          cmpw  Rae,R38        
-5442: db,03             jc    5447           if ((uns) Rae < R38)  {
+5442: db,03             jc    5447           if ((uns) Engine_RPM < R38)  {
 5444: 91,80,2b          orb   R2b,80         R2b |= 80; }
 5447: 67,f3,a4,00,38    ad2w  R38,[Rf2+a4]   R38 += [72c6];
 544c: 88,38,ae          cmpw  Rae,R38        
-544f: d1,03             jleu  5454           if ((uns) Rae > R38 )  {
+544f: d1,03             jleu  5454           if ((uns) Engine_RPM > R38 )  {
 5451: 71,7f,2b          an2b  R2b,7f         R2b &= 7f; }
 5454: 3f,2b,05          jb    B7,R2b,545c    if (B7_R2b) goto 545c;
 5457: 01,d2             clrw  Rd2            Rd2 = 0;
@@ -4473,7 +4473,7 @@
 5473: f0                ret                  return;
 
   Sub81:
-5474: a0,ae,34          ldw   R34,Rae        R34 = Rae;
+5474: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 5477: 9f,01,f9,01,34    divb  R34,[1f9]      R34 = R34 / [1f9];
 547c: d5,03             jnv   5481           if (OV)  {
 547e: b1,ff,34          ldb   R34,ff         R34 = ff; }
@@ -4761,7 +4761,7 @@
 57dc: 71,df,50          an2b  R50,df         R50 &= df;
 57df: f0                ret                  return; }
 57e0: 8b,fa,7c,ae       cmpw  Rae,[Rfa+7c]   
-57e4: d1,0f             jleu  57f5           if ((uns) Rae <= [7e90]) goto 57f5;
+57e4: d1,0f             jleu  57f5           if ((uns) Engine_RPM <= [7e90]) goto 57f5;
 57e6: 9b,fa,7e,a5       cmpb  Ra5,[Rfa+7e]   
 57ea: db,09             jc    57f5           if ((uns) Ra5 >= [7e92]) goto 57f5;
 57ec: 3b,4f,03          jb    B3,R4f,57f2    if (!B3_R4f)  {
@@ -4807,24 +4807,24 @@
 
   Sub26:
 5850: 45,24,01,f4,32    ad3w  R32,Rf4,124    R32 = 7648;
-5855: a0,ae,34          ldw   R34,Rae        R34 = Rae;
+5855: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 5858: ef,43,d8          call  309e           SSWordLU();
 585b: 67,fa,78,38       ad2w  R38,[Rfa+78]   R38 += [7e8c];
 585f: c3,01,6a,01,38    stw   R38,[16a]      [16a] = R38;
 5864: 45,08,01,f4,32    ad3w  R32,Rf4,108    R32 = 762c;
-5869: a0,ae,34          ldw   R34,Rae        R34 = Rae;
+5869: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 586c: ef,2f,d8          call  309e           SSWordLU();
 586f: 6c,b8,38          ml2w  R38,Rb8        R38L *= Rb8;
 5872: 0d,01,38          shldw R38,1          R38L *= 2;
 5875: 67,fa,7a,3a       ad2w  R3a,[Rfa+7a]   R3a += [7e8e];
 5879: c3,01,6c,01,3a    stw   R3a,[16c]      [16c] = R3a;
 587e: 45,f0,00,f4,32    ad3w  R32,Rf4,f0     R32 = 7614;
-5883: a0,ae,34          ldw   R34,Rae        R34 = Rae;
+5883: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 5886: ef,15,d8          call  309e           SSWordLU();
 5889: c7,01,df,01,39    stb   R39,[1df]      [1df] = R39;
 588e: 36,4f,44          jnb   B6,R4f,58d5    if (!B6_R4f) goto 58d5;
 5891: 45,38,01,f4,32    ad3w  R32,Rf4,138    R32 = 765c;
-5896: a0,ae,34          ldw   R34,Rae        R34 = Rae;
+5896: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 5899: ef,02,d8          call  309e           SSWordLU();
 589c: 8b,01,d8,01,38    cmpw  R38,[1d8]      
 58a1: d9,32             jgtu  58d5           if ((uns) R38 > [1d8] ) goto 58d5;
@@ -4869,7 +4869,7 @@
 5920: 9b,fa,77,b2       cmpb  Rb2,[Rfa+77]   
 5924: da,17             jle   593d           if (Rb2 > [7e8b])  {
 5926: 8b,f3,ba,01,ae    cmpw  Rae,[Rf2+1ba]  
-592b: db,10             jc    593d           if ((uns) Rae < [73dc])  {
+592b: db,10             jc    593d           if ((uns) Engine_RPM < [73dc])  {
 592d: a3,01,b4,01,38    ldw   R38,[1b4]      R38 = [1b4];
 5932: 8b,fa,6c,38       cmpw  R38,[Rfa+6c]   
 5936: de,05             jlt   593d           if (R38 >= [7e80])  {
@@ -4880,7 +4880,7 @@
 5943: 9b,f3,b8,01,b2    cmpb  Rb2,[Rf2+1b8]  
 5948: da,17             jle   5961           if (Rb2 > [73da])  {
 594a: 8b,fa,74,ae       cmpw  Rae,[Rfa+74]   
-594e: d1,11             jleu  5961           if ((uns) Rae > [7e88] )  {
+594e: d1,11             jleu  5961           if ((uns) Engine_RPM > [7e88] )  {
 5950: 9b,fa,76,a3       cmpb  Ra3,[Rfa+76]   
 5954: d1,0b             jleu  5961           if ((uns) Ra3 > [7e8a] )  {
 5956: 9b,f7,c1,02,00    cmpb  0,[Rf6+2c1]    
@@ -5396,7 +5396,7 @@
 5e77: 28,c7             scall 5f40           Sub145(2,20,5);
 5e79: 02,20,05          #args  
 5e7c: 8b,f3,36,02,ae    cmpw  Rae,[Rf2+236]  
-5e81: d3,3e             jnc   5ec1           if ((uns) Rae < [7458]) goto 5ec1;
+5e81: d3,3e             jnc   5ec1           if ((uns) Engine_RPM < [7458]) goto 5ec1;
 5e83: 71,bf,a2          an2b  Ra2,bf         Ra2 &= bf;
 5e86: ef,19,03          call  61a2           Sub129(2a,1,38,92);
 5e89: 2a,01,38,92       #args  
@@ -6156,8 +6156,8 @@
 659d: 30,2e,08          jnb   B0,R2e,65a8    if (B0_R2e)  {
 65a0: 71,df,df          an2b  Rdf,df         Rdf &= df;
 65a3: a3,f3,0e,02,c6    ldw   Rc6,[Rf2+20e]  Rc6 = [7430]; }
-65a8: 4b,72,02,ae,1c    sb3w  R1c,Rae,[R72+2] R1c = Rae - [R72+2];
-65ad: d3,0a             jnc   65b9           if ((uns) Rae >= [R72+2])  {
+65a8: 4b,72,02,ae,1c    sb3w  R1c,Rae,[R72+2] R1c = Engine_RPM - [R72+2];
+65ad: d3,0a             jnc   65b9           if ((uns) Engine_RPM >= [R72+2])  {
 65af: 8b,f3,6c,02,1c    cmpw  R1c,[Rf2+26c]  
 65b4: d3,03             jnc   65b9           if ((uns) R1c >= [748e])  {
 65b6: 71,ef,df          an2b  Rdf,ef         Rdf &= ef; } }
@@ -6988,7 +6988,7 @@
 #				??	 Row
 
 
-  Scaler_for_ECTorACT:
+  Scaler_for_ECT/ACT:
 7152: ff,7f,00,09  func       32767,9   
 7156: 00,2d,00,09  func       11520,9   
 715a: 00,00,00,00  func       0,0   
