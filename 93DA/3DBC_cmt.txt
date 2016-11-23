@@ -111,11 +111,12 @@
 
 878F |
 878F |# Data -------------------------------------------------------------------------
-8C31 |# Values are in lambda, multiply by 14.64 to get AFR
+8C31 |# Values are in lambda, multiply by 14.64 to get AFR; Columns=RPM(896C), Rows=Load%(89A4)
 8C8B |# Values are in lambda, multiply by 14.64 to get AFR
-8CDB |# Values are negative lamba adder (richen mixture), multiply by 14.64 to get AFR
+8CDB |# Values are negative lamba adder (richen mixture), multiply by 14.64 to get AFR; Columns=Temp(8954), Rows=Time(89A4)
 910B |# Values are a fraction of 100%
 922B |# Values are in lambda, multiply by 14.64 to get AFR
-9E73 |# Values are degrees of ignition advance
-9EDF |# Values are degrees of ignition advance
-9F4B |# Values are degrees of ignition advance
+9E73 |# Values are degrees of ignition advance; Columns=RPM(896C), Rows=MAP(89E8)
+9EDF |# Values are degrees of ignition advance; Columns=RPM(896C), Rows=MAP(89E8)
+9F4B |# Values are degrees of ignition advance; Columns=RPM(896C), Rows=MAP(89E8)
+

@@ -101,13 +101,13 @@ func  88D4 88EF "Fuel_Scaler_for_Time" :W
 func  88F0 8903 "FN88F0_(unsigned)" :W
 func  8904 8923 "FN8904_(signed)" :W
 func  8924 8953 "Scaler_for_Abs_Exhaust_Pressure" :W
-func  8954 896B "Fuel_Scaler_for_ECT/ACT" :W
-func  896C 8987 "Fuel/Spark_Scaler_for_RPM" :W
-func  8988 89A3 "Fuel_Stablised_Scaler_4_MAP/BP" :W
-func  89A4 89BF "Fuel_Scaler_for_MAP/BP" :W
+func  8954 896B "Scaler_for_ECT/ACT" :W :W V +256
+func  896C 8987 "Scaler_for_RPM" :W V +4 :W V +256
+func  8988 89A3 "unknown_load_scaler" :W
+func  89A4 89BF "Scaler_for_Load_(fuelstable)" :W V +1.28 :W V +256
 func  89C0 89D3 "FN89C0_(unsigned)" :W
 func  89D4 89E7 "FN89D4_(unsigned)" :W
-func  89E8 8A03 "Scaler_for_MAP" :W
+func  89E8 8A03 "Scaler_for_MAP" :W V +8 :W V +256
 func  8A04 8A1B "FN8A04_(signed)" :W
 func  8A1C 8A2F "FN8A1C_(unsigned)" :W
 func  8A30 8A4B "FN8A30_(unsigned)" :W

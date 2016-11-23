@@ -2557,7 +2557,7 @@
 3bfb: b0,b1,34          ldb   R34,Rb1        R34 = Rb1;
 3bfe: ef,86,f5          call  3187           UUByteLU(Func5,3c38,);
 3c01: 5d,80,38,3c       #args  
-3c05: 45,dc,01,f0,32    ad3w  R32,Rf0,1dc    R32 = Fuel/Spark_Scaler_for_RPM;
+3c05: 45,dc,01,f0,32    ad3w  R32,Rf0,1dc    R32 = Scaler_for_RPM;
 3c0a: a0,ac,34          ldw   R34,Rac        R34 = Rac;
 3c0d: ef,30,f6          call  3240           SSWordLU();
 3c10: a0,38,30          ldw   R30,R38        R30 = R38;
@@ -2853,7 +2853,7 @@
 3f98: f0                ret                  return;
 
   Sub69:
-3f99: 45,dc,01,f0,32    ad3w  R32,Rf0,1dc    R32 = Fuel/Spark_Scaler_for_RPM;
+3f99: 45,dc,01,f0,32    ad3w  R32,Rf0,1dc    R32 = Scaler_for_RPM;
 3f9e: a0,ac,34          ldw   R34,Rac        R34 = Rac;
 3fa1: ef,68,f2          call  320c           UUWordLU(38a0,830,);
 3fa4: a0,38,30,08       #args  
@@ -2963,7 +2963,7 @@
 40d1: a1,01,00,3c       ldw   R3c,1          R3c = 1; }
 40d5: 21,34             sjmp  420b           goto 420b;
 40d7: 3d,2b,34          jb    B5,R2b,410e    if (!B5_R2b)  {
-40da: 45,c4,01,f0,32    ad3w  R32,Rf0,1c4    R32 = Fuel_Scaler_for_ECT/ACT;
+40da: 45,c4,01,f0,32    ad3w  R32,Rf0,1c4    R32 = Scaler_for_ECT/ACT;
 40df: b3,f4,38,36       ldb   R36,[Rf4+38]   R36 = [8b78];
 40e3: 29,33             scall 4218           Sub56();
 40e5: ef,24,f1          call  320c           UUWordLU(38a0,4530,);
@@ -2981,7 +2981,7 @@
 4105: b7,f1,49,80,00    ??    183,241, 73,128,  0  18929,   128,
 410a: 3a,3c,20,4e       ??     58, 60, 32, 78  15418, 20000,
 
-410e: 45,dc,01,f0,32    ad3w  R32,Rf0,1dc    R32 = Fuel/Spark_Scaler_for_RPM;
+410e: 45,dc,01,f0,32    ad3w  R32,Rf0,1dc    R32 = Scaler_for_RPM;
 4113: a0,ac,34          ldw   R34,Rac        R34 = Rac;
 4116: ef,f3,f0          call  320c           UUWordLU(38a0,4530,);
 4119: a0,38,30,45       #args  
@@ -3012,7 +3012,7 @@
 4152: d1,04             jleu  4158           if ((uns) R3a > 200 )  {
 4154: a1,00,02,3a       ldw   R3a,200        R3a = 200; }
 4158: c3,be,b8,3a       stw   R3a,[Rbe+b8]   [Rbe-48] = R3a;
-415c: 45,c4,01,f0,32    ad3w  R32,Rf0,1c4    R32 = Fuel_Scaler_for_ECT/ACT;
+415c: 45,c4,01,f0,32    ad3w  R32,Rf0,1c4    R32 = Scaler_for_ECT/ACT;
 4161: b3,f4,39,36       ldb   R36,[Rf4+39]   R36 = [8b79];
 4165: 28,b1             scall 4218           Sub56();
 4167: ef,a2,f0          call  320c           UUWordLU(38a0,4530,);
@@ -3029,11 +3029,11 @@
 418d: db,02             jc    4191           if ((uns) R3c < R3a)  {
 418f: 01,3c             clrw  R3c            R3c = 0; }
 4191: 3d,2b,31          jb    B5,R2b,41c5    if (!B5_R2b)  {
-4194: 45,dc,01,f0,32    ad3w  R32,Rf0,1dc    R32 = Fuel/Spark_Scaler_for_RPM;
+4194: 45,dc,01,f0,32    ad3w  R32,Rf0,1dc    R32 = Scaler_for_RPM;
 4199: a0,ac,34          ldw   R34,Rac        R34 = Rac;
 419c: ef,a1,f0          call  3240           SSWordLU();
 419f: a0,38,30          ldw   R30,R38        R30 = R38;
-41a2: 45,14,02,f0,32    ad3w  R32,Rf0,214    R32 = Fuel_Scaler_for_MAP/BP;
+41a2: 45,14,02,f0,32    ad3w  R32,Rf0,214    R32 = Scaler_for_Load_(fuelstable);
 41a7: ac,a1,34          ldzbw R34,Ra1        R34 = (uns)Ra1;
 41aa: ef,93,f0          call  3240           SSWordLU();
 41ad: a0,38,32          ldw   R32,R38        R32 = R38;
@@ -3121,7 +3121,7 @@
 4295: 64,3a,38          ad2w  R38,R3a        R38 += R3a;
 4298: c7,be,27,39       stb   R39,[Rbe+27]   [Rbe+27] = R39;
 429c: c4,30,39          stb   R39,R30        R30 = R39;
-429f: 45,dc,01,f0,32    ad3w  R32,Rf0,1dc    R32 = Fuel/Spark_Scaler_for_RPM;
+429f: 45,dc,01,f0,32    ad3w  R32,Rf0,1dc    R32 = Scaler_for_RPM;
 42a4: a0,ac,34          ldw   R34,Rac        R34 = Rac;
 42a7: ef,96,ef          call  3240           SSWordLU();
 42aa: a0,38,a6          ldw   Ra6,R38        Ra6 = R38;
@@ -3288,7 +3288,7 @@
 4490: 28,b6             scall 4548           Sub74();
 4492: af,33,f2,03,3a    ldzbw R3a,[R32+3f2]  R3a = (uns)[R32+3f2];
 4497: 20,78             sjmp  4511           goto 4511;
-4499: 45,dc,01,f0,32    ad3w  R32,Rf0,1dc    R32 = Fuel/Spark_Scaler_for_RPM;
+4499: 45,dc,01,f0,32    ad3w  R32,Rf0,1dc    R32 = Scaler_for_RPM;
 449e: a0,ac,34          ldw   R34,Rac        R34 = Rac;
 44a1: ef,9c,ed          call  3240           SSWordLU();
 44a4: a0,38,a6          ldw   Ra6,R38        Ra6 = R38;
@@ -6263,7 +6263,7 @@
 6596: 71,f7,28          an2b  R28,f7         R28 &= f7;
 6599: 01,98             clrw  R98            R98 = 0;
 659b: f0                ret                  return;
-659c: 45,c4,01,f0,32    ad3w  R32,Rf0,1c4    R32 = Fuel_Scaler_for_ECT/ACT;
+659c: 45,c4,01,f0,32    ad3w  R32,Rf0,1c4    R32 = Scaler_for_ECT/ACT;
 65a1: b3,fa,43,36       ldb   R36,[Rfa+43]   R36 = [903b];
 65a5: ef,70,dc          call  4218           Sub56();
 65a8: ef,61,cc          call  320c           UUWordLU(38a0,45a6,);
@@ -6410,7 +6410,7 @@
 6749: 91,20,26          orb   R26,20         R26 |= 20;
 674c: 20,03             sjmp  6751           goto 6751; } }
 674e: 71,df,26          an2b  R26,df         R26 &= df;
-6751: 45,dc,01,f0,32    ad3w  R32,Rf0,1dc    R32 = Fuel/Spark_Scaler_for_RPM;
+6751: 45,dc,01,f0,32    ad3w  R32,Rf0,1dc    R32 = Scaler_for_RPM;
 6756: a0,ac,34          ldw   R34,Rac        R34 = Rac;
 6759: ef,e4,ca          call  3240           SSWordLU();
 675c: a0,38,a6          ldw   Ra6,R38        Ra6 = R38;
@@ -9550,26 +9550,26 @@
 8950: 00,00,00,00  func       0,0
 
 
-  Fuel_Scaler_for_ECT/ACT:
-8954: ff,7f,00,09  func       32767,2304
-8958: 00,2d,00,09  func       11520,2304
-895c: 00,00,00,00  func       0,0
-8960: 00,80,00,00  func       32768,0
-8964: 00,80,00,00  func       32768,0
-8968: 00,80,00,00  func       32768,0
+  Scaler_for_ECT/ACT:
+8954: ff,7f,00,09  func       32767,9   
+8958: 00,2d,00,09  func       11520,9   
+895c: 00,00,00,00  func       0,0   
+8960: 00,80,00,00  func       32768,0   
+8964: 00,80,00,00  func       32768,0   
+8968: 00,80,00,00  func       32768,0   
 
 
-  Fuel/Spark_Scaler_for_RPM:
-896c: ff,ff,00,0b  func       65535,2816
-8970: 20,4e,00,0b  func       20000,2816
-8974: b0,36,00,08  func       14000,2048
-8978: 70,17,00,03  func       6000,768
-897c: 60,09,00,00  func       2400,0
-8980: 00,00,00,00  func       0,0
-8984: 00,00,00,00  func       0,0
+  Scaler_for_RPM:
+896c: ff,ff,00,0b  func       16383.75,11   
+8970: 20,4e,00,0b  func       5000   ,11   
+8974: b0,36,00,08  func       3500   ,8   
+8978: 70,17,00,03  func       1500   ,3   
+897c: 60,09,00,00  func       600   ,0   
+8980: 00,00,00,00  func       0   ,0   
+8984: 00,00,00,00  func       0   ,0   
 
 
-  Fuel_Stablised_Scaler_4_MAP/BP:
+  unknown_load_scaler:
 8988: ff,ff,00,08  func       65535,2048
 898c: 80,00,00,08  func       128,2048
 8990: 26,00,00,01  func       38,256
@@ -9579,14 +9579,14 @@
 89a0: 00,00,00,00  func       0,0
 
 
-  Fuel_Scaler_for_MAP/BP:
-89a4: ff,ff,00,08  func       65535,2048
-89a8: 7a,00,00,08  func       122,2048
-89ac: 60,00,00,04  func       96,1024
-89b0: 46,00,00,02  func       70,512
-89b4: 2d,00,00,01  func       45,256
-89b8: 2a,00,00,00  func       42,0
-89bc: 00,00,00,00  func       0,0
+  Scaler_for_Load_(fuelstable):
+89a4: ff,ff,00,08  func       51199.22,8   
+89a8: 7a,00,00,08  func       95.31,8   
+89ac: 60,00,00,04  func       75   ,4   
+89b0: 46,00,00,02  func       54.69,2   
+89b4: 2d,00,00,01  func       35.16,1   
+89b8: 2a,00,00,00  func       32.81,0   
+89bc: 00,00,00,00  func       0   ,0   
 
 
   FN89C0_(unsigned):
@@ -9606,13 +9606,13 @@
 
 
   Scaler_for_MAP:
-89e8: ff,ff,00,08  func       65535,2048
-89ec: f0,00,00,08  func       240,2048
-89f0: 30,00,00,00  func       48,0
-89f4: 00,00,00,00  func       0,0
-89f8: 00,00,00,00  func       0,0
-89fc: 00,00,00,00  func       0,0
-8a00: 00,00,00,00  func       0,0
+89e8: ff,ff,00,08  func       8191.88,8   
+89ec: f0,00,00,08  func       30   ,8   
+89f0: 30,00,00,00  func       6   ,0   
+89f4: 00,00,00,00  func       0   ,0   
+89f8: 00,00,00,00  func       0   ,0   
+89fc: 00,00,00,00  func       0   ,0   
+8a00: 00,00,00,00  func       0   ,0   
 
 
   FN8A04_(signed):
@@ -9858,7 +9858,7 @@
 8c0e: 7a,7c,7c,7c,7c,7a,7a,76,73,71,6e,6c  table   0.95,  0.97,  0.97,  0.97,  0.97,  0.95,  0.95,  0.92,  0.9 ,  0.88,  0.86,  0.84
 8c1a: 71,7a,7a,7a,7a,76,73,71,6c,6a,69,68  table   0.88,  0.95,  0.95,  0.95,  0.95,  0.92,  0.9 ,  0.88,  0.84,  0.83,  0.82,  0.81
 8c26: 6a,72,76,76,76,6f,6d,6d,66,65,64,64  table   0.83,  0.89,  0.92,  0.92,  0.92,  0.87,  0.85,  0.85,  0.8 ,  0.79,  0.78,  0.78
-# Values are in lambda, multiply by 14.64 to get AFR
+# Values are in lambda, multiply by 14.64 to get AFR; Columns=RPM(896C), Rows=Load%(89A4)
 
 
   Fuel_Table_Base_(OL):
@@ -9883,7 +9883,7 @@
 8cbe: 11,0d,0c,0a,09,08,08,08,08,08  table   0.13,  0.1 ,  0.09,  0.08,  0.07,  0.06,  0.06,  0.06,  0.06,  0.06
 8cc8: 0f,0d,0c,0a,09,08,08,08,06,06  table   0.12,  0.1 ,  0.09,  0.08,  0.07,  0.06,  0.06,  0.06,  0.05,  0.05
 8cd2: 00,00,00,00,00,00,00,00,00,00  table   0   ,  0   ,  0   ,  0   ,  0   ,  0   ,  0   ,  0   ,  0   ,  0   
-# Values are negative lamba adder (richen mixture), multiply by 14.64 to get AFR
+# Values are negative lamba adder (richen mixture), multiply by 14.64 to get AFR; Columns=Temp(8954), Rows=Time(89A4)
 
 
   Func33:
@@ -11476,7 +11476,7 @@
 9e50: 40,50,60,68,78,80,80,84,74,78,80,80  table  16   , 20   , 24   , 26   , 30   , 32   , 32   , 33   , 29   , 30   , 32   , 32   
 9e5c: 38,4c,54,60,6c,74,78,78,6c,74,78,78  table  14   , 19   , 21   , 24   , 27   , 29   , 30   , 30   , 27   , 29   , 30   , 30   
 9e68: 38,44,4c,54,64,6c,74,70,6c,70,74,74  table  14   , 17   , 19   , 21   , 25   , 27   , 29   , 28   , 27   , 28   , 29   , 29   
-# Values are degrees of ignition advance
+# Values are degrees of ignition advance; Columns=RPM(896C), Rows=MAP(89E8)
 
 
   Spark_Table_Borderline_Knock:
@@ -11489,7 +11489,7 @@
 9ebc: 0c,36,45,5e,60,79,91,7c,63,6a,72,79  table   3   , 13.5 , 17.25, 23.5 , 24   , 30.25, 36.25, 31   , 24.75, 26.5 , 28.5 , 30.25
 9ec8: 0c,22,2e,43,50,5f,71,65,4e,55,5a,5e  table   3   ,  8.5 , 11.5 , 16.75, 20   , 23.75, 28.25, 25.25, 19.5 , 21.25, 22.5 , 23.5 
 9ed4: 0c,0d,18,28,39,45,50,4f,38,40,41,44  table   3   ,  3.25,  6   , 10   , 14.25, 17.25, 20   , 19.75, 14   , 16   , 16.25, 17   
-# Values are degrees of ignition advance
+# Values are degrees of ignition advance; Columns=RPM(896C), Rows=MAP(89E8)
 
 
   Spark_Table_Base:
@@ -11502,7 +11502,7 @@
 9f28: 40,50,68,80,78,80,80,84,74,78,80,80  table  16   , 20   , 26   , 32   , 30   , 32   , 32   , 33   , 29   , 30   , 32   , 32   
 9f34: 38,4c,54,60,6c,74,78,78,6c,74,78,78  table  14   , 19   , 21   , 24   , 27   , 29   , 30   , 30   , 27   , 29   , 30   , 30   
 9f40: 38,44,4c,54,64,6c,74,70,6c,70,74,74  table  14   , 17   , 19   , 21   , 25   , 27   , 29   , 28   , 27   , 28   , 29   , 29   
-# Values are degrees of ignition advance
+# Values are degrees of ignition advance; Columns=RPM(896C), Rows=MAP(89E8)
 
                                                                             
 
