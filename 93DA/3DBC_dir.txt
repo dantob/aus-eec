@@ -34,7 +34,8 @@ SYM   E "HSO_TIME"
 SYM   F "HSO_TIMEH"
 
 SYM   2A "VIP_mode_flag"
-SYM	  E9 "power_econ_switch" : T +2 #set power, unset econ
+SYM   AC "Engine_RPM"
+SYM   E9 "power_econ_switch" : T +2 #set power, unset econ
 
 #--Code-------------------------------------------------------------------------
 sub   2000 "reset"

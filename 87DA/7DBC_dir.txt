@@ -34,6 +34,7 @@ SYM   E "HSO_TIME"
 SYM   F "HSO_TIMEH"
 
 SYM   2A "VIP_mode_flag"
+SYM   AE "Engine_RPM"
 
 #--Code-------------------------------------------------------------------------
 sub   2000 "reset"
