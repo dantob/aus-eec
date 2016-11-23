@@ -90,6 +90,7 @@
 20E8  #R1C should never be larger than R14, oops.
 20EA  #R14 now points at next table in ROM
 20ED  #continue til we've processed all init tables
+   1 |#-------------------------------------------------------------------------------
 
 
 219D |

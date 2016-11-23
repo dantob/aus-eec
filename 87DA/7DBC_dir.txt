@@ -202,7 +202,7 @@ func  77CA 77ED :W
 func  77EE 77F9 :Y
 func  77FA 7815 :W
 func  7816 782D "Scaler_for_TBL782E" :W
-table 782E 7857 "TBL782E_(ISC_Airflow_multiplier?)" :Y O +7 P +3
+table 782E 7857 "TBL782E_(ISC_Airflow_multiplier)" :Y O +7 P +3 #??
 func  7858 7873 :W
 func  7874 788F :W
 func  7890 7897 :Y

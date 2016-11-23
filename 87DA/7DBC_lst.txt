@@ -127,6 +127,7 @@
 20e8: d9,b8             jgtu  20a2           if ((uns) R1c > [R14] ) goto setup_initial_state; #R1C should never be larger than R14, oops.
 20ea: a2,16,14          ldw   R14,[R16]      R14 = [R16];                   #R14 now points at next table in ROM
 20ed: 27,da             sjmp  20c9           goto 20c9;                     #continue til we've processed all init tables
+#-------------------------------------------------------------------------------
 20ef: 3d,2a,06          jb    B5,R2a,20f8    if (!B5_VIP_mode_flag)  {
 20f2: 3e,2a,03          jb    B6,R2a,20f8    if (!B6_VIP_mode_flag)  {
 20f5: 91,01,a2          orb   Ra2,1          Ra2 |= 1; } }
