@@ -7,25 +7,25 @@
    1 |#0000	B/W	Zero
 0001 |#0001	B/W	Zero
 0002 |#0002	B	LSO port (Non-bidirectional)	B	LSO port (Non-bidirectional)
-0003 |#0003	B	Bidirectional I/O port		B	Bidirectional I/O port
-0004 |#0004	B	A/D Result Lo			B	A/D command (Channel #)
-0005 |#0005	B	A/D Result Hi			B	Watchdog timer
+0003 |#0003	B	Bidirectional I/O port			B	Bidirectional I/O port
+0004 |#0004	B	A/D Result Lo					B	A/D command (Channel #)
+0005 |#0005	B	A/D Result Hi					B	Watchdog timer
 0006 |#0006	W	Master I/O timer 
-0008 |#0008	B	Interrupt mask			B	Interrupt mask
-0009 |#0009	B	Interrupt pending		B	Interrupt pending
-000A |#000A	B	I/O status			B	I/O status
+0008 |#0008	B	Interrupt mask					B	Interrupt mask
+0009 |#0009	B	Interrupt pending				B	Interrupt pending
+000A |#000A	B	I/O status						B	I/O status
 000B |#000B	B	HSI sample register
-000C |#000C	B	HSI data mask			B	HSI data mask
-000D |#000D	B	HSI data hold			B	HSO command hold
-000E |#000E	W	HSI time hold			W	HSO time hold
-0010 |#0010	B/W	Stack Pointer Lo byte		B/W	Stack Pointer Lo byte
-0011 |#0011	B/W	Stack Pointer Hi byte		B/W	Stack Pointer Hi byte
-0012 |#0012	B/W 	General purpose registers	B/W 	General purpose registers
-00FF |#00FF	B/W 	General purpose registers	B/W 	General purpose registers
+000C |#000C	B	HSI data mask					B	HSI data mask
+000D |#000D	B	HSI data hold					B	HSO command hold
+000E |#000E	W	HSI time hold					W	HSO time hold
+0010 |#0010	B/W	Stack Pointer Lo byte			B/W	Stack Pointer Lo byte
+0011 |#0011	B/W	Stack Pointer Hi byte			B/W	Stack Pointer Hi byte
+0012 |#0012	B/W General purpose registers		B/W General purpose registers
+00FF |#00FF	B/W General purpose registers		B/W General purpose registers
 
-2000 |
+1FFF |
    1 |################################################################################
-   1 |# 2000-2003 EEC ROM Entry Point
+   1 |# 2000-2003 reset entry point
    1 |################################################################################
 
 2003 |
@@ -55,7 +55,59 @@
 
 
 20A1 |
-20A1 |# Code -------------------------------------------------------------------------
+   1 |################################################################################
+   1 |# Reset:
+   1 |# 1: clear memory from 0012 - 02A0, SP is temporarily used, ends up back at 02A2 when done
+   1 |#    note that we did not clear 02A2 which holds our return address (top of stack)
+   1 |# 2: load initial memory state from ROM
+   1 |
+   1 |#R2A - is VIP_mode_flag (Vehicle Interface Port / DLC control)
+   1 |################################################################################
+20A2  #disable interupts, (they were already disabled, seems redundant?)
+20A4  #all HSI inputs disabled
+20A6  #temporarily point the SP at 0012; we are going to use it to clear memory
+20AA  #clear current memory location and increment SP
+20AD  #inc WD timer
+20AF  #if VIP_mode_flag (NO_START_TESTS) is set (KOEO)
+20B2  #and/or if VIP_mode_flag (RUNNING_TESTS) is set (KOER)
+20B5  #and sp points at = R2A (VIP_mode_flag)
+20B9  #
+20BB  #inc SP and skip clearing VIP_mode_flag
+20BD  #inc WD timer
+20C3  #if SP less than 02A0, not finished clearing memory, else done
+   1 |#-------------------------------------------------------------------------------
+20C5  #R14 points to first init table in rom
+20C9  #if R14 points to FFFF (no more table to process, break)
+20CD  #
+20CF  #R1A is RAM offset high byte (0000), low byte is overwritten
+20D2  #R16 is 6A90, last entry in table (contains address of next table)
+20D5  #
+20D8  #while we are not passed the end of table
+20DA  #pointer to next byte in list
+20DD  #store the bytes value into R1C, this value will be RAM location low byte
+20E0  #the next byte is the data, or it with current value (but we've just cleared mem so should have no effect?)
+20E3  #store the value (2nd byte) into the register (1st byte)
+20E6  #contine until end of list
+20E8  #R1C should never be larger than R14, oops.
+20EA  #R14 now points at next table in ROM
+20ED  #continue til we've processed all init tables
+   1 |#-------------------------------------------------------------------------------
+
+2172 |
+   1 |################################################################################
+   1 |#Init: we jump here from 2000 after disabling interrupts
+   1 |#R2A - is VIP_mode_flag (Vehicle Interface Port / DLC control)
+   1 |################################################################################
+2173  #clear the VIP_mode_flag; all bits
+2175  #initialise stack pointer at 02A2, stack grows downwards
+2179  #save return address to stack; interrupts enabled before returning
+
+
+
+
+
+
+
 
 878F |
 878F |# Data -------------------------------------------------------------------------

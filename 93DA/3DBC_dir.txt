@@ -36,7 +36,9 @@ SYM   F "HSO_TIMEH"
 SYM   2A "VIP_mode_flag"
 
 #--Code-------------------------------------------------------------------------
-sub  2173  "init"
+sub   2000 "reset"
+sub   20A2 "setup_initial_state"
+sub   2173  "init"
 
 word  2004 2005 "FIXSUM"
 word  2006 2007
