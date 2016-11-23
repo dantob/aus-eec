@@ -1,0 +1,30 @@
+#	strategy		engine		trans		diff		notes
+	--------------------------------------------------------------------------------
+#	12AF_NGIC9A5	std 4.0 	manual 		3.23:1		Forte/Futura/S
+#	12BE_NGIC9B3	std 4.0		auto		3.08:1		Forte/Futura/S 
+	12BF*
+#	12CD_NGIC9CF	vct 4.0		auto		3.45:1		GHIA VCT
+	12DD*			std 4.0		auto		3.23:1		Forte/Futura/S/Fairmont with IRS
+	12EE*			std 4.0		auto		??			Police pack (OPT20)
+#	12FD_NGIC9F9	std 4.0		auto		3.23:1		ute?
+	12GA*			hp	4.0		auto		??			Police pack (OPT20) with HP 4.0
+	12HD*			??			??			??			??
+	12KD*			lpg	4.0		??			??			dedicated LPG?
+#	12LD*			lpg 4.0		auto		3.08:1		dedicated LPG
+	12MC*			lpg 4.0		??			??			dedicated LPG?
+	12ND*			lpg 4.0		??			??			dedicated LPG?
+	12PC*			??			??			??			??
+	12TD*			??			??			??			??
+	12UD*			hp  4.0		manual		3.45:1		XR6 HP
+	12VC*			hp	4.0		auto		3.45:1		XR6 HP
+#	12WD_NGIC9WG	vct 4.0		manual		3.45:1		XR6 VCT
+#	12XC*			vct 4.0		auto		3.45:1		XR6 VCT
+#	12ZE_NGIC9Z4	std 4.0		auto		3.08:1		tickford dual fuel
+#	22AB_NGIC9AJ	vct 4.0		manual		3.45:1		has 180km/h speed limiter, otherwise same as 12WD
+	22BA*			??			??			??			??
+	22EA*			??			??			??			??
+	--------------------------------------------------------------------------------
+	22TA*			lpg 4.0		auto		3.08:1		dedicated LPG sedan
+	22UA*			lpg 4.0		auto		??			dedicated LPG wagon
+#	22VA_NGICA2Z	lpg 4.0		auto		3.23:1		dedicated LPG ute
+	22XA*			lpg 4.0		??			??			??
