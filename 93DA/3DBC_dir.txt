@@ -98,7 +98,7 @@ func  8850 886B "FN8850_(signed)" :W
 func  886C 8893 "ECT/ACT_Transfer" :W
 func  8894 88BB "FN8894_(unsigned)" :W
 func  88BC 88D3 "Barrometric_Pressure_Transfer" :W
-func  88D4 88EF "Fuel_Scaler_for_Time" :W
+func  88D4 88EF "Scaler_for_time_(fuel)" :W :W V +256
 func  88F0 8903 "FN88F0_(unsigned)" :W
 func  8904 8923 "FN8904_(signed)" :W
 func  8924 8953 "Scaler_for_Abs_Exhaust_Pressure" :W :W V +256
@@ -106,10 +106,10 @@ func  8954 896B "Scaler_for_ECT/ACT" :W :W V +256
 func  896C 8987 "Scaler_for_RPM" :W V +4 :W V +256
 func  8988 89A3 "unknown_load_scaler" :W :W V +256
 func  89A4 89BF "Scaler_for_Load_(fuelstable)" :W V +1.28 :W V +256 #scaler is wrong?
-func  89C0 89D3 "FN89C0_(unsigned)" :W :W V +256
-func  89D4 89E7 "FN89D4_(unsigned)" :W :W V +256
+func  89C0 89D3 "Scaler_FN89C0" :W :W V +256
+func  89D4 89E7 "Scaler_FN89D4" :W :W V +256
 func  89E8 8A03 "Scaler_for_MAP" :W V +8 :W V +256
-func  8A04 8A1B "FN8A04_(signed)" :W :W V +256
+func  8A04 8A1B "Scaler_FN8A04" :W :W V +256
 func  8A1C 8A2F "FN8A1C_(unsigned)" :W
 func  8A30 8A4B "FN8A30_(unsigned)" :W
 
@@ -182,7 +182,7 @@ func  975E 9785 "Trans_TC_lock_curve_3rd_power"   :W X V +4
 func  9786 97AD "Trans_TC_lock_curve_3rd_econ"    :W X V +4
 func  97AE 97D5 "Trans_TC_unlock_curve_3rd_power" :W X V +4
 func  97D6 97FD "Trans_TC_unlock_curve_3rd_econ"  :W X V +4
-func  97FE 9825 "FN97FE_(signed)" :W
+func  97FE 9825 "Scaler_FN97FE" :W :W V +256
 func  9826 9839 "FN9826_(unsigned)" :W
 func  983A 9865 "Scaler_unknown_trans_lpress" :W :W V +256
 func  9866 9891 "Scaler_for_RPM_(Transmission)" :W V +4 :W V +256
