@@ -115,7 +115,7 @@
 21AE  #R30 = array start address + current routine offset
 21B2  #save EEC_main_loop address to stack
 21B5  #save calculated subroutine address to stack
-21B7  #reset RAM pointer after every function call; 0180 start of RAM
+21B7  #re-init RAM pointer(s) after every function call
 21BB  #increment to next routine offset address (ready for next loop)
 21BE  #jump to calculated subroutine address
 21BF  #infinite loop for watchdog (we crashed!)

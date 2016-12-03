@@ -1,4 +1,6 @@
 
+## Correct checksum at 3fff
+
 ## ------------ disassembly listing (8061, 1 banks) ------------
 
 
@@ -207,7 +209,7 @@
 21ae: 65,d6,21,30       ad2w  R30,21d6       R30 += 21d6;                   #R30 = array start address + current routine offset
 21b2: c9,a6,21          push  21a6           push(EEC_main_loop);           #save EEC_main_loop address to stack
 21b5: ca,30             push  [R30]          push([R30]);                   #save calculated subroutine address to stack
-21b7: a1,80,01,72       ldw   R72,180        R72 = 180;                     #reset RAM pointer after every function call; 0180 start of RAM
+21b7: a1,80,01,72       ldw   R72,180        R72 = 180;                     #re-init RAM pointer(s) after every function call
 21bb: 75,02,94          ad2b  R94,2          R94 += 2;                      #increment to next routine offset address (ready for next loop)
 21be: f0                ret                  return; }                      #jump to calculated subroutine address
 

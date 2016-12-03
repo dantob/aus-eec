@@ -40,7 +40,8 @@ SYM   E9 "power_econ_switch" : T +2 #set power, unset econ
 #--Code-------------------------------------------------------------------------
 sub   2000 "reset"
 sub   20A2 "setup_initial_state"
-sub   2173  "init"
+sub   2162 "init_RAM_pointers"
+sub   2173 "init"
 sub   217B "EEC_main_loop"
 sub   21C3 "WATCHDOG_HANG"
 sub   21c7 "main_loop_selection"
