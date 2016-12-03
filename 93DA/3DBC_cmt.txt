@@ -102,6 +102,33 @@
 2175  #initialise stack pointer at 03EE, stack grows downwards
 2179  #save return address to stack; interrupts enabled before returning
 
+217A |
+   1 |################################################################################
+   1 |#EEC_main_loop: cycles through routines, should never terminate
+   1 |#R94 - is current routine offset, will be 0 first time through
+   1 |#R72 - is current RAM address pointer
+   1 |#R30 - is the calculated next routine address
+   1 |################################################################################
+
+2233 |
+   1 |################################################################################
+   1 |#EEC main loop A
+   1 |################################################################################
+2276  #update main loop selection and restart
+
+
+2277 |
+   1 |################################################################################
+   1 |#EEC main loop B
+   1 |################################################################################
+2294  #update main loop selection and restart
+
+2295 |
+   1 |################################################################################
+   1 |#EEC main loop C
+   1 |################################################################################
+22BA  #update main loop selection and restart
+
 
 
 
