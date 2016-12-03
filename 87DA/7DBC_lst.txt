@@ -1911,7 +1911,7 @@
 3407: db,14             jc    341d           if ((uns) R34 < [744c])  {
 3409: 8b,f3,28,02,34    cmpw  R34,[Rf2+228]  
 340e: d1,0d             jleu  341d           if ((uns) R34 > [744a] )  {
-3410: 45,42,01,f0,32    ad3w  R32,Rf0,142    R32 = ECT/ACT_Transfer;
+3410: 45,42,01,f0,32    ad3w  R32,Rf0,142    R32 = ECT_Transfer;
 3415: 2c,84             scall 309b           UUWordLU();
 3417: 65,80,00,38       ad2w  R38,80         R38 += 80;
 341b: 20,0e             sjmp  342b           goto 342b; } } }
@@ -2080,7 +2080,7 @@
 363b: db,14             jc    3651           if ((uns) R34 < [745e])  {
 363d: 8b,f3,3a,02,34    cmpw  R34,[Rf2+23a]  
 3642: d1,0d             jleu  3651           if ((uns) R34 > [745c] )  {
-3644: 45,42,01,f0,32    ad3w  R32,Rf0,142    R32 = ECT/ACT_Transfer;
+3644: 45,42,01,f0,32    ad3w  R32,Rf0,142    R32 = ECT_Transfer;
 3649: ef,4f,fa          call  309b           UUWordLU();
 364c: bc,39,34          ldsbw R34,R39        R34 = (int)R39;
 364f: 20,3f             sjmp  3690           goto 3690; } } }
@@ -2714,7 +2714,7 @@
 3e32: a1,01,00,3c       ldw   R3c,1          R3c = 1; }
 3e36: 21,35             sjmp  3f6d           goto 3f6d;
 3e38: 3d,2b,35          jb    B5,R2b,3e70    if (!B5_R2b)  {
-3e3b: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECT/ACT;
+3e3b: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECT;
 3e40: b3,f3,a0,00,36    ldb   R36,[Rf2+a0]   R36 = [72c2];
 3e45: 29,33             scall 3f7a           Sub60();
 3e47: ef,4e,f2          call  3098           UUWordLU();
@@ -2752,7 +2752,7 @@
 3eb5: d1,04             jleu  3ebb           if ((uns) R3a > 200 )  {
 3eb7: a1,00,02,3a       ldw   R3a,200        R3a = 200; }
 3ebb: c3,01,04,02,3a    stw   R3a,[204]      [204] = R3a;
-3ec0: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECT/ACT;
+3ec0: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECT;
 3ec5: b3,f3,a1,00,36    ldb   R36,[Rf2+a1]   R36 = [72c3];
 3eca: 28,ae             scall 3f7a           Sub60();
 3ecc: ef,c9,f1          call  3098           UUWordLU();
@@ -3309,7 +3309,7 @@
 45ac: 71,f7,28          an2b  R28,f7         R28 &= f7;
 45af: 01,98             clrw  R98            R98 = 0;
 45b1: f0                ret                  return;
-45b2: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECT/ACT;
+45b2: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECT;
 45b7: b3,f3,8a,01,36    ldb   R36,[Rf2+18a]  R36 = [73ac];
 45bc: ef,bb,f9          call  3f7a           Sub60();
 45bf: ef,d6,ea          call  3098           UUWordLU();
@@ -6861,6 +6861,8 @@
 6fe6: 00,00,00,00  func       0,0
 6fea: 00,00,00,00  func       0,0
 
+
+  Scaler_6FEE:
 6fee: ff,7f,00,09  func       32767,9   
 6ff2: 80,34,00,09  func       13440,9   
 6ff6: 00,1e,00,06  func       7680,6   
@@ -6872,6 +6874,8 @@
 700e: 00,80,00,00  func       32768,0   
 #				??	Row
 
+
+  Scaler_7012:
 7012: ff,ff,00,07  func       65535,7   
 7016: 00,af,00,07  func       44800,7   
 701a: 00,32,00,00  func       12800,0   
@@ -6918,26 +6922,26 @@
 7090: 80,85  func             128,133
 
 
-  ECT/ACT_Transfer:
-7092: ff,ff,00,ec  func       65535,60416
-7096: 80,e7,00,ec  func       59264,60416
-709a: c0,df,80,fb  func       57280,64384
-709e: c0,d0,80,09  func       53440,2432
-70a2: 40,b8,00,17  func       47168,5888
-70a6: 80,48,80,42  func       18560,17024
-70aa: 00,25,80,59  func       9472,22912
-70ae: c0,13,00,6f  func       5056,28416
-70b2: 80,0c,00,7f  func       3200,32512
-70b6: 00,00,00,7f  func       0,32512
+  ECT_Transfer:
+7092: ff,ff,00,ec  func       5.12,60416
+7096: 80,e7,00,ec  func       4.63,60416
+709a: c0,df,80,fb  func       4.47,64384
+709e: c0,d0,80,09  func       4.18,2432
+70a2: 40,b8,00,17  func       3.68,5888
+70a6: 80,48,80,42  func       1.45,17024
+70aa: 00,25,80,59  func       0.74,22912
+70ae: c0,13,00,6f  func       0.4 ,28416
+70b2: 80,0c,00,7f  func       0.25,32512
+70b6: 00,00,00,7f  func       0   ,32512
 
 
   BAP_Transfer:
-70ba: ff,ff,d1,f7  func       65535,63441
-70be: 41,a2,d1,f7  func       41537,63441
-70c2: 56,8a,75,b8  func       35414,47221
-70c6: d8,74,a3,78  func       29912,30883
-70ca: fb,58,4b,1c  func       22779,7243
-70ce: 00,00,4b,1c  func       0,7243
+70ba: ff,ff,d1,f7  func       5.12,63441
+70be: 41,a2,d1,f7  func       3.25,63441
+70c2: 56,8a,75,b8  func       2.77,47221
+70c6: d8,74,a3,78  func       2.34,30883
+70ca: fb,58,4b,1c  func       1.78,7243
+70ce: 00,00,4b,1c  func       0   ,7243
 
 
   Scaler_for_Time(fuel):
@@ -6988,7 +6992,7 @@
 #				??	 Row
 
 
-  Scaler_for_ECT/ACT:
+  Scaler_for_ECT:
 7152: ff,7f,00,09  func       32767,9   
 7156: 00,2d,00,09  func       11520,9   
 715a: 00,00,00,00  func       0,0   
@@ -7042,7 +7046,7 @@
 #				inHga	 Row
 
 
-  Scaler_for_??:
+  Scaler_FN71DA:
 71da: ff,7f,00,09  func       32767,9   
 71de: 80,3e,00,09  func       16000,9   
 71e2: 80,0c,00,00  func       3200,0   
@@ -7896,11 +7900,11 @@
 
 
   Scaler_for_TBL7B12:
-7afe: ff,7f,00,06  func       32767,1536
-7b02: 00,2d,00,06  func       11520,1536
-7b06: 00,00,00,00  func       0,0
-7b0a: 00,80,00,00  func       32768,0
-7b0e: 00,80,00,00  func       32768,0
+7afe: ff,7f,00,06  func       32767,12   
+7b02: 00,2d,00,06  func       11520,12   
+7b06: 00,00,00,00  func       0,0   
+7b0a: 00,80,00,00  func       32768,0   
+7b0e: 00,80,00,00  func       32768,0   
 
 
   TBL7B12:
