@@ -74,13 +74,13 @@
 20B9  #
 20BB  #inc SP and skip clearing VIP_mode_flag
 20BD  #inc WD timer
-20C3  #if SP less than 02A0, not finished clearing memory, else done
+20C3  #if SP less than 03EC, not finished clearing memory, else done
    1 |#-------------------------------------------------------------------------------
 20C5  #R14 points to first init table in rom
 20C9  #if R14 points to FFFF (no more table to process, break)
 20CD  #
 20CF  #R1A is RAM offset high byte (0000), low byte is overwritten
-20D2  #R16 is 6A90, last entry in table (contains address of next table)
+20D2  #R16 is pointer to last entry in table (contains address of next table)
 20D5  #
 20D8  #while we are not passed the end of table
 20DA  #pointer to next byte in list
@@ -99,7 +99,7 @@
    1 |#R2A - is VIP_mode_flag (Vehicle Interface Port / DLC control)
    1 |################################################################################
 2173  #clear the VIP_mode_flag; all bits
-2175  #initialise stack pointer at 02A2, stack grows downwards
+2175  #initialise stack pointer at 03EE, stack grows downwards
 2179  #save return address to stack; interrupts enabled before returning
 
 

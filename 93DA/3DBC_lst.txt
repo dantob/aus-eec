@@ -109,13 +109,13 @@
 20bb: 17,10             incb  R10            STACK_POINTER++; }             #inc SP and skip clearing VIP_mode_flag
 20bd: 17,05             incb  R5             WD_TIMER++;                    #inc WD timer
 20bf: 89,ec,03,10       cmpw  R10,3ec        
-20c3: d3,e5             jnc   20aa           if ((uns) STACK_POINTER < 3ec) goto 20aa; #if SP less than 02A0, not finished clearing memory, else done
+20c3: d3,e5             jnc   20aa           if ((uns) STACK_POINTER < 3ec) goto 20aa; #if SP less than 03EC, not finished clearing memory, else done
 #-------------------------------------------------------------------------------
 20c5: a1,36,86,14       ldw   R14,8636       R14 = 8636;                    #R14 points to first init table in rom
 20c9: 89,ff,ff,14       cmpw  R14,ffff                                      #if R14 points to FFFF (no more table to process, break)
 20cd: df,20             je    20ef           if (R14 == ffff) goto 20ef;    #
 20cf: a2,15,1a          ldw   R1a,[R14++]    R1a = [R14++];                 #R1A is RAM offset high byte (0000), low byte is overwritten
-20d2: a2,15,16          ldw   R16,[R14++]    R16 = [R14++];                 #R16 is 6A90, last entry in table (contains address of next table)
+20d2: a2,15,16          ldw   R16,[R14++]    R16 = [R14++];                 #R16 is pointer to last entry in table (contains address of next table)
 20d5: 88,16,14          cmpw  R14,R16                                       #
 20d8: db,0e             jc    20e8           if ((uns) R14 < R16)  {        #while we are not passed the end of table
 20da: b2,15,1a          ldb   R1a,[R14++]    R1a = [R14++];                 #pointer to next byte in list
@@ -180,7 +180,7 @@
 
   init:
 2173: 11,2a             clrb  R2a            VIP_mode_flag = 0;             #clear the VIP_mode_flag; all bits
-2175: a1,ee,03,10       ldw   R10,3ee        STACK_POINTER = 3ee;           #initialise stack pointer at 02A2, stack grows downwards
+2175: a1,ee,03,10       ldw   R10,3ee        STACK_POINTER = 3ee;           #initialise stack pointer at 03EE, stack grows downwards
 2179: 2f,27             scall 20a2           setup_initial_state();         #save return address to stack; interrupts enabled before returning
 
   Sub35:

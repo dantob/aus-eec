@@ -115,7 +115,7 @@
 20c9: 89,ff,ff,14       cmpw  R14,ffff                                      #if R14 points to FFFF (no more table to process, break)
 20cd: df,20             je    20ef           if (R14 == ffff) goto 20ef;    #
 20cf: a2,15,1a          ldw   R1a,[R14++]    R1a = [R14++];                 #R1A is RAM offset high byte (0000), low byte is overwritten
-20d2: a2,15,16          ldw   R16,[R14++]    R16 = [R14++];                 #R16 is 6A90, last entry in table (contains address of next table)
+20d2: a2,15,16          ldw   R16,[R14++]    R16 = [R14++];                 #R16 is pointer to last entry in table (contains address of next table)
 20d5: 88,16,14          cmpw  R14,R16                                       #
 20d8: db,0e             jc    20e8           if ((uns) R14 < R16)  {        #while we are not passed the end of table
 20da: b2,15,1a          ldb   R1a,[R14++]    R1a = [R14++];                 #pointer to next byte in list

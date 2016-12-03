@@ -79,7 +79,7 @@
 20C9  #if R14 points to FFFF (no more table to process, break)
 20CD  #
 20CF  #R1A is RAM offset high byte (0000), low byte is overwritten
-20D2  #R16 is 6A90, last entry in table (contains address of next table)
+20D2  #R16 is pointer to last entry in table (contains address of next table)
 20D5  #
 20D8  #while we are not passed the end of table
 20DA  #pointer to next byte in list
