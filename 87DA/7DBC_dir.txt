@@ -77,7 +77,7 @@ byte  6A66 6A8F
 
 #pointer to init table #2
 word  6A90 6A91
-fill 6A92 6A99
+fill  6A92 6A99
 
 #init table #2
 word  6A9A 6A9B
