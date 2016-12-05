@@ -126,7 +126,7 @@ func  8802 880F "FN8802_(unsigned)" :Y
 func  8810 882F "FN8810_(unsigned)" :W
 func  8830 884F "FN8830_(unsigned)" :W
 func  8850 886B "FN8850_(signed)" :W
-func  886C 8893 "ECT/ACT_Transfer" :W V +12800 :W
+func  886C 8893 "ECT_Transfer" :W V +12800 :W
 func  8894 88BB "FN8894_(unsigned)" :W V +12800 :W
 func  88BC 88D3 "Barrometric_Pressure_Transfer" :W V +12800 :W
 func  88D4 88EF "Scaler_for_time_(fuel)" :W :W V +256

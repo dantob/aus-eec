@@ -2080,7 +2080,7 @@
 35ea: db,14             jc    3600           if ((uns) R34 < [8a74])  {
 35ec: 8b,f2,26,34       cmpw  R34,[Rf2+26]   
 35f0: d1,0e             jleu  3600           if ((uns) R34 > [8a72] )  {
-35f2: 45,dc,00,f0,32    ad3w  R32,Rf0,dc     R32 = ECT/ACT_Transfer;
+35f2: 45,dc,00,f0,32    ad3w  R32,Rf0,dc     R32 = ECT_Transfer;
 35f7: ef,15,fc          call  320f           UUWordLU(8fc9,3800,);
 35fa: 65,80,00,38       #args  
 35fe: 20,0e             sjmp  360e           goto 360e; } } }
@@ -2303,7 +2303,7 @@
 38bb: db,17             jc    38d4           if ((uns) R34 < [8a80])  {
 38bd: 8b,f2,32,34       cmpw  R34,[Rf2+32]   
 38c1: d1,11             jleu  38d4           if ((uns) R34 > [8a7e] )  {
-38c3: 45,dc,00,f0,32    ad3w  R32,Rf0,dc     R32 = ECT/ACT_Transfer;
+38c3: 45,dc,00,f0,32    ad3w  R32,Rf0,dc     R32 = ECT_Transfer;
 38c8: ef,44,f9          call  320f           UUWordLU(92bf,393d,);
 38cb: c7,a2,3d,39       #args  
 38cf: bc,39,34          ldsbw R34,R39        R34 = (int)R39;
@@ -9646,7 +9646,7 @@
 8868: 00,80,00,00  func       32768,0
 
 
-  ECT/ACT_Transfer:
+  ECT_Transfer:
 886c: ff,ff,00,ec  func       5.12,60416
 8870: 80,e7,00,ec  func       4.63,60416
 8874: c0,df,80,fb  func       4.47,64384

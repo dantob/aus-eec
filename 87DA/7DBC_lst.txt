@@ -1,6 +1,4 @@
 
-## Correct checksum at 3fff
-
 ## ------------ disassembly listing (8061, 1 banks) ------------
 
 
@@ -1946,7 +1944,7 @@
 3465: a1,55,15,34       ldw   R34,1555       R34 = 1555;
 3469: a1,16,05,36       ldw   R36,516        R36 = 516;
 346d: 8c,18,34          divw  R34,R18        R34 = R34L / R18;
-3470: 45,6a,01,f0,32    ad3w  R32,Rf0,16a    R32 = BAP_Transfer;
+3470: 45,6a,01,f0,32    ad3w  R32,Rf0,16a    R32 = Barrometric_Pressure_Transfer;
 3475: ef,26,fc          call  309e           SSWordLU();
 3478: 65,80,00,38       ad2w  R38,80         R38 += 80;
 347c: c7,01,ac,01,39    stb   R39,[1ac]      [1ac] = R39;
@@ -6937,7 +6935,7 @@
 70b6: 00,00,00,7f  func       0   ,32512
 
 
-  BAP_Transfer:
+  Barrometric_Pressure_Transfer:
 70ba: ff,ff,d1,f7  func       5.12,63441
 70be: 41,a2,d1,f7  func       3.25,63441
 70c2: 56,8a,75,b8  func       2.77,47221

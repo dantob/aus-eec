@@ -130,7 +130,7 @@ func  705E 7079 :W
 func  707A 7085 :Y
 func  7086 7091 :Y
 func  7092 70B9 "ECT_Transfer" :W V +12800 :W
-func  70BA 70D1 "BAP_Transfer" :W V +12800 :W
+func  70BA 70D1 "Barrometric_Pressure_Transfer" :W V +12800 :W
 func  70D2 70EA "Scaler_for_Time(fuel)" :W V +1 :W V +256
 func  70EE 7101 "Scaler_for_TBL7B12" :W :W V +256
 func  7102 7121 "Scaler_for_TBL782E" :W :W V +256
