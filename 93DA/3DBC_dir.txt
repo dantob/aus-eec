@@ -72,20 +72,45 @@ word  202E 202F "RFC"
 word  2030 2031 "RFE"
 fill  2032 20A1
 
-#code  20A2 2233
-#vect  2234 22BB
-#code  22BC 2381
-#???  2382 23E1
-#code  23E2 28E3
-#???  28E4 28E9
-#code  28EA 2A8A
-#???  2A8B 2AAF
-#code  2AB0 7B16
-#???  7B17 7B5F
-#code  7b60 8465
-#???  8466 847D
-#code  847E 8775
-fill  8776 878F
+fill  8635 #data must start on an even byte
+
+#init table #1
+word  8636 8637
+word  8638 8639
+byte  863A 8667
+
+#pointer to init table #2
+word  8668 8669
+fill  866A 8671
+
+#init table #2
+word  8672 8673
+word  8674 8675
+byte  8676 8691
+
+#pointer to init table #3
+word  8692 8693
+fill  8694 869B
+
+#init table #3
+word  869C 869D
+word  869E 869F
+byte  86A0 86B3
+
+#pointer to init table #4
+word  86B4 86B5
+fill  86B6 86BD
+
+#init table #4
+word  86BE 86BF
+word  86C0 86C1
+byte  86C2 86F3
+
+#pointer to next table (which is null)
+word 86F4 86F5
+fill 86F6 86FD
+
+xcode 8790 9FAB #data section
 
 #--Data-------------------------------------------------------------------------
 

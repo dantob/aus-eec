@@ -1,4 +1,6 @@
 
+## Correct checksum at 3fff
+
 ## ------------ disassembly listing (8061, 1 banks) ------------
 
 
@@ -251,12 +253,12 @@
 221f: ef,40,ff          call  2162           init_RAM_pointers();           #re-init RAM pointer(s) after every function call
 2222: 36,2a,04          jnb   B6,R2a,2229    if (B6_VIP_mode_flag)  {       #if VIP_mode_flag (NO_START_TESTS) is set (KOEO)
 2225: b1,44,94          ldb   R94,44         R94 = 44;                      #set routine to loop B (2278; on-demand KOEO self tests)
-2228: f0                ret                  return; }
+2228: f0                ret                  return; }                      #return to EEC_main_loop
 2229: 35,2a,04          jnb   B5,R2a,2230    if (B5_VIP_mode_flag)  {       #if VIP_mode_flag (RUNNING_TESTS) is set (KOER)
 222c: b1,62,94          ldb   R94,62         R94 = 62;                      #set routine to loop C (2296; on-demand KOER self tests)
-222f: f0                ret                  return; }
+222f: f0                ret                  return; }                      #return to EEC_main_loop
 2230: b1,00,94          ldb   R94,0          R94 = 0;                       #else set routine to loop A (2234; normal operation)
-2233: f0                ret                  return;
+2233: f0                ret                  return;                        #return to EEC_main_loop
 
 ################################################################################
 #EEC main loop A (normal operation)
@@ -9289,46 +9291,192 @@
 
 8635: ff                fill  
 
-8636: 00,00             word  0
+################################################################################
+#init tables
+#first word is high byte of memory offset to store data
+#second word is pointer to end of table
+#word at the end contains address of next table
+#rest of the byte pairs are first byte = low byte memory offest
+#                          second byte = data to store at memory location
+################################################################################
 
-8638: 68,86,9f,04,24    ??    104,134,159,  4, 36 -31128,  1183,   292,
-863d: 01,2c,80,e9,04    ??      1, 44,128,233,  4 -32724,  1257,
-8642: e9,40,4f,01,d4    ??    233, 64, 79,  1,-44  16617,   335,-32556,
-8647: 80,c1,80,97,80    ??    128,193,128,151,-128 -32575,-32617,
-864c: 9c,01,9d,20,ac    ??    156,  1,157, 32,-84    412,  8349, 16556,
-8651: 40,ad,06,b0,1e    ??     64,173,  6,176, 30   1709,  7856,
-8656: b1,1e,b2,d8,c2    ??    177, 30,178,216,-62   7857,-10062, 10434,
-865b: 28,9e,ff,d2,34    ??     40,158,255,210, 52    -98, 13522,
-8660: d3,21,88,01,95    ??    211, 33,136,  1,-107   8659,   392,-14187,
-8665: c8,b5,01,72,86    ??    200,181,  1,114,-122    437,-31118,
+8636: 00,00             word  0
+8638: 68,86             word  8668
+
+863a: 9f                byte  9f
+863b: 04                byte  4
+863c: 24                byte  24
+863d: 01                byte  1
+863e: 2c                byte  2c
+863f: 80                byte  80
+8640: e9                byte  e9
+8641: 04                byte  4
+8642: e9                byte  e9
+8643: 40                byte  40
+8644: 4f                byte  4f
+8645: 01                byte  1
+8646: d4                byte  d4
+8647: 80                byte  80
+8648: c1                byte  c1
+8649: 80                byte  80
+864a: 97                byte  97
+864b: 80                byte  80
+864c: 9c                byte  9c
+864d: 01                byte  1
+864e: 9d                byte  9d
+864f: 20                byte  20
+8650: ac                byte  ac
+8651: 40                byte  40
+8652: ad                byte  ad
+8653: 06                byte  6
+8654: b0                byte  b0
+8655: 1e                byte  1e
+8656: b1                byte  b1
+8657: 1e                byte  1e
+8658: b2                byte  b2
+8659: d8                byte  d8
+865a: c2                byte  c2
+865b: 28                byte  28
+865c: 9e                byte  9e
+865d: ff                byte  ff
+865e: d2                byte  d2
+865f: 34                byte  34
+8660: d3                byte  d3
+8661: 21                byte  21
+8662: 88                byte  88
+8663: 01                byte  1
+8664: 95                byte  95
+8665: c8                byte  c8
+8666: b5                byte  b5
+8667: 01                byte  1
+
+8668: 72,86             word  8672
+
 866a: ff,ff,ff,ff,ff    fill  
-866f: ff,ff,ff,00,01    ??    255,255,255,  0,  1     -1,   256,
-8674: 92,86,39,08,01    ??    146,134, 57,  8,  1 -31086,  2105, 16641,
-8679: 41,30,34,31,01    ??     65, 48, 52, 49,  1  13360,   305,
-867e: a0,40,a1,06,1d    ??    160, 64,161,  6, 29  16544,  1697,-10211,
-8683: d8,c7,ff,c8,ff    ??    216,199,255,200, -1    -57,   -56,
-8688: c5,7f,c6,7f,e0    ??    197,127,198,127,-32  32709, 32710,-32544,
-868d: 80,bc,fe,bd,ff    ??    128,188,254,189, -1   -324,   -67,
-8692: 9c,86,ff,ff,ff    ??    156,134,255,255, -1 -31076,    -1,    -1,
-8697: ff,ff,ff,ff,ff    fill  
-869c: 00,02,b4,86,44    ??      0,  2,180,134, 68    512,-31052, 10308,
-86a1: 28,46,ff,50,ff    ??     40, 70,255, 80, -1   -186,  -176,
-86a6: 5a,ff,6d,48,66    ??     90,255,109, 72,102   -166, 18541,  -154,
-86ab: ff,72,ff,7e,ff    ??    255,114,255,126, -1   -142,  -130,
-86b0: fa,ff,fb,ff,be    ??    250,255,251,255,-66     -6,    -5,-31042,
-86b5: 86,ff,ff,ff,ff    ??    134,255,255,255, -1     -1,    -1,
-86ba: ff,ff,ff,ff,00    ??    255,255,255,255,  0     -1,    -1,   768,
-86bf: 03,f4,86,00,0c    ??      3,244,134,  0, 12 -30988,  3072,
-86c4: 01,7d,43,64,50    ??      1,125, 67,100, 80  32001, 25667, 13392,
-86c9: 34,51,03,52,34    ??     52, 81,  3, 82, 52    849, 13394,
-86ce: 53,03,54,34,55    ??     83,  3, 84, 52, 85    851, 13396,   853,
-86d3: 03,56,34,57,03    ??      3, 86, 52, 87,  3  13398,   855,
-86d8: 58,34,59,03,5a    ??     88, 52, 89,  3, 90  13400,   857, 13402,
-86dd: 34,5b,03,5c,34    ??     52, 91,  3, 92, 52    859, 13404,
-86e2: 5d,03,5e,34,5f    ??     93,  3, 94, 52, 95    861, 13406,   863,
-86e7: 03,63,03,65,03    ??      3, 99,  3,101,  3    867,   869,
-86ec: 62,03,64,04,67    ??     98,  3,100,  4,103    866,  1124,  1127,
-86f1: 04,89,41,ff,ff    ??      4,137, 65,255, -1  16777,    -1,
+866f: ff,ff,ff          fill  
+
+8672: 00,01             word  100
+8674: 92,86             word  8692
+
+8676: 39                byte  39
+8677: 08                byte  8
+8678: 01                byte  1
+8679: 41                byte  41
+867a: 30                byte  30
+867b: 34                byte  34
+867c: 31                byte  31
+867d: 01                byte  1
+867e: a0                byte  a0
+867f: 40                byte  40
+8680: a1                byte  a1
+8681: 06                byte  6
+8682: 1d                byte  1d
+8683: d8                byte  d8
+8684: c7                byte  c7
+8685: ff                byte  ff
+8686: c8                byte  c8
+8687: ff                byte  ff
+8688: c5                byte  c5
+8689: 7f                byte  7f
+868a: c6                byte  c6
+868b: 7f                byte  7f
+868c: e0                byte  e0
+868d: 80                byte  80
+868e: bc                byte  bc
+868f: fe                byte  fe
+8690: bd                byte  bd
+8691: ff                byte  ff
+
+8692: 9c,86             word  869c
+
+8694: ff,ff,ff,ff,ff    fill  
+8699: ff,ff,ff          fill  
+
+869c: 00,02             word  200
+869e: b4,86             word  86b4
+
+86a0: 44                byte  44
+86a1: 28                byte  28
+86a2: 46                byte  46
+86a3: ff                byte  ff
+86a4: 50                byte  50
+86a5: ff                byte  ff
+86a6: 5a                byte  5a
+86a7: ff                byte  ff
+86a8: 6d                byte  6d
+86a9: 48                byte  48
+86aa: 66                byte  66
+86ab: ff                byte  ff
+86ac: 72                byte  72
+86ad: ff                byte  ff
+86ae: 7e                byte  7e
+86af: ff                byte  ff
+86b0: fa                byte  fa
+86b1: ff                byte  ff
+86b2: fb                byte  fb
+86b3: ff                byte  ff
+
+86b4: be,86             word  86be
+
+86b6: ff,ff,ff,ff,ff    fill  
+86bb: ff,ff,ff          fill  
+
+86be: 00,03             word  300
+86c0: f4,86             word  86f4
+
+86c2: 00                byte  0
+86c3: 0c                byte  c
+86c4: 01                byte  1
+86c5: 7d                byte  7d
+86c6: 43                byte  43
+86c7: 64                byte  64
+86c8: 50                byte  50
+86c9: 34                byte  34
+86ca: 51                byte  51
+86cb: 03                byte  3
+86cc: 52                byte  52
+86cd: 34                byte  34
+86ce: 53                byte  53
+86cf: 03                byte  3
+86d0: 54                byte  54
+86d1: 34                byte  34
+86d2: 55                byte  55
+86d3: 03                byte  3
+86d4: 56                byte  56
+86d5: 34                byte  34
+86d6: 57                byte  57
+86d7: 03                byte  3
+86d8: 58                byte  58
+86d9: 34                byte  34
+86da: 59                byte  59
+86db: 03                byte  3
+86dc: 5a                byte  5a
+86dd: 34                byte  34
+86de: 5b                byte  5b
+86df: 03                byte  3
+86e0: 5c                byte  5c
+86e1: 34                byte  34
+86e2: 5d                byte  5d
+86e3: 03                byte  3
+86e4: 5e                byte  5e
+86e5: 34                byte  34
+86e6: 5f                byte  5f
+86e7: 03                byte  3
+86e8: 63                byte  63
+86e9: 03                byte  3
+86ea: 65                byte  65
+86eb: 03                byte  3
+86ec: 62                byte  62
+86ed: 03                byte  3
+86ee: 64                byte  64
+86ef: 04                byte  4
+86f0: 67                byte  67
+86f1: 04                byte  4
+86f2: 89                byte  89
+86f3: 41                byte  41
+
+86f4: ff,ff             word  ffff
+
 86f6: ff,ff,ff,ff,ff    fill  
 86fb: ff,ff,ff          fill  
 

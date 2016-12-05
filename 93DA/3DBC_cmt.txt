@@ -120,9 +120,12 @@
 221F  #re-init RAM pointer(s) after every function call
 2222  #if VIP_mode_flag (NO_START_TESTS) is set (KOEO)
 2225  #set routine to loop B (2278; on-demand KOEO self tests)
+2228  #return to EEC_main_loop
 2229  #if VIP_mode_flag (RUNNING_TESTS) is set (KOER)
 222C  #set routine to loop C (2296; on-demand KOER self tests)
+222F  #return to EEC_main_loop
 2230  #else set routine to loop A (2234; normal operation)
+2233  #return to EEC_main_loop
 
 2233 |
    1 |################################################################################
@@ -143,15 +146,19 @@
    1 |################################################################################
 22BA  #update main loop selection and restart
 
-
-
-
-
-
-
+8635 |
+   1 |################################################################################
+   1 |#init tables
+   1 |#first word is high byte of memory offset to store data
+   1 |#second word is pointer to end of table
+   1 |#word at the end contains address of next table
+   1 |#rest of the byte pairs are first byte = low byte memory offest
+   1 |#                          second byte = data to store at memory location
+   1 |################################################################################
 
 878F |
 878F |# Data -------------------------------------------------------------------------
+
 8C31 |# Values are in lambda, multiply by 14.64 to get AFR; Columns=RPM(896C), Rows=Load%(89A4)
 8C8B |# Values are in lambda, multiply by 14.64 to get AFR
 8CDB |# Values are negative lamba adder (richen mixture), multiply by 14.64 to get AFR; Columns=Temp(8954), Rows=Time(89A4)
