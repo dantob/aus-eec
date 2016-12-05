@@ -9529,7 +9529,7 @@
 
 # Data -------------------------------------------------------------------------
 
-8790: 4c,8a             word  8a4c
+8790: 4c,8a             word  8a4c           CP_RF0_Header_Points_to_CP_RF2
 8792: 00,40             word  4000
 
 8794: 37                byte  37
@@ -9816,7 +9816,7 @@
 8a44: 00,00,70,00  func       0,112
 8a48: 00,00,70,00  func       0,112
 
-8a4c: 40,8b             word  8b40
+8a4c: 40,8b             word  8b40           CP_RF2_Header_Points_to_CP_RF4
 8a4e: 28,00             word  28
 
 8a50: 00,32             ??      0, 50  12800,
@@ -9924,7 +9924,7 @@
 8b39: 64,64,64,64,64    ??    100,100,100,100,100  25700, 25700,
 8b3e: 64,64             ??    100,100  25700,
 
-8b40: 22,8d             word  8d22
+8b40: 22,8d             word  8d22           CP_RF4_Header_Points_to_CP_RF6
 8b42: e8,fd             word  fde8
 8b44: 39,01             word  139
 8b46: c4,29             word  29c4           Injector_Slope
@@ -10083,7 +10083,7 @@
 
 8d21: ff                fill  
 
-8d22: 64,8f             word  8f64
+8d22: 64,8f             word  8f64           CP_RF6_Header_Points_to_CP_RF8
 8d24: 00,00             word  0
 8d26: 00,00             word  0
 8d28: 00,00             word  0
@@ -10321,7 +10321,7 @@
 8f5c: 00,00,29,00  func       0,41
 8f60: 00,00,29,00  func       0,41
 
-8f64: f8,8f             word  8ff8
+8f64: f8,8f             word  8ff8           CP_RF8_Header_Points_to_CP_RFA
 8f66: f9,ff             word  fff9
 8f68: 16,04             word  416
 8f6a: 16,04             word  416
@@ -10415,7 +10415,7 @@
 8ff0: 00,00,00,0c  func           0,  3072
 8ff4: 00,00,00,0c  func           0,  3072
 
-8ff8: c6,93             word  93c6
+8ff8: c6,93             word  93c6           CP_RFA_Header_Points_to_CP_RFC
 8ffa: 9e,5e             word  5e9e           Engine_Displacement
 8ffc: 00,80             word  8000
 8ffe: e1,aa             word  aae1
@@ -10723,7 +10723,7 @@
 93bc: 23,19,00,85,80    ??     35, 25,  0,133,-128   6435,-31488,-31360,
 93c1: 85,80,85,80,85    ??    133,128,133,128,-123 -31360,-31360,
 
-93c6: a6,9c             word  9ca6
+93c6: a6,9c             word  9ca6           CP_RFC_Header_Points_to_CP_RFE
 93c8: 50,0f             word  f50
 93ca: ac,0d             word  dac
 93cc: 80,2c             word  2c80
@@ -11426,7 +11426,7 @@
 9c9e: 02,fe,00,03  table        2,254,  0,  3
 9ca2: 0b,fd,00,04  table       11,253,  0,  4
 
-9ca6: ac,9f             word  9fac
+9ca6: ac,9f             word  9fac           CP_RFE_Header_Points_to_EOF
 9ca8: 9a,19             word  199a
 9caa: 00,04             word  400
 9cac: 00,02             word  200
