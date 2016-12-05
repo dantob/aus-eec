@@ -249,17 +249,17 @@
 2217: b1,0f,42          ldb   R42,f          R42 = f;
 221a: c7,01,ff,1f,42    stb   R42,[1fff]     [1fff] = R42;
 221f: ef,40,ff          call  2162           init_RAM_pointers();           #re-init RAM pointer(s) after every function call
-2222: 36,2a,04          jnb   B6,R2a,2229    if (B6_VIP_mode_flag)  {
-2225: b1,44,94          ldb   R94,44         R94 = 44;
+2222: 36,2a,04          jnb   B6,R2a,2229    if (B6_VIP_mode_flag)  {       #if VIP_mode_flag (NO_START_TESTS) is set (KOEO)
+2225: b1,44,94          ldb   R94,44         R94 = 44;                      #set routine to loop B (2278; on-demand KOEO self tests)
 2228: f0                ret                  return; }
-2229: 35,2a,04          jnb   B5,R2a,2230    if (B5_VIP_mode_flag)  {
-222c: b1,62,94          ldb   R94,62         R94 = 62;
+2229: 35,2a,04          jnb   B5,R2a,2230    if (B5_VIP_mode_flag)  {       #if VIP_mode_flag (RUNNING_TESTS) is set (KOER)
+222c: b1,62,94          ldb   R94,62         R94 = 62;                      #set routine to loop C (2296; on-demand KOER self tests)
 222f: f0                ret                  return; }
-2230: b1,00,94          ldb   R94,0          R94 = 0;
+2230: b1,00,94          ldb   R94,0          R94 = 0;                       #else set routine to loop A (2234; normal operation)
 2233: f0                ret                  return;
 
 ################################################################################
-#EEC main loop A
+#EEC main loop A (normal operation)
 ################################################################################
 
 
@@ -299,7 +299,7 @@
 2276: c7,21             vect  21c7,          main_loop_selection            #update main loop selection and restart
 
 ################################################################################
-#EEC main loop B
+#EEC main loop B (on-demand KOEO self tests; NO_START_TESTS)
 ################################################################################
 2278: 7e,84             vect  847e,          Sub3
 227a: e9,84             vect  84e9,          Sub4
@@ -318,7 +318,7 @@
 2294: c7,21             vect  21c7,          main_loop_selection            #update main loop selection and restart
 
 ################################################################################
-#EEC main loop C
+#EEC main loop C (on-demand KOER self tests; RUNNING_TESTS)
 ################################################################################
 2296: 7e,84             vect  847e,          Sub3
 2298: e9,84             vect  84e9,          Sub4
@@ -2590,7 +2590,7 @@
 3c0a: a0,ac,34          ldw   R34,Rac        R34 = Engine_RPM;
 3c0d: ef,30,f6          call  3240           SSWordLU();
 3c10: a0,38,30          ldw   R30,R38        R30 = R38;
-3c13: 45,94,01,f0,32    ad3w  R32,Rf0,194    R32 = Scaler_for_Abs_Exhaust_Pressure€;
+3c13: 45,94,01,f0,32    ad3w  R32,Rf0,194    R32 = Scaler_for_Abs_Exhaust_Pressure;
 3c18: af,bc,4a,34       ldzbw R34,[Rbc+4a]   R34 = (uns)[Rbc+4a];
 3c1c: ef,21,f6          call  3240           SSWordLU();
 3c1f: a0,38,32          ldw   R32,R38        R32 = R38;
@@ -3141,7 +3141,7 @@
 4275: a0,9c,38          ldw   R38,R9c        R38 = R9c;
 4278: 6d,03,01,38       ml2w  R38,103        R38L *= 103;
 427c: c0,9c,38          stw   R38,R9c        R9c = R38;
-427f: 45,94,01,f0,32    ad3w  R32,Rf0,194    R32 = Scaler_for_Abs_Exhaust_Pressure€;
+427f: 45,94,01,f0,32    ad3w  R32,Rf0,194    R32 = Scaler_for_Abs_Exhaust_Pressure;
 4284: af,bc,4a,34       ldzbw R34,[Rbc+4a]   R34 = (uns)[Rbc+4a];
 4288: ef,b5,ef          call  3240           SSWordLU();
 428b: a0,38,a8          ldw   Ra8,R38        Ra8 = R38;
@@ -3321,7 +3321,7 @@
 449e: a0,ac,34          ldw   R34,Rac        R34 = Engine_RPM;
 44a1: ef,9c,ed          call  3240           SSWordLU();
 44a4: a0,38,a6          ldw   Ra6,R38        Ra6 = R38;
-44a7: 45,94,01,f0,32    ad3w  R32,Rf0,194    R32 = Scaler_for_Abs_Exhaust_Pressure€;
+44a7: 45,94,01,f0,32    ad3w  R32,Rf0,194    R32 = Scaler_for_Abs_Exhaust_Pressure;
 44ac: af,bc,4a,34       ldzbw R34,[Rbc+4a]   R34 = (uns)[Rbc+4a];
 44b0: ef,8d,ed          call  3240           SSWordLU();
 44b3: a0,38,a8          ldw   Ra8,R38        Ra8 = R38;
@@ -4934,7 +4934,7 @@
 5666: 20,11             sjmp  5679           goto 5679;
 5668: 99,04,30          cmpb  R30,4          
 566b: d7,07             jne   5674           if (R30 == 4)  {
-566d: 45,e8,03,fc,32    ad3w  R32,Rfc,3e8    R32 = Trans_TC_unlock_curve_3rd_power§;
+566d: 45,e8,03,fc,32    ad3w  R32,Rfc,3e8    R32 = Trans_TC_unlock_curve_3rd_power;
 5672: 20,05             sjmp  5679           goto 5679; }
 5674: 45,10,04,fc,32    ad3w  R32,Rfc,410    R32 = Trans_TC_unlock_curve_3rd_econ;
 5679: a3,a2,a4,34       ldw   R34,[Ra2+a4]   R34 = [Ra2-5c];
@@ -9564,7 +9564,7 @@
 8920: 00,80,00,00  func       32768,0
 
 
-  Scaler_for_Abs_Exhaust_Pressure€:
+  Scaler_for_Abs_Exhaust_Pressure:
 8924: ff,ff,00,08  func       65535,8   
 8928: 7a,00,00,08  func       122,8   
 892c: 46,00,00,06  func       70,6   
@@ -10969,7 +10969,7 @@
 97aa: 00,00,20,1c  func       0   ,1800   
 
 
-  Trans_TC_unlock_curve_3rd_power§:
+  Trans_TC_unlock_curve_3rd_power:
 97ae: ff,ff,10,40  func       16383.75,4100   
 97b2: 70,01,10,40  func       92   ,4100   
 97b6: 04,01,c8,32  func       65   ,3250   

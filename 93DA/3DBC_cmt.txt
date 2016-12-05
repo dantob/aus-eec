@@ -118,23 +118,28 @@
    1 |#R94 - is current routine offset
    1 |################################################################################
 221F  #re-init RAM pointer(s) after every function call
+2222  #if VIP_mode_flag (NO_START_TESTS) is set (KOEO)
+2225  #set routine to loop B (2278; on-demand KOEO self tests)
+2229  #if VIP_mode_flag (RUNNING_TESTS) is set (KOER)
+222C  #set routine to loop C (2296; on-demand KOER self tests)
+2230  #else set routine to loop A (2234; normal operation)
 
 2233 |
    1 |################################################################################
-   1 |#EEC main loop A
+   1 |#EEC main loop A (normal operation)
    1 |################################################################################
 2276  #update main loop selection and restart
 
 
 2277 |
    1 |################################################################################
-   1 |#EEC main loop B
+   1 |#EEC main loop B (on-demand KOEO self tests; NO_START_TESTS)
    1 |################################################################################
 2294  #update main loop selection and restart
 
 2295 |
    1 |################################################################################
-   1 |#EEC main loop C
+   1 |#EEC main loop C (on-demand KOER self tests; RUNNING_TESTS)
    1 |################################################################################
 22BA  #update main loop selection and restart
 
