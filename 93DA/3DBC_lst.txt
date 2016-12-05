@@ -1,6 +1,4 @@
 
-## Correct checksum at 3fff
-
 ## ------------ disassembly listing (8061, 1 banks) ------------
 
 

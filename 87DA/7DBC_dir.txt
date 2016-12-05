@@ -106,6 +106,8 @@ byte  6AFA 6AFB
 word 6AFC 6AFD
 fill 6AFE 6B04
 
+fill 6B8C 6F4F
+
 xcode 6F50 804B #data section
 
 #--Data-------------------------------------------------------------------------
