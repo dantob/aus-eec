@@ -166,7 +166,7 @@
 2165: a1,80,a2,30       ldw   R30,a280       R30 = a280;
 2169: c3,01,3c,03,30    stw   R30,[33c]      [33c] = R30;
 216e: c7,01,de,01,b4    stb   Rb4,[1de]      [1de] = Rb4;
-2173: ef,90,49          call  6b06           Sub1();
+2173: ef,90,49          call  6b06           common_Sub19();
 2176: 11,09             clrb  R9             INT_PEND = 0;
 2178: 32,0a,06          jnb   B2,Ra,2181     if (HSI_RDY)  {
 217b: b0,0d,00          ldb   0,Rd           ZERO = HSI_DATA;
@@ -239,81 +239,81 @@
 ################################################################################
 
 
-21d6: 4d,68             vect  684d,          Sub2
-21d8: d3,68             vect  68d3,          Sub3
-21da: d6,23             vect  23d6,          Sub4
-21dc: 8d,31             vect  318d,          Sub5
-21de: e1,31             vect  31e1,          Sub6
-21e0: 52,22             vect  2252,          Sub7
-21e2: 8e,5d             vect  5d8e,          Sub8
-21e4: 2b,32             vect  322b,          Sub9
-21e6: e8,32             vect  32e8,          Sub10
-21e8: f5,33             vect  33f5,          Sub11
-21ea: ca,53             vect  53ca,          Sub12
-21ec: a0,55             vect  55a0,          Sub13
-21ee: 28,68             vect  6828,          Sub14
-21f0: 72,38             vect  3872,          Sub15
-21f2: a6,38             vect  38a6,          Sub16
-21f4: e5,68             vect  68e5,          Sub17
-21f6: ce,3a             vect  3ace,          Sub18
-21f8: c1,3b             vect  3bc1,          Sub19
-21fa: 92,3f             vect  3f92,          Sub20
-21fc: a3,42             vect  42a3,          Sub21
-21fe: be,46             vect  46be,          Sub22
-2200: d1,46             vect  46d1,          Sub23
-2202: 86,49             vect  4986,          Sub24
-2204: 27,4a             vect  4a27,          Sub25
-2206: 50,58             vect  5850,          Sub26
-2208: 18,53             vect  5318,          Sub27
-220a: f1,4b             vect  4bf1,          Sub28
-220c: 06,6b             vect  6b06,          Sub1
-220e: 0c,5a             vect  5a0c,          Sub29
+21d6: 4d,68             vect  684d,          Sub1
+21d8: d3,68             vect  68d3,          Sub2
+21da: d6,23             vect  23d6,          Sub3
+21dc: 8d,31             vect  318d,          Sub4
+21de: e1,31             vect  31e1,          Sub5
+21e0: 52,22             vect  2252,          Sub6
+21e2: 8e,5d             vect  5d8e,          Sub7
+21e4: 2b,32             vect  322b,          Sub8
+21e6: e8,32             vect  32e8,          Sub9
+21e8: f5,33             vect  33f5,          Sub10
+21ea: ca,53             vect  53ca,          Sub11
+21ec: a0,55             vect  55a0,          Sub12
+21ee: 28,68             vect  6828,          Sub13
+21f0: 72,38             vect  3872,          Sub14
+21f2: a6,38             vect  38a6,          Sub15
+21f4: e5,68             vect  68e5,          Sub16
+21f6: ce,3a             vect  3ace,          Sub17
+21f8: c1,3b             vect  3bc1,          Sub18
+21fa: 92,3f             vect  3f92,          Sub19
+21fc: a3,42             vect  42a3,          Sub20
+21fe: be,46             vect  46be,          Sub21
+2200: d1,46             vect  46d1,          Sub22
+2202: 86,49             vect  4986,          Sub23
+2204: 27,4a             vect  4a27,          Sub24
+2206: 50,58             vect  5850,          Sub25
+2208: 18,53             vect  5318,          Sub26
+220a: f1,4b             vect  4bf1,          Sub27
+220c: 06,6b             vect  6b06,          common_Sub19
+220e: 0c,5a             vect  5a0c,          Sub28
 2210: c1,21             vect  21c1,          main_loop_selection            #update main loop selection and restart
 
 ################################################################################
 #EEC main loop B (on-demand KOEO self tests; NO_START_TESTS, VEHICLE_SPEED_CONTROL_TESTS)
 ################################################################################
-2212: 4d,68             vect  684d,          Sub2
-2214: d3,68             vect  68d3,          Sub3
-2216: 8d,31             vect  318d,          Sub5
-2218: 52,22             vect  2252,          Sub7
-221a: 2b,32             vect  322b,          Sub9
-221c: f5,33             vect  33f5,          Sub11
-221e: ca,53             vect  53ca,          Sub12
-2220: a0,55             vect  55a0,          Sub13
-2222: 28,68             vect  6828,          Sub14
-2224: ce,3a             vect  3ace,          Sub18
-2226: a3,42             vect  42a3,          Sub21
-2228: be,46             vect  46be,          Sub22
-222a: 0c,5a             vect  5a0c,          Sub29
+2212: 4d,68             vect  684d,          Sub1
+2214: d3,68             vect  68d3,          Sub2
+2216: 8d,31             vect  318d,          Sub4
+2218: 52,22             vect  2252,          Sub6
+221a: 2b,32             vect  322b,          Sub8
+221c: f5,33             vect  33f5,          Sub10
+221e: ca,53             vect  53ca,          Sub11
+2220: a0,55             vect  55a0,          Sub12
+2222: 28,68             vect  6828,          Sub13
+2224: ce,3a             vect  3ace,          Sub17
+2226: a3,42             vect  42a3,          Sub20
+2228: be,46             vect  46be,          Sub21
+222a: 0c,5a             vect  5a0c,          Sub28
 222c: c1,21             vect  21c1,          main_loop_selection            #update main loop selection and restart
 
 ################################################################################
 #EEC main loop C (on-demand KOER self tests; RUNNING_TESTS)
 ################################################################################
-222e: 4d,68             vect  684d,          Sub2
-2230: d3,68             vect  68d3,          Sub3
-2232: 52,22             vect  2252,          Sub7
-2234: 2b,32             vect  322b,          Sub9
-2236: e8,32             vect  32e8,          Sub10
-2238: f5,33             vect  33f5,          Sub11
-223a: ca,53             vect  53ca,          Sub12
-223c: a0,55             vect  55a0,          Sub13
-223e: 28,68             vect  6828,          Sub14
-2240: a6,38             vect  38a6,          Sub16
-2242: ce,3a             vect  3ace,          Sub18
-2244: 17,43             vect  4317,          Sub30
-2246: be,46             vect  46be,          Sub22
-2248: f1,4b             vect  4bf1,          Sub28
-224a: 7b,66             vect  667b,          Sub31
-224c: 66,66             vect  6666,          Sub32
-224e: 0c,5a             vect  5a0c,          Sub29
+222e: 4d,68             vect  684d,          Sub1
+2230: d3,68             vect  68d3,          Sub2
+2232: 52,22             vect  2252,          Sub6
+2234: 2b,32             vect  322b,          Sub8
+2236: e8,32             vect  32e8,          Sub9
+2238: f5,33             vect  33f5,          Sub10
+223a: ca,53             vect  53ca,          Sub11
+223c: a0,55             vect  55a0,          Sub12
+223e: 28,68             vect  6828,          Sub13
+2240: a6,38             vect  38a6,          Sub15
+2242: ce,3a             vect  3ace,          Sub17
+2244: 17,43             vect  4317,          Sub29
+2246: be,46             vect  46be,          Sub21
+2248: f1,4b             vect  4bf1,          Sub27
+224a: 7b,66             vect  667b,          Sub30
+224c: 66,66             vect  6666,          Sub31
+224e: 0c,5a             vect  5a0c,          Sub28
 2250: c1,21             vect  21c1,          main_loop_selection            #update main loop selection and restart
 
 ################################################################################
 
 
-  Sub7:
+  Sub6:
 2252: a1,87,22,30       ldw   R30,2287       R30 = 2287;
 2256: 31,28,04          jnb   B1,R28,225d    if (B1_R28)  {
 2259: a1,8a,22,30       ldw   R30,228a       R30 = 228a; }
@@ -349,17 +349,17 @@
 22a0: 14,01,0b,16,01    ??     20,  1, 11, 22,  1    276,  5643,  -255,
 22a5: ff                fill  
 
-22a6: 75,59             vect  5975,          Sub35
-22a8: b6,22             vect  22b6,          Sub36
-22aa: 18,30             vect  3018,          Sub37
-22ac: b6,22             vect  22b6,          Sub36
-22ae: b6,22             vect  22b6,          Sub36
-22b0: f5,2f             vect  2ff5,          Sub38
+22a6: 75,59             vect  5975,          Sub36
+22a8: b6,22             vect  22b6,          Sub37
+22aa: 18,30             vect  3018,          Sub38
+22ac: b6,22             vect  22b6,          Sub37
+22ae: b6,22             vect  22b6,          Sub37
+22b0: f5,2f             vect  2ff5,          common_Sub14
 22b2: c8,57             vect  57c8,          Sub39
 22b4: 6c,28             vect  286c,          Sub40
 
 
-  Sub36:
+  Sub37:
 22b6: b1,a7,0c          ldb   Rc,a7          HSI_MASK = a7;
 22b9: 9b,f7,c1,02,00    cmpb  0,[Rf6+2c1]    
 22be: d7,03             jne   22c3           if (ZERO == [7975])  {
@@ -379,12 +379,12 @@
 22e5: 22,ea,22,ea,22    ??     34,234, 34,234, 34   8938,  8938,
 22ea: f0,ff             ??    240, -1    -16,
 
-22ec: 6c,23             vect  236c,          Sub49
-22ee: b3,25             vect  25b3,          Sub50
-22f0: 00,59             vect  5900,          Sub51
+22ec: 6c,23             vect  236c,          Sub41
+22ee: b3,25             vect  25b3,          common_Sub4
+22f0: 00,59             vect  5900,          Sub42
 22f2: 0b,22             vect  220b,
-22f4: 49,58             vect  5849,          Sub52
-22f6: c7,25             vect  25c7,          Sub53
+22f4: 49,58             vect  5849,          Sub43
+22f6: c7,25             vect  25c7,          Sub44
 22f8: 00,c9             vect  c900,
 22fa: 0b,22             vect  220b,
 
@@ -426,11 +426,11 @@
 2369: 99,08,22          ??    153,  8, 34   8712,
 
 
-  Sub49:
+  Sub41:
 236c: c7,7a,01,00       stb   0,[R7a+1]      [R7a+1] = ZERO;
 2370: f0                ret                  return;
 
-  Sub76:
+  common_Sub1:
 2371: af,f3,85,01,38    ldzbw R38,[Rf2+185]  R38 = (uns)[73a7];
 2376: a0,98,3a          ldw   R3a,R98        R3a = R98;
 2379: 37,99,02          jnb   B7,R99,237e    if (B7_R99)  {
@@ -464,7 +464,7 @@
 23d0: c7,01,ef,01,39    stb   R39,[1ef]      [1ef] = R39;
 23d5: f0                ret                  return;
 
-  Sub4:
+  Sub3:
 23d6: a1,eb,02,22       ldw   R22,2eb        R22 = 2eb;
 23da: 71,7f,28          an2b  R28,7f         R28 &= 7f;
 23dd: b1,aa,42          ldb   R42,aa         R42 = aa;
@@ -489,7 +489,7 @@
 2416: c7,22,27,30       stb   R30,[R22+27]   [R22+27] = R30;
 241a: c7,22,3f,32       stb   R32,[R22+3f]   [R22+3f] = R32;
 241e: 91,40,e0          orb   Re0,40         Re0 |= 40;
-2421: ef,e1,3b          call  6005           Sub33();
+2421: ef,e1,3b          call  6005           Sub32();
 2424: a1,80,a2,38       ldw   R38,a280       R38 = a280;
 2428: c3,01,3c,03,38    stw   R38,[33c]      [33c] = R38;
 242d: b1,80,3a          ldb   R3a,80         R3a = 80;
@@ -516,7 +516,7 @@
 2474: c7,01,d9,00,30    stb   R30,[d9]       [d9] = R30;
 2479: f0                ret                  return;
 
-  Sub44:
+  common_Sub2:
 247a: 71,8e,4c          an2b  R4c,8e         R4c &= 8e;
 247d: 48,8a,06,80       sb3w  R80,R6,R8a     R80 = IO_TIMER - R8a;
 2481: 64,80,8a          ad2w  R8a,R80        R8a += R80;
@@ -539,7 +539,7 @@
 24b3: 20,53             sjmp  2508           goto 2508; }
 24b5: 07,7c             incw  R7c            R7c++;
 24b7: b4,00,7e          adcb  R7e,0          R7e += ZERO + CY;
-24ba: 28,5b             scall 2517           Sub45();
+24ba: 28,5b             scall 2517           common_Sub3();
 24bc: 91,40,4c          orb   R4c,40         R4c |= 40;
 24bf: 20,47             sjmp  2508           goto 2508;
 24c1: 3a,4c,1c          jb    B2,R4c,24e0    if (B2_R4c) goto 24e0;
@@ -572,7 +572,7 @@
 2512: b1,0c,89          ldb   R89,c          R89 = c;
 2515: 27,b3             sjmp  24ca           goto 24ca;
 
-  Sub45:
+  common_Sub3:
 2517: af,90,05,7a       ldzbw R7a,[R90+5]    R7a = (uns)[R90+5];
 251b: 57,7b,20,02,00,84 ad3b  R84,0,[R7a+220] R84 = ZERO + [R7a+220];
 2521: de,1a             jlt   253d           if (ZERO >= [R7a+220])  {
@@ -613,30 +613,30 @@
 25ae: c7,7a,05,84       stb   R84,[R7a+5]    [R7a+5] = R84;
 25b2: f0                ret                  return;
 
-  Sub50:
-25b3: 28,38             scall 25ed           Sub54();
+  common_Sub4:
+25b3: 28,38             scall 25ed           Sub33();
 25b5: 3e,4c,2a          jb    B6,R4c,25e2    if (B6_R4c) return;
 25b8: 65,08,00,90       ad2w  R90,8          R90 += 8;
-25bc: c9,c3,25          push  25c3           push(Sub55);
+25bc: c9,c3,25          push  25c3           push(Sub34);
 25bf: cb,90,fe          push  [R90+fe]       push([R90-2]);
 25c2: f0                ret                  return;
 
-  Sub55:
+  Sub34:
 25c3: db,25             jc    25ea           if ((uns) R90 >= 8) goto 25ea;
-25c5: 20,00             sjmp  25c7           goto Sub53;
+25c5: 20,00             sjmp  25c7           goto Sub44;
 
-  Sub53:
-25c7: 28,24             scall 25ed           Sub54();
+  Sub44:
+25c7: 28,24             scall 25ed           Sub33();
 25c9: 3e,4c,16          jb    B6,R4c,25e2    if (B6_R4c) return;
 25cc: 37,79,0f          jnb   B7,R79,25de    if (B7_R79)  {
 25cf: 69,08,00,90       sb2w  R90,8          R90 -= 8;
-25d3: c9,da,25          push  25da           push(Sub56);
+25d3: c9,da,25          push  25da           push(Sub35);
 25d6: cb,90,0e          push  [R90+e]        push([R90+e]);
 25d9: f0                ret                  return;
 
-  Sub56:
+  Sub35:
 25da: db,0e             jc    25ea           if ((uns) R90 >= 8) goto 25ea;
-25dc: 27,d5             sjmp  25b3           goto Sub50; }
+25dc: 27,d5             sjmp  25b3           goto common_Sub4; }
 25de: c7,7a,01,00       stb   0,[R7a+1]      [R7a+1] = ZERO;
 25e2: f0                ret                  return;
 
@@ -644,12 +644,12 @@
 25e3: c9,ea,25,cb,90    ??    201,234, 37,203,-112   9706,-28469,
 25e8: 04,f0             ??      4,-16  -4092,
 
-25ea: 2f,2b             scall 2517           Sub45();
+25ea: 2f,2b             scall 2517           common_Sub3();
 25ec: f0                ret                  return;
 
-  Sub54:
+  Sub33:
 25ed: b3,90,03,79       ldb   R79,[R90+3]    R79 = [R90+3];
-25f1: 2e,87             scall 247a           Sub44();
+25f1: 2e,87             scall 247a           common_Sub2();
 25f3: 34,4c,03          jnb   B4,R4c,25f9    if (B4_R4c)  {
 25f6: cc,00             pop   0              ZERO = pop();
 25f8: f0                ret                  return; }
@@ -665,7 +665,7 @@
 2612: 60,80,44          an2w  R44,R80        R44 &= R80;
 2615: f0                ret                  return;
 
-  Sub34:
+  common_Sub5:
 2616: 48,8a,06,80       sb3w  R80,R6,R8a     R80 = IO_TIMER - R8a;
 261a: 64,80,8a          ad2w  R8a,R80        R8a += R80;
 261d: b4,00,8c          adcb  R8c,0          R8c += ZERO + CY;
@@ -680,17 +680,17 @@
 263b: 70,0c,83          an2b  R83,Rc         R83 &= HSI_MASK;
 263e: b0,7f,8e          ldb   R8e,R7f        R8e = R7f;
 
-  Sub41:
+  common_Sub6:
 2641: 11,4c             clrb  R4c            R4c = 0;
 2643: 54,83,00,57       ad3b  R57,0,R83      R57 = ZERO + R83;
 2647: df,10             je    2659           if (ZERO != R83)  {
 2649: 01,58             clrw  R58            R58 = 0;
 264b: 0f,58,54          norm  0,R58          R58 = nrml(0L);
 264e: 09,01,58          shlw  R58,1          R58 *= 2;
-2651: c9,41,26          push  2641           push(Sub41);
+2651: c9,41,26          push  2641           push(common_Sub6);
 2654: cb,59,a6,22       push  [R58+22a6]     push([R58+22a6]);
 2658: f0                ret                  return; }
-2659: 3a,0a,ba          jb    B2,Ra,2616     if (HSI_RDY) goto Sub34;
+2659: 3a,0a,ba          jb    B2,Ra,2616     if (HSI_RDY) goto common_Sub5;
 265c: f0                ret                  return;
 
   INT_HSO_1:
@@ -757,25 +757,25 @@
 2719: 91,02,4c          orb   R4c,2          R4c |= 2; }
 271c: 65,20,02,7a       ad2w  R7a,220        R7a += 220;
 2720: 65,ec,22,90       ad2w  R90,22ec       R90 += 22ec;
-2724: c9,2a,27          push  272a           push(Sub57);
+2724: c9,2a,27          push  272a           push(common_Sub7);
 2727: ca,90             push  [R90]          push([R90]);
 2729: f0                ret                  return;
 
-  Sub57:
+  common_Sub7:
 272a: 34,4c,0c          jnb   B4,R4c,2739    if (B4_R4c)  {
 272d: 57,6d,20,02,00,6c ad3b  R6c,0,[R6c+220] R6c = ZERO + [R6c+220];
 2733: df,0c             je    2741           if (ZERO == [R6c+220]) goto 2741;
 2735: 65,05,00,6c       ad2w  R6c,5          R6c += 5; }
 2739: 32,0a,03          jnb   B2,Ra,273f     if (HSI_RDY)  {
-273c: ef,d7,fe          call  2616           Sub34(); }
+273c: ef,d7,fe          call  2616           common_Sub5(); }
 273f: 27,6f             sjmp  26b0           goto 26b0;
 2741: a1,ca,22,70       ldw   R70,22ca       R70 = 22ca;
 2745: a0,48,6c          ldw   R6c,R48        R6c = R48;
 2748: a0,4a,6e          ldw   R6e,R4a        R6e = R4a;
 
-  Sub58:
+  Sub45:
 274b: 32,0a,02          jnb   B2,Ra,2750     if (HSI_RDY)  {
-274e: 2e,c6             scall 2616           Sub34(); }
+274e: 2e,c6             scall 2616           common_Sub5(); }
 2750: 11,4c             clrb  R4c            R4c = 0;
 2752: 88,6c,00          cmpw  0,R6c          
 2755: d7,05             jne   275c           if (ZERO == R6c)  {
@@ -786,7 +786,7 @@
 2761: 71,7f,6f          an2b  R6f,7f         R6f &= 7f;
 2764: 09,01,54          shlw  R54,1          R54 *= 2;
 2767: 64,54,70          ad2w  R70,R54        R70 += R54;
-276a: c9,4b,27          push  274b           push(Sub58);
+276a: c9,4b,27          push  274b           push(Sub45);
 276d: ca,70             push  [R70]          push([R70]);
 276f: f0                ret                  return;
 2770: b3,01,2f,09,56    ldb   R56,[92f]      R56 = [92f];
@@ -830,7 +830,7 @@
 27cd: c3,01,ea,01,10    stw   R10,[1ea]      [1ea] = STACK_POINTER;
 27d2: ad,6c,10          ldzbw R10,6c         STACK_POINTER = (uns)6c;
 27d5: 32,0a,02          jnb   B2,Ra,27da     if (HSI_RDY)  {
-27d8: 2e,3c             scall 2616           Sub34(); }
+27d8: 2e,3c             scall 2616           common_Sub5(); }
 27da: 27,de             sjmp  27ba           goto 27ba;
 
   INT_Timer_OVF:
@@ -949,10 +949,10 @@
 2915: c7,01,e8,01,78    stb   R78,[1e8]      [1e8] = R78;
 291a: 15,c9             decb  Rc9            Rc9--;
 291c: 3a,51,02          jb    B2,R51,2921    if (!B2_R51)  {
-291f: 28,92             scall 29b3           Sub42(); }
-2921: ef,a1,2d          call  56c5           Sub43();
+291f: 28,92             scall 29b3           Sub46(); }
+2921: ef,a1,2d          call  56c5           Sub47();
 2924: 30,4f,03          jnb   B0,R4f,292a    if (B0_R4f)  {
-2927: ef,18,2e          call  5742           Sub82(); }
+2927: ef,18,2e          call  5742           Sub74(); }
 292a: 20,aa             sjmp  29d6           goto 29d6;
 292c: 34,50,0c          jnb   B4,R50,293b    if (B4_R50)  {
 292f: 08,02,58          shrw  R58,2          R58 = R58 / 4;
@@ -984,26 +984,26 @@
 297a: a0,5c,be          ldw   Rbe,R5c        Rbe = R5c;
 297d: b3,f4,02,c9       ldb   Rc9,[Rf4+2]    Rc9 = [7526];
 2981: 3a,51,02          jb    B2,R51,2986    if (!B2_R51)  {
-2984: 28,2d             scall 29b3           Sub42(); }
+2984: 28,2d             scall 29b3           Sub46(); }
 2986: 9b,f7,c1,02,00    cmpb  0,[Rf6+2c1]    
 298b: df,03             je    2990           if (ZERO != [7975])  {
-298d: c9,d9,57          push  57d9           push(Sub90); }
+298d: c9,d9,57          push  57d9           push(Sub75); }
 2990: a1,06,23,90       ldw   R90,2306       R90 = 2306;
 2994: 30,24,0d          jnb   B0,R24,29a4    if (!B0_R24) goto 29a4;
 2997: 31,50,04          jnb   B1,R50,299e    if (B1_R50)  {
 299a: 71,fd,50          an2b  R50,fd         R50 &= fd;
 299d: f0                ret                  return; }
 299e: 91,08,4c          orb   R4c,8          R4c |= 8;
-29a1: e7,49,fc          jump  25ed           goto Sub54;
+29a1: e7,49,fc          jump  25ed           goto Sub33;
 29a4: 30,4f,08          jnb   B0,R4f,29af    if (B0_R4f)  {
 29a7: a1,fe,22,90       ldw   R90,22fe       R90 = 22fe;
-29ab: 28,9c             scall 2a49           Sub46();
+29ab: 28,9c             scall 2a49           Sub48();
 29ad: 27,eb             sjmp  299a           goto 299a; }
 29af: 39,50,ec          jb    B1,R50,299e    if (B1_R50) goto 299e;
 29b2: f0                ret                  return;
 
-  Sub42:
-29b3: 33,0a,fd          jnb   B3,Ra,29b3     if (!AD_RDY) goto Sub42;
+  Sub46:
+29b3: 33,0a,fd          jnb   B3,Ra,29b3     if (!AD_RDY) goto Sub46;
 29b6: 51,f0,04,54       an3b  R54,R4,f0      R54 = AD_LO & f0;
 29ba: b0,05,55          ldb   R55,R5         R55 = AD_HI;
 29bd: a3,01,20,01,56    ldw   R56,[120]      R56 = [120];
@@ -1022,7 +1022,7 @@
 29e9: 30,24,17          jnb   B0,R24,2a03    if (!B0_R24) goto 2a03;
 29ec: 39,50,06          jb    B1,R50,29f5    if (!B1_R50)  {
 29ef: 91,08,4c          orb   R4c,8          R4c |= 8;
-29f2: ef,f8,fb          call  25ed           Sub54(); }
+29f2: ef,f8,fb          call  25ed           Sub33(); }
 29f5: 71,fb,50          an2b  R50,fb         R50 &= fb;
 29f8: a1,00,80,54       ldw   R54,8000       R54 = 8000;
 29fc: c3,01,74,01,54    stw   R54,[174]      [174] = R54;
@@ -1030,11 +1030,11 @@
 2a03: 38,4f,0e          jb    B0,R4f,2a14    if (B0_R4f) goto 2a14;
 2a06: 31,50,09          jnb   B1,R50,2a12    if (B1_R50)  {
 2a09: 91,08,4c          orb   R4c,8          R4c |= 8;
-2a0c: ef,a4,fb          call  25b3           Sub50();
+2a0c: ef,a4,fb          call  25b3           common_Sub4();
 2a0f: 71,fd,50          an2b  R50,fd         R50 &= fd; }
-2a12: 28,35             scall 2a49           Sub46();
+2a12: 28,35             scall 2a49           Sub48();
 2a14: 91,c0,4d          orb   R4d,c0         R4d |= c0;
-2a17: ef,23,02          call  2c3d           Sub83();
+2a17: ef,23,02          call  2c3d           common_Sub9();
 2a1a: f0                ret                  return;
 
 
@@ -1051,13 +1051,13 @@
 2a3d: 01,68,01          ??      1,104,  1    360,
 
 
-  Sub47:
+  Sub49:
 2a40: e0,54,05          djnz  R54,2a48       R54--;
                                              if (R54 !=  0) goto 2a48;
 2a43: af,f3,bc,01,54    ldzbw R54,[Rf2+1bc]  R54 = (uns)[73de]; }
 2a48: f0                ret                  return;
 
-  Sub46:
+  Sub48:
 2a49: af,01,28,02,54    ldzbw R54,[228]      R54 = (uns)[228];
 2a4e: 9b,f3,bc,01,54    cmpb  R54,[Rf2+1bc]  
 2a53: d1,05             jleu  2a5a           if ((uns) R54 > [73de] )  {
@@ -1073,7 +1073,7 @@
 2a75: d6,04             jge   2a7b           if (R56 >= [7e84]) goto 2a7b; }
 2a77: b3,fa,70,56       ldb   R56,[Rfa+70]   R56 = [7e84];
 2a7b: c7,55,8b,01,56    stb   R56,[R54+18b]  [R54+18b] = R56;
-2a80: 2f,be             scall 2a40           Sub47();
+2a80: 2f,be             scall 2a40           Sub49();
 2a82: c7,01,28,02,54    stb   R54,[228]      [228] = R54;
 2a87: 98,00,a6          cmpb  Ra6,0          
 2a8a: d7,21             jne   2aad           if (Ra6 != ZERO) goto 2aad;
@@ -1093,7 +1093,7 @@
 2ab6: 11,58             clrb  R58            R58 = 0; }
 2ab8: c4,a6,58          stb   R58,Ra6        Ra6 = R58;
 2abb: 36,4f,0c          jnb   B6,R4f,2aca    if (B6_R4f)  {
-2abe: 2f,80             scall 2a40           Sub47();
+2abe: 2f,80             scall 2a40           Sub49();
 2ac0: 77,55,8b,01,58    ad2b  R58,[R54+18b]  R58 += [R54+18b];
 2ac5: d5,03             jnv   2aca           if (OV)  {
 2ac7: b1,80,58          ldb   R58,80         R58 = 80; } }
@@ -1182,7 +1182,7 @@
 2bdc: d1,03             jleu  2be1           if ((uns) Rb8 > [7e1a] )  {
 2bde: 91,04,50          orb   R50,4          R50 |= 4; } }
 2be1: c3,01,e4,01,56    stw   R56,[1e4]      [1e4] = R56;
-2be6: 28,38             scall 2c20           Sub48();
+2be6: 28,38             scall 2c20           common_Sub8();
 2be8: a1,22,02,7a       ldw   R7a,222        R7a = 222;
 2bec: 9b,7a,01,00       cmpb  0,[R7a+1]      
 2bf0: d6,19             jge   2c0b           if (ZERO >= [R7a+1]) goto 2c0b;
@@ -1194,7 +1194,7 @@
 2c04: 65,ec,22,90       ad2w  R90,22ec       R90 += 22ec;
 2c08: ca,90             push  [R90]          push([R90]); }
 2c0a: f0                ret                  return;
-2c0b: ef,a5,f9          call  25b3           Sub50();
+2c0b: ef,a5,f9          call  25b3           common_Sub4();
 2c0e: f0                ret                  return;
 
 
@@ -1204,7 +1204,7 @@
 2c1e: fe,50             ??    254, 80  20734,
 
 
-  Sub48:
+  common_Sub8:
 2c20: a3,01,e6,01,7c    ldw   R7c,[1e6]      R7c = [1e6];
 2c25: b3,01,e8,01,7e    ldb   R7e,[1e8]      R7e = [1e8];
 2c2a: 67,01,e4,01,7c    ad2w  R7c,[1e4]      R7c += [1e4];
@@ -1215,7 +1215,7 @@
 2c3b: f8                clc                  CY = 0;
 2c3c: f0                ret                  return;
 
-  Sub83:
+  common_Sub9:
 2c3d: 37,29,14          jnb   B7,R29,2c54    if (B7_R29)  {
 2c40: 71,7f,29          an2b  R29,7f         R29 &= 7f;
 2c43: 71,7f,50          an2b  R50,7f         R50 &= 7f;
@@ -1277,7 +1277,7 @@
 2cf0: d7,03             jne   2cf5           if (R5c == [7384])  {
 2cf2: 71,fe,4d          an2b  R4d,fe         R4d &= fe; }
 2cf5: 91,20,51          orb   R51,20         R51 |= 20;
-2cf8: 28,bc             scall 2db6           Sub84();
+2cf8: 28,bc             scall 2db6           common_Sub12();
 2cfa: 37,50,07          jnb   B7,R50,2d04    if (B7_R50)  {
 2cfd: 30,24,07          jnb   B0,R24,2d07    if (!B0_R24) goto 2d07;
 2d00: 71,7f,50          an2b  R50,7f         R50 &= 7f;
@@ -1285,7 +1285,7 @@
 2d04: 30,24,06          jnb   B0,R24,2d0d    if (!B0_R24) goto 2d0d;
 2d07: 01,54             clrw  R54            R54 = 0;
 2d09: 11,56             clrb  R56            R56 = 0;
-2d0b: 28,b6             scall 2dc3           Sub85();
+2d0b: 28,b6             scall 2dc3           common_Sub13();
 2d0d: a0,54,7c          ldw   R7c,R54        R7c = R54;
 2d10: b0,56,7e          ldb   R7e,R56        R7e = R56;
 2d13: 8b,01,be,01,00    cmpw  0,[1be]        
@@ -1296,7 +1296,7 @@
 2d24: 20,07             sjmp  2d2d           goto 2d2d; }
 2d26: 71,bf,4d          an2b  R4d,bf         R4d &= bf;
 2d29: a1,26,23,90       ldw   R90,2326       R90 = 2326;
-2d2d: 28,9f             scall 2dce           Sub86();
+2d2d: 28,9f             scall 2dce           Sub50();
 2d2f: b1,02,5c          ldb   R5c,2          R5c = 2;
 2d32: 9b,f3,98,00,5c    cmpb  R5c,[Rf2+98]   
 2d37: d7,03             jne   2d3c           if (R5c == [72ba])  {
@@ -1306,7 +1306,7 @@
 2d42: b3,f3,62,01,5c    ldb   R5c,[Rf2+162]  R5c = [7384];
 2d47: 99,02,5c          cmpb  R5c,2          
 2d4a: df,29             je    2d75           if (R5c == 2) goto 2d75;
-2d4c: 26,ef             sjmp  2c3d           goto Sub83; }
+2d4c: 26,ef             sjmp  2c3d           goto common_Sub9; }
 2d4e: b1,02,5c          ldb   R5c,2          R5c = 2;
 2d51: 9b,f3,98,00,5c    cmpb  R5c,[Rf2+98]   
 2d56: d7,25             jne   2d7d           if (R5c != [72ba]) goto 2d7d;
@@ -1325,7 +1325,7 @@
 2d7d: 71,bf,51          an2b  R51,bf         R51 &= bf;
 2d80: f0                ret                  return;
 
-  Sub87:
+  common_Sub10:
 2d81: af,90,07,5c       ldzbw R5c,[R90+7]    R5c = (uns)[R90+7];
 2d85: b3,90,06,5b       ldb   R5b,[R90+6]    R5b = [R90+6];
 2d89: 52,5c,5b,00       an3b  0,R5b,[R5c]    ZERO = R5b & [R5c];
@@ -1334,7 +1334,7 @@
 2d93: 92,5c,5b          orb   R5b,[R5c]      R5b |= [R5c];
 2d96: 20,1a             sjmp  2db2           goto 2db2;
 
-  Sub88:
+  common_Sub11:
 2d98: af,90,07,5c       ldzbw R5c,[R90+7]    R5c = (uns)[R90+7];
 2d9c: b3,90,08,5b       ldb   R5b,[R90+8]    R5b = [R90+8];
 2da0: 52,5c,5b,00       an3b  0,R5b,[R5c]    ZERO = R5b & [R5c];
@@ -1346,18 +1346,18 @@
 2db2: c6,5c,5b          stb   R5b,[R5c]      [R5c] = R5b;
 2db5: f0                ret                  return;
 
-  Sub84:
+  common_Sub12:
 2db6: 11,54             clrb  R54            R54 = 0;
 2db8: b3,01,67,01,55    ldb   R55,[167]      R55 = [167];
 2dbd: 6c,b8,54          ml2w  R54,Rb8        R54L *= Rb8;
 2dc0: 0c,0d,54          shrdw R54,d          R54 = R54L / 2000;
 
-  Sub85:
+  common_Sub13:
 2dc3: 67,01,e6,01,54    ad2w  R54,[1e6]      R54 += [1e6];
 2dc8: b7,01,e8,01,56    adcb  R56,[1e8]      R56 += [1e8] + CY;
 2dcd: f0                ret                  return;
 
-  Sub86:
+  Sub50:
 2dce: af,90,05,7a       ldzbw R7a,[R90+5]    R7a = (uns)[R90+5];
 2dd2: 65,20,02,7a       ad2w  R7a,220        R7a += 220;
 2dd6: 4b,7a,02,7c,58    sb3w  R58,R7c,[R7a+2] R58 = R7c - [R7a+2];
@@ -1376,12 +1376,12 @@
 2e04: 37,82,11          jnb   B7,R82,2e18    if (B7_R82)  {
 2e07: 68,80,7c          sb2w  R7c,R80        R7c -= R80;
 2e0a: b8,82,7e          sbbb  R7e,R82        R7e -= R82 - CY;
-2e0d: ef,dd,f7          call  25ed           Sub54();
+2e0d: ef,dd,f7          call  25ed           Sub33();
 2e10: 3d,4c,08          jb    B5,R4c,2e1b    if (B5_R4c) goto 2e1b;
 2e13: 91,20,4f          orb   R4f,20         R4f |= 20;
 2e16: 20,03             sjmp  2e1b           goto 2e1b; }
-2e18: ef,d2,f7          call  25ed           Sub54();
-2e1b: 2f,64             scall 2d81           Sub87();
+2e18: ef,d2,f7          call  25ed           Sub33();
+2e1b: 2f,64             scall 2d81           common_Sub10();
 2e1d: 20,5a             sjmp  2e79           goto 2e79;
 2e1f: 8b,01,bc,01,58    cmpw  R58,[1bc]      
 2e24: d1,0d             jleu  2e33           if ((uns) R58 > [1bc] )  {
@@ -1399,21 +1399,21 @@
 2e4b: 9b,7a,01,5c       cmpb  R5c,[R7a+1]    
 2e4f: df,c7             je    2e18           if (R5c == [R7a+1]) goto 2e18;
 2e51: 27,e8             sjmp  2e3b           goto 2e3b; }
-2e53: 27,2c             sjmp  2d81           goto Sub87;
+2e53: 27,2c             sjmp  2d81           goto common_Sub10;
 2e55: 37,5a,15          jnb   B7,R5a,2e6d    if (!B7_R5a) goto 2e6d;
 2e58: a3,7a,02,7c       ldw   R7c,[R7a+2]    R7c = [R7a+2];
 2e5c: b3,7a,04,7e       ldb   R7e,[R7a+4]    R7e = [R7a+4];
-2e60: ef,8a,f7          call  25ed           Sub54();
+2e60: ef,8a,f7          call  25ed           Sub33();
 2e63: 3d,4c,03          jb    B5,R4c,2e69    if (!B5_R4c)  {
 2e66: 91,20,4f          orb   R4f,20         R4f |= 20; }
 2e69: 36,4c,0d          jnb   B6,R4c,2e79    if (!B6_R4c) goto 2e79;
 2e6c: f0                ret                  return;
-2e6d: ef,7d,f7          call  25ed           Sub54();
+2e6d: ef,7d,f7          call  25ed           Sub33();
 2e70: 34,4f,02          jnb   B4,R4f,2e75    if (B4_R4f)  {
-2e73: 2f,23             scall 2d98           Sub88(); }
+2e73: 2f,23             scall 2d98           common_Sub11(); }
 2e75: 36,4c,01          jnb   B6,R4c,2e79    if (B6_R4c)  {
 2e78: f0                ret                  return; }
-2e79: 28,77             scall 2ef2           Sub89();
+2e79: 28,77             scall 2ef2           Sub51();
 2e7b: 35,4f,05          jnb   B5,R4f,2e83    if (B5_R4f)  {
 2e7e: 71,df,4f          an2b  R4f,df         R4f &= df;
 2e81: 20,08             sjmp  2e8b           goto 2e8b; }
@@ -1426,7 +1426,7 @@
 2e9a: 52,5c,5b,00       an3b  0,R5b,[R5c]    ZERO = R5b & [R5c];
 2e9e: df,25             je    2ec5           if (R5b == [R5c]) goto 2ec5;
 2ea0: 91,10,4f          orb   R4f,10         R4f |= 10;
-2ea3: 2f,11             scall 2db6           Sub84();
+2ea3: 2f,11             scall 2db6           common_Sub12();
 2ea5: b3,90,09,57       ldb   R57,[R90+9]    R57 = [R90+9];
 2ea9: 72,5c,57          an2b  R57,[R5c]      R57 &= [R5c];
 2eac: df,06             je    2eb4           if (R57 != [R5c])  {
@@ -1436,9 +1436,9 @@
 2eb8: b0,56,82          ldb   R82,R56        R82 = R56;
 2ebb: b8,7e,82          sbbb  R82,R7e        R82 -= R7e - CY;
 2ebe: 37,82,04          jnb   B7,R82,2ec5    if (B7_R82)  {
-2ec1: 28,2f             scall 2ef2           Sub89();
-2ec3: 2e,d3             scall 2d98           Sub88(); }
-2ec5: ef,25,f7          call  25ed           Sub54();
+2ec1: 28,2f             scall 2ef2           Sub51();
+2ec3: 2e,d3             scall 2d98           common_Sub11(); }
+2ec5: ef,25,f7          call  25ed           Sub33();
 2ec8: 36,4c,04          jnb   B6,R4c,2ecf    if (B6_R4c)  {
 2ecb: 71,ef,4f          an2b  R4f,ef         R4f &= ef;
 2ece: f0                ret                  return; }
@@ -1455,7 +1455,7 @@
 2eee: c6,7a,7e          stb   R7e,[R7a]      [R7a] = R7e;
 2ef1: f0                ret                  return;
 
-  Sub89:
+  Sub51:
 2ef2: 01,5a             clrw  R5a            R5a = 0;
 2ef4: 31,4d,0a          jnb   B1,R4d,2f01    if (B1_R4d)  {
 2ef7: a3,01,bc,01,58    ldw   R58,[1bc]      R58 = [1bc];
@@ -1527,7 +1527,7 @@
 2ff0: 78,01,54,27,75    ??    120,  1, 84, 39,117    376, 10068, 29045,
 
 
-  Sub38:
+  common_Sub14:
 2ff5: 71,fb,83          an2b  R83,fb         R83 &= fb;
 2ff8: 4b,01,72,01,76,54 sb3w  R54,R76,[172]  R54 = R76 - [172];
 2ffe: c3,01,ae,01,54    stw   R54,[1ae]      [1ae] = R54;
@@ -1538,7 +1538,7 @@
 3014: 91,40,4e          orb   R4e,40         R4e |= 40;
 3017: f0                ret                  return;
 
-  Sub37:
+  Sub38:
 3018: 71,df,83          an2b  R83,df         R83 &= df;
 301b: c7,01,fd,01,00    stb   0,[1fd]        [1fd] = ZERO;
 3020: 3b,29,0e          jb    B3,R29,3031    if (!B3_R29)  {
@@ -1629,11 +1629,11 @@
 30e2: 71,ef,a1          an2b  Ra1,ef         Ra1 &= ef;
 30e5: f0                ret                  return;
 
-  Sub62:
+  Sub55:
 30e6: b1,02,42          ldb   R42,2          R42 = 2;
 30e9: 20,02             sjmp  30ed           goto 30ed;
 
-  Sub64:
+  Sub57:
 30eb: 11,42             clrb  R42            R42 = 0;
 30ed: 48,32,34,3c       sb3w  R3c,R34,R32    R3c = R34 - R32;
 30f1: 31,42,04          jnb   B1,R42,30f8    if (B1_R42)  {
@@ -1663,20 +1663,20 @@
 3127: 64,36,38          ad2w  R38,R36        R38 += R36;
 312a: b2,39,31          ldb   R31,[R38++]    R31 = [R38++];
 312d: b2,38,33          ldb   R33,[R38]      R33 = [R38];
-3130: 28,1c             scall 314e           Sub68();
+3130: 28,1c             scall 314e           Sub61();
 3132: 64,34,38          ad2w  R38,R34        R38 += R34;
 3135: b2,38,33          ldb   R33,[R38]      R33 = [R38];
 3138: 05,38             decw  R38            R38--;
 313a: b2,38,31          ldb   R31,[R38]      R31 = [R38];
 313d: b0,3b,34          ldb   R34,R3b        R34 = R3b;
-3140: 28,0c             scall 314e           Sub68();
+3140: 28,0c             scall 314e           Sub61();
 3142: b0,3b,33          ldb   R33,R3b        R33 = R3b;
 3145: b0,34,31          ldb   R31,R34        R31 = R34;
 3148: b0,32,30          ldb   R30,R32        R30 = R32;
-314b: 28,01             scall 314e           Sub68();
+314b: 28,01             scall 314e           Sub61();
 314d: f0                ret                  return;
 
-  Sub68:
+  Sub61:
 314e: 5c,33,30,3a       ml3b  R3a,R30,R33    R3aW = R30B * R33B;
 3152: 5c,31,30,36       ml3b  R36,R30,R31    R36W = R30B * R31B;
 3156: 68,36,3a          sb2w  R3a,R36        R3a -= R36;
@@ -1684,7 +1684,7 @@
 315c: 65,80,00,3a       ad2w  R3a,80         R3a += 80;
 3160: f0                ret                  return;
 
-  Sub78:
+  Sub70:
 3161: b3,01,b1,00,1c    ldb   R1c,[b1]       R1c = [b1];
 3166: 9b,f2,02,1c       cmpb  R1c,[Rf2+2]    
 316a: de,07             jlt   3173           if (R1c >= [7224])  {
@@ -1705,7 +1705,7 @@
 318b: f9                stc                  CY = 1;
 318c: f0                ret                  return;
 
-  Sub5:
+  Sub4:
 318d: 71,f7,24          an2b  R24,f7         R24 &= f7;
 3190: 37,2c,0e          jnb   B7,R2c,31a1    if (!B7_R2c) goto 31a1;
 3193: 8b,fe,1a,ae       cmpw  Rae,[Rfe+1a]   
@@ -1737,7 +1737,7 @@
 31dd: 71,fe,24          an2b  R24,fe         R24 &= fe;
 31e0: f0                ret                  return;
 
-  Sub6:
+  Sub5:
 31e1: a3,01,1c,01,30    ldw   R30,[11c]      R30 = [11c];
 31e6: 4b,f2,7e,30,32    sb3w  R32,R30,[Rf2+7e] R32 = R30 - [72a0];
 31eb: d9,0d             jgtu  31fa           if ((uns) R30 <= [72a0])  {
@@ -1765,7 +1765,7 @@
 3227: 91,80,27          orb   R27,80         R27 |= 80; }
 322a: f0                ret                  return;
 
-  Sub9:
+  Sub8:
 322b: a3,01,1a,01,30    ldw   R30,[11a]      R30 = [11a];
 3230: 3c,2d,0f          jb    B4,R2d,3242    if (!B4_R2d)  {
 3233: a3,01,ca,01,32    ldw   R32,[1ca]      R32 = [1ca];
@@ -1817,12 +1817,12 @@
 32d5: 9b,fa,4a,38       cmpb  R38,[Rfa+4a]   
 32d9: d1,05             jleu  32e0           if ((uns) R38 > [7e5e] )  {
 32db: 91,10,a2          orb   Ra2,10         Ra2 |= 10;
-32de: 20,08             sjmp  32e8           goto Sub10; } }
+32de: 20,08             sjmp  32e8           goto Sub9; } }
 32e0: 88,00,e4          cmpw  Re4,0          
 32e3: d7,03             jne   32e8           if (Re4 == ZERO)  {
 32e5: 71,ef,a2          an2b  Ra2,ef         Ra2 &= ef; }
 
-  Sub10:
+  Sub9:
 32e8: 3f,2c,1a          jb    B7,R2c,3305    if (!B7_R2c)  {
 32eb: af,fe,18,36       ldzbw R36,[Rfe+18]   R36 = (uns)[7f3a];
 32ef: 88,e4,36          cmpw  R36,Re4        
@@ -1843,7 +1843,7 @@
 3322: a0,38,30          ldw   R30,R38        R30 = R38;
 3325: 45,88,01,f8,32    ad3w  R32,Rf8,188    R32 = Scaler_for_TBL7B12;
 332a: b3,f3,92,01,36    ldb   R36,[Rf2+192]  R36 = [73b4];
-332f: ef,48,0c          call  3f7a           Sub60();
+332f: ef,48,0c          call  3f7a           Sub53();
 3332: ef,5e,fd          call  3093           UUWordLU();
 3335: a0,38,32          ldw   R32,R38        R32 = R38;
 3338: ad,08,34          ldzbw R34,8          R34 = (uns)8;
@@ -1903,7 +1903,7 @@
 33f1: 91,08,4a          orb   R4a,8          R4a |= 8; }
 33f4: f0                ret                  return;
 
-  Sub11:
+  Sub10:
 33f5: b3,f3,fa,02,39    ldb   R39,[Rf2+2fa]  R39 = [751c];
 33fa: 3f,2d,20          jb    B7,R2d,341d    if (!B7_R2d)  {
 33fd: a3,01,10,01,34    ldw   R34,[110]      R34 = [110];
@@ -1974,7 +1974,7 @@
 34d1: af,01,ac,01,34    ldzbw R34,[1ac]      R34 = (uns)[1ac];
 34d6: ac,b4,32          ldzbw R32,Rb4        R32 = (uns)Rb4;
 34d9: a3,fa,02,36       ldw   R36,[Rfa+2]    R36 = [7e16];
-34dd: ef,06,fc          call  30e6           Sub62();
+34dd: ef,06,fc          call  30e6           Sub55();
 34e0: b0,3e,b4          ldb   Rb4,R3e        Rb4 = R3e;
 34e3: 09,07,3e          shlw  R3e,7          R3e *= 80;
 34e6: 9f,01,d9,00,3e    divb  R3e,[d9]       R3e = R3e / [d9];
@@ -2021,7 +2021,7 @@
 3569: af,01,95,00,32    ldzbw R32,[95]       R32 = (uns)[95];
 356e: ac,37,34          ldzbw R34,R37        R34 = (uns)R37;
 3571: a1,df,2f,36       ldw   R36,2fdf       R36 = 2fdf;
-3575: ef,6e,fb          call  30e6           Sub62();
+3575: ef,6e,fb          call  30e6           Sub55();
 3578: c7,01,95,00,3e    stb   R3e,[95]       [95] = R3e;
 357d: b0,3e,34          ldb   R34,R3e        R34 = R3e;
 3580: 45,16,00,f6,32    ad3w  R32,Rf6,16     R32 = Injector_comp_batt_volts;
@@ -2072,7 +2072,7 @@
 3618: a3,01,f8,01,32    ldw   R32,[1f8]      R32 = [1f8];
 361d: a3,01,f6,01,34    ldw   R34,[1f6]      R34 = [1f6];
 3622: a3,fe,06,36       ldw   R36,[Rfe+6]    R36 = [7f28];
-3626: ef,bd,fa          call  30e6           Sub62();
+3626: ef,bd,fa          call  30e6           Sub55();
 3629: c3,01,f8,01,3e    stw   R3e,[1f8]      [1f8] = R3e;
 362e: 3e,2d,20          jb    B6,R2d,3651    if (!B6_R2d)  {
 3631: a3,01,0e,01,34    ldw   R34,[10e]      R34 = [10e];
@@ -2107,7 +2107,7 @@
 368d: bc,b2,34          ldsbw R34,Rb2        R34 = (int)Rb2;
 3690: bc,b2,32          ldsbw R32,Rb2        R32 = (int)Rb2;
 3693: a1,7d,06,36       ldw   R36,67d        R36 = 67d;
-3697: ef,51,fa          call  30eb           Sub64();
+3697: ef,51,fa          call  30eb           Sub57();
 369a: b0,3e,b2          ldb   Rb2,R3e        Rb2 = R3e;
 369d: 3f,c8,38          jb    B7,Rc8,36d8    if (B7_Rc8) goto 36d8;
 36a0: 89,00,04,b8       cmpw  Rb8,400        
@@ -2241,7 +2241,7 @@
 383e: a3,01,7a,01,32    ldw   R32,[17a]      R32 = [17a];
 3843: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 3846: a1,7d,06,36       ldw   R36,67d        R36 = 67d;
-384a: ef,99,f8          call  30e6           Sub62();
+384a: ef,99,f8          call  30e6           Sub55();
 384d: c3,01,7a,01,3e    stw   R3e,[17a]      [17a] = R3e;
 3852: 3a,29,0f          jb    B2,R29,3864    if (!B2_R29)  {
 3855: 91,04,29          orb   R29,4          R29 |= 4;
@@ -2260,7 +2260,7 @@
 386f: e6,00,2d          ??    230,  0, 45  11520,
 
 
-  Sub15:
+  Sub14:
 3872: a3,01,be,01,30    ldw   R30,[1be]      R30 = [1be];
 3877: a3,f3,88,00,36    ldw   R36,[Rf2+88]   R36 = [72aa];
 387c: a1,a2,b3,3a       ldw   R3a,b3a2       R3a = b3a2;
@@ -2277,7 +2277,7 @@
 38a0: c3,01,da,01,30    stw   R30,[1da]      [1da] = R30;
 38a5: f0                ret                  return;
 
-  Sub16:
+  Sub15:
 38a6: 37,2c,01          jnb   B7,R2c,38aa    if (B7_R2c)  {
 38a9: f0                ret                  return; }
 38aa: 45,02,00,f6,32    ad3w  R32,Rf6,2      R32 = 76b6;
@@ -2394,7 +2394,7 @@
 3a2c: a0,3a,34          ldw   R34,R3a        R34 = R3a;
 3a2f: a0,3e,32          ldw   R32,R3e        R32 = R3e;
 3a32: a3,fa,0a,36       ldw   R36,[Rfa+a]    R36 = [7e1e];
-3a36: ef,ad,f6          call  30e6           Sub62();
+3a36: ef,ad,f6          call  30e6           Sub55();
 3a39: c3,01,40,01,3e    stw   R3e,[140]      [140] = R3e;
 3a3e: c7,01,4e,01,00    stb   0,[14e]        [14e] = ZERO;
 3a43: 20,05             sjmp  3a4a           goto 3a4a;
@@ -2442,13 +2442,13 @@
 3ac8: c7,01,a3,01,34    stb   R34,[1a3]      [1a3] = R34;
 3acd: f0                ret                  return;
 
-  Sub18:
+  Sub17:
 3ace: 37,2c,02          jnb   B7,R2c,3ad3    if (B7_R2c)  {
 3ad1: 20,7b             sjmp  3b4e           goto 3b4e; }
 3ad3: a3,01,00,01,32    ldw   R32,[100]      R32 = [100];
 3ad8: a0,ac,34          ldw   R34,Rac        R34 = Rac;
 3adb: a1,a8,06,36       ldw   R36,6a8        R36 = 6a8;
-3adf: ef,04,f6          call  30e6           Sub62();
+3adf: ef,04,f6          call  30e6           Sub55();
 3ae2: c3,01,00,01,3e    stw   R3e,[100]      [100] = R3e;
 3ae7: 89,08,07,ae       cmpw  Rae,708        
 3aeb: d1,0c             jleu  3af9           if ((uns) Engine_RPM > 708 )  {
@@ -2458,7 +2458,7 @@
 3af9: bf,01,9e,01,32    ldsbw R32,[19e]      R32 = (int)[19e];
 3afe: bc,b3,34          ldsbw R34,Rb3        R34 = (int)Rb3;
 3b01: a1,66,06,36       ldw   R36,666        R36 = 666;
-3b05: ef,e3,f5          call  30eb           Sub64();
+3b05: ef,e3,f5          call  30eb           Sub57();
 3b08: c7,01,9e,01,3e    stb   R3e,[19e]      [19e] = R3e;
 3b0d: 9b,01,9f,01,3e    cmpb  R3e,[19f]      
 3b12: d6,05             jge   3b19           if (R3e < [19f])  {
@@ -2470,18 +2470,18 @@
 3b27: 11,36             clrb  R36            R36 = 0;
 3b29: a3,01,b6,01,32    ldw   R32,[1b6]      R32 = [1b6];
 3b2e: a0,ac,34          ldw   R34,Rac        R34 = Rac;
-3b31: ef,b2,f5          call  30e6           Sub62();
+3b31: ef,b2,f5          call  30e6           Sub55();
 3b34: c3,01,b6,01,3e    stw   R3e,[1b6]      [1b6] = R3e;
 3b39: af,01,de,01,32    ldzbw R32,[1de]      R32 = (uns)[1de];
 3b3e: ac,b4,34          ldzbw R34,Rb4        R34 = (uns)Rb4;
 3b41: a3,f3,8c,01,36    ldw   R36,[Rf2+18c]  R36 = [73ae];
-3b46: ef,9d,f5          call  30e6           Sub62();
+3b46: ef,9d,f5          call  30e6           Sub55();
 3b49: c7,01,de,01,3e    stb   R3e,[1de]      [1de] = R3e;
 3b4e: 3f,2c,4d          jb    B7,R2c,3b9e    if (!B7_R2c)  {
 3b51: a3,01,02,01,32    ldw   R32,[102]      R32 = [102];
 3b56: a3,01,12,01,34    ldw   R34,[112]      R34 = [112];
 3b5b: a3,fa,5c,36       ldw   R36,[Rfa+5c]   R36 = [7e70];
-3b5f: ef,84,f5          call  30e6           Sub62();
+3b5f: ef,84,f5          call  30e6           Sub55();
 3b62: c3,01,02,01,3e    stw   R3e,[102]      [102] = R3e;
 3b67: 37,a0,3e          jnb   B7,Ra0,3ba8    if (!B7_Ra0) goto 3ba8;
 3b6a: 77,f3,a6,01,00    ad2b  0,[Rf2+1a6]    ZERO += [73c8];
@@ -2495,7 +2495,7 @@
 3b86: a3,01,12,01,34    ldw   R34,[112]      R34 = [112];
 3b8b: a3,01,3c,03,32    ldw   R32,[33c]      R32 = [33c];
 3b90: a3,fa,5c,36       ldw   R36,[Rfa+5c]   R36 = [7e70];
-3b94: ef,4f,f5          call  30e6           Sub62();
+3b94: ef,4f,f5          call  30e6           Sub55();
 3b97: c3,01,3c,03,3e    stw   R3e,[33c]      [33c] = R3e;
 3b9c: 20,0a             sjmp  3ba8           goto 3ba8; }
 3b9e: a3,01,3c,03,3e    ldw   R3e,[33c]      R3e = [33c];
@@ -2509,7 +2509,7 @@
 3bbd: 91,08,2d          orb   R2d,8          R2d |= 8; }
 3bc0: f0                ret                  return;
 
-  Sub19:
+  Sub18:
 3bc1: 3f,2c,06          jb    B7,R2c,3bca    if (!B7_R2c)  {
 3bc4: 8b,fa,1c,d2       cmpw  Rd2,[Rfa+1c]   
 3bc8: d1,05             jleu  3bcf           if ((uns) Rd2 <= [7e30]) goto 3bcf; }
@@ -2606,7 +2606,7 @@
 3ce7: c3,01,e2,01,00    stw   0,[1e2]        [1e2] = ZERO;
 3cec: f0                ret                  return;
 
-  Sub69:
+  Sub62:
 3ced: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;
 3cf2: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 3cf5: ef,a0,f3          call  3098           UUWordLU();
@@ -2707,7 +2707,7 @@
 
 #starting at 3E27 is choosing fueling table(s)
 
-  Sub71:
+  Sub64:
 3e27: 31,2b,0e          jnb   B1,R2b,3e38    if (!B1_R2b) goto 3e38;
 3e2a: 4b,f3,82,01,96,3c sb3w  R3c,R96,[Rf2+182] R3c = R96 - [73a4];
 3e30: d9,04             jgtu  3e36           if ((uns) R96 <= [73a4])  {
@@ -2716,7 +2716,7 @@
 3e38: 3d,2b,35          jb    B5,R2b,3e70    if (!B5_R2b)  {
 3e3b: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECT;
 3e40: b3,f3,a0,00,36    ldb   R36,[Rf2+a0]   R36 = [72c2];
-3e45: 29,33             scall 3f7a           Sub60();
+3e45: 29,33             scall 3f7a           Sub53();
 3e47: ef,4e,f2          call  3098           UUWordLU();
 3e4a: a0,38,30          ldw   R30,R38        R30 = R38;
 3e4d: 45,36,02,f0,32    ad3w  R32,Rf0,236    R32 = Scaler_for_Load_(fuel);
@@ -2754,7 +2754,7 @@
 3ebb: c3,01,04,02,3a    stw   R3a,[204]      [204] = R3a;
 3ec0: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECT;
 3ec5: b3,f3,a1,00,36    ldb   R36,[Rf2+a1]   R36 = [72c3];
-3eca: 28,ae             scall 3f7a           Sub60();
+3eca: 28,ae             scall 3f7a           Sub53();
 3ecc: ef,c9,f1          call  3098           UUWordLU();
 3ecf: a0,38,30          ldw   R30,R38        R30 = R38;
 3ed2: 45,82,01,f0,32    ad3w  R32,Rf0,182    R32 = Scaler_for_Time(fuel);
@@ -2812,7 +2812,7 @@
 3f76: 71,fd,2b          an2b  R2b,fd         R2b &= fd; }
 3f79: f0                ret                  return;
 
-  Sub60:
+  Sub53:
 3f7a: fe,5c,b3,36,34    sml3b R34,R36,Rb3    R34W = R36B * Rb3B;
 3f7f: 13,36             negb  R36            R36 = -R36;
 3f81: 75,7f,36          ad2b  R36,7f         R36 += 7f;
@@ -2822,7 +2822,7 @@
 3f8e: 64,36,34          ad2w  R34,R36        R34 += R36;
 3f91: f0                ret                  return;
 
-  Sub20:
+  Sub19:
 3f92: 3f,2c,16          jb    B7,R2c,3fab    if (!B7_R2c)  {
 3f95: 38,24,13          jb    B0,R24,3fab    if (!B0_R24)  {
 3f98: 9b,f3,ea,02,b2    cmpb  Rb2,[Rf2+2ea]  
@@ -2978,7 +2978,7 @@
 41ae: c7,01,94,01,00    stb   0,[194]        [194] = ZERO; } } }
 41b3: f0                ret                  return;
 
-  Sub72:
+  Sub65:
 41b4: ad,80,3a          ldzbw R3a,80         R3a = (uns)80;
 41b7: 3f,2c,1c          jb    B7,R2c,41d6    if (B7_R2c) goto 41d6;
 41ba: 36,29,1b          jnb   B6,R29,41d8    if (!B6_R29) goto 41d8;
@@ -2987,7 +2987,7 @@
 41c5: d7,11             jne   41d8           if (ZERO != [7515]) goto 41d8; }
 41c7: b3,01,50,01,30    ldb   R30,[150]      R30 = [150];
 41cc: 7d,0c,30          ml2b  R30,c          R30 *= c;
-41cf: 28,bb             scall 428c           Sub73();
+41cf: 28,bb             scall 428c           Sub66();
 41d1: af,33,a6,02,3a    ldzbw R3a,[R32+2a6]  R3a = (uns)[R32+2a6];
 41d6: 20,79             sjmp  4251           goto 4251;
 41d8: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;
@@ -3001,20 +3001,20 @@
 41f6: b0,ab,30          ldb   R30,Rab        R30 = Rab;
 41f9: 7d,0c,30          ml2b  R30,c          R30 *= c;
 41fc: 74,a9,30          ad2b  R30,Ra9        R30 += Ra9;
-41ff: 28,8b             scall 428c           Sub73();
+41ff: 28,8b             scall 428c           Sub66();
 4201: b3,33,a6,02,3c    ldb   R3c,[R32+2a6]  R3c = [R32+2a6];
 4206: 07,30             incw  R30            R30++;
-4208: 28,82             scall 428c           Sub73();
+4208: 28,82             scall 428c           Sub66();
 420a: b3,33,a6,02,3d    ldb   R3d,[R32+2a6]  R3d = [R32+2a6];
 420f: 99,08,ab          cmpb  Rab,8          
 4212: d3,05             jnc   4219           if ((uns) Rab >= 8)  {
 4214: a0,3c,3e          ldw   R3e,R3c        R3e = R3c;
 4217: 20,13             sjmp  422c           goto 422c; }
 4219: 75,0b,30          ad2b  R30,b          R30 += b;
-421c: 28,6e             scall 428c           Sub73();
+421c: 28,6e             scall 428c           Sub66();
 421e: b3,33,a6,02,3e    ldb   R3e,[R32+2a6]  R3e = [R32+2a6];
 4223: 07,30             incw  R30            R30++;
-4225: 28,65             scall 428c           Sub73();
+4225: 28,65             scall 428c           Sub66();
 4227: b3,33,a6,02,3f    ldb   R3f,[R32+2a6]  R3f = [R32+2a6];
 422c: 98,00,a9          cmpb  Ra9,0          
 422f: d7,0d             jne   423e           if (Ra9 == ZERO)  {
@@ -3049,7 +3049,7 @@
 4287: a1,00,80,96       ldw   R96,8000       R96 = 8000; } }
 428b: f0                ret                  return;
 
-  Sub73:
+  Sub66:
 428c: a0,30,32          ldw   R32,R30        R32 = R30;
 428f: 45,32,04,f8,34    ad3w  R34,Rf8,432    R34 = TBL7DA8;
 4294: 64,30,34          ad2w  R34,R30        R34 += R30;
@@ -3059,7 +3059,7 @@
 429f: a0,34,32          ldw   R32,R34        R32 = R34; }
 42a2: f0                ret                  return;
 
-  Sub21:
+  Sub20:
 42a3: 88,ae,00          cmpw  0,Rae          
 42a6: df,06             je    42ae           if (ZERO != Engine_RPM)  {
 42a8: 9b,fa,46,cb       cmpb  Rcb,[Rfa+46]   
@@ -3091,14 +3091,14 @@
 42fe: bd,ff,38          ldsbw R38,ff         R38 = (int)ff; }
 4301: 20,c5             sjmp  43c8           goto 43c8;
 4303: 3a,a1,05          jb    B2,Ra1,430b    if (!B2_Ra1)  {
-4306: ef,e4,f9          call  3ced           Sub69();
+4306: ef,e4,f9          call  3ced           Sub62();
 4309: 20,03             sjmp  430e           goto 430e; }
-430b: ef,19,fb          call  3e27           Sub71();
-430e: ef,a3,fe          call  41b4           Sub72();
-4311: ef,81,02          call  4595           Sub74();
-4314: ef,5a,e0          call  2371           Sub76();
+430b: ef,19,fb          call  3e27           Sub64();
+430e: ef,a3,fe          call  41b4           Sub65();
+4311: ef,81,02          call  4595           Sub67();
+4314: ef,5a,e0          call  2371           common_Sub1();
 
-  Sub30:
+  Sub29:
 4317: 4d,be,08,9a,34    ml3w  R34,R9a,8be    R34L = R9a * 8be;
 431c: 8c,96,34          divw  R34,R96        R34 = R34L / R96;
 431f: 6f,01,c2,01,34    ml2w  R34,[1c2]      R34L *= [1c2];
@@ -3130,7 +3130,7 @@
 436a: d5,03             jnv   436f           if (OV)  {
 436c: bd,ff,38          ldsbw R38,ff         R38 = (int)ff; }
 436f: a0,38,3c          ldw   R3c,R38        R3c = R38;
-4372: 28,d2             scall 4446           Sub75();
+4372: 28,d2             scall 4446           Sub68();
 4374: a0,3c,38          ldw   R38,R3c        R38 = R3c;
 4377: 6c,30,38          ml2w  R38,R30        R38L *= R30;
 437a: 0c,07,38          shrdw R38,7          R38 = R38L / 80;
@@ -3197,7 +3197,7 @@
 4442: 71,df,51          an2b  R51,df         R51 &= df;
 4445: f0                ret                  return;
 
-  Sub75:
+  Sub68:
 4446: 3b,27,05          jb    B3,R27,444e    if (!B3_R27)  {
 4449: 71,7f,a1          an2b  Ra1,7f         Ra1 &= 7f;
 444c: 20,0f             sjmp  445d           goto 445d; }
@@ -3298,7 +3298,7 @@
 4592: a4,fb,f0          ??    164,251,-16  -1116,-19472,
 
 
-  Sub74:
+  Sub67:
 4595: b3,fa,2e,18       ldb   R18,[Rfa+2e]   R18 = [7e42];
 4599: 3f,2c,10          jb    B7,R2c,45ac    if (!B7_R2c)  {
 459c: 38,24,0d          jb    B0,R24,45ac    if (!B0_R24)  {
@@ -3311,7 +3311,7 @@
 45b1: f0                ret                  return;
 45b2: 45,02,02,f0,32    ad3w  R32,Rf0,202    R32 = Scaler_for_ECT;
 45b7: b3,f3,8a,01,36    ldb   R36,[Rf2+18a]  R36 = [73ac];
-45bc: ef,bb,f9          call  3f7a           Sub60();
+45bc: ef,bb,f9          call  3f7a           Sub53();
 45bf: ef,d6,ea          call  3098           UUWordLU();
 45c2: a0,38,a8          ldw   Ra8,R38        Ra8 = R38;
 45c5: 45,6e,02,f0,32    ad3w  R32,Rf0,26e    R32 = Scaler_for_MAP;
@@ -3388,7 +3388,7 @@
 46bb: 03,98             negw  R98            R98 = -R98; }
 46bd: f0                ret                  return;
 
-  Sub22:
+  Sub21:
 46be: a3,01,2a,01,14    ldw   R14,[12a]      R14 = [12a];
 46c3: 89,00,04,14       cmpw  R14,400        
 46c7: d3,04             jnc   46cd           if ((uns) R14 >= 400)  {
@@ -3397,7 +3397,7 @@
 46cd: 91,80,46          orb   R46,80         R46 |= 80;
 46d0: f0                ret                  return;
 
-  Sub23:
+  Sub22:
 46d1: 37,2c,02          jnb   B7,R2c,46d6    if (B7_R2c)  {
 46d4: 20,b3             sjmp  4789           goto 4789; }
 46d6: 4f,01,c2,01,9a,34 ml3w  R34,R9a,[1c2]  R34L = R9a * [1c2];
@@ -3455,7 +3455,7 @@
 4781: d3,03             jnc   4786           if ((uns) R3a >= 2)  {
 4783: b1,ff,3b          ldb   R3b,ff         R3b = ff; }
 4786: c4,d8,3b          stb   R3b,Rd8        Rd8 = R3b;
-4789: ef,68,01          call  48f4           Sub77();
+4789: ef,68,01          call  48f4           Sub69();
 478c: 45,1a,02,f0,32    ad3w  R32,Rf0,21a    R32 = Scaler_for_RPM;
 4791: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 4794: ef,07,e9          call  309e           SSWordLU();
@@ -3551,7 +3551,7 @@
 48ba: 09,01,34          shlw  R34,1          R34 *= 2;
 48bd: a3,01,96,01,32    ldw   R32,[196]      R32 = [196];
 48c2: a3,fa,60,36       ldw   R36,[Rfa+60]   R36 = [7e74];
-48c6: ef,22,e8          call  30eb           Sub64();
+48c6: ef,22,e8          call  30eb           Sub57();
 48c9: c3,01,96,01,3e    stw   R3e,[196]      [196] = R3e;
 48ce: fe,4f,fa,5a,3e,38 sml3w R38,R3e,[Rfa+5a] R38L = R3e * [7e6e];
 48d4: 0d,02,38          shldw R38,2          R38L *= 4;
@@ -3567,7 +3567,7 @@
 48f0: c0,d4,3a          stw   R3a,Rd4        Rd4 = R3a;
 48f3: f0                ret                  return;
 
-  Sub77:
+  Sub69:
 48f4: 37,2c,02          jnb   B7,R2c,48f9    if (B7_R2c)  {
 48f7: 20,89             sjmp  4982           goto 4982; }
 48f9: a3,f3,aa,01,30    ldw   R30,[Rf2+1aa]  R30 = [73cc];
@@ -3600,7 +3600,7 @@
 4951: d6,03             jge   4956           if (Rb2 < R30)  {
 4953: 91,02,2c          orb   R2c,2          R2c |= 2; }
 4956: 45,56,00,fa,30    ad3w  R30,Rfa,56     R30 = 7e6a;
-495b: ef,03,e8          call  3161           Sub78();
+495b: ef,03,e8          call  3161           Sub70();
 495e: db,22             jc    4982           if ((uns) 0 < 7e6a)  {
 4960: 3f,a0,1f          jb    B7,Ra0,4982    if (!B7_Ra0)  {
 4963: b3,01,9f,01,30    ldb   R30,[19f]      R30 = [19f];
@@ -3616,7 +3616,7 @@
 4982: 71,fe,28          an2b  R28,fe         R28 &= fe;
 4985: f0                ret                  return;
 
-  Sub24:
+  Sub23:
 4986: 38,26,0a          jb    B0,R26,4993    if (!B0_R26)  {
 4989: b3,01,e0,01,30    ldb   R30,[1e0]      R30 = [1e0];
 498e: 98,00,30          cmpb  R30,0          
@@ -3666,7 +3666,7 @@
 #Starting at 4A58 is choosing spark table(s)
 
 
-  Sub25:
+  Sub24:
 4a27: 30,24,0a          jnb   B0,R24,4a34    if (!B0_R24) goto 4a34;
 4a2a: 37,2c,03          jnb   B7,R2c,4a30    if (B7_R2c)  {
 4a2d: 71,fb,25          an2b  R25,fb         R25 &= fb; }
@@ -3711,7 +3711,7 @@
 4aa4: a1,ff,00,34       ldw   R34,ff         R34 = ff;
 4aa8: af,01,88,02,32    ldzbw R32,[288]      R32 = (uns)[288];
 4aad: a3,fa,5e,36       ldw   R36,[Rfa+5e]   R36 = [7e72];
-4ab1: ef,32,e6          call  30e6           Sub62();
+4ab1: ef,32,e6          call  30e6           Sub55();
 4ab4: a0,3e,34          ldw   R34,R3e        R34 = R3e;
 4ab7: c7,01,88,02,34    stb   R34,[288]      [288] = R34;
 4abc: 5c,34,3b,40       ml3b  R40,R3b,R34    R40W = R3bB * R34B;
@@ -3725,13 +3725,13 @@
 4ad9: ef,40,e6          call  311c           UTabLU();
 4adc: ac,3b,3c          ldzbw R3c,R3b        R3c = (uns)R3b;
 4adf: b3,f3,b6,01,36    ldb   R36,[Rf2+1b6]  R36 = [73d8];
-4ae4: ef,93,f4          call  3f7a           Sub60();
+4ae4: ef,93,f4          call  3f7a           Sub53();
 4ae7: a0,34,36          ldw   R36,R34        R36 = R34;
 4aea: 09,01,36          shlw  R36,1          R36 *= 2;
 4aed: c7,01,c8,01,37    stb   R37,[1c8]      [1c8] = R37;
 4af2: 45,c4,00,f4,32    ad3w  R32,Rf4,c4     R32 = 75e8;
 4af7: ef,99,e5          call  3093           UUWordLU();
-4afa: 28,e3             scall 4bdf           Sub79();
+4afa: 28,e3             scall 4bdf           Sub71();
 4afc: a0,3c,42          ldw   R42,R3c        R42 = R3c;
 4aff: c7,01,f4,01,3c    stb   R3c,[1f4]      [1f4] = R3c;
 4b04: a0,a8,30          ldw   R30,Ra8        R30 = Ra8;
@@ -3779,10 +3779,10 @@
 4b94: ef,04,e5          call  309b           UUWordLU();
 4b97: 64,38,3c          ad2w  R3c,R38        R3c += R38; }
 4b9a: af,fa,66,38       ldzbw R38,[Rfa+66]   R38 = (uns)[7e7a];
-4b9e: 28,3f             scall 4bdf           Sub79();
+4b9e: 28,3f             scall 4bdf           Sub71();
 4ba0: 67,ff,94,00,3c    ad2w  R3c,[Rfe+94]   R3c += [7fb6];
 4ba5: af,01,38,01,38    ldzbw R38,[138]      R38 = (uns)[138];
-4baa: 28,33             scall 4bdf           Sub79();
+4baa: 28,33             scall 4bdf           Sub71();
 4bac: bf,f3,b3,01,38    ldsbw R38,[Rf2+1b3]  R38 = (int)[73d5];
 4bb1: 88,38,3c          cmpw  R3c,R38        
 4bb4: d6,03             jge   4bb9           if (R3c < R38)  {
@@ -3800,18 +3800,18 @@
 4bdb: 71,fb,28          an2b  R28,fb         R28 &= fb;
 4bde: f0                ret                  return;
 
-  Sub79:
+  Sub71:
 4bdf: fe,6c,38,3c       sml2w R3c,R38        R3cL *= R38;
 4be3: 0c,07,3c          shrdw R3c,7          R3c = R3cL / 80;
 4be6: f0                ret                  return;
 
-  Sub80:
+  Sub72:
 4be7: 64,18,16          ad2w  R16,R18        R16 += R18;
 4bea: d3,04             jnc   4bf0           if ((uns) R16 >= R18)  {
 4bec: a1,00,ff,16       ldw   R16,ff00       R16 = ff00; }
 4bf0: f0                ret                  return;
 
-  Sub28:
+  Sub27:
 4bf1: 35,2f,01          jnb   B5,R2f,4bf5    if (B5_R2f)  {
 4bf4: f0                ret                  return; }
 4bf5: 45,8c,00,fa,74    ad3w  R74,Rfa,8c     R74 = 7ea0;
@@ -3902,7 +3902,7 @@
 4d10: df,05             je    4d17           if (ZERO != [74e4])  {
 4d12: a3,f3,c2,02,36    ldw   R36,[Rf2+2c2]  R36 = [74e4]; } }
 4d17: a3,72,10,32       ldw   R32,[R72+10]   R32 = [R72+10];
-4d1b: ef,c8,e3          call  30e6           Sub62();
+4d1b: ef,c8,e3          call  30e6           Sub55();
 4d1e: c3,72,10,3e       stw   R3e,[R72+10]   [R72+10] = R3e;
 4d22: 08,02,3e          shrw  R3e,2          R3e = R3e / 4;
 4d25: a0,3e,40          ldw   R40,R3e        R40 = R3e;
@@ -3924,7 +3924,7 @@
 4d59: 67,74,26,40       ad2w  R40,[R74+26]   R40 += [R74+26];
 4d5d: 99,01,14          cmpb  R14,1          
 4d60: d1,02             jleu  4d64           if ((uns) R14 > 1 )  {
-4d62: 2e,83             scall 4be7           Sub80(); }
+4d62: 2e,83             scall 4be7           Sub72(); }
 4d64: 01,20             clrw  R20            R20 = 0;
 4d66: 34,92,20          jnb   B4,R92,4d89    if (!B4_R92) goto 4d89;
 4d69: 3e,26,0d          jb    B6,R26,4d79    if (!B6_R26)  {
@@ -3936,7 +3936,7 @@
 4d7d: a3,74,40,18       ldw   R18,[R74+40]   R18 = [R74+40];
 4d81: a0,18,20          ldw   R20,R18        R20 = R18;
 4d84: 38,14,02          jb    B0,R14,4d89    if (!B0_R14)  {
-4d87: 2e,5e             scall 4be7           Sub80(); }
+4d87: 2e,5e             scall 4be7           Sub72(); }
 4d89: 3f,2c,09          jb    B7,R2c,4d95    if (!B7_R2c)  {
 4d8c: 3c,92,55          jb    B4,R92,4de4    if (B4_R92) goto 4de4;
 4d8f: 34,c8,0d          jnb   B4,Rc8,4d9f    if (!B4_Rc8) goto 4d9f;
@@ -4005,7 +4005,7 @@
 4e7f: 3b,26,12          jb    B3,R26,4e94    if (B3_R26) goto 4e94;
 4e82: c3,72,0c,00       stw   0,[R72+c]      [R72+c] = ZERO;
 4e86: c7,72,18,00       stb   0,[R72+18]     [R72+18] = ZERO;
-4e8a: 2d,5b             scall 4be7           Sub80();
+4e8a: 2d,5b             scall 4be7           Sub72();
 4e8c: 91,08,26          orb   R26,8          R26 |= 8;
 4e8f: 20,03             sjmp  4e94           goto 4e94;
 4e91: 71,f7,26          an2b  R26,f7         R26 &= f7;
@@ -4054,7 +4054,7 @@
 4f2b: 88,32,34          cmpw  R34,R32        
 4f2e: d9,04             jgtu  4f34           if ((uns) R34 <= R32)  {
 4f30: a3,74,14,36       ldw   R36,[R74+14]   R36 = [R74+14]; }
-4f34: ef,af,e1          call  30e6           Sub62();
+4f34: ef,af,e1          call  30e6           Sub55();
 4f37: c3,72,06,3e       stw   R3e,[R72+6]    [R72+6] = R3e;
 4f3b: 3b,27,51          jb    B3,R27,4f8f    if (B3_R27) goto 4f8f;
 4f3e: c3,72,0e,ae       stw   Rae,[R72+e]    [R72+e] = Engine_RPM;
@@ -4356,7 +4356,7 @@
 5316: f8,f0             ??    248,-16  -3848,
 
 
-  Sub27:
+  Sub26:
 5318: 3f,2c,3b          jb    B7,R2c,5356    if (B7_R2c) goto 5356;
 531b: b3,f3,cc,01,14    ldb   R14,[Rf2+1cc]  R14 = [73ee];
 5320: 7b,f3,cd,01,14    sb2b  R14,[Rf2+1cd]  R14 -= [73ef];
@@ -4414,7 +4414,7 @@
 53c4: c7,01,a8,01,33    stb   R33,[1a8]      [1a8] = R33;
 53c9: f0                ret                  return;
 
-  Sub12:
+  Sub11:
 53ca: 3f,2c,02          jb    B7,R2c,53cf    if (!B7_R2c)  {
 53cd: 20,11             sjmp  53e0           goto 53e0; }
 53cf: 11,cb             clrb  Rcb            Rcb = 0;
@@ -4469,10 +4469,10 @@
 5464: 9b,01,32,01,30    cmpb  R30,[132]      
 5469: db,05             jc    5470           if ((uns) R30 < [132])  {
 546b: c7,01,32,01,30    stb   R30,[132]      [132] = R30; } }
-5470: ef,01,00          call  5474           Sub81();
+5470: ef,01,00          call  5474           Sub73();
 5473: f0                ret                  return;
 
-  Sub81:
+  Sub73:
 5474: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 5477: 9f,01,f9,01,34    divb  R34,[1f9]      R34 = R34 / [1f9];
 547c: d5,03             jnv   5481           if (OV)  {
@@ -4565,7 +4565,7 @@
 559c: 91,08,2b          orb   R2b,8          R2b |= 8; } } } } } }
 559f: f0                ret                  return;
 
-  Sub13:
+  Sub12:
 55a0: a3,01,30,01,3c    ldw   R3c,[130]      R3c = [130];
 55a5: a1,53,56,30       ldw   R30,5653       R30 = 5653;
 55a9: a0,06,36          ldw   R36,R6         R36 = IO_TIMER;
@@ -4658,7 +4658,7 @@
 56c3: 28,00             ??     40,  0 -25856,
 
 
-  Sub43:
+  Sub47:
 56c5: 9b,f4,02,bb       cmpb  Rbb,[Rf4+2]    
 56c9: d1,0a             jleu  56d5           if ((uns) Rbb > [7526] )  {
 56cb: b1,01,bb          ldb   Rbb,1          Rbb = 1;
@@ -4702,7 +4702,7 @@
 573d: a1,cd,8c,c4       ldw   Rc4,8ccd       Rc4 = 8ccd; }
 5741: f0                ret                  return;
 
-  Sub82:
+  Sub74:
 5742: a3,01,be,00,58    ldw   R58,[be]       R58 = [be];
 5747: 6c,c4,58          ml2w  R58,Rc4        R58L *= Rc4;
 574a: 99,40,5b          cmpb  R5b,40         
@@ -4756,7 +4756,7 @@
 57d5: 91,01,2e          orb   R2e,1          R2e |= 1; }
 57d8: f0                ret                  return;
 
-  Sub90:
+  Sub75:
 57d9: 37,2f,04          jnb   B7,R2f,57e0    if (B7_R2f)  {
 57dc: 71,df,50          an2b  R50,df         R50 &= df;
 57df: f0                ret                  return; }
@@ -4774,9 +4774,9 @@
 57ff: df,04             je    5805           if (ZERO != [R7a+1])  {
 5801: 91,20,50          orb   R50,20         R50 |= 20;
 5804: f0                ret                  return; }
-5805: 28,15             scall 581c           Sub91();
+5805: 28,15             scall 581c           Sub76();
 5807: a1,ee,22,90       ldw   R90,22ee       R90 = 22ee;
-580b: ef,a5,cd          call  25b3           Sub50();
+580b: ef,a5,cd          call  25b3           common_Sub4();
 580e: f0                ret                  return;
 
 
@@ -4785,7 +4785,7 @@
 5819: 71,df,50          ??    113,223, 80  20703,
 
 
-  Sub91:
+  Sub76:
 581c: 4c,c4,be,54       ml3w  R54,Rbe,Rc4    R54L = Rbe * Rc4;
 5820: 0f,5a,54          norm  0,R5a          R5a = nrml(0L);
 5823: 4f,01,6a,01,56,54 ml3w  R54,R56,[16a]  R54L = R56 * [16a];
@@ -4801,11 +4801,11 @@
 5847: f8                clc                  CY = 0;
 5848: f0                ret                  return;
 
-  Sub52:
+  Sub43:
 5849: 67,01,6c,01,7c    ad2w  R7c,[16c]      R7c += [16c];
 584e: 27,f4             sjmp  5844           goto 5844;
 
-  Sub26:
+  Sub25:
 5850: 45,24,01,f4,32    ad3w  R32,Rf4,124    R32 = 7648;
 5855: a0,ae,34          ldw   R34,Rae        R34 = Engine_RPM;
 5858: ef,43,d8          call  309e           SSWordLU();
@@ -4847,7 +4847,7 @@
 58d5: a3,01,6e,01,32    ldw   R32,[16e]      R32 = [16e];
 58da: a0,ac,34          ldw   R34,Rac        R34 = Rac;
 58dd: a3,fa,6e,36       ldw   R36,[Rfa+6e]   R36 = [7e82];
-58e1: ef,02,d8          call  30e6           Sub62();
+58e1: ef,02,d8          call  30e6           Sub55();
 58e4: c3,01,6e,01,3e    stw   R3e,[16e]      [16e] = R3e;
 58e9: a3,01,6e,01,3a    ldw   R3a,[16e]      R3a = [16e];
 58ee: a0,ac,38          ldw   R38,Rac        R38 = Rac;
@@ -4895,7 +4895,7 @@
 596f: c3,01,d8,01,00    stw   0,[1d8]        [1d8] = ZERO;
 5974: f0                ret                  return;
 
-  Sub35:
+  Sub36:
 5975: 71,7f,83          an2b  R83,7f         R83 &= 7f;
 5978: 37,8e,03          jnb   B7,R8e,597e    if (B7_R8e)  {
 597b: 91,10,4e          orb   R4e,10         R4e |= 10; }
@@ -4933,8 +4933,8 @@
 5a0b: cb                ??    -53 
 
 
-  Sub29:
-5a0c: 2a,a7             scall 5cb5           Sub92();
+  Sub28:
+5a0c: 2a,a7             scall 5cb5           Sub77();
 5a0e: 71,ef,2e          an2b  R2e,ef         R2e &= ef;
 5a11: 3a,2a,0c          jb    B2,R2a,5a20    if (!B2_VIP_mode_flag)  {
 5a14: a3,72,a4,42       ldw   R42,[R72+a4]   R42 = [R72-5c];
@@ -4948,12 +4948,12 @@
 5a2c: 20,3b             sjmp  5a69           goto 5a69;
 5a2e: 3b,de,03          jb    B3,Rde,5a34    if (!B3_Rde)  {
 5a31: 35,4a,03          jnb   B5,R4a,5a37    if (!B5_R4a) goto 5a37; }
-5a34: ef,ce,05          call  6005           Sub33();
+5a34: ef,ce,05          call  6005           Sub32();
 5a37: e7,c9,0d          jump  6803           goto 6803;
 5a3a: 35,2a,0d          jnb   B5,R2a,5a4a    if (B5_VIP_mode_flag)  {
 5a3d: 33,92,f7          jnb   B3,R92,5a37    if (!B3_R92) goto 5a37;
 5a40: 3e,a1,f4          jb    B6,Ra1,5a37    if (B6_Ra1) goto 5a37;
-5a43: ef,de,05          call  6024           Sub93(82,2);
+5a43: ef,de,05          call  6024           Sub78(82,2);
 5a46: 82,02             #args  
 5a48: 20,12             sjmp  5a5c           goto 5a5c; }
 5a4a: 3f,2c,16          jb    B7,R2c,5a63    if (!B7_R2c)  {
@@ -4962,25 +4962,25 @@
 5a53: 32,2a,28          jnb   B2,R2a,5a7e    if (!B2_VIP_mode_flag) return;
 5a56: 3b,2a,22          jb    B3,R2a,5a7b    if (B3_VIP_mode_flag) goto 5a7b;
 5a59: 91,20,2a          orb   R2a,20         VIP_mode_flag |= 20;
-5a5c: 28,21             scall 5a7f           Sub94();
+5a5c: 28,21             scall 5a7f           Sub79();
 5a5e: cb,3b,50,5d       push  [R3a+5d50]     push([R3a+5d50]);
 5a62: f0                ret                  return; } }
 5a63: 33,92,0c          jnb   B3,R92,5a72    if (B3_R92)  {
 5a66: 3c,2a,15          jb    B4,R2a,5a7e    if (B4_VIP_mode_flag) return;
-5a69: 28,14             scall 5a7f           Sub94();
+5a69: 28,14             scall 5a7f           Sub79();
 5a6b: cb,3b,3e,5d       push  [R3a+5d3e]     push([R3a+5d3e]);
 5a6f: f0                ret                  return;
 
-  Sub96:
-5a70: 22,1a             sjmp  5c8c           goto Sub97; }
+  Sub81:
+5a70: 22,1a             sjmp  5c8c           goto Sub82; }
 5a72: a3,72,aa,42       ldw   R42,[R72+aa]   R42 = [R72-56];
 5a76: 99,08,43          cmpb  R43,8          
 5a79: d3,03             jnc   5a7e           if ((uns) R43 < 8) return;
 5a7b: 91,10,2e          orb   R2e,10         R2e |= 10;
 5a7e: f0                ret                  return;
 
-  Sub94:
-5a7f: 29,de             scall 5c5f           Sub95();
+  Sub79:
+5a7f: 29,de             scall 5c5f           Sub80();
 5a81: b3,f3,93,02,42    ldb   R42,[Rf2+293]  R42 = [74b5];
 5a86: 38,42,08          jb    B0,R42,5a91    if (!B0_R42)  {
 5a89: 99,0e,38          cmpb  R38,e          
@@ -4989,38 +4989,38 @@
 5a91: ac,38,3a          ldzbw R3a,R38        R3a = (uns)R38;
 5a94: 09,01,3a          shlw  R3a,1          R3a *= 2;
 5a97: cc,42             pop   R42            R42 = pop();
-5a99: c9,70,5a          push  5a70           push(Sub96);
+5a99: c9,70,5a          push  5a70           push(Sub81);
 5a9c: 88,00,40          cmpw  R40,0          
 5a9f: df,02             je    5aa3           if (R40 != ZERO)  {
 5aa1: 21,a5             sjmp  5c48           goto 5c48; }
 5aa3: c8,42             push  R42            push(R42);
 5aa5: f0                ret                  return;
 
-  Sub99:
+  Sub84:
 5aa6: 11,32             clrb  R32            R32 = 0;
 5aa8: 11,33             clrb  R33            R33 = 0;
 5aaa: 11,19             clrb  R19            R19 = 0;
 5aac: b3,fb,d0,00,33    ldb   R33,[Rfa+d0]   R33 = [7ee4];
 5ab1: 91,04,de          orb   Rde,4          Rde |= 4;
 5ab4: 91,08,a2          orb   Ra2,8          Ra2 |= 8;
-5ab7: 28,ae             scall 5b67           Sub125();
-5ab9: 29,72             scall 5c2d           Sub128();
+5ab7: 28,ae             scall 5b67           Sub109();
+5ab9: 29,72             scall 5c2d           Sub112();
 5abb: 71,fb,de          an2b  Rde,fb         Rde &= fb;
 5abe: 71,f7,a2          an2b  Ra2,f7         Ra2 &= f7;
 5ac1: 20,a1             sjmp  5b64           goto 5b64;
 
-  Sub156:
+  Sub139:
 5ac3: 91,10,29          orb   R29,10         R29 |= 10;
 5ac6: 71,ef,de          an2b  Rde,ef         Rde &= ef;
 5ac9: 91,08,a2          orb   Ra2,8          Ra2 |= 8;
 5acc: a1,02,00,dc       ldw   Rdc,2          Rdc = 2;
-5ad0: ef,69,01          call  5c3c           Sub127();
+5ad0: ef,69,01          call  5c3c           Sub111();
 5ad3: 71,f7,a2          an2b  Ra2,f7         Ra2 &= f7;
 5ad6: f0                ret                  return;
 
-  Sub116:
+  Sub101:
 5ad7: 11,19             clrb  R19            R19 = 0;
-5ad9: ef,26,08          call  6302           Sub126(0);
+5ad9: ef,26,08          call  6302           Sub110(0);
 5adc: 00                #args  
 5add: 01,30             clrw  R30            R30 = 0;
 5adf: 11,32             clrb  R32            R32 = 0;
@@ -5031,7 +5031,7 @@
 5aed: b0,33,32          ldb   R32,R33        R32 = R33;
 5af0: 18,04,33          shrb  R33,4          R33 = R33 / 10;
 5af3: 71,0f,32          an2b  R32,f          R32 &= f;
-5af6: 28,6f             scall 5b67           Sub125();
+5af6: 28,6f             scall 5b67           Sub109();
 5af8: 07,30             incw  R30            R30++;
 5afa: 89,13,00,30       cmpw  R30,13         
 5afe: db,0d             jc    5b0d           if ((uns) R30 >= 13) goto 5b0d;
@@ -5040,7 +5040,7 @@
 5b05: d7,06             jne   5b0d           if (R30 == ZERO)  {
 5b07: 17,32             incb  R32            R32++;
 5b09: 17,33             incb  R33            R33++;
-5b0b: 28,5a             scall 5b67           Sub125(); }
+5b0b: 28,5a             scall 5b67           Sub109(); }
 5b0d: 91,10,e0          orb   Re0,10         Re0 |= 10;
 5b10: 34,e0,1e          jnb   B4,Re0,5b31    if (!B4_Re0) goto 5b31;
 5b13: 30,de,1b          jnb   B0,Rde,5b31    if (!B0_Rde) goto 5b31;
@@ -5051,7 +5051,7 @@
 5b22: 21,9b             sjmp  5cbf           goto 5cbf; } }
 5b24: 71,fe,de          an2b  Rde,fe         Rde &= fe;
 5b27: 32,de,35          jnb   B2,Rde,5b5f    if (!B2_Rde) goto 5b5f;
-5b2a: 29,01             scall 5c2d           Sub128();
+5b2a: 29,01             scall 5c2d           Sub112();
 5b2c: b1,04,19          ldb   R19,4          R19 = 4;
 5b2f: 27,ac             sjmp  5add           goto 5add;
 5b31: 34,e0,14          jnb   B4,Re0,5b48    if (!B4_Re0) goto 5b48;
@@ -5062,8 +5062,8 @@
 5b40: 91,02,2e          orb   R2e,2          R2e |= 2; }
 5b43: 31,de,19          jnb   B1,Rde,5b5f    if (!B1_Rde) goto 5b5f;
 5b46: 27,95             sjmp  5add           goto 5add;
-5b48: 34,e0,1c          jnb   B4,Re0,5b67    if (!B4_Re0) goto Sub125;
-5b4b: 31,de,19          jnb   B1,Rde,5b67    if (!B1_Rde) goto Sub125;
+5b48: 34,e0,1c          jnb   B4,Re0,5b67    if (!B4_Re0) goto Sub109;
+5b4b: 31,de,19          jnb   B1,Rde,5b67    if (!B1_Rde) goto Sub109;
 5b4e: 71,ef,e0          an2b  Re0,ef         Re0 &= ef;
 5b51: 36,2a,0b          jnb   B6,R2a,5b5f    if (B6_VIP_mode_flag)  {
 5b54: 31,2e,08          jnb   B1,R2e,5b5f    if (B1_R2e)  {
@@ -5071,10 +5071,10 @@
 5b5a: b1,05,39          ldb   R39,5          R39 = 5;
 5b5d: 21,60             sjmp  5cbf           goto 5cbf; } }
 5b5f: 71,fd,de          an2b  Rde,fd         Rde &= fd;
-5b62: 28,c9             scall 5c2d           Sub128();
+5b62: 28,c9             scall 5c2d           Sub112();
 5b64: e7,a5,09          jump  650c           goto 650c;
 
-  Sub125:
+  Sub109:
 5b67: 30,de,05          jnb   B0,Rde,5b6f    if (B0_Rde)  {
 5b6a: 91,10,de          orb   Rde,10         Rde |= 10;
 5b6d: 20,09             sjmp  5b78           goto 5b78; }
@@ -5087,7 +5087,7 @@
 5b80: 15,33             decb  R33            R33--;
 5b82: 99,07,19          cmpb  R19,7          
 5b85: d3,0b             jnc   5b92           if ((uns) R19 < 7) goto 5b92;
-5b87: 28,b3             scall 5c3c           Sub127();
+5b87: 28,b3             scall 5c3c           Sub111();
 5b89: e0,33,10          djnz  R33,5b9c       R33--;
                                              if (R33 !=  0) goto 5b9c;
 5b8c: 33,a2,01          jnb   B3,Ra2,5b90    if (B3_Ra2)  {
@@ -5106,13 +5106,13 @@
 5ba9: 17,19             incb  R19            R19++;
 5bab: 99,07,19          cmpb  R19,7          
 5bae: d3,04             jnc   5bb4           if ((uns) R19 >= 7)  {
-5bb0: 28,8a             scall 5c3c           Sub127();
+5bb0: 28,8a             scall 5c3c           Sub111();
 5bb2: 20,0e             sjmp  5bc2           goto 5bc2; }
 5bb4: 08,02,dc          shrw  Rdc,2          Rdc = Rdc / 4;
 5bb7: 17,19             incb  R19            R19++;
 5bb9: 99,07,19          cmpb  R19,7          
 5bbc: d3,04             jnc   5bc2           if ((uns) R19 >= 7)  {
-5bbe: 28,7c             scall 5c3c           Sub127();
+5bbe: 28,7c             scall 5c3c           Sub111();
 5bc0: 20,05             sjmp  5bc7           goto 5bc7; }
 5bc2: 08,02,dc          shrw  Rdc,2          Rdc = Rdc / 4;
 5bc5: 17,19             incb  R19            R19++;
@@ -5121,7 +5121,7 @@
 5bca: 17,32             incb  R32            R32++;
 5bcc: 99,07,19          cmpb  R19,7          
 5bcf: d3,0a             jnc   5bdb           if ((uns) R19 >= 7)  {
-5bd1: 28,69             scall 5c3c           Sub127();
+5bd1: 28,69             scall 5c3c           Sub111();
 5bd3: e0,32,0f          djnz  R32,5be5       R32--;
                                              if (R32 !=  0) goto 5be5;
 5bd6: 91,01,e0          orb   Re0,1          Re0 |= 1;
@@ -5142,10 +5142,10 @@
 5bfb: 17,19             incb  R19            R19++;
 5bfd: 15,39             decb  R39            R39--;
 
-  Sub143:
+  Sub126:
 5bff: 99,07,19          cmpb  R19,7          
 5c02: d3,ef             jnc   5bf3           if ((uns) R19 < 7) goto 5bf3;
-5c04: 28,36             scall 5c3c           Sub127();
+5c04: 28,36             scall 5c3c           Sub111();
 5c06: 91,01,e0          orb   Re0,1          Re0 |= 1;
 5c09: 27,e8             sjmp  5bf3           goto 5bf3; }
 5c0b: 38,e0,05          jb    B0,Re0,5c13    if (!B0_Re0)  {
@@ -5156,22 +5156,22 @@
 5c19: 65,00,80,dc       ad2w  Rdc,8000       Rdc += 8000;
 5c1d: 99,07,19          cmpb  R19,7          
 5c20: d3,05             jnc   5c27           if ((uns) R19 >= 7)  {
-5c22: 28,18             scall 5c3c           Sub127();
+5c22: 28,18             scall 5c3c           Sub111();
 5c24: 91,01,e0          orb   Re0,1          Re0 |= 1; }
 5c27: 71,f7,a2          an2b  Ra2,f7         Ra2 &= f7;
 5c2a: 27,c4             sjmp  5bf0           goto 5bf0;
 5c2c: f0                ret                  return;
 
-  Sub128:
+  Sub112:
 5c2d: 99,07,19          cmpb  R19,7          
 5c30: d3,03             jnc   5c35           if ((uns) R19 >= 7)  {
-5c32: 28,08             scall 5c3c           Sub127();
+5c32: 28,08             scall 5c3c           Sub111();
 5c34: f0                ret                  return; }
 5c35: 08,02,dc          shrw  Rdc,2          Rdc = Rdc / 4;
 5c38: 17,19             incb  R19            R19++;
-5c3a: 27,f1             sjmp  5c2d           goto Sub128;
+5c3a: 27,f1             sjmp  5c2d           goto Sub112;
 
-  Sub127:
+  Sub111:
 5c3c: cc,40             pop   R40            R40 = pop();
 5c3e: cc,14             pop   R14            R14 = pop();
 5c40: 11,19             clrb  R19            R19 = 0;
@@ -5184,11 +5184,11 @@
 5c54: c8,14             push  R14            push(R14);
 5c56: c8,40             push  R40            push(R40);
 5c58: 01,40             clrw  R40            R40 = 0;
-5c5a: 28,30             scall 5c8c           Sub97();
+5c5a: 28,30             scall 5c8c           Sub82();
 5c5c: 01,dc             clrw  Rdc            Rdc = 0;
 5c5e: f0                ret                  return;
 
-  Sub95:
+  Sub80:
 5c5f: a3,72,fc,30       ldw   R30,[R72+fc]   R30 = [R72-4];
 5c63: b3,72,e3,32       ldb   R32,[R72+e3]   R32 = [R72-1d];
 5c67: b3,72,e4,33       ldb   R33,[R72+e4]   R33 = [R72-1c];
@@ -5202,7 +5202,7 @@
 5c87: b3,72,e6,19       ldb   R19,[R72+e6]   R19 = [R72-1a];
 5c8b: f0                ret                  return;
 
-  Sub97:
+  Sub82:
 5c8c: c3,72,fc,30       stw   R30,[R72+fc]   [R72-4] = R30;
 5c90: c7,72,e3,32       stb   R32,[R72+e3]   [R72-1d] = R32;
 5c94: c7,72,e4,33       stb   R33,[R72+e4]   [R72-1c] = R33;
@@ -5215,12 +5215,12 @@
 5cb0: c7,72,e6,19       stb   R19,[R72+e6]   [R72-1a] = R19;
 5cb4: f0                ret                  return;
 
-  Sub92:
+  Sub77:
 5cb5: 45,3c,02,f2,74    ad3w  R74,Rf2,23c    R74 = 745e;
 5cba: a1,80,01,72       ldw   R72,180        R72 = 180;
 5cbe: f0                ret                  return;
 5cbf: 91,08,a2          orb   Ra2,8          Ra2 |= 8;
-5cc2: 2f,3b             scall 5bff           Sub143();
+5cc2: 2f,3b             scall 5bff           Sub126();
 5cc4: b1,04,32          ldb   R32,4          R32 = 4;
 5cc7: b1,01,33          ldb   R33,1          R33 = 1;
 5cca: 01,30             clrw  R30            R30 = 0;
@@ -5238,7 +5238,7 @@
 5cee: 3f,37,11          jb    B7,R37,5d02    if (B7_R37) goto 5d02;
 5cf1: 11,32             clrb  R32            R32 = 0; }
 5cf3: 17,32             incb  R32            R32++;
-5cf5: 2e,70             scall 5b67           Sub125();
+5cf5: 2e,70             scall 5b67           Sub109();
 5cf7: 20,1d             sjmp  5d16           goto 5d16;
 5cf9: 0f,42,34          norm  0,R42          R42 = nrml(0L);
 5cfc: 37,37,17          jnb   B7,R37,5d16    if (!B7_R37) goto 5d16;
@@ -5248,7 +5248,7 @@
 5d0a: 09,04,32          shlw  R32,4          R32 *= 10;
 5d0d: df,ea             je    5cf9           if (R32 == 10) goto 5cf9;
 5d0f: 18,04,32          shrb  R32,4          R32 = R32 / 10;
-5d12: 2e,53             scall 5b67           Sub125();
+5d12: 2e,53             scall 5b67           Sub109();
 5d14: 27,e3             sjmp  5cf9           goto 5cf9;
 5d16: 38,de,08          jb    B0,Rde,5d21    if (!B0_Rde)  {
 5d19: 32,de,05          jnb   B2,Rde,5d21    if (B2_Rde)  {
@@ -5266,67 +5266,67 @@
 5d34: 64,53,55,63,65    ??    100, 83, 85, 99,101  21348, 25429, 12645,
 5d39: 31,32,33,34,35    ??     49, 50, 51, 52, 53  13106, 13620,
 
-5d3e: 73,60             vect  6073,          Sub118
-5d40: 4c,66             vect  664c,          Sub119
+5d3e: 73,60             vect  6073,          Sub102
+5d40: 4c,66             vect  664c,          Sub103
 5d42: 08,00             vect  8,             INT_MASK
-5d44: ee,60             vect  60ee,          Sub120
-5d46: 2e,61             vect  612e,          Sub121
-5d48: e8,61             vect  61e8,          Sub122
-5d4a: d7,5a             vect  5ad7,          Sub116
-5d4c: 91,62             vect  6291,          Sub123
-5d4e: a9,62             vect  62a9,          Sub124
-5d50: 32,63             vect  6332,          Sub98
-5d52: a6,5a             vect  5aa6,          Sub99
-5d54: 68,63             vect  6368,          Sub100
-5d56: 6e,63             vect  636e,          Sub101
-5d58: 8b,63             vect  638b,          Sub102
-5d5a: c2,63             vect  63c2,          Sub103
-5d5c: d8,63             vect  63d8,          Sub104
-5d5e: ec,63             vect  63ec,          Sub105
-5d60: 45,66             vect  6645,          Sub106
+5d44: ee,60             vect  60ee,          Sub104
+5d46: 2e,61             vect  612e,          Sub105
+5d48: e8,61             vect  61e8,          Sub106
+5d4a: d7,5a             vect  5ad7,          Sub101
+5d4c: 91,62             vect  6291,          Sub107
+5d4e: a9,62             vect  62a9,          Sub108
+5d50: 32,63             vect  6332,          Sub83
+5d52: a6,5a             vect  5aa6,          Sub84
+5d54: 68,63             vect  6368,          Sub85
+5d56: 6e,63             vect  636e,          Sub86
+5d58: 8b,63             vect  638b,          Sub87
+5d5a: c2,63             vect  63c2,          Sub88
+5d5c: d8,63             vect  63d8,          Sub89
+5d5e: ec,63             vect  63ec,          Sub90
+5d60: 45,66             vect  6645,          Sub91
 5d62: 18,92             vect  9218,
-5d64: 72,64             vect  6472,          Sub107
-5d66: 9e,64             vect  649e,          Sub108
-5d68: 13,65             vect  6513,          Sub109
-5d6a: 21,65             vect  6521,          Sub110
-5d6c: 3c,65             vect  653c,          Sub111
-5d6e: 53,65             vect  6553,          Sub112
-5d70: 6f,65             vect  656f,          Sub113
-5d72: 7c,65             vect  657c,          Sub114
-5d74: 40,66             vect  6640,          Sub115
-5d76: 45,66             vect  6645,          Sub106
+5d64: 72,64             vect  6472,          Sub92
+5d66: 9e,64             vect  649e,          Sub93
+5d68: 13,65             vect  6513,          Sub94
+5d6a: 21,65             vect  6521,          Sub95
+5d6c: 3c,65             vect  653c,          Sub96
+5d6e: 53,65             vect  6553,          Sub97
+5d70: 6f,65             vect  656f,          Sub98
+5d72: 7c,65             vect  657c,          Sub99
+5d74: 40,66             vect  6640,          Sub100
+5d76: 45,66             vect  6645,          Sub91
 5d78: 01,00             vect  1,             ZERO
-5d7a: d7,5a             vect  5ad7,          Sub116
-5d7c: 45,66             vect  6645,          Sub106
+5d7a: d7,5a             vect  5ad7,          Sub101
+5d7c: 45,66             vect  6645,          Sub91
 5d7e: f0,00             vect  f0,
-5d80: 45,66             vect  6645,          Sub106
+5d80: 45,66             vect  6645,          Sub91
 5d82: f0,00             vect  f0,
-5d84: 45,66             vect  6645,          Sub106
+5d84: 45,66             vect  6645,          Sub91
 5d86: f0,00             vect  f0,
-5d88: 45,66             vect  6645,          Sub106
+5d88: 45,66             vect  6645,          Sub91
 5d8a: f0,00             vect  f0,
-5d8c: fd,67             vect  67fd,          Sub117
+5d8c: fd,67             vect  67fd,          common_Sub18
 
 
-  Sub8:
-5d8e: 2f,25             scall 5cb5           Sub92();
+  Sub7:
+5d8e: 2f,25             scall 5cb5           Sub77();
 5d90: 3a,2a,01          jb    B2,R2a,5d94    if (!B2_VIP_mode_flag)  {
 5d93: f0                ret                  return; }
-5d94: ef,0b,04          call  61a2           Sub129(3a,92,e,1);
+5d94: ef,0b,04          call  61a2           Sub113(3a,92,e,1);
 5d97: 3a,92,0e,01       #args  
-5d9b: 29,a3             scall 5f40           Sub145(18,20,e);
+5d9b: 29,a3             scall 5f40           Sub128(18,20,e);
 5d9d: 18,20,0e          #args  
-5da0: ef,ff,03          call  61a2           Sub129(e,1,3c,92);
+5da0: ef,ff,03          call  61a2           Sub113(e,1,3c,92);
 5da3: 0e,01,3c,92       #args  
-5da7: 29,97             scall 5f40           Sub145(20,80,9);
+5da7: 29,97             scall 5f40           Sub128(20,80,9);
 5da9: 20,80,09          #args  
-5dac: ef,f3,03          call  61a2           Sub129(28,92,10,1);
+5dac: ef,f3,03          call  61a2           Sub113(28,92,10,1);
 5daf: 28,92,10,01       #args  
-5db3: 29,8b             scall 5f40           Sub145(8,10,10);
+5db3: 29,8b             scall 5f40           Sub128(8,10,10);
 5db5: 08,10,10          #args  
-5db8: ef,e7,03          call  61a2           Sub129(10,1,2a,92);
+5db8: ef,e7,03          call  61a2           Sub113(10,1,2a,92);
 5dbb: 10,01,2a,92       #args  
-5dbf: 29,7f             scall 5f40           Sub145(10,40,b);
+5dbf: 29,7f             scall 5f40           Sub128(10,40,b);
 5dc1: 10,40,0b          #args  
 5dc4: b3,72,2b,1a       ldb   R1a,[R72+2b]   R1a = [R72+2b];
 5dc8: 9b,f3,68,02,1a    cmpb  R1a,[Rf2+268]  
@@ -5337,12 +5337,12 @@
 
 5dd4: 20,11             ??     32, 17   4384,
 
-5dd6: ef,c9,03          call  61a2           Sub129(ae,1,66,92);
+5dd6: ef,c9,03          call  61a2           Sub113(ae,1,66,92);
 5dd9: ae,01,66,92       #args  
 5ddd: 3e,a2,07          jb    B6,Ra2,5de7    if (!B6_Ra2)  {
-5de0: ef,bf,03          call  61a2           Sub129(64,92,ae,1);
+5de0: ef,bf,03          call  61a2           Sub113(64,92,ae,1);
 5de3: 64,92,ae,01       #args                }
-5de7: 29,57             scall 5f40           Sub145(1,8,1);
+5de7: 29,57             scall 5f40           Sub128(1,8,1);
 5de9: 01,08,01          #args  
 5dec: 9b,ff,29,01,00    cmpb  0,[Rfe+129]    
 5df1: d7,02             jne   5df5           if (ZERO == [804b])  {
@@ -5352,29 +5352,29 @@
 5dfa: a3,72,fa,42       ldw   R42,[R72+fa]   R42 = [R72-6];
 5dfe: 8b,f3,90,02,42    cmpw  R42,[Rf2+290]  
 5e03: db,f3             jc    5df8           if ((uns) R42 >= [74b2]) goto 5df8;
-5e05: 2a,1d             scall 6024           Sub93(82,2);
+5e05: 2a,1d             scall 6024           Sub78(82,2);
 5e07: 82,02             #args  
-5e09: ef,c1,06          call  64cd           Sub146(82,2,86,92,7a,92,32,34);
+5e09: ef,c1,06          call  64cd           Sub129(82,2,86,92,7a,92,32,34);
 5e0c: 82,02,86,92,7a,92,32,34 #args  
 5e14: b0,1a,40          ldb   R40,R1a        R40 = R1a;
-5e17: 2a,3a             scall 6053           Sub155(31);
+5e17: 2a,3a             scall 6053           Sub138(31);
 5e19: 31                #args  
-5e1a: 29,24             scall 5f40           Sub145(2a,80,3);
+5e1a: 29,24             scall 5f40           Sub128(2a,80,3);
 5e1c: 2a,80,03          #args  
-5e1f: 2a,32             scall 6053           Sub155(35);
+5e1f: 2a,32             scall 6053           Sub138(35);
 5e21: 35                #args  
-5e22: 29,1c             scall 5f40           Sub145(32,8,7);
+5e22: 29,1c             scall 5f40           Sub128(32,8,7);
 5e24: 32,08,07          #args  
 5e27: 34,2e,05          jnb   B4,R2e,5e2f    if (!B4_R2e) goto 5e2f;
 5e2a: 71,7f,2e          an2b  R2e,7f         R2e &= 7f;
 5e2d: 20,48             sjmp  5e77           goto 5e77;
-5e2f: 2a,22             scall 6053           Sub155(32);
+5e2f: 2a,22             scall 6053           Sub138(32);
 5e31: 32                #args  
-5e32: 29,0c             scall 5f40           Sub145(2,40,4);
+5e32: 29,0c             scall 5f40           Sub128(2,40,4);
 5e34: 02,40,04          #args  
-5e37: 2a,1a             scall 6053           Sub155(34);
+5e37: 2a,1a             scall 6053           Sub138(34);
 5e39: 34                #args  
-5e3a: 29,04             scall 5f40           Sub145(2,10,6);
+5e3a: 29,04             scall 5f40           Sub128(2,10,6);
 5e3c: 02,10,06          #args  
 5e3f: 9b,f3,75,02,d7    cmpb  Rd7,[Rf2+275]  
 5e44: de,e4             jlt   5e2a           if (Rd7 < [7497]) goto 5e2a;
@@ -5385,31 +5385,31 @@
 5e54: 3f,2e,07          jb    B7,R2e,5e5e    if (!B7_R2e)  {
 5e57: 91,80,2e          orb   R2e,80         R2e |= 80;
 5e5a: c7,72,0b,00       stb   0,[R72+b]      [R72+b] = ZERO; }
-5e5e: 29,c4             scall 6024           Sub93(84,2);
+5e5e: 29,c4             scall 6024           Sub78(84,2);
 5e60: 84,02             #args  
-5e62: ef,3d,03          call  61a2           Sub129(84,2,8c,92);
+5e62: ef,3d,03          call  61a2           Sub113(84,2,8c,92);
 5e65: 84,02,8c,92       #args  
 5e69: 36,a2,0b          jnb   B6,Ra2,5e77    if (B6_Ra2)  {
 5e6c: b3,72,0b,18       ldb   R18,[R72+b]    R18 = [R72+b];
 5e70: 9b,f3,74,02,18    cmpb  R18,[Rf2+274]  
 5e75: d3,05             jnc   5e7c           if ((uns) R18 < [7496]) goto 5e7c; }
-5e77: 28,c7             scall 5f40           Sub145(2,20,5);
+5e77: 28,c7             scall 5f40           Sub128(2,20,5);
 5e79: 02,20,05          #args  
 5e7c: 8b,f3,36,02,ae    cmpw  Rae,[Rf2+236]  
 5e81: d3,3e             jnc   5ec1           if ((uns) Engine_RPM < [7458]) goto 5ec1;
 5e83: 71,bf,a2          an2b  Ra2,bf         Ra2 &= bf;
-5e86: ef,19,03          call  61a2           Sub129(2a,1,38,92);
+5e86: ef,19,03          call  61a2           Sub113(2a,1,38,92);
 5e89: 2a,01,38,92       #args  
 5e8d: 36,a2,0c          jnb   B6,Ra2,5e9c    if (B6_Ra2)  {
 5e90: 91,10,2f          orb   R2f,10         R2f |= 10;
 5e93: c7,72,e6,00       stb   0,[R72+e6]     [R72-1a] = ZERO;
 5e97: c3,73,ec,00,00    stw   0,[R72+ec]     [R72+ec] = ZERO; }
-5e9c: 28,a2             scall 5f40           Sub145(1,40,0);
+5e9c: 28,a2             scall 5f40           Sub128(1,40,0);
 5e9e: 01,40,00          #args  
 5ea1: 3c,2f,0e          jb    B4,R2f,5eb2    if (!B4_R2f)  {
-5ea4: ef,fb,02          call  61a2           Sub129(6c,2,34,92);
+5ea4: ef,fb,02          call  61a2           Sub113(6c,2,34,92);
 5ea7: 6c,02,34,92       #args  
-5eab: 28,93             scall 5f40           Sub145(1,20,12);
+5eab: 28,93             scall 5f40           Sub128(1,20,12);
 5ead: 01,20,12          #args  
 5eb0: 20,14             sjmp  5ec6           goto 5ec6; }
 5eb2: a3,73,ec,00,42    ldw   R42,[R72+ec]   R42 = [R72+ec];
@@ -5417,31 +5417,31 @@
 5ebc: d1,08             jleu  5ec6           if ((uns) R43 <= [7454]) goto 5ec6;
 5ebe: 71,ef,2f          an2b  R2f,ef         R2f &= ef;
 5ec1: c3,73,ec,00,00    stw   0,[R72+ec]     [R72+ec] = ZERO;
-5ec6: 2a,da             scall 61a2           Sub129(96,91,1a,1);
+5ec6: 2a,da             scall 61a2           Sub113(96,91,1a,1);
 5ec8: 96,91,1a,01       #args  
-5ecc: 28,72             scall 5f40           Sub145(38,2,f);
+5ecc: 28,72             scall 5f40           Sub128(38,2,f);
 5ece: 38,02,0f          #args  
-5ed1: 2a,cf             scall 61a2           Sub129(1a,1,94,91);
+5ed1: 2a,cf             scall 61a2           Sub113(1a,1,94,91);
 5ed3: 1a,01,94,91       #args  
-5ed7: 28,67             scall 5f40           Sub145(40,8,a);
+5ed7: 28,67             scall 5f40           Sub128(40,8,a);
 5ed9: 40,08,0a          #args  
-5edc: 29,81             scall 605f           Sub147(3,80);
+5edc: 29,81             scall 605f           Sub130(3,80);
 5ede: 03,80             #args  
-5ee0: 29,7d             scall 605f           Sub147(c,40);
+5ee0: 29,7d             scall 605f           Sub130(c,40);
 5ee2: 0c,40             #args  
-5ee4: 29,79             scall 605f           Sub147(30,20);
+5ee4: 29,79             scall 605f           Sub130(30,20);
 5ee6: 30,20             #args  
-5ee8: 29,75             scall 605f           Sub147(c0,10);
+5ee8: 29,75             scall 605f           Sub130(c0,10);
 5eea: c0,10             #args  
 5eec: 34,2e,0d          jnb   B4,R2e,5efc    if (B4_R2e)  {
 5eef: 37,e0,0a          jnb   B7,Re0,5efc    if (B7_Re0)  {
 5ef2: 71,7f,e0          an2b  Re0,7f         Re0 &= 7f;
-5ef5: 29,1b             scall 6012           Sub148();
+5ef5: 29,1b             scall 6012           Sub131();
 5ef7: 91,80,2f          orb   R2f,80         R2f |= 80;
 5efa: 20,08             sjmp  5f04           goto 5f04; } }
 5efc: 71,7f,2f          an2b  R2f,7f         R2f &= 7f;
 5eff: 31,45,02          jnb   B1,R45,5f04    if (B1_R45)  {
-5f02: 29,16             scall 601a           Sub131(); }
+5f02: 29,16             scall 601a           Sub115(); }
 5f04: 39,25,38          jb    B1,R25,5f3f    if (B1_R25) return;
 5f07: 3f,2c,35          jb    B7,R2c,5f3f    if (B7_R2c) return;
 5f0a: 38,24,32          jb    B0,R24,5f3f    if (B0_R24) return;
@@ -5462,8 +5462,8 @@
 5f3c: 71,fe,a2          an2b  Ra2,fe         Ra2 &= fe;
 5f3f: f0                ret                  return;
 
-  Sub145:
-5f40: 28,f8             scall 603a           Sub130(3);
+  Sub128:
+5f40: 28,f8             scall 603a           Sub114(3);
 5f42: 03                #args  
 5f43: bc,1c,14          ldsbw R14,R1c        R14 = (int)R1c;
 5f46: 45,54,01,14,1e    ad3w  R1e,R14,154    R1e = R14 + 154;
@@ -5534,38 +5534,38 @@
 5fff: c7,73,01,01,34    stb   R34,[R72+101]  [R72+101] = R34; }
 6004: f0                ret                  return;
 
-  Sub33:
+  Sub32:
 6005: a1,17,00,16       ldw   R16,17         R16 = 17;
 6009: c7,17,12,03,00    stb   0,[R16+312]    [R16+312] = ZERO;
 600e: e0,16,f8          djnz  R16,6009       R16--;
                                              if (R16 !=  0) goto 6009;
 6011: f0                ret                  return;
 
-  Sub148:
+  Sub131:
 6012: 91,80,de          orb   Rde,80         Rde |= 80;
 6015: 91,02,45          orb   R45,2          R45 |= 2;
 6018: 20,06             sjmp  6020           goto 6020;
 
-  Sub131:
+  Sub115:
 601a: 91,40,de          orb   Rde,40         Rde |= 40;
 601d: 71,fd,45          an2b  R45,fd         R45 &= fd;
 6020: 91,20,4a          orb   R4a,20         R4a |= 20;
 6023: f0                ret                  return;
 
-  Sub93:
-6024: 28,14             scall 603a           Sub130(2);
+  Sub78:
+6024: 28,14             scall 603a           Sub114(2);
 6026: 02                #args  
 6027: a2,1a,32          ldw   R32,[R1a]      R32 = [R1a];
 602a: a3,72,92,34       ldw   R34,[R72+92]   R34 = [R72-6e];
 602e: a3,f3,8e,02,36    ldw   R36,[Rf2+28e]  R36 = [74b0];
-6033: ef,b0,d0          call  30e6           Sub62();
+6033: ef,b0,d0          call  30e6           Sub55();
 6036: c2,1a,3e          stw   R3e,[R1a]      [R1a] = R3e;
 6039: f0                ret                  return;
 
-  Sub130:
+  Sub114:
 603a: a1,1a,00,16       ldw   R16,1a         R16 = 1a;
 
-  Sub136:
+  Sub119:
 603e: cc,3c             pop   R3c            R3c = pop();
 6040: b2,3d,3a          ldb   R3a,[R3c++]    R3a = [R3c++];
 6043: cc,42             pop   R42            R42 = pop();
@@ -5577,16 +5577,16 @@
 6050: c8,3c             push  R3c            push(R3c);
 6052: f0                ret                  return;
 
-  Sub155:
-6053: 2f,e5             scall 603a           Sub130(1);
+  Sub138:
+6053: 2f,e5             scall 603a           Sub114(1);
 6055: 01                #args  
 6056: 98,1a,40          cmpb  R40,R1a        
 6059: d7,03             jne   605e           if (R40 == R1a)  {
 605b: 91,40,a2          orb   Ra2,40         Ra2 |= 40; }
 605e: f0                ret                  return;
 
-  Sub147:
-605f: 2f,d9             scall 603a           Sub130(2);
+  Sub130:
+605f: 2f,d9             scall 603a           Sub114(2);
 6061: 02                #args  
 6062: 73,73,01,01,1a    an2b  R1a,[R72+101]  R1a &= [R72+101];
 6067: df,04             je    606d           if (R1a != [R72+101])  {
@@ -5596,24 +5596,24 @@
 606f: 70,1b,2d          an2b  R2d,R1b        R2d &= R1b;
 6072: f0                ret                  return;
 
-  Sub118:
+  Sub102:
 6073: 3e,2e,2d          jb    B6,R2e,60a3    if (B6_R2e) goto 60a3;
-6076: ef,a1,ff          call  601a           Sub131();
-6079: ef,23,06          call  669f           Sub132();
-607c: ef,e0,fb          call  5c5f           Sub95();
+6076: ef,a1,ff          call  601a           Sub115();
+6079: ef,23,06          call  669f           common_Sub16();
+607c: ef,e0,fb          call  5c5f           Sub80();
 607f: 34,2a,05          jnb   B4,R2a,6087    if (B4_VIP_mode_flag)  {
-6082: ef,8d,ff          call  6012           Sub148();
+6082: ef,8d,ff          call  6012           Sub131();
 6085: 27,fb             sjmp  6082           goto 6082; }
-6087: ef,38,00          call  60c2           Sub158();
+6087: ef,38,00          call  60c2           Sub140();
 608a: 11,38             clrb  R38            R38 = 0;
 608c: 38,30,11          jb    B0,R30,60a0    if (!B0_R30)  {
 608f: fa                di                   disable ints;
 6090: ff                nop                  
 6091: 71,df,4a          an2b  R4a,df         R4a &= df;
 6094: 45,0a,00,06,3a    ad3w  R3a,R6,a       R3a = IO_TIMER + a;
-6099: 28,23             scall 60be           Sub159();
-609b: 28,12             scall 60af           Sub160();
-609d: 28,10             scall 60af           Sub160();
+6099: 28,23             scall 60be           Sub141();
+609b: 28,12             scall 60af           Sub142();
+609d: 28,10             scall 60af           Sub142();
 609f: fb                ei                   enable ints; }
 60a0: 91,40,2e          orb   R2e,40         R2e |= 40;
 60a3: 32,2a,08          jnb   B2,R2a,60ae    if (B2_VIP_mode_flag)  {
@@ -5622,21 +5622,21 @@
 60ac: 20,79             sjmp  6127           goto 6127; } }
 60ae: f0                ret                  return;
 
-  Sub160:
+  Sub142:
 60af: b1,19,0d          ldb   Rd,19          HSO_CMD = 19;
-60b2: 28,06             scall 60ba           Sub161();
+60b2: 28,06             scall 60ba           Sub143();
 60b4: b1,09,0d          ldb   Rd,9           HSO_CMD = 9;
-60b7: 28,01             scall 60ba           Sub161();
+60b7: 28,01             scall 60ba           Sub143();
 60b9: f0                ret                  return;
 
-  Sub161:
+  Sub143:
 60ba: 65,9a,02,3a       ad2w  R3a,29a        R3a += 29a;
 
-  Sub159:
+  Sub141:
 60be: a0,3a,0e          ldw   Re,R3a         HSO_TIME = R3a;
 60c1: f0                ret                  return;
 
-  Sub158:
+  Sub140:
 60c2: 01,30             clrw  R30            R30 = 0;
 60c4: 01,3c             clrw  R3c            R3c = 0;
 60c6: a1,e8,60,42       ldw   R42,60e8       R42 = 60e8;
@@ -5649,7 +5649,7 @@
 60db: 27,ed             sjmp  60ca           goto 60ca;
 60dd: 88,3c,00          cmpw  0,R3c          
 60e0: df,03             je    60e5           if (ZERO != R3c)  {
-60e2: 2a,1e             scall 6302           Sub126(15);
+60e2: 2a,1e             scall 6302           Sub110(15);
 60e4: 15                #args                }
 60e5: 20,40             sjmp  6127           goto 6127;
 
@@ -5661,93 +5661,93 @@
 60ea: fe,9f,00,00       ??    254,159,  0,  0 -24578,     0,
 
 
-  Sub120:
+  Sub104:
 60ee: b0,30,32          ldb   R32,R30        R32 = R30;
-60f1: 28,b7             scall 61aa           Sub133(3a,92,e,1,61);
+60f1: 28,b7             scall 61aa           Sub116(3a,92,e,1,61);
 60f3: 3a,92,0e,01,61    #args  
-60f8: 28,b0             scall 61aa           Sub133(e,1,3c,92,51);
+60f8: 28,b0             scall 61aa           Sub116(e,1,3c,92,51);
 60fa: 0e,01,3c,92,51    #args  
 60ff: 98,30,32          cmpb  R32,R30        
 6102: d7,09             jne   610d           if (R32 == R30)  {
-6104: 2a,0d             scall 6313           Sub144(e,1,54,92,52,92,21);
+6104: 2a,0d             scall 6313           Sub127(e,1,54,92,52,92,21);
 6106: 0e,01,54,92,52,92,21 #args             }
 610d: b3,72,2b,42       ldb   R42,[R72+2b]   R42 = [R72+2b];
 6111: 9b,f3,68,02,42    cmpb  R42,[Rf2+268]  
 6116: d1,05             jleu  611d           if ((uns) R42 > [748a] )  {
-6118: 29,e8             scall 6302           Sub126(22);
+6118: 29,e8             scall 6302           Sub110(22);
 611a: 22                #args  
 611b: 20,0a             sjmp  6127           goto 6127; }
-611d: ef,f3,01          call  6313           Sub144(ae,1,5c,92,5e,92,22);
+611d: ef,f3,01          call  6313           Sub127(ae,1,5c,92,5e,92,22);
 6120: ae,01,5c,92,5e,92,22 #args  
 6127: c7,72,0b,00       stb   0,[R72+b]      [R72+b] = ZERO;
 612b: 17,38             incb  R38            R38++;
 612d: f0                ret                  return;
 
-  Sub121:
-612e: 28,52             scall 6182           Sub134();
+  Sub105:
+612e: 28,52             scall 6182           Sub117();
 6130: b0,30,32          ldb   R32,R30        R32 = R30;
-6133: 28,75             scall 61aa           Sub133(28,92,10,1,64);
+6133: 28,75             scall 61aa           Sub116(28,92,10,1,64);
 6135: 28,92,10,01,64    #args  
-613a: 28,6e             scall 61aa           Sub133(10,1,2a,92,54);
+613a: 28,6e             scall 61aa           Sub116(10,1,2a,92,54);
 613c: 10,01,2a,92,54    #args  
 6141: 98,30,32          cmpb  R32,R30        
 6144: d7,09             jne   614f           if (R32 == R30)  {
-6146: 29,cb             scall 6313           Sub144(10,1,4c,92,4a,92,24);
+6146: 29,cb             scall 6313           Sub127(10,1,4c,92,4a,92,24);
 6148: 10,01,4c,92,4a,92,24 #args             }
 614f: 9b,ff,29,01,00    cmpb  0,[Rfe+129]    
 6154: df,0b             je    6161           if (ZERO != [804b])  {
-6156: ef,74,03          call  64cd           Sub146(12,1,7e,92,7a,92,34,34);
+6156: ef,74,03          call  64cd           Sub129(12,1,7e,92,7a,92,34,34);
 6159: 12,01,7e,92,7a,92,34,34 #args          }
 6161: 34,92,05          jnb   B4,R92,6169    if (B4_R92)  {
-6164: 29,9c             scall 6302           Sub126(67);
+6164: 29,9c             scall 6302           Sub110(67);
 6166: 67                #args  
 6167: 20,09             sjmp  6172           goto 6172; }
-6169: 29,a8             scall 6313           Sub144(14,1,b8,92,ba,92,67);
+6169: 29,a8             scall 6313           Sub127(14,1,b8,92,ba,92,67);
 616b: 14,01,b8,92,ba,92,67 #args  
 6172: 34,e7,04          jnb   B4,Re7,6179    if (B4_Re7)  {
-6175: ef,8a,01          call  6302           Sub126(52);
+6175: ef,8a,01          call  6302           Sub110(52);
 6178: 52                #args                }
-6179: 28,2f             scall 61aa           Sub133(10,92,8,1,19);
+6179: 28,2f             scall 61aa           Sub116(10,92,8,1,19);
 617b: 10,92,08,01,19    #args  
 6180: 27,a9             sjmp  612b           goto 612b;
 
-  Sub134:
+  Sub117:
 6182: b0,30,32          ldb   R32,R30        R32 = R30;
-6185: 28,23             scall 61aa           Sub133(96,91,1a,1,63);
+6185: 28,23             scall 61aa           Sub116(96,91,1a,1,63);
 6187: 96,91,1a,01,63    #args  
-618c: 28,1c             scall 61aa           Sub133(1a,1,94,91,53);
+618c: 28,1c             scall 61aa           Sub116(1a,1,94,91,53);
 618e: 1a,01,94,91,53    #args  
 6193: 98,30,32          cmpb  R32,R30        
 6196: d7,09             jne   61a1           if (R32 == R30)  {
-6198: 29,79             scall 6313           Sub144(1a,1,1c,92,1e,92,23);
+6198: 29,79             scall 6313           Sub127(1a,1,1c,92,1e,92,23);
 619a: 1a,01,1c,92,1e,92,23 #args             }
 61a1: f0                ret                  return;
 
-  Sub129:
+  Sub113:
 61a2: 91,40,a2          orb   Ra2,40         Ra2 |= 40;
-61a5: 2e,93             scall 603a           Sub130(4);
+61a5: 2e,93             scall 603a           Sub114(4);
 61a7: 04                #args  
 61a8: 20,03             sjmp  61ad           goto 61ad;
 
-  Sub133:
-61aa: 2e,8e             scall 603a           Sub130(5);
+  Sub116:
+61aa: 2e,8e             scall 603a           Sub114(5);
 61ac: 05                #args  
-61ad: 28,1a             scall 61c9           Sub135(1a,0);
+61ad: 28,1a             scall 61c9           Sub118(1a,0);
 61af: 1a,00             #args  
-61b1: 28,16             scall 61c9           Sub135(1c,0);
+61b1: 28,16             scall 61c9           Sub118(1c,0);
 61b3: 1c,00             #args  
 61b5: a2,1a,42          ldw   R42,[R1a]      R42 = [R1a];
 61b8: 8a,1c,42          cmpw  R42,[R1c]      
 61bb: d1,08             jleu  61c5           if ((uns) R42 > [R1c] )  {
 61bd: 3e,a2,08          jb    B6,Ra2,61c8    if (B6_Ra2) return;
 61c0: b0,1e,1a          ldb   R1a,R1e        R1a = R1e;
-61c3: 29,40             scall 6305           Sub137(); }
+61c3: 29,40             scall 6305           Sub120(); }
 61c5: 71,bf,a2          an2b  Ra2,bf         Ra2 &= bf;
 61c8: f0                ret                  return;
 
-  Sub135:
+  Sub118:
 61c9: a1,3e,00,16       ldw   R16,3e         R16 = 3e;
-61cd: 2e,6f             scall 603e           Sub136(2);
+61cd: 2e,6f             scall 603e           Sub119(2);
 61cf: 02                #args  
 61d0: a2,3e,42          ldw   R42,[R3e]      R42 = [R3e];
 61d3: 37,43,11          jnb   B7,R43,61e7    if (B7_R43)  {
@@ -5758,34 +5758,34 @@
 61e4: c2,3e,42          stw   R42,[R3e]      [R3e] = R42; }
 61e7: f0                ret                  return;
 
-  Sub122:
-61e8: 28,9d             scall 6287           Sub138();
-61ea: 28,82             scall 626e           Sub139();
-61ec: 28,1d             scall 620b           Sub140(85,14,0,2);
+  Sub106:
+61e8: 28,9d             scall 6287           Sub121();
+61ea: 28,82             scall 626e           Sub122();
+61ec: 28,1d             scall 620b           Sub123(85,14,0,2);
 61ee: 85,14,00,02       #args  
-61f2: 28,17             scall 620b           Sub140(87,0,80,0);
+61f2: 28,17             scall 620b           Sub123(87,0,80,0);
 61f4: 87,00,80,00       #args  
 61f8: 9b,ff,29,01,00    cmpb  0,[Rfe+129]    
 61fd: df,06             je    6205           if (ZERO != [804b])  {
-61ff: 28,16             scall 6217           Sub149(84,fe,d7,0);
+61ff: 28,16             scall 6217           Sub132(84,fe,d7,0);
 6201: 84,fe,d7,00       #args                }
 6205: 91,02,2e          orb   R2e,2          R2e |= 2;
-6208: e7,35,04          jump  6640           goto Sub115;
+6208: e7,35,04          jump  6640           goto Sub100;
 
-  Sub140:
-620b: 28,31             scall 623e           Sub141();
+  Sub123:
+620b: 28,31             scall 623e           Sub124();
 620d: 84,1c,46          xrw   R46,R1c        R46 ^= R1c;
-6210: 28,46             scall 6258           Sub142();
+6210: 28,46             scall 6258           Sub125();
 6212: 84,1c,46          xrw   R46,R1c        R46 ^= R1c;
-6215: 20,57             sjmp  626e           goto Sub139;
+6215: 20,57             sjmp  626e           goto Sub122;
 
-  Sub149:
-6217: 28,25             scall 623e           Sub141();
+  Sub132:
+6217: 28,25             scall 623e           Sub124();
 6219: b1,80,42          ldb   R42,80         R42 = 80;
 621c: c6,1c,42          stb   R42,[R1c]      [R1c] = R42;
-621f: 28,37             scall 6258           Sub142();
+621f: 28,37             scall 6258           Sub125();
 6221: c6,1c,00          stb   0,[R1c]        [R1c] = ZERO;
-6224: 20,48             sjmp  626e           goto Sub139;
+6224: 20,48             sjmp  626e           goto Sub122;
 
 
 6226: 28,16,45,03,00    ??     40, 22, 69,  3,  0   5672,   837,  1536,
@@ -5795,9 +5795,9 @@
 623a: 1c,0d,20,30       ??     28, 13, 32, 48   3356, 12320,
 
 
-  Sub141:
+  Sub124:
 623e: cc,1e             pop   R1e            R1e = pop();
-6240: 2d,f8             scall 603a           Sub130(4);
+6240: 2d,f8             scall 603a           Sub114(4);
 6242: 04                #args  
 6243: c8,1e             push  R1e            push(R1e);
 6245: bc,1b,1e          ldsbw R1e,R1b        R1e = (int)R1b;
@@ -5807,45 +5807,45 @@
 6253: c3,72,d4,16       stw   R16,[R72+d4]   [R72-2c] = R16;
 6257: f0                ret                  return;
 
-  Sub142:
-6258: 28,14             scall 626e           Sub139();
+  Sub125:
+6258: 28,14             scall 626e           Sub122();
 625a: a3,72,d4,16       ldw   R16,[R72+d4]   R16 = [R72-2c];
 625e: 6b,72,8a,16       sb2w  R16,[R72+8a]   R16 -= [R72-76];
 6262: d6,02             jge   6266           if (R16 < [R72-76])  {
 6264: 03,16             negw  R16            R16 = -R16; }
 6266: 8a,1e,16          cmpw  R16,[R1e]      
 6269: db,02             jc    626d           if ((uns) R16 < [R1e])  {
-626b: 28,98             scall 6305           Sub137(); }
+626b: 28,98             scall 6305           Sub120(); }
 626d: f0                ret                  return;
 
-  Sub139:
+  Sub122:
 626e: c0,3c,06          stw   R6,R3c         R3c = IO_TIMER;
 6271: 48,3c,06,3e       sb3w  R3e,R6,R3c     R3e = IO_TIMER - R3c;
 6275: 89,1b,41,3e       cmpw  R3e,411b       
 6279: db,0b             jc    6286           if ((uns) R3e < 411b)  {
-627b: ef,0e,fa          call  5c8c           Sub97();
-627e: ef,d1,bf          call  2252           Sub7();
-6281: ef,db,f9          call  5c5f           Sub95();
+627b: ef,0e,fa          call  5c8c           Sub82();
+627e: ef,d1,bf          call  2252           Sub6();
+6281: ef,db,f9          call  5c5f           Sub80();
 6284: 27,eb             sjmp  6271           goto 6271; }
 6286: f0                ret                  return;
 
-  Sub138:
+  Sub121:
 6287: 01,46             clrw  R46            R46 = 0;
 6289: 45,03,00,06,0e    ad3w  Re,R6,3        HSO_TIME = IO_TIMER + 3;
 628e: 01,d6             clrw  Rd6            Rd6 = 0;
 6290: f0                ret                  return;
 
-  Sub123:
+  Sub107:
 6291: c3,72,d4,00       stw   0,[R72+d4]     [R72-2c] = ZERO;
 6295: 3b,de,10          jb    B3,Rde,62a8    if (!B3_Rde)  {
-6298: 2f,ed             scall 6287           Sub138();
+6298: 2f,ed             scall 6287           Sub121();
 629a: 85,00,00,46       xrw   R46,0          R46 ^= 0;
 629e: 45,03,00,06,0e    ad3w  Re,R6,3        HSO_TIME = IO_TIMER + 3;
 62a3: b1,09,0d          ldb   Rd,9           HSO_CMD = 9;
 62a6: 17,38             incb  R38            R38++; }
 62a8: f0                ret                  return;
 
-  Sub124:
+  Sub108:
 62a9: 8b,f3,24,02,ac    cmpw  Rac,[Rf2+224]  
 62ae: d1,03             jleu  62b3           if ((uns) Rac > [7446] )  {
 62b0: 91,08,e0          orb   Re0,8          Re0 |= 8; }
@@ -5869,29 +5869,29 @@
 62ea: a3,72,d4,1a       ldw   R1a,[R72+d4]   R1a = [R72-2c];
 62ee: 89,58,02,1a       cmpw  R1a,258        
 62f2: d3,0d             jnc   6301           if ((uns) R1a >= 258)  {
-62f4: 2f,91             scall 6287           Sub138();
+62f4: 2f,91             scall 6287           Sub121();
 62f6: 45,03,00,06,0e    ad3w  Re,R6,3        HSO_TIME = IO_TIMER + 3;
 62fb: b1,09,0d          ldb   Rd,9           HSO_CMD = 9;
 62fe: 71,fd,45          an2b  R45,fd         R45 &= fd; }
 6301: f0                ret                  return;
 
-  Sub126:
-6302: 2d,36             scall 603a           Sub130(1);
+  Sub110:
+6302: 2d,36             scall 603a           Sub114(1);
 6304: 01                #args  
 
-  Sub137:
+  Sub120:
 6305: 89,13,00,30       cmpw  R30,13         
 6309: db,07             jc    6312           if ((uns) R30 < 13)  {
 630b: c7,31,6e,02,1a    stb   R1a,[R30+26e]  [R30+26e] = R1a;
 6310: 07,30             incw  R30            R30++; }
 6312: f0                ret                  return;
 
-  Sub144:
-6313: 2d,25             scall 603a           Sub130(7);
+  Sub127:
+6313: 2d,25             scall 603a           Sub114(7);
 6315: 07                #args  
-6316: 2e,b1             scall 61c9           Sub135(1c,0);
+6316: 2e,b1             scall 61c9           Sub118(1c,0);
 6318: 1c,00             #args  
-631a: 2e,ad             scall 61c9           Sub135(1e,0);
+631a: 2e,ad             scall 61c9           Sub118(1e,0);
 631c: 1e,00             #args  
 631e: a2,1a,42          ldw   R42,[R1a]      R42 = [R1a];
 6321: 8a,1c,42          cmpw  R42,[R1c]      
@@ -5899,10 +5899,10 @@
 6326: 8a,1e,42          cmpw  R42,[R1e]      
 6329: d1,06             jleu  6331           if ((uns) R42 <= [R1e]) return; }
 632b: b0,20,1a          ldb   R1a,R20        R1a = R20;
-632e: ef,d4,ff          call  6305           Sub137();
+632e: ef,d4,ff          call  6305           Sub120();
 6331: f0                ret                  return;
 
-  Sub98:
+  Sub83:
 6332: a3,ff,16,01,96    ldw   R96,[Rfe+116]  R96 = [8038];
 6337: a3,ff,24,01,3e    ldw   R3e,[Rfe+124]  R3e = [8046];
 633c: c3,72,38,3e       stw   R3e,[R72+38]   [R72+38] = R3e;
@@ -5920,93 +5920,93 @@
 6363: 01,30             clrw  R30            R30 = 0;
 6365: e7,a4,01          jump  650c           goto 650c;
 
-  Sub100:
+  Sub85:
 6368: 32,de,01          jnb   B2,Rde,636c    if (B2_Rde)  {
 636b: f0                ret                  return; }
 636c: 21,9e             sjmp  650c           goto 650c;
 
-  Sub101:
-636e: 28,f2             scall 6462           Sub150(28,f1);
+  Sub86:
+636e: 28,f2             scall 6462           Sub133(28,f1);
 6370: 28,f1             #args  
 6372: a3,ff,24,01,32    ldw   R32,[Rfe+124]  R32 = [8046];
 6377: 6b,72,fa,32       sb2w  R32,[R72+fa]   R32 -= [R72-6];
 637b: d6,02             jge   637f           if (R32 < [R72-6])  {
 637d: 03,32             negw  R32            R32 = -R32; }
-637f: 2e,29             scall 61aa           Sub133(32,0,26,f1,12);
+637f: 2e,29             scall 61aa           Sub116(32,0,26,f1,12);
 6381: 32,00,26,f1,12    #args  
 6386: 91,20,2f          orb   R2f,20         R2f |= 20;
 6389: 21,81             sjmp  650c           goto 650c;
 
-  Sub102:
-638b: 2f,86             scall 6313           Sub144(e,1,58,92,56,92,21);
+  Sub87:
+638b: 2f,86             scall 6313           Sub127(e,1,58,92,56,92,21);
 638d: 0e,01,58,92,56,92,21 #args  
 6394: b3,72,2b,42       ldb   R42,[R72+2b]   R42 = [R72+2b];
 6398: 9b,f3,68,02,42    cmpb  R42,[Rf2+268]  
 639d: d1,05             jleu  63a4           if ((uns) R42 > [748a] )  {
-639f: 2f,61             scall 6302           Sub126(22);
+639f: 2f,61             scall 6302           Sub110(22);
 63a1: 22                #args  
 63a2: 20,0a             sjmp  63ae           goto 63ae; }
-63a4: ef,6c,ff          call  6313           Sub144(ae,1,60,92,62,92,22);
+63a4: ef,6c,ff          call  6313           Sub127(ae,1,60,92,62,92,22);
 63a7: ae,01,60,92,62,92,22 #args  
-63ae: 2f,63             scall 6313           Sub144(1a,1,20,92,22,92,23);
+63ae: 2f,63             scall 6313           Sub127(1a,1,20,92,22,92,23);
 63b0: 1a,01,20,92,22,92,23 #args  
-63b7: 2f,5a             scall 6313           Sub144(10,1,50,92,4e,92,24);
+63b7: 2f,5a             scall 6313           Sub127(10,1,50,92,4e,92,24);
 63b9: 10,01,50,92,4e,92,24 #args  
 63c0: 21,4a             sjmp  650c           goto 650c;
 
-  Sub103:
+  Sub88:
 63c2: a3,72,fa,42       ldw   R42,[R72+fa]   R42 = [R72-6];
 63c6: 8b,f3,16,02,42    cmpw  R42,[Rf2+216]  
 63cb: db,07             jc    63d4           if ((uns) R42 < [7438])  {
-63cd: 2f,33             scall 6302           Sub126(16);
+63cd: 2f,33             scall 6302           Sub110(16);
 63cf: 16                #args  
 63d0: b1,0c,38          ldb   R38,c          R38 = c;
 63d3: f0                ret                  return; }
-63d4: 28,87             scall 645d           Sub151();
+63d4: 28,87             scall 645d           Sub134();
 63d6: 21,34             sjmp  650c           goto 650c;
 
-  Sub104:
+  Sub89:
 63d8: 35,28,04          jnb   B5,R28,63df    if (B5_R28)  {
-63db: 28,80             scall 645d           Sub151();
+63db: 28,80             scall 645d           Sub134();
 63dd: 21,2d             sjmp  650c           goto 650c; }
-63df: 28,3c             scall 641d           Sub152(14,92);
+63df: 28,3c             scall 641d           Sub135(14,92);
 63e1: 14,92             #args  
-63e3: 28,7d             scall 6462           Sub150(18,f1);
+63e3: 28,7d             scall 6462           Sub133(18,f1);
 63e5: 18,f1             #args  
-63e7: 2f,19             scall 6302           Sub126(42);
+63e7: 2f,19             scall 6302           Sub110(42);
 63e9: 42                #args  
 63ea: 20,22             sjmp  640e           goto 640e;
 
-  Sub105:
+  Sub90:
 63ec: 3d,28,02          jb    B5,R28,63f1    if (!B5_R28)  {
 63ef: 21,1b             sjmp  650c           goto 650c; }
-63f1: 28,25             scall 6418           Sub153(12,92);
+63f1: 28,25             scall 6418           Sub136(12,92);
 63f3: 12,92             #args  
 63f5: a3,73,16,ff,42    ldw   R42,[R72+ff16] R42 = [R72-ea];
 63fa: 8b,ff,12,01,42    cmpw  R42,[Rfe+112]  
 63ff: d1,04             jleu  6405           if ((uns) R42 > [8034] )  {
 6401: 15,38             decb  R38            R38--;
 6403: 21,07             sjmp  650c           goto 650c; }
-6405: 28,5b             scall 6462           Sub150(c0,b2);
+6405: 28,5b             scall 6462           Sub133(c0,b2);
 6407: c0,b2             #args  
-6409: 2e,f7             scall 6302           Sub126(41);
+6409: 2e,f7             scall 6302           Sub110(41);
 640b: 41                #args  
 640c: 20,00             sjmp  640e           goto 640e;
 640e: a3,ff,16,01,96    ldw   R96,[Rfe+116]  R96 = [8038];
 6413: b1,07,38          ldb   R38,7          R38 = 7;
 6416: 20,f4             sjmp  650c           goto 650c;
 
-  Sub153:
+  Sub136:
 6418: 91,40,2c          orb   R2c,40         R2c |= 40;
-641b: 20,03             sjmp  6420           goto Sub154;
+641b: 20,03             sjmp  6420           goto Sub137;
 
-  Sub152:
+  Sub135:
 641d: 71,bf,2c          an2b  R2c,bf         R2c &= bf;
 
-  Sub154:
-6420: ef,17,fc          call  603a           Sub130(2);
+  Sub137:
+6420: ef,17,fc          call  603a           Sub114(2);
 6423: 02                #args  
-6424: ef,a2,fd          call  61c9           Sub135(1a,0);
+6424: ef,a2,fd          call  61c9           Sub118(1a,0);
 6427: 1a,00             #args  
 6429: 4b,72,d6,06,34    sb3w  R34,R6,[R72+d6] R34 = IO_TIMER - [R72-2a];
 642e: 6d,55,32,34       ml2w  R34,3255       R34L *= 3255;
@@ -6015,35 +6015,35 @@
 6439: 68,3e,96          sb2w  R96,R3e        R96 -= R3e;
 643c: d1,07             jleu  6445           if ((uns) R96 > R3e )  {
 643e: 8b,ff,12,01,96    cmpw  R96,[Rfe+112]  
-6443: db,18             jc    645d           if ((uns) R96 >= [8034]) goto Sub151; }
+6443: db,18             jc    645d           if ((uns) R96 >= [8034]) goto Sub134; }
 6445: a3,ff,12,01,96    ldw   R96,[Rfe+112]  R96 = [8034];
-644a: 20,11             sjmp  645d           goto Sub151;
+644a: 20,11             sjmp  645d           goto Sub134;
 644c: 64,3e,96          ad2w  R96,R3e        R96 += R3e;
 644f: db,07             jc    6458           if ((uns) R96 < R3e)  {
 6451: 8b,ff,14,01,96    cmpw  R96,[Rfe+114]  
-6456: d1,05             jleu  645d           if ((uns) R96 <= [8036]) goto Sub151; }
+6456: d1,05             jleu  645d           if ((uns) R96 <= [8036]) goto Sub134; }
 6458: a3,ff,14,01,96    ldw   R96,[Rfe+114]  R96 = [8036];
 
-  Sub151:
+  Sub134:
 645d: c3,72,d6,06       stw   R6,[R72+d6]    [R72-2a] = IO_TIMER;
 6461: f0                ret                  return;
 
-  Sub150:
-6462: ef,d5,fb          call  603a           Sub130(2);
+  Sub133:
+6462: ef,d5,fb          call  603a           Sub114(2);
 6465: 02                #args  
-6466: 2d,61             scall 61c9           Sub135(1a,0);
+6466: 2d,61             scall 61c9           Sub118(1a,0);
 6468: 1a,00             #args  
 646a: 9a,1a,18          cmpb  R18,[R1a]      
 646d: db,02             jc    6471           if ((uns) R18 < [R1a])  {
 646f: cc,00             pop   0              ZERO = pop(); }
 6471: f0                ret                  return;
 
-  Sub107:
+  Sub92:
 6472: 9b,ff,29,01,00    cmpb  0,[Rfe+129]    
 6477: d7,04             jne   647d           if (ZERO == [804b])  {
 6479: b1,0c,38          ldb   R38,c          R38 = c;
 647c: f0                ret                  return; }
-647d: 28,4e             scall 64cd           Sub146(82,2,82,92,7a,92,32,34);
+647d: 28,4e             scall 64cd           Sub129(82,2,82,92,7a,92,32,34);
 647f: 82,02,82,92,7a,92,32,34 #args  
 6487: 34,1a,04          jnb   B4,R1a,648e    if (B4_R1a)  {
 648a: b1,0c,38          ldb   R38,c          R38 = c;
@@ -6053,7 +6053,7 @@
 6497: b3,f3,77,02,d7    ldb   Rd7,[Rf2+277]  Rd7 = [7499];
 649c: 20,6e             sjmp  650c           goto 650c;
 
-  Sub108:
+  Sub93:
 649e: a3,72,04,42       ldw   R42,[R72+4]    R42 = [R72+4];
 64a2: 6b,73,02,01,42    sb2w  R42,[R72+102]  R42 -= [R72+102];
 64a7: 8b,f3,8a,02,42    cmpw  R42,[Rf2+28a]  
@@ -6064,17 +6064,17 @@
 64bb: 08,03,42          shrw  R42,3          R42 = R42 / 8;
 64be: 57,f3,77,02,42,d7 ad3b  Rd7,R42,[Rf2+277] Rd7 = R42 + [7499];
 64c4: f0                ret                  return; }
-64c5: 2e,3b             scall 6302           Sub126(33);
+64c5: 2e,3b             scall 6302           Sub110(33);
 64c7: 33                #args  
 64c8: a0,00,d6          ldw   Rd6,0          Rd6 = ZERO;
 64cb: 20,3f             sjmp  650c           goto 650c;
 
-  Sub146:
-64cd: ef,6a,fb          call  603a           Sub130(8);
+  Sub129:
+64cd: ef,6a,fb          call  603a           Sub114(8);
 64d0: 08                #args  
-64d1: ef,f5,fc          call  61c9           Sub135(1c,0);
+64d1: ef,f5,fc          call  61c9           Sub118(1c,0);
 64d4: 1c,00             #args  
-64d6: ef,f0,fc          call  61c9           Sub135(1e,0);
+64d6: ef,f0,fc          call  61c9           Sub118(1e,0);
 64d9: 1e,00             #args  
 64db: a2,1a,42          ldw   R42,[R1a]      R42 = [R1a];
 64de: 01,1a             clrw  R1a            R1a = 0;
@@ -6093,30 +6093,30 @@
 6500: b1,35,1a          ldb   R1a,35         R1a = 35; }
 6503: 51,60,2a,42       an3b  R42,R2a,60     R42 = VIP_mode_flag & 60;
 6507: df,02             je    650b           if (VIP_mode_flag != 60)  {
-6509: 2d,fa             scall 6305           Sub137(); }
+6509: 2d,fa             scall 6305           Sub120(); }
 650b: f0                ret                  return;
 650c: c7,72,0b,00       stb   0,[R72+b]      [R72+b] = ZERO;
 6510: 17,38             incb  R38            R38++;
 6512: f0                ret                  return;
 
-  Sub109:
+  Sub94:
 6513: a3,ff,1e,01,3e    ldw   R3e,[Rfe+11e]  R3e = [8040];
 6518: c3,72,38,3e       stw   R3e,[R72+38]   [R72+38] = R3e;
 651c: 71,df,2f          an2b  R2f,df         R2f &= df;
 651f: 27,eb             sjmp  650c           goto 650c;
 
-  Sub110:
-6521: 2f,3f             scall 6462           Sub150(23,f1);
+  Sub95:
+6521: 2f,3f             scall 6462           Sub133(23,f1);
 6523: 23,f1             #args  
 6525: a3,ff,1e,01,32    ldw   R32,[Rfe+11e]  R32 = [8040];
 652a: 6b,72,fa,32       sb2w  R32,[R72+fa]   R32 -= [R72-6];
 652e: d6,02             jge   6532           if (R32 < [R72-6])  {
 6530: 03,32             negw  R32            R32 = -R32; }
-6532: ef,75,fc          call  61aa           Sub133(32,0,20,f1,13);
+6532: ef,75,fc          call  61aa           Sub116(32,0,20,f1,13);
 6535: 32,00,20,f1,13    #args  
 653a: 27,d4             sjmp  6510           goto 6510;
 
-  Sub111:
+  Sub96:
 653c: b3,f3,92,02,42    ldb   R42,[Rf2+292]  R42 = [74b4];
 6541: 30,42,0d          jnb   B0,R42,6551    if (B0_R42)  {
 6544: 91,40,2f          orb   R2f,40         R2f |= 40;
@@ -6124,25 +6124,25 @@
 654c: a3,f3,c0,02,96    ldw   R96,[Rf2+2c0]  R96 = [74e2]; }
 6551: 27,b9             sjmp  650c           goto 650c;
 
-  Sub112:
-6553: 2f,0d             scall 6462           Sub150(22,f1);
+  Sub97:
+6553: 2f,0d             scall 6462           Sub133(22,f1);
 6555: 22,f1             #args  
 6557: 91,f0,df          orb   Rdf,f0         Rdf |= f0;
 655a: c7,72,24,b4       stb   Rb4,[R72+24]   [R72+24] = Rb4;
 655e: c3,72,04,ac       stw   Rac,[R72+4]    [R72+4] = Rac;
 6562: a3,72,fa,1c       ldw   R1c,[R72+fa]   R1c = [R72-6];
 6566: c3,72,02,1c       stw   R1c,[R72+2]    [R72+2] = R1c;
-656a: ef,56,f5          call  5ac3           Sub156();
+656a: ef,56,f5          call  5ac3           Sub139();
 656d: 27,9d             sjmp  650c           goto 650c;
 
-  Sub113:
+  Sub98:
 656f: 3b,de,09          jb    B3,Rde,657b    if (!B3_Rde)  {
 6572: 3d,4a,06          jb    B5,R4a,657b    if (!B5_R4a)  {
 6575: c3,72,a4,00       stw   0,[R72+a4]     [R72-5c] = ZERO;
 6579: 27,91             sjmp  650c           goto 650c; } }
 657b: f0                ret                  return;
 
-  Sub114:
+  Sub99:
 657c: 36,2f,29          jnb   B6,R2f,65a8    if (!B6_R2f) goto 65a8;
 657f: a3,72,a4,42       ldw   R42,[R72+a4]   R42 = [R72-5c];
 6583: 99,4b,42          cmpb  R42,4b         
@@ -6181,46 +6181,46 @@
 65ee: b3,f3,70,02,1a    ldb   R1a,[Rf2+270]  R1a = [7492];
 65f3: 79,0c,1a          sb2b  R1a,c          R1a -= c;
 65f6: c7,72,0b,1a       stb   R1a,[R72+b]    [R72+b] = R1a; }
-65fa: 2e,66             scall 6462           Sub150(70,92);
+65fa: 2e,66             scall 6462           Sub133(70,92);
 65fc: 70,92             #args  
 65fe: 36,2f,0b          jnb   B6,R2f,660c    if (B6_R2f)  {
 6601: 91,80,2f          orb   R2f,80         R2f |= 80;
-6604: ef,13,fa          call  601a           Sub131();
+6604: ef,13,fa          call  601a           Sub115();
 6607: a3,ff,16,01,96    ldw   R96,[Rfe+116]  R96 = [8038]; }
 660c: 34,df,06          jnb   B4,Rdf,6615    if (B4_Rdf)  {
-660f: ef,f0,fc          call  6302           Sub126(77);
+660f: ef,f0,fc          call  6302           Sub110(77);
 6612: 77                #args  
 6613: 20,18             sjmp  662d           goto 662d; }
 6615: 37,df,04          jnb   B7,Rdf,661c    if (B7_Rdf)  {
-6618: ef,e7,fc          call  6302           Sub126(72);
+6618: ef,e7,fc          call  6302           Sub110(72);
 661b: 72                #args                }
 661c: 36,df,04          jnb   B6,Rdf,6623    if (B6_Rdf)  {
-661f: ef,e0,fc          call  6302           Sub126(73);
+661f: ef,e0,fc          call  6302           Sub110(73);
 6622: 73                #args                }
 6623: 36,2f,07          jnb   B6,R2f,662d    if (B6_R2f)  {
 6626: 35,df,04          jnb   B5,Rdf,662d    if (B5_Rdf)  {
-6629: ef,d6,fc          call  6302           Sub126(25);
+6629: ef,d6,fc          call  6302           Sub110(25);
 662c: 25                #args                } }
 662d: a3,f3,0e,02,c6    ldw   Rc6,[Rf2+20e]  Rc6 = [7430];
 6632: 33,df,04          jnb   B3,Rdf,6639    if (B3_Rdf)  {
-6635: ef,ca,fc          call  6302           Sub126(74);
+6635: ef,ca,fc          call  6302           Sub110(74);
 6638: 74                #args                }
 6639: 32,df,04          jnb   B2,Rdf,6640    if (B2_Rdf)  {
-663c: ef,c3,fc          call  6302           Sub126(75);
+663c: ef,c3,fc          call  6302           Sub110(75);
 663f: 75                #args                }
 
-  Sub115:
+  Sub100:
 6640: 91,07,de          orb   Rde,7          Rde |= 7;
 6643: 26,c7             sjmp  650c           goto 650c;
 
-  Sub106:
+  Sub91:
 6645: a3,3b,52,5d,1a    ldw   R1a,[R3a+5d52] R1a = [R3a+5d52];
 664a: 20,05             sjmp  6651           goto 6651;
 
-  Sub119:
+  Sub103:
 664c: a3,3b,40,5d,1a    ldw   R1a,[R3a+5d40] R1a = [R3a+5d40];
 6651: 37,1b,08          jnb   B7,R1b,665c    if (B7_R1b)  {
-6654: ef,72,fb          call  61c9           Sub135(1a,0);
+6654: ef,72,fb          call  61c9           Sub118(1a,0);
 6657: 1a,00             #args  
 6659: b2,1a,1a          ldb   R1a,[R1a]      R1a = [R1a]; }
 665c: 98,1a,18          cmpb  R18,R1a        
@@ -6229,8 +6229,8 @@
 6662: 17,38             incb  R38            R38++;
 6664: 26,a6             sjmp  650c           goto 650c;
 
-  Sub32:
-6666: ef,4c,f6          call  5cb5           Sub92();
+  Sub31:
+6666: ef,4c,f6          call  5cb5           Sub77();
 6669: b1,01,3a          ldb   R3a,1          R3a = 1;
 666c: 9b,fb,e2,00,3a    cmpb  R3a,[Rfa+e2]   
 6671: d7,02             jne   6675           if (R3a == [7ef6])  {
@@ -6239,12 +6239,12 @@
 6678: 20,00             sjmp  667a           return;
 667a: f0                ret                  return;
 
-  Sub31:
-667b: ef,37,f6          call  5cb5           Sub92();
+  Sub30:
+667b: ef,37,f6          call  5cb5           Sub77();
 667e: a3,72,84,32       ldw   R32,[R72+84]   R32 = [R72-7c];
 6682: a3,72,96,34       ldw   R34,[R72+96]   R34 = [R72-6a];
 6686: a3,f3,1a,02,36    ldw   R36,[Rf2+21a]  R36 = [743c];
-668b: ef,58,ca          call  30e6           Sub62();
+668b: ef,58,ca          call  30e6           Sub55();
 668e: c3,72,84,3e       stw   R3e,[R72+84]   [R72-7c] = R3e;
 6692: 71,df,28          an2b  R28,df         R28 &= df;
 6695: 89,c0,d5,3e       cmpw  R3e,d5c0       
@@ -6252,7 +6252,7 @@
 669b: 91,20,28          orb   R28,20         R28 |= 20; }
 669e: f0                ret                  return;
 
-  Sub132:
+  common_Sub16:
 669f: fa                di                   disable ints;
 66a0: ff                nop                  
 66a1: ff                nop                  
@@ -6327,7 +6327,7 @@
 674b: d7,51             jne   679e           if (R3c == 1f)  {
 674d: a1,7c,a1,3c       ldw   R3c,a17c       R3c = a17c;
 6751: c3,73,88,00,3c    stw   R3c,[R72+88]   [R72+88] = R3c;
-6756: 28,4b             scall 67a3           Sub157();
+6756: 28,4b             scall 67a3           common_Sub17();
 6758: 8b,73,8a,00,3c    cmpw  R3c,[R72+8a]   
 675d: d7,3f             jne   679e           if (R3c == [R72+8a])  {
 675f: 8b,73,8c,00,3c    cmpw  R3c,[R72+8c]   
@@ -6337,7 +6337,7 @@
 676b: a1,00,04,10       ldw   R10,400        STACK_POINTER = 400;
 676f: a1,75,55,3c       ldw   R3c,5575       R3c = 5575;
 6773: c3,73,88,00,3c    stw   R3c,[R72+88]   [R72+88] = R3c;
-6778: 28,29             scall 67a3           Sub157();
+6778: 28,29             scall 67a3           common_Sub17();
 677a: 8b,73,8a,00,3c    cmpw  R3c,[R72+8a]   
 677f: d7,1d             jne   679e           if (R3c == [R72+8a])  {
 6781: 8b,73,8c,00,3c    cmpw  R3c,[R72+8c]   
@@ -6352,7 +6352,7 @@
 679e: 91,10,2a          orb   R2a,10         VIP_mode_flag |= 10;
 67a1: 20,51             sjmp  67f4           goto 67f4;
 
-  Sub157:
+  common_Sub17:
 67a3: cb,73,88,00       push  [R72+88]       push([R72+88]);
 67a7: cf,73,8a,00       pop   [R72+8a]       [R72+8a] = pop();
 67ab: cb,73,8a,00       push  [R72+8a]       push([R72+8a]);
@@ -6388,13 +6388,13 @@
 67f9: f0                ret                  return; } }
 67fa: e7,a1,ff          jump  679e           goto 679e;
 
-  Sub117:
+  common_Sub18:
 67fd: 3b,de,27          jb    B3,Rde,6827    if (B3_Rde) return;
 6800: 3d,4a,24          jb    B5,R4a,6827    if (B5_R4a) return;
 6803: fa                di                   disable ints;
 6804: ff                nop                  
 6805: a1,a2,02,10       ldw   R10,2a2        STACK_POINTER = 2a2;
-6809: ef,7b,fa          call  6287           Sub138();
+6809: ef,7b,fa          call  6287           Sub121();
 680c: ef,93,b8          call  20a2           setup_initial_state();
 680f: 35,2a,06          jnb   B5,R2a,6818    if (B5_VIP_mode_flag)  {
 6812: 71,db,2a          an2b  R2a,db         VIP_mode_flag &= db;
@@ -6402,11 +6402,11 @@
 6818: 36,2a,06          jnb   B6,R2a,6821    if (B6_VIP_mode_flag)  {
 681b: 71,bb,2a          an2b  R2a,bb         VIP_mode_flag &= bb;
 681e: 91,10,2a          orb   R2a,10         VIP_mode_flag |= 10; }
-6821: ef,f6,f7          call  601a           Sub131();
+6821: ef,f6,f7          call  601a           Sub115();
 6824: e7,7f,b9          jump  21a6           goto EEC_main_loop;
 6827: f0                ret                  return;
 
-  Sub14:
+  Sub13:
 6828: 37,4e,08          jnb   B7,R4e,6833    if (B7_R4e)  {
 682b: 71,7f,4e          an2b  R4e,7f         R4e &= 7f;
 682e: c3,01,2a,01,00    stw   0,[12a]        [12a] = ZERO; }
@@ -6419,7 +6419,7 @@
 6847: c7,01,ab,01,00    stb   0,[1ab]        [1ab] = ZERO; }
 684c: f0                ret                  return;
 
-  Sub2:
+  Sub1:
 684d: fa                di                   disable ints;
 684e: a3,01,00,0d,14    ldw   R14,[d00]      R14 = [CC_PRESENT];
 6853: 99,2a,15          cmpb  R15,2a         
@@ -6463,17 +6463,17 @@
 68cd: c7,01,32,02,00    stb   0,[232]        [232] = ZERO;
 68d2: f0                ret                  return;
 
-  Sub3:
+  Sub2:
 68d3: a3,01,f2,1f,30    ldw   R30,[1ff2]     R30 = [1ff2];
 68d8: 89,1c,1f,30       cmpw  R30,1f1c       
 68dc: d7,06             jne   68e4           if (R30 == 1f1c)  {
-68de: c9,e4,68          push  68e4           push(Sub162);
+68de: c9,e4,68          push  68e4           push(Sub144);
 68e1: e7,38,b6          jump  1f1c           goto 1f1c; }
 
-  Sub162:
+  Sub144:
 68e4: f0                ret                  return;
 
-  Sub17:
+  Sub16:
 68e5: a1,eb,02,22       ldw   R22,2eb        R22 = 2eb;
 68e9: b3,22,44,14       ldb   R14,[R22+44]   R14 = [R22+44];
 68ed: a3,01,24,01,16    ldw   R16,[124]      R16 = [124];
@@ -6486,7 +6486,7 @@
 6904: 11,34             clrb  R34            R34 = 0;
 6906: a3,01,22,01,32    ldw   R32,[122]      R32 = [122];
 690b: a3,fb,82,00,36    ldw   R36,[Rfa+82]   R36 = [7e96];
-6910: ef,d3,c7          call  30e6           Sub62();
+6910: ef,d3,c7          call  30e6           Sub55();
 6913: c3,01,22,01,3e    stw   R3e,[122]      [122] = R3e;
 6918: 20,15             sjmp  692f           goto 692f;
 691a: 11,b5             clrb  Rb5            Rb5 = 0;
@@ -6508,7 +6508,7 @@
 6951: 99,80,3e          cmpb  R3e,80         
 6954: db,03             jc    6959           if ((uns) R3e < 80)  {
 6956: b1,ef,3e          ldb   R3e,ef         R3e = ef; }
-6959: 28,f6             scall 6a51           Sub163();
+6959: 28,f6             scall 6a51           Sub145();
 695b: c7,22,40,3e       stb   R3e,[R22+40]   [R22+40] = R3e;
 695f: c7,22,43,3e       stb   R3e,[R22+43]   [R22+43] = R3e;
 6963: 91,80,14          orb   R14,80         R14 |= 80;
@@ -6524,7 +6524,7 @@
 6988: bd,ff,34          ldsbw R34,ff         R34 = (int)ff; }
 698b: a3,22,51,32       ldw   R32,[R22+51]   R32 = [R22+51];
 698f: a3,fa,5c,36       ldw   R36,[Rfa+5c]   R36 = [7e70];
-6993: ef,50,c7          call  30e6           Sub62();
+6993: ef,50,c7          call  30e6           Sub55();
 6996: c3,22,51,3e       stw   R3e,[R22+51]   [R22+51] = R3e;
 699a: 37,2c,02          jnb   B7,R2c,699f    if (B7_R2c)  {
 699d: 20,b1             sjmp  6a50           return; }
@@ -6574,17 +6574,17 @@
 6a2d: 74,b4,3e          ad2b  R3e,Rb4        R3e += Rb4;
 6a30: d3,03             jnc   6a35           if ((uns) R3e >= Rb4)  {
 6a32: b1,ff,3e          ldb   R3e,ff         R3e = ff; }
-6a35: 28,1a             scall 6a51           Sub163();
+6a35: 28,1a             scall 6a51           Sub145();
 6a37: a3,fb,84,00,36    ldw   R36,[Rfa+84]   R36 = [7e98];
 6a3c: b0,3e,35          ldb   R35,R3e        R35 = R3e;
 6a3f: 11,34             clrb  R34            R34 = 0;
 6a41: a3,22,47,32       ldw   R32,[R22+47]   R32 = [R22+47];
-6a45: ef,9e,c6          call  30e6           Sub62();
+6a45: ef,9e,c6          call  30e6           Sub55();
 6a48: c7,22,40,3f       stb   R3f,[R22+40]   [R22+40] = R3f;
 6a4c: c3,22,47,3e       stw   R3e,[R22+47]   [R22+47] = R3e;
 6a50: f0                ret                  return;
 
-  Sub163:
+  Sub145:
 6a51: 99,ff,3e          cmpb  R3e,ff         
 6a54: d1,03             jleu  6a59           if ((uns) R3e > ff )  {
 6a56: b1,ff,3e          ldb   R3e,ff         R3e = ff; }
@@ -6748,7 +6748,7 @@
 6b03: ff,ff,ff          fill  
 
 
-  Sub1:
+  common_Sub19:
 6b06: 01,38             clrw  R38            R38 = 0;
 6b08: 67,01,34,03,38    ad2w  R38,[334]      R38 += [334];
 6b0d: 67,01,36,03,38    ad2w  R38,[336]      R38 += [336];
