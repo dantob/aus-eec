@@ -91,6 +91,26 @@
 20EA  #R14 now points at next table in ROM
 20ED  #continue til we've processed all init tables
    1 |#-------------------------------------------------------------------------------
+20F2  #if VIP_mode_flag (RUNNING_TESTS) is not set (KOER)
+20F5  #if VIP_mode_flag (NO_START_TESTS) is not set (KOEO)
+20F8  #no VIP
+20FB  #check for calibration console, 0 if no console attached
+2100  #??false, this is skipped
+2103  #??false, this is skipped
+2105  #??false, this is skipped
+210A  #??false, this is skipped
+210D  #??false, this is skipped
+2110  #??false, this is skipped
+2115  #??false, this is skipped
+   1 |#-------------------------------------------------------------------------------
+2117  #R14 = location of first calibration pointer (2022)
+211B  #address to store first calibration pointer (F0)
+211F  #NUM_OF_LEVELS = number of calibration pointers
+2124  #store calibration pointer address into temp register, R14 = next cal pointer
+2127  #store cal pointer address into F0
+212A  #decrement NUM_OF_LEVELS and continue til F0-FE are setup
+   1 |#-------------------------------------------------------------------------------
+212D  #copy to 20C
 
 2172 |
    1 |################################################################################

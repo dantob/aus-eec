@@ -129,25 +129,28 @@
 20ed: 27,da             sjmp  20c9           goto 20c9;                     #continue til we've processed all init tables
 #-------------------------------------------------------------------------------
 20ef: ef,70,00          call  2162           init_RAM_pointers();
-20f2: 3d,2a,06          jb    B5,R2a,20fb    if (!B5_VIP_mode_flag)  {
-20f5: 3e,2a,03          jb    B6,R2a,20fb    if (!B6_VIP_mode_flag)  {
-20f8: 91,01,a0          orb   Ra0,1          Ra0 |= 1; } }
-20fb: a3,01,00,0d,14    ldw   R14,[d00]      R14 = [CC_PRESENT];
-2100: 99,2a,15          cmpb  R15,2a         
-2103: d7,12             jne   2117           if (R15 == 2a)  {
-2105: a3,01,80,0c,14    ldw   R14,[c80]      R14 = [c80];
-210a: 36,14,0a          jnb   B6,R14,2117    if (B6_R14)  {
-210d: ad,00,30          ldzbw R30,0          R30 = (uns)0;
-2110: a3,31,72,84,14    ldw   R14,[R30+8472] R14 = [R30-7b8e];
-2115: 20,04             sjmp  211b           goto 211b; } }
-2117: a1,22,20,14       ldw   R14,2022       R14 = RF0;
-211b: a1,f0,00,18       ldw   R18,f0         R18 = f0;
-211f: b3,01,20,20,1a    ldb   R1a,[2020]     R1a = [NUM_OF_LEVELS];
-2124: a2,15,1c          ldw   R1c,[R14++]    R1c = [R14++];
-2127: c2,19,1c          stw   R1c,[R18++]    [R18++] = R1c;
+20f2: 3d,2a,06          jb    B5,R2a,20fb    if (!B5_VIP_mode_flag)  {      #if VIP_mode_flag (RUNNING_TESTS) is not set (KOER)
+20f5: 3e,2a,03          jb    B6,R2a,20fb    if (!B6_VIP_mode_flag)  {      #if VIP_mode_flag (NO_START_TESTS) is not set (KOEO)
+20f8: 91,01,a0          orb   Ra0,1          Ra0 |= 1; } }                  #no VIP
+20fb: a3,01,00,0d,14    ldw   R14,[d00]      R14 = [CC_PRESENT];            #check for calibration console, 0 if no console attached
+2100: 99,2a,15          cmpb  R15,2a                                        #??false, this is skipped
+2103: d7,12             jne   2117           if (R15 == 2a)  {              #??false, this is skipped
+2105: a3,01,80,0c,14    ldw   R14,[c80]      R14 = [c80];                   #??false, this is skipped
+210a: 36,14,0a          jnb   B6,R14,2117    if (B6_R14)  {                 #??false, this is skipped
+210d: ad,00,30          ldzbw R30,0          R30 = (uns)0;                  #??false, this is skipped
+2110: a3,31,72,84,14    ldw   R14,[R30+8472] R14 = [R30-7b8e];              #??false, this is skipped
+2115: 20,04             sjmp  211b           goto 211b; } }                 #??false, this is skipped
+#-------------------------------------------------------------------------------
+2117: a1,22,20,14       ldw   R14,2022       R14 = RF0;                     #R14 = location of first calibration pointer (2022)
+211b: a1,f0,00,18       ldw   R18,f0         R18 = f0;                      #address to store first calibration pointer (F0)
+211f: b3,01,20,20,1a    ldb   R1a,[2020]     R1a = [NUM_OF_LEVELS];         #NUM_OF_LEVELS = number of calibration pointers
+2124: a2,15,1c          ldw   R1c,[R14++]    R1c = [R14++];                 #store calibration pointer address into temp register, R14 = next cal poin
+                                                                            ter
+2127: c2,19,1c          stw   R1c,[R18++]    [R18++] = R1c;                 #store cal pointer address into F0
 212a: e0,1a,f7          djnz  R1a,2124       R1a--;
-                                             if (R1a !=  0) goto 2124;
-212d: c7,be,8c,b2       stb   Rb2,[Rbe+8c]   [Rbe-74] = Rb2;
+                                             if (R1a !=  0) goto 2124;      #decrement NUM_OF_LEVELS and continue til F0-FE are setup
+#-------------------------------------------------------------------------------
+212d: c7,be,8c,b2       stb   Rb2,[Rbe+8c]   [Rbe-74] = Rb2;                #copy to 20C
 2131: ef,ca,65          call  86fe           common_Sub22();
 2134: a3,f8,38,30       ldw   R30,[Rf8+38]   R30 = [8f9c];
 2138: c3,bc,9a,30       stw   R30,[Rbc+9a]   [Rbc-66] = R30;
@@ -4945,7 +4948,7 @@
 5666: 20,11             sjmp  5679           goto 5679;
 5668: 99,04,30          cmpb  R30,4          
 566b: d7,07             jne   5674           if (R30 == 4)  {
-566d: 45,e8,03,fc,32    ad3w  R32,Rfc,3e8    R32 = Trans_TC_unlock_curve_3rd_power;
+566d: 45,e8,03,fc,32    ad3w  R32,Rfc,3e8    R32 = Trans_TC_unlock_curve_3rd_power;
 5672: 20,05             sjmp  5679           goto 5679; }
 5674: 45,10,04,fc,32    ad3w  R32,Rfc,410    R32 = Trans_TC_unlock_curve_3rd_econ;
 5679: a3,a2,a4,34       ldw   R34,[Ra2+a4]   R34 = [Ra2-5c];
@@ -11126,7 +11129,7 @@
 97aa: 00,00,20,1c  func       0   ,1800   
 
 
-  Trans_TC_unlock_curve_3rd_power:
+  Trans_TC_unlock_curve_3rd_power:
 97ae: ff,ff,10,40  func       16383.75,4100   
 97b2: 70,01,10,40  func       92   ,4100   
 97b6: 04,01,c8,32  func       65   ,3250   
