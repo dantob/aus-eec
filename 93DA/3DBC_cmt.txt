@@ -110,7 +110,8 @@
 2127  #store cal pointer address into F0
 212A  #decrement NUM_OF_LEVELS and continue til F0-FE are setup
    1 |#-------------------------------------------------------------------------------
-212D  #copy to 20C
+212D  #save inital MAP value to 20C
+2138  #copy '3e80' to 11A-11B
 
 2172 |
    1 |################################################################################

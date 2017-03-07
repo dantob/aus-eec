@@ -150,10 +150,10 @@
 212a: e0,1a,f7          djnz  R1a,2124       R1a--;
                                              if (R1a !=  0) goto 2124;      #decrement NUM_OF_LEVELS and continue til F0-FE are setup
 #-------------------------------------------------------------------------------
-212d: c7,be,8c,b2       stb   Rb2,[Rbe+8c]   [Rbe-74] = Rb2;                #copy to 20C
+212d: c7,be,8c,b2       stb   Rb2,[Rbe+8c]   [Rbe-74] = Rb2;                #save inital MAP value to 20C
 2131: ef,ca,65          call  86fe           common_Sub22();
 2134: a3,f8,38,30       ldw   R30,[Rf8+38]   R30 = [8f9c];
-2138: c3,bc,9a,30       stw   R30,[Rbc+9a]   [Rbc-66] = R30;
+2138: c3,bc,9a,30       stw   R30,[Rbc+9a]   [Rbc-66] = R30;                #copy '3e80' to 11A-11B
 213c: b1,18,30          ldb   R30,18         R30 = 18;
 213f: c7,01,2f,09,30    stb   R30,[92f]      [92f] = R30;
 2144: 11,09             clrb  R9             INT_PEND = 0;
@@ -2602,7 +2602,7 @@
 3c0a: a0,ac,34          ldw   R34,Rac        R34 = Engine_RPM;
 3c0d: ef,30,f6          call  3240           SSWordLU();
 3c10: a0,38,30          ldw   R30,R38        R30 = R38;
-3c13: 45,94,01,f0,32    ad3w  R32,Rf0,194    R32 = Scaler_for_Abs_Exhaust_Pressure;
+3c13: 45,94,01,f0,32    ad3w  R32,Rf0,194    R32 = Scaler_for_Abs_Exhaust_Pressureo;
 3c18: af,bc,4a,34       ldzbw R34,[Rbc+4a]   R34 = (uns)[Rbc+4a];
 3c1c: ef,21,f6          call  3240           SSWordLU();
 3c1f: a0,38,32          ldw   R32,R38        R32 = R38;
@@ -3153,7 +3153,7 @@
 4275: a0,9c,38          ldw   R38,R9c        R38 = R9c;
 4278: 6d,03,01,38       ml2w  R38,103        R38L *= 103;
 427c: c0,9c,38          stw   R38,R9c        R9c = R38;
-427f: 45,94,01,f0,32    ad3w  R32,Rf0,194    R32 = Scaler_for_Abs_Exhaust_Pressure;
+427f: 45,94,01,f0,32    ad3w  R32,Rf0,194    R32 = Scaler_for_Abs_Exhaust_Pressureo;
 4284: af,bc,4a,34       ldzbw R34,[Rbc+4a]   R34 = (uns)[Rbc+4a];
 4288: ef,b5,ef          call  3240           SSWordLU();
 428b: a0,38,a8          ldw   Ra8,R38        Ra8 = R38;
@@ -3333,7 +3333,7 @@
 449e: a0,ac,34          ldw   R34,Rac        R34 = Engine_RPM;
 44a1: ef,9c,ed          call  3240           SSWordLU();
 44a4: a0,38,a6          ldw   Ra6,R38        Ra6 = R38;
-44a7: 45,94,01,f0,32    ad3w  R32,Rf0,194    R32 = Scaler_for_Abs_Exhaust_Pressure;
+44a7: 45,94,01,f0,32    ad3w  R32,Rf0,194    R32 = Scaler_for_Abs_Exhaust_Pressureo;
 44ac: af,bc,4a,34       ldzbw R34,[Rbc+4a]   R34 = (uns)[Rbc+4a];
 44b0: ef,8d,ed          call  3240           SSWordLU();
 44b3: a0,38,a8          ldw   Ra8,R38        Ra8 = R38;
@@ -4948,7 +4948,7 @@
 5666: 20,11             sjmp  5679           goto 5679;
 5668: 99,04,30          cmpb  R30,4          
 566b: d7,07             jne   5674           if (R30 == 4)  {
-566d: 45,e8,03,fc,32    ad3w  R32,Rfc,3e8    R32 = Trans_TC_unlock_curve_3rd_power;
+566d: 45,e8,03,fc,32    ad3w  R32,Rfc,3e8    R32 = Trans_TC_unlock_curve_3rd_power;
 5672: 20,05             sjmp  5679           goto 5679; }
 5674: 45,10,04,fc,32    ad3w  R32,Rfc,410    R32 = Trans_TC_unlock_curve_3rd_econ;
 5679: a3,a2,a4,34       ldw   R34,[Ra2+a4]   R34 = [Ra2-5c];
@@ -9724,7 +9724,7 @@
 8920: 00,80,00,00  func       32768,0
 
 
-  Scaler_for_Abs_Exhaust_Pressure:
+  Scaler_for_Abs_Exhaust_Pressureo:
 8924: ff,ff,00,08  func       65535,8   
 8928: 7a,00,00,08  func       122,8   
 892c: 46,00,00,06  func       70,6   
@@ -11129,7 +11129,7 @@
 97aa: 00,00,20,1c  func       0   ,1800   
 
 
-  Trans_TC_unlock_curve_3rd_power:
+  Trans_TC_unlock_curve_3rd_power:
 97ae: ff,ff,10,40  func       16383.75,4100   
 97b2: 70,01,10,40  func       92   ,4100   
 97b6: 04,01,c8,32  func       65   ,3250   
