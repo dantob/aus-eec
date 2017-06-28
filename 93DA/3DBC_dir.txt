@@ -155,7 +155,7 @@ func  88BC 88D3 "Barrometric_Pressure_Transfer" :W V +12800 :W
 func  88D4 88EF "Scaler_for_time_(fuel)" :W :W V +256
 func  88F0 8903 "FN88F0_(unsigned)" :W
 func  8904 8923 "FN8904_(signed)" :W
-func  8924 8953 "Scaler_for_Abs_Exhaust_Pressure" :W :W V +256
+func  8924 8953 "Scaler_for_MAP?" :W :W V +256
 func  8954 896B "Scaler_for_ECT/ACT" :W :W V +256
 func  896C 8987 "Scaler_for_RPM" :W V +4 :W V +256
 func  8988 89A3 "unknown_load_scaler" :W :W V +256

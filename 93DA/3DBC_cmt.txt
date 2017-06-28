@@ -168,6 +168,18 @@
 22BB |
    1 |################################################################################
 
+3C05  # load RPM table
+3C0A  # load current RPM value
+3C0D  # output is row number (R38)
+3C10  # save rpm result for ve calc
+3C13  # load map table
+3C18  # load current map value
+3C1C  # output is row number (R38)
+3C1F  # save map result for ve calc
+3C22  # ?
+3C25  # load ve table
+3C2A  # output is ve
+
 8635 |
    1 |################################################################################
    1 |#init tables

@@ -2598,17 +2598,17 @@
 3bfb: b0,b1,34          ldb   R34,Rb1        R34 = Rb1;
 3bfe: ef,86,f5          call  3187           UUByteLU(Func5,3c38,);
 3c01: 5d,80,38,3c       #args  
-3c05: 45,dc,01,f0,32    ad3w  R32,Rf0,1dc    R32 = Scaler_for_RPM;
-3c0a: a0,ac,34          ldw   R34,Rac        R34 = Engine_RPM;
-3c0d: ef,30,f6          call  3240           SSWordLU();
-3c10: a0,38,30          ldw   R30,R38        R30 = R38;
-3c13: 45,94,01,f0,32    ad3w  R32,Rf0,194    R32 = Scaler_for_Abs_Exhaust_Pressureo;
-3c18: af,bc,4a,34       ldzbw R34,[Rbc+4a]   R34 = (uns)[Rbc+4a];
-3c1c: ef,21,f6          call  3240           SSWordLU();
-3c1f: a0,38,32          ldw   R32,R38        R32 = R38;
-3c22: ad,0c,34          ldzbw R34,c          R34 = (uns)c;
-3c25: 45,a8,00,fa,38    ad3w  R38,Rfa,a8     R38 = Volumetric_Efficiency_Table;
-3c2a: ef,91,f6          call  32be           UTabLU();
+3c05: 45,dc,01,f0,32    ad3w  R32,Rf0,1dc    R32 = Scaler_for_RPM;          # load RPM table
+3c0a: a0,ac,34          ldw   R34,Rac        R34 = Engine_RPM;              # load current RPM value
+3c0d: ef,30,f6          call  3240           SSWordLU();                    # output is row number (R38)
+3c10: a0,38,30          ldw   R30,R38        R30 = R38;                     # save rpm result for ve calc
+3c13: 45,94,01,f0,32    ad3w  R32,Rf0,194    R32 = Scaler_for_MAP?;         # load map table
+3c18: af,bc,4a,34       ldzbw R34,[Rbc+4a]   R34 = (uns)[Rbc+4a];           # load current map value
+3c1c: ef,21,f6          call  3240           SSWordLU();                    # output is row number (R38)
+3c1f: a0,38,32          ldw   R32,R38        R32 = R38;                     # save map result for ve calc
+3c22: ad,0c,34          ldzbw R34,c          R34 = (uns)c;                  # ?
+3c25: 45,a8,00,fa,38    ad3w  R38,Rfa,a8     R38 = Volumetric_Efficiency_Table; # load ve table
+3c2a: ef,91,f6          call  32be           UTabLU();                      # output is ve
 3c2d: 69,80,00,3a       sb2w  R3a,80         R3a -= 80;
 3c31: 6c,3a,3c          ml2w  R3c,R3a        R3cL *= R3a;
 3c34: 4f,fa,02,3e,3c    ml3w  R3c,R3e,[Rfa+2] R3cL = R3e * [8ffa];
@@ -3153,7 +3153,7 @@
 4275: a0,9c,38          ldw   R38,R9c        R38 = R9c;
 4278: 6d,03,01,38       ml2w  R38,103        R38L *= 103;
 427c: c0,9c,38          stw   R38,R9c        R9c = R38;
-427f: 45,94,01,f0,32    ad3w  R32,Rf0,194    R32 = Scaler_for_Abs_Exhaust_Pressureo;
+427f: 45,94,01,f0,32    ad3w  R32,Rf0,194    R32 = Scaler_for_MAP?;
 4284: af,bc,4a,34       ldzbw R34,[Rbc+4a]   R34 = (uns)[Rbc+4a];
 4288: ef,b5,ef          call  3240           SSWordLU();
 428b: a0,38,a8          ldw   Ra8,R38        Ra8 = R38;
@@ -3333,7 +3333,7 @@
 449e: a0,ac,34          ldw   R34,Rac        R34 = Engine_RPM;
 44a1: ef,9c,ed          call  3240           SSWordLU();
 44a4: a0,38,a6          ldw   Ra6,R38        Ra6 = R38;
-44a7: 45,94,01,f0,32    ad3w  R32,Rf0,194    R32 = Scaler_for_Abs_Exhaust_Pressureo;
+44a7: 45,94,01,f0,32    ad3w  R32,Rf0,194    R32 = Scaler_for_MAP?;
 44ac: af,bc,4a,34       ldzbw R34,[Rbc+4a]   R34 = (uns)[Rbc+4a];
 44b0: ef,8d,ed          call  3240           SSWordLU();
 44b3: a0,38,a8          ldw   Ra8,R38        Ra8 = R38;
@@ -9724,7 +9724,7 @@
 8920: 00,80,00,00  func       32768,0
 
 
-  Scaler_for_Abs_Exhaust_Pressureo:
+  Scaler_for_MAP?:
 8924: ff,ff,00,08  func       65535,8   
 8928: 7a,00,00,08  func       122,8   
 892c: 46,00,00,06  func       70,6   

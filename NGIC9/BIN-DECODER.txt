@@ -12,7 +12,7 @@
 ??	12HD*			??			??			??			??
 ??	12KD*			lpg	4.0		??			??			??
 ??	12LD*			lpg 4.0		auto		3.08:1		dedicated LPG
-	12MC_NGIC9M5 	lpg 4.0		manual		??			dedicated LPG
+	12MC_NGIC9M5 	lpg 4.0		manual		3.23:1		dedicated LPG
 ??	12ND*			??			??			??			??
 ??	12PC*			hp  4.0		auto		3.45:1		XR6 HP ute (Late XLS ute)
 ??	12TD*			hp  4.0		manual		3.45:1		XR6 HP ute (Late XLS ute)
