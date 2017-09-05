@@ -17,7 +17,7 @@
 ??	12PC*			hp  4.0		auto		3.45:1		XR6 HP ute (Late XLS ute)
 ??	12TD*			hp  4.0		manual		3.45:1		XR6 HP ute (Late XLS ute)
 ??	12UD*			hp  4.0		manual		3.45:1		XR6 HP
-??	12VC*			hp	4.0		auto		3.45:1		XR6 HP
+	12VC_NGIC9V7	hp	4.0		auto		3.45:1		XR6 HP
 	12WD_NGIC9WG	vct 4.0		manual		3.45:1		XR6 VCT
 ??	12XC*			vct 4.0		auto		3.45:1		XR6 VCT
 	12ZE_NGIC9Z4	std 4.0		auto		3.08:1		tickford dual fuel
