@@ -36,6 +36,37 @@ SYM   F "HSO_TIMEH"
 SYM   2A "VIP_mode_flag"
 SYM   AE "Engine_RPM"
 
+SYM   2004 "FIXSUM"
+SYM   200A "ROM_TO"
+SYM   200C "SMP_Base_Address"
+SYM   200E "CC_EXECUTION_TIME"
+SYM   2020 "NUM_OF_LEVELS"
+SYM   2021 "NUM_OF_CALIBRATIONS"
+SYM   2022 "RF0"
+SYM   2024 "RF2"
+SYM   2026 "RF4"
+SYM   2028 "RF6"
+SYM   202A "RF8"
+SYM   202C "RFA"
+SYM   202E "RFC"
+SYM   2030 "RFE"
+
+SYM   6F50 "CP_RF0_Header_Points_to_CP_RF2"
+SYM   7222 "CP_RF2_Header_Points_to_CP_RF4"
+SYM   7524 "CP_RF4_Header_Points_to_CP_RF6"
+SYM   76B4 "CP_RF6_Header_Points_to_CP_RF8"
+SYM   7976 "CP_RF8_Header_Points_to_CP_RFA"
+SYM   7E14 "CP_RFA_Header_Points_to_CP_RFC"
+SYM   7EF8 "CP_RFC_Header_Points_to_CP_RFE"
+SYM   7F22 "CP_RFE_Header_Points_to_EOF"
+
+SYM   722E "Engine_Displacement"
+SYM   72AA "Injector_Slope"
+SYM   72BC "RPM_Limit"
+SYM   72BE "RPM_Limit_Hysteresis"
+SYM   7EC4 "Idle_Speed_Neutral"
+SYM   7EC6 "Idle_Speed_Drive"
+
 #--Code-------------------------------------------------------------------------
 sub   2000 "reset"
 sub   20A2 "setup_initial_state"
@@ -67,30 +98,30 @@ sub   67A3 "common_Sub20"
 sub   67FD "common_Sub21"
 sub   6B06 "common_Sub22"
 
-word  2004 2005 "FIXSUM"
+word  2004 2005
 word  2006 2007
 word  2008 2009
-word  200A 200B "ROM_TO"
-word  200C 200D "SMP_Base_Address"
-word  200E 200F "CC_EXECUTION_TIME"
-#vect 2010 2011 "IPT_HSO_2"
-#vect 2012 2013 "IPT_IO_Timer_OVF"
-#vect 2014 2015 "IPT_END_AD_CONV"
-#vect 2016 2017 "IPT_HSI_READY"
-#vect 2018 2019 "IPT_EXTERNAL"
-#vect 201A 201B "IPT_HSO_1"
-#vect 201C 201D "IPT_HSI_1"
-#vect 201E 201F "IPT_HSI_0"
-byte  2020      "NUM_OF_LEVELS"
-byte  2021      "NUM_OF_CALIBRATIONS"
-word  2022 2023 "RF0"
-word  2024 2025 "RF2"
-word  2026 2027 "RF4"
-word  2028 2029 "RF6"
-word  202A 202B "RF8"
-word  202C 202D "RFA"
-word  202E 202F "RFC"
-word  2030 2031 "RFE"
+word  200A 200B
+word  200C 200D
+word  200E 200F
+vect  2010 2011
+vect  2012 2013
+vect  2014 2015
+vect  2016 2017
+vect  2018 2019
+vect  201A 201B
+vect  201C 201D
+vect  201E 201F
+byte  2020
+byte  2021
+word  2022 2023
+word  2024 2025
+word  2026 2027
+word  2028 2029
+word  202A 202B
+word  202C 202D
+word  202E 202F
+word  2030 2031
 fill  2032 20A1
 
 #init table #1
@@ -135,7 +166,7 @@ xcode 6F50 804B #data section
 
 #--Data-------------------------------------------------------------------------
 #--RF0--------------------------------------------------------------------------
-word  6F50 6F51 "CP_RF0_Header_Points_to_CP_RF2"
+word  6F50 6F51
 func  6F52 6F57 :Y
 func  6F58 6F73 :W
 func  6F74 6F7F :Y
@@ -160,7 +191,7 @@ func  7102 7121 "Scaler_for_TBL782E" :W :W V +256
 func  7122 7151 "Scaler_for_Abs_Exh_Pressure" :W V +4 :W V +256 #IDK whether this is % or pressure
 func  7152 7169 "Scaler_for_ECT" :W :W V +256 #??
 func  716A 7185 "Scaler_for_RPM" :W V +4 :W V +256
-func  7186 71A1 "Scaler_for_Load_(fuel)":W V +1.28 :W V +256
+func  7186 71A1 "Scaler_for_Load_(fuel)" :W V +1.28 :W V +256
 func  71A2 71BD "Scaler_for_Load_(fuelstable)" :W V +1.28 :W V +256
 func  71BE 71D9 "Scaler_for_MAP" :W V +8 :W V +256
 func  71DA 71F1 "Scaler_FN71DA" :W :W V +256
@@ -168,22 +199,22 @@ func  71F2 7205 :W
 func  7206 7221 :W
 
 #--RF2----------------------------------------------------------------------TODO
-word  7222 7223 "CP_RF2_Header_Points_to_CP_RF4"
+word  7222 7223
 
-word  722E 722F "Engine_Displacement"
+word  722E 722F
 
 table 7234 729F "Volumetric_Efficiency_Table" :Y X O +12 V +2.56 P +3
 
-word  72AA 72AB "Injector_Slope"
+word  72AA 72AB
 
-word  72BC 72BD "RPM_Limit"
-word  72BE 72BF "RPM_Limit_Hysteresis"
+word  72BC 72BD
+word  72BE 72BF
 
 table 72C9 7322  "TBL72C9" :Y X O +10 P +3 #map/act
 table 7323 737C  "TBL7323" :Y X O +10 P +3 #map/act
 
 #--RF4--------------------------------------------------------------------------
-word  7524 7525 "CP_RF4_Header_Points_to_CP_RF6"
+word  7524 7525
 byte  7526
 fill  7527 #word must be aligned with even byte
 func  7528 754F :W
@@ -203,7 +234,7 @@ func  768C 769F :W
 func  76A0 76B3 :W
 
 #--RF6----------------------------------------------------------------------TODO
-word  76B4 76B5 "CP_RF6_Header_Points_to_CP_RF8"
+word  76B4 76B5
 #76B6 ??
 func  76C0 76C9 :Y
 func  76CA 76DB "Injector_comp_batt_volts" :Y
@@ -228,7 +259,7 @@ func  77CA 77ED :W
 func  77EE 77F9 :Y
 func  77FA 7815 :W
 func  7816 782D "Scaler_for_TBL782E" :W
-table 782E 7857 "TBL782E_(ISC_Airflow_multiplier)" :Y O +7 P +3 #??
+table 782E 7857 "TBL782E_(ISC_Airflow_X)" :Y O +7 P +3 #??
 func  7858 7873 :W
 func  7874 788F :W
 func  7890 7897 :Y
@@ -243,7 +274,7 @@ func  7958 7973 "Dashpot_Decay_Rate" :W
 byte  7975
 
 #--RF8--------------------------------------------------------------------------
-word  7976 7977 "CP_RF8_Header_Points_to_CP_RFA"
+word  7976 7977
 byte  7978
 byte  7979
 byte  797A
@@ -264,7 +295,7 @@ func  7D94 7DA7 :W
 table 7DA8 7E13 "TBL7DA8" :Y X O +9 P +3 #Adaptive_Learning_Fuel_Table doesnt seem right, cant see scales?
 
 #--RFA----------------------------------------------------------------------TODO
-word  7E14 7E15 "CP_RFA_Header_Points_to_CP_RFC"
+word  7E14 7E15
 word  7E16 7E17
 word  7E18 7E19    
 word  7E1A 7E1B
@@ -345,8 +376,8 @@ word  7E9E 7E9F
 #7EA0  
 #7EBA
 #7EBE 
-word  7EC4 7EC5 "Idle_Speed_Neutral"
-word  7EC6 7EC7 "Idle_Speed_Drive"
+word  7EC4 7EC5
+word  7EC6 7EC7
 #7ECE
 #7ED0
 #7ED2
@@ -368,12 +399,12 @@ word  7EF4 7EF5
 #7EF6
 
 #--RFC--------------------------------------------------------------------------
-word  7EF8 7EF9 "CP_RFC_Header_Points_to_CP_RFE"
+word  7EF8 7EF9
 func  7EFA 7F15 :W
 func  7F16 7F21 :W
 
 #--RFE--------------------------------------------------------------------------
-word  7F22 7F23 "CP_RFE_Header_Points_to_EOF"
+word  7F22 7F23
 word  7F24 7F25
 word  7F26 7F27
 word  7F28 7F29
