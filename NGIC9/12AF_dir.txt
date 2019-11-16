@@ -2,7 +2,7 @@ opts   :C F G H N P S
 
 xcode 12000 19FFF
 
-table 12132 1219D "Volumetric_Efficiency_Table" :Y X O +12 V +2.56 P +2
+table 12132 1219D "Volumetric_Efficiency_Table" :Y X O +12 V +2.56
 
 func  12586 125A5 "SCALER1"                      :W V +1 :W V +256
 func  125A6 125C5 "SCALER2"                      :W V +1 :W V +256
@@ -13,14 +13,14 @@ func  12626 12639 "SCALER5"                      :W V +1 :W V +256
 func  1263A 12655 "SCALER6"                      :W V +1 :W V +256
 func  1266C 1269B "SCALER7"                      :W V +1 :W V +256
 
-table 127C2 1282D "TABLE_Spark_MBT"              :Y X O +12 V +2 P +2
-table 1282E 12899 "TABLE_Spark_MBT_MPG"          :Y X O +12 V +2 P +2
-table 1289A 12905 "TABLE_Spark_LPG_MBT"          :Y X O +12 V +2 P +2
-table 12906 12971 "TABLE_Spark_LPG_MBT_MPG"      :Y X O +12 V +2 P +2
-table 12972 129DD "TABLE_Spark_BDLN"             :Y X O +12 V +2 P +2
-table 129DE 12A49 "TABLE_Spark_BDLN_MPG"         :Y X O +12 V +2 P +2
-table 12A4A 12AB5 "TABLE_Spark_LPG_BDLN"         :Y X O +12 V +2 P +2
-table 12AB6 12B21 "TABLE_Spark_LPG_BDLN_MPG"     :Y X O +12 V +2 P +2
+table 127C2 1282D "TABLE_Spark_MBT"              :Y X O +12 V +2
+table 1282E 12899 "TABLE_Spark_MBT_MPG"          :Y X O +12 V +2
+table 1289A 12905 "TABLE_Spark_LPG_MBT"          :Y X O +12 V +2
+table 12906 12971 "TABLE_Spark_LPG_MBT_MPG"      :Y X O +12 V +2
+table 12972 129DD "TABLE_Spark_BDLN"             :Y X O +12 V +2
+table 129DE 12A49 "TABLE_Spark_BDLN_MPG"         :Y X O +12 V +2
+table 12A4A 12AB5 "TABLE_Spark_LPG_BDLN"         :Y X O +12 V +2
+table 12AB6 12B21 "TABLE_Spark_LPG_BDLN_MPG"     :Y X O +12 V +2
 
 ################################################################################
 #-------------------------------------------------------------------------------
@@ -38,10 +38,10 @@ func  135FC 13613 "SCALERC"                      :W V +1 :W V +256
 func  13614 1362F "SCALER_MAP1_(kPa)"            :W V +1.28 :W V +256
 func  13630 1364B "SCALER_MAP2_(kPa)"            :W V +1.28 :W V +256
 
-table 13726 13791 "TABLE_Fuel_Stabilised_(CL)"   :Y X O +12 V +128 P +2
-table 13792 137EB "TABLE_Fuel_Base_(OL)"         :Y X O +10 V +128 P +2
-table 137EC 13845 "TABLE_Fuel_Startup"           :Y X O +10 V +128 P +2
-table 13966 139D1 "TABLE_Fuel_Lean_Cruise"       :Y X O +12 V +128 P +2
+table 13726 13791 "TABLE_Fuel_Stabilised_(CL)"   :Y X O +12 V +128
+table 13792 137EB "TABLE_Fuel_Base_(OL)"         :Y X O +10 V +128
+table 137EC 13845 "TABLE_Fuel_Startup"           :Y X O +10 V +128
+table 13966 139D1 "TABLE_Fuel_Lean_Cruise"       :Y X O +12 V +128
 
 ################################################################################
 #-------------------------------------------------------------------------------
