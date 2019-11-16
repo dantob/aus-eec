@@ -4539,7 +4539,7 @@
 12567: e0,f0,ff,00,0f,1d,11,00,00,00,00,00,00,00,00,00 ??? 
 12577: 00,00,00,7f,06,3c,06,14,0a,f6,05,80,05,80,05 ??? 
 
-   SCALER1:
+   SCALER_01:
 12586: ff,7f,00,06  func        32767    ,    6    
 1258a: 5a,00,00,06  func           90    ,    6    
 1258e: 3c,00,00,04  func           60    ,    4    
@@ -4549,7 +4549,7 @@
 1259e: 00,80,00,00  func        32768    ,    0    
 125a2: 00,80,00,00  func        32768    ,    0    
 
-   SCALER2:
+   SCALER_02:
 125a6: ff,7f,00,06  func        32767    ,    6    
 125aa: 5a,00,00,06  func           90    ,    6    
 125ae: 3c,00,00,04  func           60    ,    4    
@@ -4559,7 +4559,7 @@
 125be: 00,80,00,00  func        32768    ,    0    
 125c2: 00,80,00,00  func        32768    ,    0    
 
-   SCALER3:
+   SCALER_03:
 125c6: ff,ff,00,08  func        65535    ,    8    
 125ca: 7a,00,00,08  func          122    ,    8    
 125ce: 66,00,00,07  func          102    ,    7    
@@ -4582,21 +4582,21 @@
 1260a: 00,00,00,00  func            0    ,    0    
 1260e: 00,00,00,00  func            0    ,    0    
 
-   SCALER4:
+   SCALER_04:
 12612: ff,ff,00,08  func        65535    ,    8    
 12616: a6,00,00,08  func          166    ,    8    
 1261a: 40,00,00,04  func           64    ,    4    
 1261e: 0d,00,00,00  func           13    ,    0    
 12622: 00,00,00,00  func            0    ,    0    
 
-   SCALER5:
+   SCALER_05:
 12626: ff,ff,00,04  func        65535    ,    4    
 1262a: c0,bb,00,04  func        48064    ,    4    
 1262e: c0,9e,00,03  func        40640    ,    3    
 12632: 80,48,00,00  func        18560    ,    0    
 12636: 00,00,00,00  func            0    ,    0    
 
-   SCALER6:
+   SCALER_06:
 1263a: ff,ff,00,08  func        65535    ,    8    
 1263e: f0,00,00,08  func          240    ,    8    
 12642: 30,00,00,00  func           48    ,    0    
@@ -4628,7 +4628,7 @@
 1266a: ff                 byte   ff
 1266b: 28                 byte   28
 
-   SCALER7:
+   SCALER_07:
 1266c: ff,ff,00,08  func        65535    ,    8    
 12670: 7a,00,00,08  func          122    ,    8    
 12674: 66,00,00,07  func          102    ,    7    
@@ -5056,14 +5056,14 @@
 
 
 
-   TABLE73:
+   TABLE_73:
 13480: 00,03,10,14,14,14  table   0    ,  3    , 16    , 20    , 20    , 20    
 13486: 00,03,10,14,14,14  table   0    ,  3    , 16    , 20    , 20    , 20    
 1348c: 00,03,10,17,10,10  table   0    ,  3    , 16    , 23    , 16    , 16    
 13492: 00,03,10,17,10,10  table   0    ,  3    , 16    , 23    , 16    , 16    
 13498: 00,03,10,17,10,10  table   0    ,  3    , 16    , 23    , 16    , 16    
 
-   TABLE74:
+   TABLE_74:
 1349e: 00,1b,3f,89,89,89  table   0    , 27    , 63    ,137    ,137    ,137    
 134a4: 00,1d,44,9c,9c,9c  table   0    , 29    , 68    ,156    ,156    ,156    
 134aa: 00,1d,44,9c,9c,9c  table   0    , 29    , 68    ,156    ,156    ,156    
@@ -5092,7 +5092,7 @@
 134ce: 05                 byte    5
 134cf: 1c                 byte   1c
 
-   SCALER8:
+   SCALER_08:
 134d0: ff,ff,00,09  func        65535    ,    9    
 134d4: 00,4b,00,09  func        19200    ,    9    
 134d8: 50,46,00,08  func        18000    ,    8    
@@ -5104,7 +5104,7 @@
 134f0: 00,00,00,00  func            0    ,    0    
 134f4: 00,00,00,00  func            0    ,    0    
 
-   SCALER9:
+   SCALER_09:
 134f8: ff,ff,00,07  func        65535    ,    7    
 134fc: f0,00,00,07  func          240    ,    7    
 13500: 48,00,00,00  func           72    ,    0    
@@ -5205,7 +5205,7 @@
 
 135c8: 07,00,05,00        ???   
 
-   SCALERA:
+   SCALER_0A:
 135cc: ff,ff,00,07  func        65535    ,    7    
 135d0: d2,00,00,07  func          210    ,    7    
 135d4: 46,00,00,06  func           70    ,    6    
@@ -5214,14 +5214,14 @@
 135e0: 03,00,00,01  func            3    ,    1    
 135e4: 00,00,00,00  func            0    ,    0    
 
-   SCALERB:
+   SCALER_0B:
 135e8: ff,ff,00,07  func        65535    ,    7    
 135ec: c0,03,00,07  func          960    ,    7    
 135f0: a0,00,00,03  func          160    ,    3    
 135f4: 0a,00,00,00  func           10    ,    0    
 135f8: 00,00,00,00  func            0    ,    0    
 
-   SCALERC:
+   SCALER_0C:
 135fc: ff,7f,00,09  func        32767    ,    9    
 13600: 00,2d,00,09  func        11520    ,    9    
 13604: 00,23,00,08  func         8960    ,    8    
@@ -5794,7 +5794,7 @@
 14372: 00,80,00,00  func        -32768,    0
 14376: 00,80,00,00  func        -32768,    0
 
-   SCALERD:
+   SCALER_0D:
 1437a: ff,ff,00,08  func        65535    ,    8    
 1437e: 88,13,00,08  func         5000    ,    8    
 14382: d0,07,00,07  func         2000    ,    7    
@@ -6052,7 +6052,7 @@
 14760: 00,00,00,00,00,00,00,00,00,00  table   0,  0,  0,  0,  0,  0,  0,  0,  0,  0
 1476a: 00,00,00,00,00,00,00,00,00,00  table   0,  0,  0,  0,  0,  0,  0,  0,  0,  0
 
-   TABLE70:
+   TABLE_70:
 14774: af,af,af,af,af,af,bc,bc,bc,bc,bc,bc  table 175    ,175    ,175    ,175    ,175    ,175    ,188    ,188    ,188    ,188    ,188    ,188    
 14780: af,af,af,af,af,af,bc,bc,bc,bc,bc,bc  table 175    ,175    ,175    ,175    ,175    ,175    ,188    ,188    ,188    ,188    ,188    ,188    
 1478c: af,af,af,af,af,af,bc,bc,bc,bc,bc,bc  table 175    ,175    ,175    ,175    ,175    ,175    ,188    ,188    ,188    ,188    ,188    ,188    
@@ -6063,7 +6063,7 @@
 147c8: bc,bc,bc,bc,bc,bc,bc,bc,bc,bc,bc,bc  table 188    ,188    ,188    ,188    ,188    ,188    ,188    ,188    ,188    ,188    ,188    ,188    
 147d4: bc,bc,bc,bc,bc,bc,bc,bc,bc,bc,bc,bc  table 188    ,188    ,188    ,188    ,188    ,188    ,188    ,188    ,188    ,188    ,188    ,188    
 
-   TABLE71:
+   TABLE_71:
 147e0: 81,81,82,82,82,82,82,82,84,84,85,85  table 129    ,129    ,130    ,130    ,130    ,130    ,130    ,130    ,132    ,132    ,133    ,133    
 147ec: 81,81,82,83,82,82,83,84,84,84,85,85  table 129    ,129    ,130    ,131    ,130    ,130    ,131    ,132    ,132    ,132    ,133    ,133    
 147f8: 81,81,81,83,82,84,84,84,84,84,85,85  table 129    ,129    ,129    ,131    ,130    ,132    ,132    ,132    ,132    ,132    ,133    ,133    
@@ -6074,7 +6074,7 @@
 14834: 71,71,71,71,71,71,6e,6c,6c,6c,6c,6c  table 113    ,113    ,113    ,113    ,113    ,113    ,110    ,108    ,108    ,108    ,108    ,108    
 14840: 71,71,71,71,71,71,6e,6c,6c,6c,6c,6c  table 113    ,113    ,113    ,113    ,113    ,113    ,110    ,108    ,108    ,108    ,108    ,108    
 
-   TABLE72:
+   TABLE_72:
 1484c: a0,a0,8c,87,87,88,87,94,96,96,96,96  table 160    ,160    ,140    ,135    ,135    ,136    ,135    ,148    ,150    ,150    ,150    ,150    
 14858: a0,8a,8a,87,88,88,87,94,96,96,96,96  table 160    ,138    ,138    ,135    ,136    ,136    ,135    ,148    ,150    ,150    ,150    ,150    
 14864: 90,8a,8a,8a,8a,88,87,8e,94,96,96,96  table 144    ,138    ,138    ,138    ,138    ,136    ,135    ,142    ,148    ,150    ,150    ,150    
@@ -6338,7 +6338,7 @@
 14b68: 00,00,00,00  func            0,    0
 14b6c: 00,00,00,00  func            0,    0
 
-   SCALERE:
+   SCALER_0E:
 14b70: ff,ff,00,05  func        65535    ,    5    
 14b74: 78,00,00,05  func          120    ,    5    
 14b78: 3c,00,00,04  func           60    ,    4    
@@ -6455,7 +6455,7 @@
 14d02: 00,80,0a,00  func        -32768,   10
 14d06: 00,80,0a,00  func        -32768,   10
 
-   SCALERF:
+   SCALER_0F:
 14d0a: ff,ff,00,0b  func        65535    ,   11    
 14d0e: 14,16,00,0b  func         5652    ,   11    
 14d12: 48,15,00,0a  func         5448    ,   10    
@@ -6470,7 +6470,7 @@
 14d36: 00,00,00,00  func            0    ,    0    
 14d3a: 00,00,00,00  func            0    ,    0    
 
-   SCALER10:
+   SCALER_10:
 14d3e: ff,ff,00,04  func        65535    ,    4    
 14d42: 00,e8,00,04  func        59392    ,    4    
 14d46: 00,c8,00,03  func        51200    ,    3    
@@ -6530,7 +6530,7 @@
 14df6: 00,80,3d,00  func        -32768,   61
 14dfa: 00,80,3d,00  func        -32768,   61
 
-   SCALER691:
+   SCALER_691:
 14dfe: ff,ff,00,07  func        65535    ,    7    
 14e02: 20,4e,00,07  func        20000    ,    7    
 14e06: 40,1f,00,04  func         8000    ,    4    
@@ -6541,7 +6541,7 @@
 14e1a: 00,00,00,00  func            0    ,    0    
 14e1e: 00,00,00,00  func            0    ,    0    
 
-   SCALER692:
+   SCALER_692:
 14e22: ff,ff,00,07  func        65535    ,    7    
 14e26: 80,0c,00,07  func         3200    ,    7    
 14e2a: 90,01,00,00  func          400    ,    0    
@@ -6563,7 +6563,7 @@
 14e7a: 24,24,18,45,56,5a,5c,64  table  36    , 36    , 24    , 69    , 86    , 90    , 92    ,100    
 14e82: 26,26,28,60,73,76,78,7f  table  38    , 38    , 40    , 96    ,115    ,118    ,120    ,127    
 
-   SCALER681:
+   SCALER_681:
 14e8a: ff,ff,00,07  func        65535    ,    7    
 14e8e: 20,4e,00,07  func        20000    ,    7    
 14e92: 40,1f,00,04  func         8000    ,    4    
@@ -6574,7 +6574,7 @@
 14ea6: 00,00,00,00  func            0    ,    0    
 14eaa: 00,00,00,00  func            0    ,    0    
 
-   SCALER682:
+   SCALER_682:
 14eae: ff,ff,00,07  func        65535    ,    7    
 14eb2: 80,0c,00,07  func         3200    ,    7    
 14eb6: 90,01,00,00  func          400    ,    0    
@@ -6596,7 +6596,7 @@
 14f06: 53,53,00,00,00,00,00,00  table  83    , 83    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
 14f0e: 5a,5a,00,00,00,00,00,00  table  90    , 90    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
 
-   SCALER671:
+   SCALER_671:
 14f16: ff,ff,00,07  func        65535    ,    7    
 14f1a: 20,4e,00,07  func        20000    ,    7    
 14f1e: 40,1f,00,04  func         8000    ,    4    
@@ -6607,7 +6607,7 @@
 14f32: 00,00,00,00  func            0    ,    0    
 14f36: 00,00,00,00  func            0    ,    0    
 
-   SCALER672:
+   SCALER_672:
 14f3a: ff,ff,00,07  func        65535    ,    7    
 14f3e: 80,0c,00,07  func         3200    ,    7    
 14f42: 90,01,00,00  func          400    ,    0    
@@ -6629,7 +6629,7 @@
 14f92: e1,e1,e9,e9,ec,ee,f1,f3  table 225    ,225    ,233    ,233    ,236    ,238    ,241    ,243    
 14f9a: e6,e6,ee,f1,f3,f6,fb,fd  table 230    ,230    ,238    ,241    ,243    ,246    ,251    ,253    
 
-   SCALER661:
+   SCALER_661:
 14fa2: ff,ff,00,07  func        65535    ,    7    
 14fa6: 20,4e,00,07  func        20000    ,    7    
 14faa: 40,1f,00,04  func         8000    ,    4    
@@ -6640,7 +6640,7 @@
 14fbe: 00,00,00,00  func            0    ,    0    
 14fc2: 00,00,00,00  func            0    ,    0    
 
-   SCALER662:
+   SCALER_662:
 14fc6: ff,ff,00,07  func        65535    ,    7    
 14fca: 80,0c,00,07  func         3200    ,    7    
 14fce: 90,01,00,00  func          400    ,    0    
@@ -6684,7 +6684,7 @@
 1506e: 00,00,33,00  func            0,   51
 15072: 00,00,33,00  func            0,   51
 
-   SCALER651:
+   SCALER_651:
 15076: ff,ff,00,07  func        65535    ,    7    
 1507a: 60,22,00,07  func         8800    ,    7    
 1507e: a0,0f,00,04  func         4000    ,    4    
@@ -6695,7 +6695,7 @@
 15092: 00,00,00,00  func            0    ,    0    
 15096: 00,00,00,00  func            0    ,    0    
 
-   SCALER652:
+   SCALER_652:
 1509a: ff,7f,00,06  func        32767    ,    6    
 1509e: 7d,00,00,06  func          125    ,    6    
 150a2: 00,00,00,01  func            0    ,    1    
@@ -6714,7 +6714,7 @@
 150e2: 00,26,38,4a,5d,89,b1,dd  table   0    , 38    , 56    , 74    , 93    ,137    ,177    ,221    
 150ea: 00,26,38,4a,5d,89,b1,dd  table   0    , 38    , 56    , 74    , 93    ,137    ,177    ,221    
 
-   SCALER641:
+   SCALER_641:
 150f2: ff,ff,00,07  func        65535    ,    7    
 150f6: 60,22,00,07  func         8800    ,    7    
 150fa: a0,0f,00,04  func         4000    ,    4    
@@ -6725,7 +6725,7 @@
 1510e: 00,00,00,00  func            0    ,    0    
 15112: 00,00,00,00  func            0    ,    0    
 
-   SCALER642:
+   SCALER_642:
 15116: ff,7f,00,06  func        32767    ,    6    
 1511a: 7d,00,00,06  func          125    ,    6    
 1511e: 00,00,00,01  func            0    ,    1    
@@ -6899,7 +6899,7 @@
 15450: 0a,7f,09,80,00,7f,00,7f,00,7f,00,7f,00,7f,00,7f ??? 
 15460: 00,7f              ???   
 
-   SCALER1D:
+   SCALER_1D:
 15462: ff,ff,00,08  func        65535    ,    8    
 15466: a0,00,00,08  func          160    ,    8    
 1546a: 00,00,00,00  func            0    ,    0    
@@ -7323,7 +7323,7 @@
 15a26: 33,07              word    733
 15a28: 00,08              word    800
 
-   SCALER631:
+   SCALER_631:
 15a2a: ff,ff,00,07  func        65535    ,    7    
 15a2e: 00,00,00,00  func            0    ,    0    
 15a32: 00,00,00,00  func            0    ,    0    
@@ -7335,7 +7335,7 @@
 15a4a: 00,00,00,00  func            0    ,    0    
 15a4e: 00,00,00,00  func            0    ,    0    
 
-   SCALER632:
+   SCALER_632:
 15a52: ff,ff,00,07  func        65535    ,    7    
 15a56: 00,00,00,00  func            0    ,    0    
 15a5a: 00,00,00,00  func            0    ,    0    
@@ -7357,7 +7357,7 @@
 15aaa: 50,46,3c,32,28,1e,14,0a  table  80    , 70    , 60    , 50    , 40    , 30    , 20    , 10    
 15ab2: 50,46,3c,32,28,1e,14,0a  table  80    , 70    , 60    , 50    , 40    , 30    , 20    , 10    
 
-   SCALER621:
+   SCALER_621:
 15aba: ff,ff,00,05  func        65535    ,    5    
 15abe: 00,48,00,05  func        18432    ,    5    
 15ac2: 00,28,00,04  func        10240    ,    4    
@@ -7367,7 +7367,7 @@
 15ad2: 00,00,00,00  func            0    ,    0    
 15ad6: 00,00,00,00  func            0    ,    0    
 
-   SCALER622:
+   SCALER_622:
 15ada: ff,ff,00,05  func        65535    ,    5    
 15ade: 80,3e,00,05  func        16000    ,    5    
 15ae2: 40,1f,00,03  func         8000    ,    3    
@@ -7385,7 +7385,7 @@
 15b12: 00,03,0b,0f,15,19  table   0    ,  3    , 11    , 15    , 21    , 25    
 15b18: 00,02,09,0c,0f,13  table   0    ,  2    ,  9    , 12    , 15    , 19    
 
-   FUNC35:
+   FUNC_35:
 15b1e: ff,ff,00,40  func        65535    ,16384    
 15b22: b8,0b,00,40  func         3000    ,16384    
 15b26: d0,07,9a,59  func         2000    ,22938    
@@ -7395,7 +7395,7 @@
 15b36: 00,00,00,00  func            0    ,    0    
 15b3a: 00,00,00,00  func            0    ,    0    
 
-   SCALER601:
+   SCALER_601:
 15b3e: ff,7f,00,03  func        32767    ,    3    
 15b42: 64,00,00,03  func          100    ,    3    
 15b46: 28,00,00,00  func           40    ,    0    
@@ -7403,7 +7403,7 @@
 15b4e: 00,80,00,00  func        32768    ,    0    
 15b52: 00,80,00,00  func        32768    ,    0    
 
-   SCALER602:
+   SCALER_602:
 15b56: ff,ff,00,03  func        65535    ,    3    
 15b5a: 50,46,00,03  func        18000    ,    3    
 15b5e: 10,27,00,02  func        10000    ,    2    
@@ -7538,7 +7538,7 @@
 15c36: 00,00,00,00  func            0    ,    0    
 15c3a: 00,00,00,00  func            0    ,    0    
 
-   SCALER611:
+   SCALER_611:
 15c3e: ff,ff,00,07  func        65535    ,    7    
 15c42: 00,50,00,07  func        20480    ,    7    
 15c46: 00,50,00,06  func        20480    ,    6    
@@ -7550,7 +7550,7 @@
 15c5e: 00,00,00,00  func            0    ,    0    
 15c62: 00,00,00,00  func            0    ,    0    
 
-   SCALER612:
+   SCALER_612:
 15c66: ff,ff,00,07  func        65535    ,    7    
 15c6a: 33,73,00,07  func        29491    ,    7    
 15c6e: 33,73,00,06  func        29491    ,    6    
@@ -7829,7 +7829,7 @@
 
 15e61: ff                 ???   
 
-   FUNC01:
+   FUNC_01:
 15e62: ff,ff,ec,ff  func        65535    ,65516    
 15e66: 40,ee,ec,ff  func        60992    ,65516    
 15e6a: 00,d9,00,00  func        55552    ,    0    
@@ -9054,7 +9054,7 @@
 16e4e: 00,00,68,10  func            0    , 4200    
 16e52: 00,00,68,10  func            0    , 4200    
 
-   SCALER26:
+   SCALER_26:
 16e56: ff,7f,00,07  func        32767    ,    7    
 16e5a: 82,00,00,07  func          130    ,    7    
 16e5e: 64,00,00,05  func          100    ,    5    
@@ -9066,7 +9066,7 @@
 16e76: 00,80,00,00  func        32768    ,    0    
 16e7a: 00,80,00,00  func        32768    ,    0    
 
-   SCALER27:
+   SCALER_27:
 16e7e: ff,ff,00,02  func        65535    ,    2    
 16e82: b6,03,00,02  func          950    ,    2    
 16e86: c2,01,00,00  func          450    ,    0    
@@ -9093,7 +9093,7 @@
 16eca: 00,00,00,00  func            0    ,    0    
 16ece: 00,00,00,00  func            0    ,    0    
 
-   SCALER28:
+   SCALER_28:
 16ed2: ff,ff,00,0b  func        65535    ,   11    
 16ed6: 33,43,00,0a  func        17203    ,   10    
 16eda: 00,10,00,01  func         4096    ,    1    
@@ -9135,7 +9135,7 @@
 16f52: 00,80,1f,2d  func        32768    ,11551    
 16f56: 00,80,1f,2d  func        32768    ,11551    
 
-   SCALER29:
+   SCALER_29:
 16f5a: ff,ff,00,03  func        65535    ,    3    
 16f5e: 00,80,00,03  func        32768    ,    3    
 16f62: 00,50,00,00  func        20480    ,    0    
@@ -9498,7 +9498,7 @@
 17406: 00,00,f8,11  func            0    , 4600    
 1740a: 00,00,f8,11  func            0    , 4600    
 
-   SCALER2A:
+   SCALER_2A:
 1740e: ff,ff,00,05  func        65535    ,    5    
 17412: c8,00,00,05  func          200    ,    5    
 17416: 50,00,00,02  func           80    ,    2    
@@ -9846,7 +9846,7 @@
 17c74: f4,ec,f1  table           -12, -20, -15
 17c77: ef,e7,ec  table           -17, -25, -20
 
-   TABLE75:
+   TABLE_75:
 17c7a: 00,00,00,00,00,00,00,00,00,00,00,00  table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
 17c86: 14,09,09,0c,0c,0c,0c,06,06,06,06,06  table  20    ,  9    ,  9    , 12    , 12    , 12    , 12    ,  6    ,  6    ,  6    ,  6    ,  6    
 17c92: 19,14,12,12,14,14,14,0a,0a,0a,0a,0a  table  25    , 20    , 18    , 18    , 20    , 20    , 20    , 10    , 10    , 10    , 10    , 10    
@@ -9860,7 +9860,7 @@
 17cf2: 64,64,64,64,64,55,55,55,57,57,5c,5c  table 100    ,100    ,100    ,100    ,100    , 85    , 85    , 85    , 87    , 87    , 92    , 92    
 17cfe: 64,64,64,64,64,64,64,64,64,64,64,64  table 100    ,100    ,100    ,100    ,100    ,100    ,100    ,100    ,100    ,100    ,100    ,100    
 
-   TABLE76:
+   TABLE_76:
 17d0a: 00,00,00,00,00,00,00,00,00,00,00,00  table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
 17d16: 14,09,09,0a,0a,0a,0a,0a,0a,0a,0a,0a  table  20    ,  9    ,  9    , 10    , 10    , 10    , 10    , 10    , 10    , 10    , 10    , 10    
 17d22: 19,14,12,12,12,12,12,12,12,12,12,13  table  25    , 20    , 18    , 18    , 18    , 18    , 18    , 18    , 18    , 18    , 18    , 19    
@@ -9874,7 +9874,7 @@
 17d82: 64,64,64,64,64,56,56,56,56,57,5c,5c  table 100    ,100    ,100    ,100    ,100    , 86    , 86    , 86    , 86    , 87    , 92    , 92    
 17d8e: 64,64,64,64,64,64,64,64,64,64,64,64  table 100    ,100    ,100    ,100    ,100    ,100    ,100    ,100    ,100    ,100    ,100    ,100    
 
-   TABLE77:
+   TABLE_77:
 17d9a: 00,00,00,00,00,00,00,00,05,0a,0f,14  table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  5    , 10    , 15    , 20    
 17da6: 05,05,05,05,05,05,05,05,05,0a,0f,14  table   5    ,  5    ,  5    ,  5    ,  5    ,  5    ,  5    ,  5    ,  5    , 10    , 15    , 20    
 17db2: 0a,0a,0a,0a,0a,0a,0a,0a,0a,0a,0f,14  table  10    , 10    , 10    , 10    , 10    , 10    , 10    , 10    , 10    , 10    , 15    , 20    
@@ -9888,7 +9888,7 @@
 17e12: 64,64,64,64,5a,5a,5a,5a,5a,5a,5a,5a  table 100    ,100    ,100    ,100    , 90    , 90    , 90    , 90    , 90    , 90    , 90    , 90    
 17e1e: 64,64,64,64,64,64,64,64,64,64,5a,5a  table 100    ,100    ,100    ,100    ,100    ,100    ,100    ,100    ,100    ,100    , 90    , 90    
 
-   TABLE78:
+   TABLE_78:
 17e2a: 00,00,00,00,00,00,00,00,00,05,0a,0f  table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  5    , 10    , 15    
 17e36: 05,05,05,05,05,05,05,05,05,05,0a,0f  table   5    ,  5    ,  5    ,  5    ,  5    ,  5    ,  5    ,  5    ,  5    ,  5    , 10    , 15    
 17e42: 0f,0a,08,08,08,08,08,08,08,08,0a,0f  table  15    , 10    ,  8    ,  8    ,  8    ,  8    ,  8    ,  8    ,  8    ,  8    , 10    , 15    
@@ -16170,7 +16170,7 @@
 87fe9: c3,66,8a,38        stw   R38,[R66+8a]     [80a] = R38;
 87fed: 20,7e              sjmp  8806d            goto 8806d;
 
-87fef: 45,36,01,fc,3a     ad3w  R3a,Rfc,136      R3a = @FUNC01;
+87fef: 45,36,01,fc,3a     ad3w  R3a,Rfc,136      R3a = @FUNC_01;
 87ff4: a3,66,ac,3c        ldw   R3c,[R66+ac]     R3c = [82c];
 87ff8: ef,fc,c6           call  846f7            SUWFunLU1();
 87ffb: c3,66,b0,40        stw   R40,[R66+b0]     [830] = R40;
@@ -18417,7 +18417,7 @@
 89677: ef,93,b0           call  8470d            UUWFunLU1(SCALER_RPM3,814);
 8967a: d2,d1,14,08        #args  
 8967e: a0,40,38           ldw   R38,R40          R38 = R40;
-89681: ef,89,b0           call  8470d            UUWFunLU1(SCALER28,48);
+89681: ef,89,b0           call  8470d            UUWFunLU1(SCALER_28,48);
 89684: a6,d1,48,00        #args  
 89688: a0,40,3a           ldw   R3a,R40          R3a = R40;
 8968b: ad,0c,3c           ldzbw R3c,c            wR3c = c;
@@ -18429,17 +18429,17 @@
 
 8969d: 32,90,11           jnb   B2,R90,896b1     if (B2_R90 = 0) goto 896b1;
 896a0: 3e,8f,07           jb    B6,R8f,896aa     if (B6_R8f = 1) goto 896aa;
-896a3: 45,de,1f,fc,40     ad3w  R40,Rfc,1fde     R40 = @TABLE76;
+896a3: 45,de,1f,fc,40     ad3w  R40,Rfc,1fde     R40 = @TABLE_76;
 896a8: 20,16              sjmp  896c0            goto 896c0;
 
-896aa: 45,fe,20,fc,40     ad3w  R40,Rfc,20fe     R40 = @TABLE78;
+896aa: 45,fe,20,fc,40     ad3w  R40,Rfc,20fe     R40 = @TABLE_78;
 896af: 20,0f              sjmp  896c0            goto 896c0;
 
 896b1: 3e,8f,07           jb    B6,R8f,896bb     if (B6_R8f = 1) goto 896bb;
-896b4: 45,4e,1f,fc,40     ad3w  R40,Rfc,1f4e     R40 = @TABLE75;
+896b4: 45,4e,1f,fc,40     ad3w  R40,Rfc,1f4e     R40 = @TABLE_75;
 896b9: 20,05              sjmp  896c0            goto 896c0;
 
-896bb: 45,6e,20,fc,40     ad3w  R40,Rfc,206e     R40 = @TABLE77;
+896bb: 45,6e,20,fc,40     ad3w  R40,Rfc,206e     R40 = @TABLE_77;
 896c0: ef,d9,b3           call  84a9c            UTabLU2();
 896c3: c7,66,fb,43        stb   R43,[R66+fb]     [87b] = R43;
 896c7: 33,79,06           jnb   B3,R79,896d0     if (B3_R79 = 0) goto 896d0;
@@ -18680,11 +18680,11 @@
 89984: f0                 ret                    return; }
 
 89985: a3,64,78,3c        ldw   R3c,[R64+78]     R3c = [7f8];
-89989: 45,52,11,fc,3a     ad3w  R3a,Rfc,1152     R3a = @SCALER27;
+89989: 45,52,11,fc,3a     ad3w  R3a,Rfc,1152     R3a = @SCALER_27;
 8998e: ef,85,ad           call  84716            UUWFunLU2();
 89991: a0,40,38           ldw   R38,R40          R38 = R40;
 89994: a3,66,ae,3c        ldw   R3c,[R66+ae]     R3c = [82e];
-89998: 45,2a,11,fc,3a     ad3w  R3a,Rfc,112a     R3a = @SCALER26;
+89998: 45,2a,11,fc,3a     ad3w  R3a,Rfc,112a     R3a = @SCALER_26;
 8999d: ef,4c,ad           call  846ec            USWFunLU1();
 899a0: a0,40,3a           ldw   R3a,R40          R3a = R40;
 899a3: ad,03,3c           ldzbw R3c,3            wR3c = 3;
@@ -18698,7 +18698,7 @@
 899be: 01,3c              clrw  R3c              R3c = 0; }
 899c0: a0,3c,46           ldw   R46,R3c          R46 = R3c;
 899c3: a3,66,c6,3c        ldw   R3c,[R66+c6]     R3c = [846];
-899c7: 45,2e,12,fc,3a     ad3w  R3a,Rfc,122e     R3a = @SCALER29;
+899c7: 45,2e,12,fc,3a     ad3w  R3a,Rfc,122e     R3a = @SCALER_29;
 899cc: ef,47,ad           call  84716            UUWFunLU2();
 899cf: a0,40,38           ldw   R38,R40          R38 = R40;
 899d2: a0,46,3c           ldw   R3c,R46          R3c = R46;
@@ -19532,7 +19532,7 @@
 8a246: a1,00,02,38        ldw   R38,200          R38 = 200;
 8a24a: 91,80,93           orb   R93,80           R93 |= 80;
 8a24d: a3,70,7c,3c        ldw   R3c,[R70+7c]     R3c = [10fc];
-8a251: 45,e2,16,fc,3a     ad3w  R3a,Rfc,16e2     R3a = @SCALER2A;
+8a251: 45,e2,16,fc,3a     ad3w  R3a,Rfc,16e2     R3a = @SCALER_2A;
 8a256: ef,bd,a4           call  84716            UUWFunLU2();
 8a259: a0,40,3a           ldw   R3a,R40          R3a = R40;
 8a25c: a1,05,00,3c        ldw   R3c,5            R3c = 5;
@@ -21403,7 +21403,7 @@
 8b754: a1,ff,7f,2c        ldw   R2c,7fff         R2c = 7fff;
 8b758: 20,2d              sjmp  8b787            goto 8b787;
 
-8b75a: 45,46,05,f0,3a     ad3w  R3a,Rf0,546      R3a = @SCALER2;
+8b75a: 45,46,05,f0,3a     ad3w  R3a,Rf0,546      R3a = @SCALER_02;
 8b75f: bf,62,93,3c        ldsbw R3c,[R62+93]     swR3c = [613];
 8b763: ef,8c,8f           call  846f2            SSWFunLU1();
 8b766: a0,40,3a           ldw   R3a,R40          R3a = R40;
@@ -21803,7 +21803,7 @@
 8bbe7: df,05              je    8bbee            if (R31 != 0)  {
 8bbe9: b1,ff,30           ldb   R30,ff           R30 = ff;
 8bbec: 11,31              clrb  R31              R31 = 0; }
-8bbee: ef,1c,8b           call  8470d            UUWFunLU1(SCALER1D,30);
+8bbee: ef,1c,8b           call  8470d            UUWFunLU1(SCALER_1D,30);
 8bbf1: ea,82,30,00        #args  
 8bbf5: a0,40,3a           ldw   R3a,R40          R3a = R40;
 8bbf8: a3,66,50,38        ldw   R38,[R66+50]     R38 = [8d0];
@@ -22579,10 +22579,10 @@
 8c52a: a3,fb,ce,02,3a     ldw   R3a,[Rfa+2ce]    R3a = [5b98];
 8c52f: 2a,5a              scall 8c78b            Sub356();
 8c531: c3,6a,ec,38        stw   R38,[R6a+ec]     [a4c] = R38;
-8c535: ef,d5,81           call  8470d            UUWFunLU1(SCALER611,38);
+8c535: ef,d5,81           call  8470d            UUWFunLU1(SCALER_611,38);
 8c538: 74,a3,38,00        #args  
 8c53c: c0,38,40           stw   R40,R38          R38 = R40;
-8c53f: ef,cb,81           call  8470d            UUWFunLU1(SCALER612,91e);
+8c53f: ef,cb,81           call  8470d            UUWFunLU1(SCALER_612,91e);
 8c542: 9c,a3,1e,09        #args  
 8c546: c0,3a,40           stw   R40,R3a          R3a = R40;
 8c549: a1,08,00,3c        ldw   R3c,8            R3c = 8;
@@ -23353,11 +23353,11 @@
 8ce05: ef,5b,78           call  84663            Sub170(2ed6,611);
 8ce08: fa,27,11,06        #args  
 8ce0c: c7,6c,e0,40        stb   R40,[R6c+e0]     [b2e] = R40;
-8ce10: ef,fa,78           call  8470d            UUWFunLU1(SCALER8,610);
+8ce10: ef,fa,78           call  8470d            UUWFunLU1(SCALER_08,610);
 8ce13: f4,2d,10,06        #args  
 8ce17: c3,6c,c6,40        stw   R40,[R6c+c6]     [b14] = R40;
 8ce1b: af,62,95,48        ldzbw R48,[R62+95]     wR48 = [615];
-8ce1f: ef,eb,78           call  8470d            UUWFunLU1(SCALER9,48);
+8ce1f: ef,eb,78           call  8470d            UUWFunLU1(SCALER_09,48);
 8ce22: 1c,2e,48,00        #args  
 8ce26: c3,6c,c8,40        stw   R40,[R6c+c8]     [b16] = R40;
 8ce2a: fa                 di                     disable ints;
@@ -23671,7 +23671,7 @@
 8d1ec: b3,6c,d8,24        ldb   R24,[R6c+d8]     R24 = [b26];
 8d1f0: b3,6c,e0,38        ldb   R38,[R6c+e0]     R38 = [b2e];
 8d1f4: b3,6c,df,3a        ldb   R3a,[R6c+df]     R3a = [b2d];
-8d1f8: 45,a4,0d,f2,40     ad3w  R40,Rf2,da4      R40 = @TABLE73;
+8d1f8: 45,a4,0d,f2,40     ad3w  R40,Rf2,da4      R40 = @TABLE_73;
 8d1fd: ad,06,3c           ldzbw R3c,6            wR3c = 6;
 8d200: ef,87,78           call  84a8a            UTabLU1();
 8d203: 11,42              clrb  R42              R42 = 0;
@@ -23679,7 +23679,7 @@
 8d209: d9,1b              jgtu  8d226            if (R42 > [b08]) goto 8d226;
 8d20b: b3,6c,e0,38        ldb   R38,[R6c+e0]     R38 = [b2e];
 8d20f: b3,6c,df,3a        ldb   R3a,[R6c+df]     R3a = [b2d];
-8d213: 45,c2,0d,f2,40     ad3w  R40,Rf2,dc2      R40 = @TABLE74;
+8d213: 45,c2,0d,f2,40     ad3w  R40,Rf2,dc2      R40 = @TABLE_74;
 8d218: ad,06,3c           ldzbw R3c,6            wR3c = 6;
 8d21b: ef,6c,78           call  84a8a            UTabLU1();
 8d21e: 11,42              clrb  R42              R42 = 0;
@@ -24384,10 +24384,10 @@
 8d9fd: a3,fa,1e,4a        ldw   R4a,[Rfa+1e]     R4a = [58e8];
 8da01: c3,70,6a,4a        stw   R4a,[R70+6a]     [10ea] = R4a; } } }
 8da05: 36,87,24           jnb   B6,R87,8da2c     if (B6_R87 = 1)  {
-8da08: ef,02,6d           call  8470d            UUWFunLU1(SCALER691,610);
+8da08: ef,02,6d           call  8470d            UUWFunLU1(SCALER_691,610);
 8da0b: 80,64,10,06        #args  
 8da0f: a0,40,38           ldw   R38,R40          R38 = R40;
-8da12: ef,f8,6c           call  8470d            UUWFunLU1(SCALER692,ab6);
+8da12: ef,f8,6c           call  8470d            UUWFunLU1(SCALER_692,ab6);
 8da15: a4,64,b6,0a        #args  
 8da19: a0,40,3a           ldw   R3a,R40          R3a = R40;
 8da1c: ad,08,3c           ldzbw R3c,8            wR3c = 8;
@@ -24518,10 +24518,10 @@
 8dbb3: 20,9b              sjmp  8dc50            goto 8dc50;
 
 8dbb5: 3c,91,7f           jb    B4,R91,8dc37     if (B4_R91 = 0)  {
-8dbb8: ef,52,6b           call  8470d            UUWFunLU1(SCALER681,610);
+8dbb8: ef,52,6b           call  8470d            UUWFunLU1(SCALER_681,610);
 8dbbb: 0c,65,10,06        #args  
 8dbbf: a0,40,38           ldw   R38,R40          R38 = R40;
-8dbc2: ef,48,6b           call  8470d            UUWFunLU1(SCALER682,ab6);
+8dbc2: ef,48,6b           call  8470d            UUWFunLU1(SCALER_682,ab6);
 8dbc5: 30,65,b6,0a        #args  
 8dbc9: a0,40,3a           ldw   R3a,R40          R3a = R40;
 8dbcc: ad,08,3c           ldzbw R3c,8            wR3c = 8;
@@ -24531,10 +24531,10 @@
 8dbd9: 08,04,42           shrw  R42,4            R42 >>= 4;                        ## R42 /= 16 
 8dbdc: c3,6a,58,42        stw   R42,[R6a+58]     [ab8] = R42;
 8dbe0: c3,68,bc,42        stw   R42,[R68+bc]     [93c] = R42;
-8dbe4: ef,26,6b           call  8470d            UUWFunLU1(SCALER671,610);
+8dbe4: ef,26,6b           call  8470d            UUWFunLU1(SCALER_671,610);
 8dbe7: 98,65,10,06        #args  
 8dbeb: a0,40,38           ldw   R38,R40          R38 = R40;
-8dbee: ef,1c,6b           call  8470d            UUWFunLU1(SCALER672,ab6);
+8dbee: ef,1c,6b           call  8470d            UUWFunLU1(SCALER_672,ab6);
 8dbf1: bc,65,b6,0a        #args  
 8dbf5: a0,40,3a           ldw   R3a,R40          R3a = R40;
 8dbf8: ad,08,3c           ldzbw R3c,8            wR3c = 8;
@@ -24542,10 +24542,10 @@
 8dc00: ef,99,6e           call  84a9c            UTabLU2();
 8dc03: 11,42              clrb  R42              R42 = 0;
 8dc05: c3,6a,5a,42        stw   R42,[R6a+5a]     [aba] = R42;
-8dc09: ef,01,6b           call  8470d            UUWFunLU1(SCALER661,610);
+8dc09: ef,01,6b           call  8470d            UUWFunLU1(SCALER_661,610);
 8dc0c: 24,66,10,06        #args  
 8dc10: a0,40,38           ldw   R38,R40          R38 = R40;
-8dc13: ef,f7,6a           call  8470d            UUWFunLU1(SCALER662,ab6);
+8dc13: ef,f7,6a           call  8470d            UUWFunLU1(SCALER_662,ab6);
 8dc16: 48,66,b6,0a        #args  
 8dc1a: a0,40,3a           ldw   R3a,R40          R3a = R40;
 8dc1d: ad,08,3c           ldzbw R3c,8            wR3c = 8;
@@ -24659,11 +24659,11 @@
 8dd80: df,03              je    8dd85            if (R48 != [690])  {
 8dd82: 91,80,78           orb   R78,80           R78 |= 80; }
 8dd85: c3,62,0e,48        stw   R48,[R62+e]      [68e] = R48;
-8dd89: 45,26,05,f0,3a     ad3w  R3a,Rf0,526      R3a = @SCALER1;
+8dd89: 45,26,05,f0,3a     ad3w  R3a,Rf0,526      R3a = @SCALER_01;
 8dd8e: bf,62,93,3c        ldsbw R3c,[R62+93]     swR3c = [613];
 8dd92: ef,5d,69           call  846f2            SSWFunLU1();
 8dd95: a0,40,38           ldw   R38,R40          R38 = R40;
-8dd98: 45,f2,01,f6,3a     ad3w  R3a,Rf6,1f2      R3a = @SCALERE;
+8dd98: 45,f2,01,f6,3a     ad3w  R3a,Rf6,1f2      R3a = @SCALER_0E;
 8dd9d: af,62,a3,3c        ldzbw R3c,[R62+a3]     wR3c = [623];
 8dda1: ef,72,69           call  84716            UUWFunLU2();
 8dda4: a0,40,3a           ldw   R3a,R40          R3a = R40;
@@ -24695,20 +24695,20 @@
 8ddf2: bf,62,94,24        ldsbw R24,[R62+94]     swR24 = [614];
 8ddf6: b3,62,1a,46        ldb   R46,[R62+1a]     R46 = [69a];
 8ddfa: 39,46,1e           jb    B1,R46,8de1b     if (B1_R46 = 1) goto 8de1b;
-8ddfd: ef,0d,69           call  8470d            UUWFunLU1(SCALER651,48);
+8ddfd: ef,0d,69           call  8470d            UUWFunLU1(SCALER_651,48);
 8de00: f8,66,48,00        #args  
 8de04: a0,40,38           ldw   R38,R40          R38 = R40;
-8de07: ef,f3,68           call  846fd            USWFunLU2(SCALER652,24);
+8de07: ef,f3,68           call  846fd            USWFunLU2(SCALER_652,24);
 8de0a: 1c,67,24,00        #args  
 8de0e: a0,40,3a           ldw   R3a,R40          R3a = R40;
 8de11: ad,08,3c           ldzbw R3c,8            wR3c = 8;
 8de14: 45,3c,07,f6,40     ad3w  R40,Rf6,73c      R40 = @TABLE_65X;
 8de19: 20,1c              sjmp  8de37            goto 8de37;
 
-8de1b: ef,ef,68           call  8470d            UUWFunLU1(SCALER641,48);
+8de1b: ef,ef,68           call  8470d            UUWFunLU1(SCALER_641,48);
 8de1e: 74,67,48,00        #args  
 8de22: a0,40,38           ldw   R38,R40          R38 = R40;
-8de25: ef,d5,68           call  846fd            USWFunLU2(SCALER642,24);
+8de25: ef,d5,68           call  846fd            USWFunLU2(SCALER_642,24);
 8de28: 98,67,24,00        #args  
 8de2c: a0,40,3a           ldw   R3a,R40          R3a = R40;
 8de2f: ad,08,3c           ldzbw R3c,8            wR3c = 8;
@@ -25007,10 +25007,10 @@
 8e1c1: db,04              jc    8e1c7            if (R3c < [49ac])  {
 8e1c3: a3,f6,2e,3c        ldw   R3c,[Rf6+2e]     R3c = [49ac]; }
 8e1c7: c3,62,16,3c        stw   R3c,[R62+16]     [696] = R3c;
-8e1cb: ef,3f,65           call  8470d            UUWFunLU1(SCALERF,696);
+8e1cb: ef,3f,65           call  8470d            UUWFunLU1(SCALER_0F,696);
 8e1ce: 8c,63,96,06        #args  
 8e1d2: a0,40,48           ldw   R48,R40          R48 = R40;
-8e1d5: ef,35,65           call  8470d            UUWFunLU1(SCALER10,8f2);
+8e1d5: ef,35,65           call  8470d            UUWFunLU1(SCALER_10,8f2);
 8e1d8: c0,63,f2,08        #args  
 8e1dc: a0,48,38           ldw   R38,R48          R38 = R48;
 8e1df: a0,40,3a           ldw   R3a,R40          R3a = R40;
@@ -26272,7 +26272,7 @@
 8efa6: d6,03              jge   8efab            if (R46 < ff80)  {                ## (Signed)
 8efa8: b1,80,46           ldb   R46,80           R46 = 80; }
 8efab: c7,6c,a7,46        stb   R46,[R6c+a7]     [af5] = R46;
-8efaf: ef,5b,57           call  8470d            UUWFunLU1(SCALER631,60a);
+8efaf: ef,5b,57           call  8470d            UUWFunLU1(SCALER_631,60a);
 8efb2: 60,a1,0a,06        #args  
 8efb6: c0,38,40           stw   R40,R38          R38 = R40;
 8efb9: a3,6c,96,44        ldw   R44,[R6c+96]     R44 = [ae4];
@@ -26280,7 +26280,7 @@
 8efc1: 9b,f0,1a,3a        cmpb  R3a,[Rf0+1a]     
 8efc5: d3,04              jnc   8efcb            if (R3a >= [207a])  {
 8efc7: a1,ff,ff,44        ldw   R44,ffff         R44 = ffff; }
-8efcb: ef,3f,57           call  8470d            UUWFunLU1(SCALER632,44);
+8efcb: ef,3f,57           call  8470d            UUWFunLU1(SCALER_632,44);
 8efce: 88,a1,44,00        #args  
 8efd2: c0,3a,40           stw   R40,R3a          R3a = R40;
 8efd5: a1,08,00,3c        ldw   R3c,8            R3c = 8;
@@ -26351,10 +26351,10 @@
 8f097: 8b,70,5c,38        cmpw  R38,[R70+5c]     
 8f09b: db,2c              jc    8f0c9            if (R38 < [10dc])  {
 8f09d: 91,40,88           orb   R88,40           R88 |= 40;
-8f0a0: ef,5a,56           call  846fd            USWFunLU2(SCALER601,ad8);
+8f0a0: ef,5a,56           call  846fd            USWFunLU2(SCALER_601,ad8);
 8f0a3: 74,a2,d8,0a        #args  
 8f0a7: c0,38,40           stw   R40,R38          R38 = R40;
-8f0aa: ef,60,56           call  8470d            UUWFunLU1(SCALER602,610);
+8f0aa: ef,60,56           call  8470d            UUWFunLU1(SCALER_602,610);
 8f0ad: 8c,a2,10,06        #args  
 8f0b1: c0,3a,40           stw   R40,R3a          R3a = R40;
 8f0b4: a1,04,00,3c        ldw   R3c,4            R3c = 4;
@@ -26386,10 +26386,10 @@
 8f102: 39,88,49           jb    B1,R88,8f14e     if (B1_R88 = 1) return;
 8f105: a3,6a,56,4a        ldw   R4a,[R6a+56]     R4a = [ab6];
 8f109: c3,6a,72,4a        stw   R4a,[R6a+72]     [ad2] = R4a;
-8f10d: ef,fd,55           call  8470d            UUWFunLU1(SCALER621,10e4);
+8f10d: ef,fd,55           call  8470d            UUWFunLU1(SCALER_621,10e4);
 8f110: f0,a1,e4,10        #args  
 8f114: c0,38,40           stw   R40,R38          R38 = R40;
-8f117: ef,f3,55           call  8470d            UUWFunLU1(SCALER622,610);
+8f117: ef,f3,55           call  8470d            UUWFunLU1(SCALER_622,610);
 8f11a: 10,a2,10,06        #args  
 8f11e: c0,3a,40           stw   R40,R3a          R3a = R40;
 8f121: a1,06,00,3c        ldw   R3c,6            R3c = 6;
@@ -26397,7 +26397,7 @@
 8f12a: ef,6f,59           call  84a9c            UTabLU2();
 8f12d: c4,48,43           stb   R43,R48          R48 = R43;
 8f130: 11,49              clrb  R49              R49 = 0;
-8f132: ef,d8,55           call  8470d            UUWFunLU1(FUNC35,ad2);
+8f132: ef,d8,55           call  8470d            UUWFunLU1(FUNC_35,ad2);
 8f135: 54,a2,d2,0a        #args  
 8f139: 6c,48,40           ml2w  R40,R48          lR40 = R40 * R48;
 8f13c: 89,ff,0f,42        cmpw  R42,fff          
@@ -26840,7 +26840,7 @@
 8f5d9: ef,21,51           call  846fd            USWFunLU2(Func32,24);
 8f5dc: 36,4e,24,00        #args  
 8f5e0: c3,72,cc,40        stw   R40,[R72+cc]     [R72-34] = R40;
-8f5e4: ef,26,51           call  8470d            UUWFunLU1(SCALERD,aac);
+8f5e4: ef,26,51           call  8470d            UUWFunLU1(SCALER_0D,aac);
 8f5e7: 62,4e,ac,0a        #args  
 8f5eb: c3,72,ce,40        stw   R40,[R72+ce]     [R72-32] = R40;
 8f5ef: a3,72,ce,3a        ldw   R3a,[R72+ce]     R3a = [R72-32];
@@ -27049,19 +27049,19 @@
 8f856: a3,66,50,3a        ldw   R3a,[R66+50]     R3a = [8d0];
 8f85a: a3,66,4e,38        ldw   R38,[R66+4e]     R38 = [8ce];
 8f85e: ad,0c,3c           ldzbw R3c,c            wR3c = c;
-8f861: 45,c8,12,f4,40     ad3w  R40,Rf4,12c8     R40 = @TABLE71;
+8f861: 45,c8,12,f4,40     ad3w  R40,Rf4,12c8     R40 = @TABLE_71;
 8f866: ef,33,52           call  84a9c            UTabLU2();
 8f869: c7,72,df,43        stb   R43,[R72+df]     [R72-21] = R43;
 8f86d: a3,66,50,3a        ldw   R3a,[R66+50]     R3a = [8d0];
 8f871: a3,66,4e,38        ldw   R38,[R66+4e]     R38 = [8ce];
 8f875: ad,0c,3c           ldzbw R3c,c            wR3c = c;
-8f878: 45,34,13,f4,40     ad3w  R40,Rf4,1334     R40 = @TABLE72;
+8f878: 45,34,13,f4,40     ad3w  R40,Rf4,1334     R40 = @TABLE_72;
 8f87d: ef,1c,52           call  84a9c            UTabLU2();
 8f880: c7,72,e0,43        stb   R43,[R72+e0]     [R72-20] = R43;
 8f884: a3,66,50,3a        ldw   R3a,[R66+50]     R3a = [8d0];
 8f888: a3,66,4e,38        ldw   R38,[R66+4e]     R38 = [8ce];
 8f88c: ad,0c,3c           ldzbw R3c,c            wR3c = c;
-8f88f: 45,5c,12,f4,40     ad3w  R40,Rf4,125c     R40 = @TABLE70;
+8f88f: 45,5c,12,f4,40     ad3w  R40,Rf4,125c     R40 = @TABLE_70;
 8f894: ef,05,52           call  84a9c            UTabLU2();
 8f897: 11,42              clrb  R42              R42 = 0;
 8f899: c3,72,90,42        stw   R42,[R72+90]     [R72-70] = R42;
@@ -27294,11 +27294,11 @@
 8fb2e: d9,5e              jgtu  8fb8e            if (R38 > [23d1]) return;
 8fb30: 51,51,9b,3a        an3b  R3a,R9b,51       R3a = R9b & 51;
 8fb34: d7,58              jne   8fb8e            if (R3a != 0) return;
-8fb36: 45,c6,05,f0,3a     ad3w  R3a,Rf0,5c6      R3a = @SCALER5;
+8fb36: 45,c6,05,f0,3a     ad3w  R3a,Rf0,5c6      R3a = @SCALER_05;
 8fb3b: a0,28,3c           ldw   R3c,R28          R3c = R28;
 8fb3e: ef,d5,4b           call  84716            UUWFunLU2();
 8fb41: a0,40,38           ldw   R38,R40          R38 = R40;
-8fb44: 45,b2,05,f0,3a     ad3w  R3a,Rf0,5b2      R3a = @SCALER4;
+8fb44: 45,b2,05,f0,3a     ad3w  R3a,Rf0,5b2      R3a = @SCALER_04;
 8fb49: ac,24,3c           ldzbw R3c,R24          wR3c = yR24;
 8fb4c: ef,c7,4b           call  84716            UUWFunLU2();
 8fb4f: a0,40,3a           ldw   R3a,R40          R3a = R40;
