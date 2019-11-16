@@ -24,8 +24,8 @@ table 12AB6 12B21 "TABLE_Spark_LPG_BDLN_MPG"     :Y X O +12 V +2 P +2
 
 ################################################################################
 #-------------------------------------------------------------------------------
-table 13480 1349D "TABLE73"                      :Y X O +6 V +1 P +2
-table 1349E 134BB "TABLE74"                      :Y X O +6 V +1 P +2
+table 13480 1349D "TABLE73"                      :Y X O +6 V +1
+table 1349E 134BB "TABLE74"                      :Y X O +6 V +1
 #-------------------------------------------------------------------------------
 ################################################################################
 
@@ -45,14 +45,16 @@ table 13966 139D1 "TABLE_Fuel_Lean_Cruise"       :Y X O +12 V +128 P +2
 
 ################################################################################
 #-------------------------------------------------------------------------------
-table 14774 147DF "TABLE70"                      :Y X O +12 V +1 P +2
-table 147E0 1484B "TABLE71"                      :Y X O +12 V +1 P +2
-table 1484C 148B7 "TABLE72"                      :Y X O +12 V +1 P +2
+table 14774 147DF "TABLE70"                      :Y X O +12 V +1
+table 147E0 1484B "TABLE71"                      :Y X O +12 V +1
+table 1484C 148B7 "TABLE72"                      :Y X O +12 V +1
 #-------------------------------------------------------------------------------
 ################################################################################
 
 func  1437A 143A1 "SCALERD"                      :W V +1 :W V +256
 func  14B70 14b87 "SCALERE"                      :W V +1 :W V +256
+func  14B88 14B9B "FUNC_14"                      :Y V +1 :Y V +1
+func  14CD2 14CED "FUNC_15"                      :W V +1 :W V +1
 func  14D0A 14D3D "SCALERF"                      :W V +1 :W V +256
 func  14D3E 14D5D "SCALER10"                     :W V +1 :W V +256
 
@@ -60,32 +62,32 @@ func  14D3E 14D5D "SCALER10"                     :W V +1 :W V +256
 #-------------------------------------------------------------------------------
 func  14DFE 14E21 "SCALER691"                    :W V +1 :W V +256
 func  14E22 14E49 "SCALER692"                    :W V +1 :W V +256
-table 14E4A 14E89 "TABLE_69X"                    :Y X O +8 V +1 P +2
+table 14E4A 14E89 "TABLE_69X"                    :Y X O +8 V +1
 #-------------------------------------------------------------------------------
 func  14E8A 14EAD "SCALER681"                    :W V +1 :W V +256
 func  14EAE 14ED5 "SCALER682"                    :W V +1 :W V +256
-table 14ED6 14F15 "TABLE_68X"                    :Y X O +8 V +1 P +2
+table 14ED6 14F15 "TABLE_68X"                    :Y X O +8 V +1
 #-------------------------------------------------------------------------------
 func  14F16 14F39 "SCALER671"                    :W V +1 :W V +256
 func  14F3A 14f61 "SCALER672"                    :W V +1 :W V +256
-table 14F62 14FA1 "TABLE_67X"                    :Y X O +8 V +1 P +2
+table 14F62 14FA1 "TABLE_67X"                    :Y X O +8 V +1
 #-------------------------------------------------------------------------------
 func  14FA2 14FC5 "SCALER661"                    :W V +1 :W V +256
 func  14FC6 14FED "SCALER662"                    :W V +1 :W V +256
-table 14FEE 1502D "TABLE_66X"                    :Y X O +8 V +1 P +2
+table 14FEE 1502D "TABLE_66X"                    :Y X O +8 V +1
 #-------------------------------------------------------------------------------
 func  15076 15099 "SCALER651"                    :W V +1 :W V +256
 func  1509A 150B9 "SCALER652"                    :W V +1 :W V +256
-table 150BA 150F1 "TABLE_65X"                    :Y X O +8 V +1 P +2
+table 150BA 150F1 "TABLE_65X"                    :Y X O +8 V +1
 #-------------------------------------------------------------------------------
 func  150F2 15115 "SCALER641"                    :W V +1 :W V +256
 func  15116 15135 "SCALER642"                    :W V +1 :W V +256
-table 15136 15175 "TABLE_64X"                    :Y X O +8 V +1 P +2
+table 15136 15175 "TABLE_64X"                    :Y X O +8 V +1
 #-------------------------------------------------------------------------------
 ################################################################################
 
 func  1535E 15385 "SCALER_RPM2"                  :W V +4 :W V +256
-table 15386 153F1 "TABLE_12X"                    :Y X O +12 V +1 P +2
+table 15386 153F1 "TABLE_12X"                    :Y X O +12 V +1
 
 func  15462 1547D "SCALER1D"                     :W V +1 :W V +256
 
@@ -93,19 +95,19 @@ func  15462 1547D "SCALER1D"                     :W V +1 :W V +256
 #-------------------------------------------------------------------------------
 func  15A2A 15A51 "SCALER631"                    :W V +1 :W V +256
 func  15A52 15A79 "SCALER632"                    :W V +1 :W V +256
-table 15A7A 15AB9 "TABLE_63X"                    :Y X O +8 V +1 P +2
+table 15A7A 15AB9 "TABLE_63X"                    :Y X O +8 V +1
 #-------------------------------------------------------------------------------
 func  15ABA 15AD9 "SCALER621"                    :W V +1 :W V +256
 func  15ADA 15AF9 "SCALER622"                    :W V +1 :W V +256
-table 15AFA 15B1D "TABLE_62X"                    :Y X O +6 V +1 P +2
+table 15AFA 15B1D "TABLE_62X"                    :Y X O +6 V +1
 #-------------------------------------------------------------------------------
 func  15B3E 15B55 "SCALER601"                    :W V +1 :W V +256
 func  15B56 15B6D "SCALER602"                    :W V +1 :W V +256
-table 15B6E 15B7D "TABLE_60X"                    :Y X O +4 V +1 P +2
+table 15B6E 15B7D "TABLE_60X"                    :Y X O +4 V +1
 #-------------------------------------------------------------------------------
 func  15C3E 15C65 "SCALER611"                    :W V +1 :W V +256
 func  15C66 15C8D "SCALER612"                    :W V +1 :W V +256
-table 15C8E 15CCD "TABLE_61X"                    :Y X O +8 V +1 P +2
+table 15C8E 15CCD "TABLE_61X"                    :Y X O +8 V +1
 #-------------------------------------------------------------------------------
 ################################################################################
 
@@ -165,61 +167,61 @@ func  1660E 16635 "FUNC_Trans48"                 :W V +1 :W V +1
 func  16636 1665D "FUNC_Trans49"                 :W V +1 :W V +1
 func  1665E 16685 "FUNC_Trans50"                 :W V +1 :W V +1
 func  16686 166AD "FUNC_Trans51"                 :W V +1 :W V +1
-Func  166AE 166D5 "FUNC_Trans52"                 :W V +1 :W V +1
-Func  166D6 166FD "FUNC_Trans53"                 :W V +1 :W V +1
-Func  166FE 16725 "FUNC_Trans54"                 :W V +1 :W V +1
-Func  16726 1674D "FUNC_Trans55"                 :W V +1 :W V +1
-Func  1674E 16775 "FUNC_Trans56"                 :W V +1 :W V +1
-Func  16776 1679D "FUNC_Trans57"                 :W V +1 :W V +1
-Func  1679E 167C5 "FUNC_Trans58"                 :W V +1 :W V +1
-Func  167C6 167ED "FUNC_Trans59"                 :W V +1 :W V +1
-Func  167EE 16815 "FUNC_Trans60"                 :W V +1 :W V +1
-Func  16816 1683D "FUNC_Trans61"                 :W V +1 :W V +1
-Func  1683E 16865 "FUNC_Trans62"                 :W V +1 :W V +1
-Func  16866 1688D "FUNC_Trans63"                 :W V +1 :W V +1
-Func  1688E 168B5 "FUNC_Trans64"                 :W V +1 :W V +1
-Func  168B6 168DD "FUNC_Trans65"                 :W V +1 :W V +1
-Func  168DE 16905 "FUNC_Trans66"                 :W V +1 :W V +1
-Func  16906 1692D "FUNC_Trans67"                 :W V +1 :W V +1
-Func  1692E 16955 "FUNC_Trans68"                 :W V +1 :W V +1
-Func  16956 1697D "FUNC_Trans69"                 :W V +1 :W V +1
-Func  1697E 169A5 "FUNC_Trans70"                 :W V +1 :W V +1
-Func  169A6 169CD "FUNC_Trans71"                 :W V +1 :W V +1
-Func  169CE 169F5 "FUNC_Trans72"                 :W V +1 :W V +1
-Func  169F6 16A1D "FUNC_Trans73"                 :W V +1 :W V +1
-Func  16A1E 16A45 "FUNC_Trans74"                 :W V +1 :W V +1
-Func  16A46 16A6D "FUNC_Trans75"                 :W V +1 :W V +1
-Func  16A6E 16A95 "FUNC_Trans76"                 :W V +1 :W V +1
-Func  16A96 16ABD "FUNC_Trans77"                 :W V +1 :W V +1
-Func  16ABE 16AE5 "FUNC_Trans78"                 :W V +1 :W V +1
-Func  16AE6 16B0D "FUNC_Trans79"                 :W V +1 :W V +1
-Func  16B0E 16B35 "FUNC_Trans80"                 :W V +1 :W V +1
-Func  16B36 16B5D "FUNC_Trans81"                 :W V +1 :W V +1
-Func  16B5E 16B85 "FUNC_Trans82"                 :W V +1 :W V +1
-Func  16B86 16B35 "FUNC_Trans83"                 :W V +1 :W V +1
-Func  16B86 16BAD "FUNC_Trans84"                 :W V +1 :W V +1
-Func  16BAE 16BD5 "FUNC_Trans85"                 :W V +1 :W V +1
-Func  16BAE 16BD5 "FUNC_Trans86"                 :W V +1 :W V +1
-Func  16BAE 16BD5 "FUNC_Trans87"                 :W V +1 :W V +1
-Func  16BAE 16BD5 "FUNC_Trans88"                 :W V +1 :W V +1
-Func  16BAE 16BD5 "FUNC_Trans89"                 :W V +1 :W V +1
-Func  16BAE 16BD5 "FUNC_Trans90"                 :W V +1 :W V +1
-Func  16BD6 16BFD "FUNC_Trans91"                 :W V +1 :W V +1
-Func  16BFE 16C25 "FUNC_Trans92"                 :W V +1 :W V +1
-Func  16C26 16C4D "FUNC_Trans93"                 :W V +1 :W V +1
-Func  16C4E 16C75 "FUNC_Trans94"                 :W V +1 :W V +1
-Func  16C76 16C9D "FUNC_Trans95"                 :W V +1 :W V +1
-Func  16C9E 16CC5 "FUNC_Trans96"                 :W V +1 :W V +1
-Func  16CC6 16CED "FUNC_Trans97"                 :W V +1 :W V +1
-Func  16CEE 16D15 "FUNC_Trans98"                 :W V +1 :W V +1
-Func  16D16 16D3D "FUNC_Trans99"                 :W V +1 :W V +1
-Func  16D3E 16D65 "FUNC_TransA0"                 :W V +1 :W V +1
-Func  16D66 16D8D "FUNC_TransA1"                 :W V +1 :W V +1
-Func  16D8E 16DB5 "FUNC_TransA2"                 :W V +1 :W V +1
-Func  16DB6 16DDD "FUNC_TransA3"                 :W V +1 :W V +1
-Func  16DDE 16E05 "FUNC_TransA4"                 :W V +1 :W V +1
-Func  16E06 16E2D "FUNC_TransA5"                 :W V +1 :W V +1
-Func  16E2E 16E55 "FUNC_TransA6"                 :W V +1 :W V +1
+func  166AE 166D5 "FUNC_Trans52"                 :W V +1 :W V +1
+func  166D6 166FD "FUNC_Trans53"                 :W V +1 :W V +1
+func  166FE 16725 "FUNC_Trans54"                 :W V +1 :W V +1
+func  16726 1674D "FUNC_Trans55"                 :W V +1 :W V +1
+func  1674E 16775 "FUNC_Trans56"                 :W V +1 :W V +1
+func  16776 1679D "FUNC_Trans57"                 :W V +1 :W V +1
+func  1679E 167C5 "FUNC_Trans58"                 :W V +1 :W V +1
+func  167C6 167ED "FUNC_Trans59"                 :W V +1 :W V +1
+func  167EE 16815 "FUNC_Trans60"                 :W V +1 :W V +1
+func  16816 1683D "FUNC_Trans61"                 :W V +1 :W V +1
+func  1683E 16865 "FUNC_Trans62"                 :W V +1 :W V +1
+func  16866 1688D "FUNC_Trans63"                 :W V +1 :W V +1
+func  1688E 168B5 "FUNC_Trans64"                 :W V +1 :W V +1
+func  168B6 168DD "FUNC_Trans65"                 :W V +1 :W V +1
+func  168DE 16905 "FUNC_Trans66"                 :W V +1 :W V +1
+func  16906 1692D "FUNC_Trans67"                 :W V +1 :W V +1
+func  1692E 16955 "FUNC_Trans68"                 :W V +1 :W V +1
+func  16956 1697D "FUNC_Trans69"                 :W V +1 :W V +1
+func  1697E 169A5 "FUNC_Trans70"                 :W V +1 :W V +1
+func  169A6 169CD "FUNC_Trans71"                 :W V +1 :W V +1
+func  169CE 169F5 "FUNC_Trans72"                 :W V +1 :W V +1
+func  169F6 16A1D "FUNC_Trans73"                 :W V +1 :W V +1
+func  16A1E 16A45 "FUNC_Trans74"                 :W V +1 :W V +1
+func  16A46 16A6D "FUNC_Trans75"                 :W V +1 :W V +1
+func  16A6E 16A95 "FUNC_Trans76"                 :W V +1 :W V +1
+func  16A96 16ABD "FUNC_Trans77"                 :W V +1 :W V +1
+func  16ABE 16AE5 "FUNC_Trans78"                 :W V +1 :W V +1
+func  16AE6 16B0D "FUNC_Trans79"                 :W V +1 :W V +1
+func  16B0E 16B35 "FUNC_Trans80"                 :W V +1 :W V +1
+func  16B36 16B5D "FUNC_Trans81"                 :W V +1 :W V +1
+func  16B5E 16B85 "FUNC_Trans82"                 :W V +1 :W V +1
+func  16B86 16B35 "FUNC_Trans83"                 :W V +1 :W V +1
+func  16B86 16BAD "FUNC_Trans84"                 :W V +1 :W V +1
+func  16BAE 16BD5 "FUNC_Trans85"                 :W V +1 :W V +1
+func  16BAE 16BD5 "FUNC_Trans86"                 :W V +1 :W V +1
+func  16BAE 16BD5 "FUNC_Trans87"                 :W V +1 :W V +1
+func  16BAE 16BD5 "FUNC_Trans88"                 :W V +1 :W V +1
+func  16BAE 16BD5 "FUNC_Trans89"                 :W V +1 :W V +1
+func  16BAE 16BD5 "FUNC_Trans90"                 :W V +1 :W V +1
+func  16BD6 16BFD "FUNC_Trans91"                 :W V +1 :W V +1
+func  16BFE 16C25 "FUNC_Trans92"                 :W V +1 :W V +1
+func  16C26 16C4D "FUNC_Trans93"                 :W V +1 :W V +1
+func  16C4E 16C75 "FUNC_Trans94"                 :W V +1 :W V +1
+func  16C76 16C9D "FUNC_Trans95"                 :W V +1 :W V +1
+func  16C9E 16CC5 "FUNC_Trans96"                 :W V +1 :W V +1
+func  16CC6 16CED "FUNC_Trans97"                 :W V +1 :W V +1
+func  16CEE 16D15 "FUNC_Trans98"                 :W V +1 :W V +1
+func  16D16 16D3D "FUNC_Trans99"                 :W V +1 :W V +1
+func  16D3E 16D65 "FUNC_TransA0"                 :W V +1 :W V +1
+func  16D66 16D8D "FUNC_TransA1"                 :W V +1 :W V +1
+func  16D8E 16DB5 "FUNC_TransA2"                 :W V +1 :W V +1
+func  16DB6 16DDD "FUNC_TransA3"                 :W V +1 :W V +1
+func  16DDE 16E05 "FUNC_TransA4"                 :W V +1 :W V +1
+func  16E06 16E2D "FUNC_TransA5"                 :W V +1 :W V +1
+func  16E2E 16E55 "FUNC_TransA6"                 :W V +1 :W V +1
 #-------------------------------------------------------------------------------
 ################################################################################
 
@@ -262,6 +264,24 @@ func  173E6 1740D "FUNC_TransS"                  :W V +1 :W V +1
 ################################################################################
 
 func  1740E 1742D "SCALER2A"                     :W V +1 :W V +256
+
+################################################################################
+#-------------------------------------------------------------------------------
+func  1748E 174BD  "FUNC_02"                    : W V +1 : W V +1
+func  174BE 174ED  "FUNC_03"                    : W V +1 : W V +1
+func  174EE 1751D  "FUNC_04"                    : W V +1 : W V +1
+func  1751E 1754D  "FUNC_05"                    : W V +1 : W V +1
+#-------------------------------------------------------------------------------
+func  175BE 175D1  "FUNC_06"                    : W V +1 : W V +1
+func  175D2 175E5  "FUNC_07"                    : W V +1 : W V +1
+func  175E6 175F9  "FUNC_08"                    : W V +1 : W V +1
+func  175FA 1760D  "FUNC_09"                    : W V +1 : W V +1
+func  1760E 17621  "FUNC_10"                    : W V +1 : W V +1
+func  17622 17635  "FUNC_11"                    : W V +1 : W V +1
+func  17636 17649  "FUNC_12"                    : W V +1 : W V +1
+func  1764A 1765D  "FUNC_13"                    : W V +1 : W V +1
+#-------------------------------------------------------------------------------
+################################################################################
 
 ################################################################################
 #-------------------------------------------------------------------------------
