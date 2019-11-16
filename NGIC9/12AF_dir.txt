@@ -1,7 +1,10 @@
 #defaults
 #opts   :C F G H N P S
 
-xcode 12000 19FFF
+xcode 12060 184B3
+
+word 12004 12005 "FIXSUM"
+word 1200A 1200B "CALID"
 
 table 12132 1219D "Volumetric_Efficiency_Table" :Y X O +12 V +2.56
 #-------------------------------------------------------------------------------
@@ -40,6 +43,29 @@ table 13792 137EB "TABLE_Fuel_Base_(OL)"         :Y X O +10 V +128
 table 137EC 13845 "TABLE_Fuel_Startup"           :Y X O +10 V +128
 table 13966 139D1 "TABLE_Fuel_Lean_Cruise"       :Y X O +12 V +128
 #-------------------------------------------------------------------------------
+func  14436 14455 "FUNC_45"                      :W V +1 :W V +1
+func  14456 14465 "FUNC_46"                      :Y V +1 :Y V +1
+func  14466 14481 "FUNC_47"                      :W V +1 :W V +1
+func  14482 1448F "FUNC_48"                      :Y V +1 :Y V +1
+func  14490 144B3 "FUNC_49"                      :W V +1 :W V +1
+func  144B4 144C1 "FUNC_50"                      :Y V +1 :Y V +1
+func  144C2 144CF "FUNC_51"                      :Y V +1 :Y V +1
+func  144D0 144F7 "FUNC_52"                      :Y V +1 :Y V +1
+func  144F8 1451F "FUNC_53"                      :W V +1 :W V +1
+func  14520 1453F "FUNC_54"                      :W V +1 :W V +1
+func  14540 1455F "FUNC_55"                      :W V +1 :W V +1
+func  14560 145BF "FUNC_56"                      :W V +1 :W V +1
+func  145C0 145DF "FUNC_57"                      :W V +1 :W V +1
+func  145E0 145FF "FUNC_58"                      :W V +1 :W V +1
+func  14600 1461F "FUNC_59"                      :W V +1 :W V +1
+func  14620 1463F "FUNC_60"                      :W V +1 :W V +1
+func  14640 1465F "FUNC_61"                      :W V +1 :W V +1
+func  14660 1467F "FUNC_62"                      :W V +1 :W V +1
+func  14680 146DF "FUNC_63"                      :W V +1 :W V +1
+func  146E0 146F7 "FUNC_64"                      :W V +1 :W V +1
+func  146F8 14703 "FUNC_65"                      :Y V +1 :Y V +1
+func  14704 14719 "FUNC_66"                      :Y V +1 :Y V +1
+table 1471A 14773 "TABLE_82"                     :Y X O +10 V +1
 table 14774 147DF "TABLE_70"                     :Y X O +12 V +1
 table 147E0 1484B "TABLE_71"                     :Y X O +12 V +1
 table 1484C 148B7 "TABLE_72"                     :Y X O +12 V +1
@@ -311,3 +337,9 @@ table 17D0A 17D99 "TABLE_76"                      :Y X O +12 V +1
 table 17D9A 17E29 "TABLE_77"                      :Y X O +12 V +1
 table 17E2A 17EB9 "TABLE_78"                      :Y X O +12 V +1
 #-------------------------------------------------------------------------------
+#VID BLOCK
+text  9FF06 9FF11 #CAL_ID
+fill  9FF12
+byte  9FF13       #?? PATS_CODE not used
+text  9FF63 9FF80 #TAG
+
