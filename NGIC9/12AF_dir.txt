@@ -1,4 +1,5 @@
-opts   :C F G H N P S 
+#defaults
+#opts   :C F G H N P S
 
 xcode 12000 19FFF
 
@@ -48,35 +49,38 @@ func  14B70 14b87 "SCALER_0E"                    :W V +1 :W V +256
 func  14B88 14B9B "FUNC_14"                      :Y V +1 :Y V +1
 func  14CD2 14CED "FUNC_15"                      :W V +1 :W V +1
 func  14D0A 14D3D "SCALER_0F"                    :W V +1 :W V +256
-func  14D3E 14D5D "SCALER_10"                     :W V +1 :W V +256
+func  14D3E 14D5D "SCALER_10"                    :W V +1 :W V +256
 #-------------------------------------------------------------------------------
 func  14DFE 14E21 "SCALER_691"                   :W V +1 :W V +256
 func  14E22 14E49 "SCALER_692"                   :W V +1 :W V +256
 table 14E4A 14E89 "TABLE_69X"                    :Y X O +8 V +1
-#-------------------------------------------------------------------------------
 func  14E8A 14EAD "SCALER_681"                   :W V +1 :W V +256
 func  14EAE 14ED5 "SCALER_682"                   :W V +1 :W V +256
 table 14ED6 14F15 "TABLE_68X"                    :Y X O +8 V +1
-#-------------------------------------------------------------------------------
 func  14F16 14F39 "SCALER_671"                   :W V +1 :W V +256
 func  14F3A 14f61 "SCALER_672"                   :W V +1 :W V +256
 table 14F62 14FA1 "TABLE_67X"                    :Y X O +8 V +1
-#-------------------------------------------------------------------------------
 func  14FA2 14FC5 "SCALER_661"                   :W V +1 :W V +256
 func  14FC6 14FED "SCALER_662"                   :W V +1 :W V +256
 table 14FEE 1502D "TABLE_66X"                    :Y X O +8 V +1
-#-------------------------------------------------------------------------------
+func  1502E 15051 "FUNC_36"                      :W V +1 :W V +1
+func  15052 15075 "FUNC_37"                      :W V +1 :W V +1
 func  15076 15099 "SCALER_651"                   :W V +1 :W V +256
 func  1509A 150B9 "SCALER_652"                   :W V +1 :W V +256
 table 150BA 150F1 "TABLE_65X"                    :Y X O +8 V +1
-#-------------------------------------------------------------------------------
 func  150F2 15115 "SCALER_641"                   :W V +1 :W V +256
 func  15116 15135 "SCALER_642"                   :W V +1 :W V +256
 table 15136 15175 "TABLE_64X"                    :Y X O +8 V +1
 #-------------------------------------------------------------------------------
+func  1517A 15195 "FUNC_38"                      :W V +1 :W V +1
+func  15196 151B1 "FUNC_39"                      :W V +1 :W V +1
+table 151B2 1521D "TABLE_79"                     :Y X O +12 V +1
+table 1521E 15289 "TABLE_80"                     :Y X O +12 V +1
+table 1528A 152DD "TABLE_81"                     :Y X O +12 V +1
+#-------------------------------------------------------------------------------
 func  1535E 15385 "SCALER_RPM2"                  :W V +4 :W V +256
 table 15386 153F1 "TABLE_12X"                    :Y X O +12 V +1
-
+#-------------------------------------------------------------------------------
 func  15462 1547D "SCALER_1D"                    :W V +1 :W V +256
 #-------------------------------------------------------------------------------
 func  15A2A 15A51 "SCALER_631"                   :W V +1 :W V +256
@@ -86,12 +90,33 @@ table 15A7A 15AB9 "TABLE_63X"                    :Y X O +8 V +1
 func  15ABA 15AD9 "SCALER_621"                   :W V +1 :W V +256
 func  15ADA 15AF9 "SCALER_622"                   :W V +1 :W V +256
 table 15AFA 15B1D "TABLE_62X"                    :Y X O +6 V +1
-func  15B1E 15B3D "FUNC_35"                       :W V +1 :W V +1
+func  15B1E 15B3D "FUNC_35"                      :W V +1 :W V +1
 #-------------------------------------------------------------------------------
+fill  158ED # odd address padding, words must start on an even address
+fill  15921 # odd address padding, words must start on an even address
+fill  15929 # odd address padding, words must start on an even address
+func  15934 1595B "FUNC_40"                      :W V +1 :W V +1
+func  1595C 15983 "FUNC_41"                      :W V +1 :W V +1
+func  15984 159AF "FUNC_42"                      :W V +1 :W V +1
+func  159B0 159CB "FUNC_43"                      :W V +1 :W V +1
+#-------------------------------------------------------------------------------
+func  159CE 159F9 "FUNC_44"                      :W V +1 :W V +1
+#-------------------------------------------------------------------------------
+fill  15AFD # odd address padding, words must start on an even address
+fill  15A01 # odd address padding, words must start on an even address
+fill  15A0D # odd address padding, words must start on an even address
+fill  15A15 # odd address padding, words must start on an even address
+fill  15A25 # odd address padding, words must start on an even address
 func  15B3E 15B55 "SCALER_601"                   :W V +1 :W V +256
 func  15B56 15B6D "SCALER_602"                   :W V +1 :W V +256
 table 15B6E 15B7D "TABLE_60X"                    :Y X O +4 V +1
-#-------------------------------------------------------------------------------
+fill  15B81 # odd address padding, words must start on an even address
+fill  15B87 # odd address padding, words must start on an even address
+fill  15B9D # odd address padding, words must start on an even address
+fill  15BAB # odd address padding, words must start on an even address
+fill  15BB3 # odd address padding, words must start on an even address
+fill  15BC1 # odd address padding, words must start on an even address
+fill  15BE9 # odd address padding, words must start on an even address
 func  15BEA 15C05 "FUNC_33"                      :W V +1 :W V +1
 func  15C06 15C21 "FUNC_34"                      :W V +1 :W V +1
 func  15C22 15C3D "FUNC_16"                      :W V +1 :W V +1
@@ -103,8 +128,16 @@ func  15CEA 15D05 "FUNC_31"                      :W V +1 :W V +1
 #-------------------------------------------------------------------------------
 func  15D08 15D23 "FUNC_32"                      :W V +1 :W V +1
 #-------------------------------------------------------------------------------
+fill  15D2F # odd address padding, words must start on an even address
+fill  15D3F # odd address padding, words must start on an even address
+fill  15D91 # odd address padding, words must start on an even address
+fill  15E13 # odd address padding, words must start on an even address
+fill  15E2B # odd address padding, words must start on an even address
+fill  15E43 # odd address padding, words must start on an even address
+fill  15E49 # odd address padding, words must start on an even address
+fill  15E51 # odd address padding, words must start on an even address
+fill  15E61 # odd address padding, words must start on an even address
 func  15E62 15E8D "FUNC_01"                      :W V +1 :W V +1
-#-------------------------------------------------------------------------------
 func  15E8E 15EB5 "FUNC_Trans00"                 :W V +1 :W V +1
 func  15EB6 15EDD "FUNC_Trans01"                 :W V +1 :W V +1
 func  15EDE 15F05 "FUNC_Trans02"                 :W V +1 :W V +1
@@ -188,30 +221,29 @@ func  16AE6 16B0D "FUNC_Trans79"                 :W V +1 :W V +1
 func  16B0E 16B35 "FUNC_Trans80"                 :W V +1 :W V +1
 func  16B36 16B5D "FUNC_Trans81"                 :W V +1 :W V +1
 func  16B5E 16B85 "FUNC_Trans82"                 :W V +1 :W V +1
-func  16B86 16B35 "FUNC_Trans83"                 :W V +1 :W V +1
-func  16B86 16BAD "FUNC_Trans84"                 :W V +1 :W V +1
+func  16B86 16BAD "FUNC_Trans83"                 :W V +1 :W V +1
+func  16BAE 16BD5 "FUNC_Trans84"                 :W V +1 :W V +1
 func  16BAE 16BD5 "FUNC_Trans85"                 :W V +1 :W V +1
 func  16BAE 16BD5 "FUNC_Trans86"                 :W V +1 :W V +1
 func  16BAE 16BD5 "FUNC_Trans87"                 :W V +1 :W V +1
 func  16BAE 16BD5 "FUNC_Trans88"                 :W V +1 :W V +1
 func  16BAE 16BD5 "FUNC_Trans89"                 :W V +1 :W V +1
-func  16BAE 16BD5 "FUNC_Trans90"                 :W V +1 :W V +1
-func  16BD6 16BFD "FUNC_Trans91"                 :W V +1 :W V +1
-func  16BFE 16C25 "FUNC_Trans92"                 :W V +1 :W V +1
-func  16C26 16C4D "FUNC_Trans93"                 :W V +1 :W V +1
-func  16C4E 16C75 "FUNC_Trans94"                 :W V +1 :W V +1
-func  16C76 16C9D "FUNC_Trans95"                 :W V +1 :W V +1
-func  16C9E 16CC5 "FUNC_Trans96"                 :W V +1 :W V +1
-func  16CC6 16CED "FUNC_Trans97"                 :W V +1 :W V +1
-func  16CEE 16D15 "FUNC_Trans98"                 :W V +1 :W V +1
-func  16D16 16D3D "FUNC_Trans99"                 :W V +1 :W V +1
-func  16D3E 16D65 "FUNC_TransA0"                 :W V +1 :W V +1
-func  16D66 16D8D "FUNC_TransA1"                 :W V +1 :W V +1
-func  16D8E 16DB5 "FUNC_TransA2"                 :W V +1 :W V +1
-func  16DB6 16DDD "FUNC_TransA3"                 :W V +1 :W V +1
-func  16DDE 16E05 "FUNC_TransA4"                 :W V +1 :W V +1
-func  16E06 16E2D "FUNC_TransA5"                 :W V +1 :W V +1
-func  16E2E 16E55 "FUNC_TransA6"                 :W V +1 :W V +1
+func  16BD6 16BFD "FUNC_Trans90"                 :W V +1 :W V +1
+func  16BFE 16C25 "FUNC_Trans91"                 :W V +1 :W V +1
+func  16C26 16C4D "FUNC_Trans92"                 :W V +1 :W V +1
+func  16C4E 16C75 "FUNC_Trans93"                 :W V +1 :W V +1
+func  16C76 16C9D "FUNC_Trans94"                 :W V +1 :W V +1
+func  16C9E 16CC5 "FUNC_Trans95"                 :W V +1 :W V +1
+func  16CC6 16CED "FUNC_Trans96"                 :W V +1 :W V +1
+func  16CEE 16D15 "FUNC_Trans97"                 :W V +1 :W V +1
+func  16D16 16D3D "FUNC_Trans98"                 :W V +1 :W V +1
+func  16D3E 16D65 "FUNC_Trans99"                 :W V +1 :W V +1
+func  16D66 16D8D "FUNC_TransA0"                 :W V +1 :W V +1
+func  16D8E 16DB5 "FUNC_TransA1"                 :W V +1 :W V +1
+func  16DB6 16DDD "FUNC_TransA2"                 :W V +1 :W V +1
+func  16DDE 16E05 "FUNC_TransA3"                 :W V +1 :W V +1
+func  16E06 16E2D "FUNC_TransA4"                 :W V +1 :W V +1
+func  16E2E 16E55 "FUNC_TransA5"                 :W V +1 :W V +1
 func  16E56 16E7D "SCALER_26"                    :W V +1 :W V +256
 func  16E7E 16E91 "SCALER_27"                    :W V +1 :W V +256
 func  16E92 16EB1 "FUNC_17"                      :W V +1 :W V +1
@@ -252,26 +284,26 @@ func  17396 173BD "FUNC_TransQ"                  :W V +1 :W V +1
 func  173BE 173E5 "FUNC_TransR"                  :W V +1 :W V +1
 func  173E6 1740D "FUNC_TransS"                  :W V +1 :W V +1
 func  1740E 1742D "SCALER_2A"                    :W V +1 :W V +256
-func  1742E 17449 "FUNC_22"                      : W V +1 : W V +1
-func  1744A 17457 "FUNC_23"                      : Y V +1 : Y V +1
-func  17458 17465 "FUNC_24"                      : Y V +1 : Y V +1
-func  17466 1747F "FUNC_25"                      : Y V +1 : Y V +1
-func  17480 1748D "FUNC_26"                      : Y V +1 : Y V +1
-func  1748E 174BD "FUNC_02"                      : W V +1 : W V +1
-func  174BE 174ED "FUNC_03"                      : W V +1 : W V +1
-func  174EE 1751D "FUNC_04"                      : W V +1 : W V +1
-func  1751E 1754D "FUNC_05"                      : W V +1 : W V +1
-func  1754E 17575 "FUNC_27"                      : W V +1 : W V +1
-func  17576 1758D "FUNC_28"                      : W V +1 : W V +1
-func  1758E 175BD "FUNC_29"                      : W V +1 : W V +1
-func  175BE 175D1 "FUNC_06"                      : W V +1 : W V +1
-func  175D2 175E5 "FUNC_07"                      : W V +1 : W V +1
-func  175E6 175F9 "FUNC_08"                      : W V +1 : W V +1
-func  175FA 1760D "FUNC_09"                      : W V +1 : W V +1
-func  1760E 17621 "FUNC_10"                      : W V +1 : W V +1
-func  17622 17635 "FUNC_11"                      : W V +1 : W V +1
-func  17636 17649 "FUNC_12"                      : W V +1 : W V +1
-func  1764A 1765D "FUNC_13"                      : W V +1 : W V +1
+func  1742E 17449 "FUNC_22"                      :W V +1 :W V +1
+func  1744A 17457 "FUNC_23"                      :Y V +1 :Y V +1
+func  17458 17465 "FUNC_24"                      :Y V +1 :Y V +1
+func  17466 1747F "FUNC_25"                      :Y V +1 :Y V +1
+func  17480 1748D "FUNC_26"                      :Y V +1 :Y V +1
+func  1748E 174BD "FUNC_02"                      :W V +1 :W V +1
+func  174BE 174ED "FUNC_03"                      :W V +1 :W V +1
+func  174EE 1751D "FUNC_04"                      :W V +1 :W V +1
+func  1751E 1754D "FUNC_05"                      :W V +1 :W V +1
+func  1754E 17575 "FUNC_27"                      :W V +1 :W V +1
+func  17576 1758D "FUNC_28"                      :W V +1 :W V +1
+func  1758E 175BD "FUNC_29"                      :W V +1 :W V +1
+func  175BE 175D1 "FUNC_06"                      :W V +1 :W V +1
+func  175D2 175E5 "FUNC_07"                      :W V +1 :W V +1
+func  175E6 175F9 "FUNC_08"                      :W V +1 :W V +1
+func  175FA 1760D "FUNC_09"                      :W V +1 :W V +1
+func  1760E 17621 "FUNC_10"                      :W V +1 :W V +1
+func  17622 17635 "FUNC_11"                      :W V +1 :W V +1
+func  17636 17649 "FUNC_12"                      :W V +1 :W V +1
+func  1764A 1765D "FUNC_13"                      :W V +1 :W V +1
 #-------------------------------------------------------------------------------
 # uses SCALER28 & SCALER_RPM3
 table 17C7A 17D09 "TABLE_75"                      :Y X O +12 V +1
