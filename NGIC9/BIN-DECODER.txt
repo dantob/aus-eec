@@ -6,7 +6,7 @@
 	12CD_NGIC9CF	vct 4.0		auto		3.45:1		GHIA VCT
 ??	12DD*			std 4.0		auto		3.23:1		Forte/Futura/S/Fairmont with IRS
 ??	12EE*			std 4.0		auto		??			Police pack (OPT20)
-	12FD_NGIC9F9	std 4.0		auto		3.23:1		ute
+	12FD_NGIC9F9	std 4.0		auto		3.23:1		ute (mostly same as 12BE, except trans shifts 3.08 vs 3.23 gears)
 ??	12FE*
 ??	12GA*			hp	4.0		auto		??			Police pack (OPT20) with HP engine
 ??	12HD*			??			??			??			??
