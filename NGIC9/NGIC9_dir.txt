@@ -32,12 +32,12 @@ table 12132 1219D "Volumetric_Efficiency_Table" :Y X O +12 V +2.56
 #-------------------------------------------------------------------------------
 func  12586 125A5 "SCALER_01"                    :W V +1 :W V +256
 func  125A6 125C5 "SCALER_02"                    :W V +1 :W V +256
-func  125c6 125F5 "SCALER_03"                    :W V +1 :W V +256
+func  125C6 125F5 "SCALER_LOAD_Petrol"           :W V +1 :W V +256
 func  125F6 12611 "SCALER_RPM1"                  :W V +4 :W V +256
 func  12612 12625 "SCALER_04"                    :W V +1 :W V +256
 func  12626 12639 "SCALER_05"                    :W V +1 :W V +256
 func  1263A 12655 "SCALER_06"                    :W V +1 :W V +256
-func  1266C 1269B "SCALER_07"                    :W V +1 :W V +256
+func  1266C 1269B "SCALER_LOAD_LPG"              :W V +1 :W V +256
 #-------------------------------------------------------------------------------
 table 127C2 1282D "TABLE_Spark_MBT"              :Y X O +12 V +2
 table 1282E 12899 "TABLE_Spark_MBT_MPG"          :Y X O +12 V +2
@@ -47,6 +47,13 @@ table 12972 129DD "TABLE_Spark_BDLN"             :Y X O +12 V +2
 table 129DE 12A49 "TABLE_Spark_BDLN_MPG"         :Y X O +12 V +2
 table 12A4A 12AB5 "TABLE_Spark_LPG_BDLN"         :Y X O +12 V +2
 table 12AB6 12B21 "TABLE_Spark_LPG_BDLN_MPG"     :Y X O +12 V +2
+table 12B22 12B75 "TABLE_2B22"                   :Y X O +12 V +1
+table 12B76 12BC9 "TABLE_2B76_PET"               :Y X O +12 V +1
+table 12BCA 12C1D "TABLE_2BCA_LPG"               :Y X O +12 V +1
+table 12C1E 12C89 "TABLE_2C1E"                   :Y X O +12 V +1
+table 12C8A 12CF5 "TABLE_2C8A"                   :Y X O +12 V +1
+table 12CF6 12D61 "TABLE_2CF6"                   :Y X O +12 V +1
+table 12D62 12DCD "TABLE_2D62"                   :Y X O +12 V +1
 #-------------------------------------------------------------------------------
 table 13480 1349D "TABLE_73"                     :Y X O +6 V +1
 table 1349E 134BB "TABLE_74"                     :Y X O +6 V +1
@@ -54,7 +61,7 @@ table 1349E 134BB "TABLE_74"                     :Y X O +6 V +1
 func  134D0 134F7 "SCALER_08"                    :W V +1 :W V +256
 func  134F8 13517 "SCALER_09"                    :W V +1 :W V +256
 #-------------------------------------------------------------------------------
-func  135CC 135E7 "SCALER_0A"                    :W V +1 :W V +256
+func  135CC 135E7 "SCALER_Fuel_Startup"          :W V +1 :W V +256
 func  135E8 135FB "SCALER_0B"                    :W V +1 :W V +256
 func  135FC 13613 "SCALER_0C"                    :W V +1 :W V +256
 func  13614 1362F "SCALER_MAP1_(kPa)"            :W V +1.28 :W V +256

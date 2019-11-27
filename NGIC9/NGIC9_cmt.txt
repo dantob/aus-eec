@@ -1,0 +1,54 @@
+    1 |
+    1 |--NOTES-------------------------------------------------------------------------
+    1 | B1_Red: 0 = Petrol, 1 = LPG 
+    1 | B5_R7c: 0 = normal, 1 = lean cruise
+    1 |
+    1 | 08CC = Engine Load?
+    1 | 08CE = Engine RPM
+    1 | 08D0 = Engine Load?
+    1 |--------------------------------------------------------------------------------
+    1 |
+    1 |
+
+1282D |# Values are degrees of ignition advance; Columns=SCALER_RPM1, Rows=SCALER_06
+    1 |
+12899 |# Values are degrees of ignition advance; Columns=SCALER_RPM1, Rows=SCALER_06
+    1 |
+12905 |# Values are degrees of ignition advance; Columns=SCALER_RPM1, Rows=SCALER_06
+    1 |
+12971 |# Values are degrees of ignition advance; Columns=SCALER_RPM1, Rows=SCALER_06
+    1 |
+129DD |# Values are degrees of ignition advance; Columns=SCALER_RPM1, Rows=SCALER_06
+    1 |
+12A49 |# Values are degrees of ignition advance; Columns=SCALER_RPM1, Rows=SCALER_06
+    1 |
+12AB5 |# Values are degrees of ignition advance; Columns=SCALER_RPM1, Rows=SCALER_06
+    1 |
+12B21 |# Values are degrees of ignition advance; Columns=SCALER_RPM1, Rows=SCALER_06
+    1 |
+13791 |# Values are in lambda, multiply by 14.64 to get AFR; Columns=SCALER_RPM1, Rows=SCALER_MAP2
+    1 |
+137EB |# Values are in lambda, multiply by 14.64 to get AFR; Columns=SCALER_0C, Rows=SCALER_MAP1
+    1 |
+13845 |# Columns=SCALER_0C, Rows=SCALER_0A
+    1 |
+139D1 |# Values are in lambda, multiply by 14.64 to get AFR; Columns=SCALER_RPM1, Rows=SCALER_MAP1
+    1 |
+
+
+
+
+
+
+
+#729F |# Values are a fraction of 100%; Columns=RPM(716A), Rows=MAP(7122)
+#7857 |# Columns=??(7102), Rows=??(7816)
+
+
+#7C21 |# Values are degrees of ignition advance; Columns=RPM(716A), Rows=MAP(71BE)
+#7C8D |# Values are degrees of ignition advance; Columns=RPM(716A), Rows=MAP(71BE)
+#7CF9 |# Values are degrees of ignition advance; Columns=RPM(716A), Rows=MAP(71BE)
+#7D65 |# Values are degrees of ignition advance; Columns=RPM(716A), Rows=MAP(71BE)
+#7FB4 |# Columns=RPM(716A), Rows=MAP(71BE)
+#8023 |# Values are degrees of ignition advance; Columns=RPM(716A), Rows=MAP(71BE)
+
