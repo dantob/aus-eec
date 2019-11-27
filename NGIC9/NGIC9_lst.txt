@@ -23,7 +23,7 @@
 
 
 --NOTES-------------------------------------------------------------------------
- B1_Red: 0 = Petrol, 1 = LPG 
+ B1_Red: 0 = Petrol selected, 1 = LPG selected
  B5_R7c: 0 = normal, 1 = lean cruise
 
  08CC = Engine Load?
@@ -613,7 +613,7 @@
 02532: a3,6c,b4,38        ldw   R38,[R6c+b4]     R38 = [b02];
 02536: 6d,c8,00,38        ml2w  R38,c8           lR38 = R38 * c8;
 0253a: c7,70,c6,3a        stb   R3a,[R70+c6]     [1046] = R3a; }
-0253e: 57,f5,81,0d,00,4a  ad3b  R4a,R0,[Rf4+d81] R4a = [4299];
+0253e: 57,f5,81,0d,00,4a  ad3b  R4a,R0,[Rf4+d81] R4a = LPG_AVAILABLE;
 02544: df,3c              je    02582            if (R4a != 0)  {
 02546: 11,4a              clrb  R4a              R4a = 0;
 02548: b3,6e,b0,38        ldb   R38,[R6e+b0]     R38 = [d44];
@@ -633,7 +633,7 @@
 0256e: 65,80,00,4a        ad2w  R4a,80           R4a += 80;
 02572: c7,70,c7,4b        stb   R4b,[R70+c7]     [1047] = R4b;
 02576: 11,4a              clrb  R4a              R4a = 0;
-02578: 31,ed,03           jnb   B1,Red,0257e     if (B1_Red = 1)  {
+02578: 31,ed,03           jnb   B1,Red,0257e     if (LPG_Fuel_Selected = 1)  {
 0257b: 91,40,4a           orb   R4a,40           R4a |= 40; }
 0257e: c7,70,cb,4a        stb   R4a,[R70+cb]     [104b] = R4a; }
 02582: a3,62,f0,3a        ldw   R3a,[R62+f0]     R3a = [670];
@@ -694,7 +694,7 @@
 0262f: 08,06,4a           shrw  R4a,6            R4a >>= 6;                        ## R4a /= 64 
 02632: 29,2c              scall 02760            Sub7();
 02634: c3,70,d8,4a        stw   R4a,[R70+d8]     [1058] = R4a;
-02638: 57,f5,81,0d,00,4a  ad3b  R4a,R0,[Rf4+d81] R4a = [4299];
+02638: 57,f5,81,0d,00,4a  ad3b  R4a,R0,[Rf4+d81] R4a = LPG_AVAILABLE;
 0263e: df,1a              je    0265a            if (R4a != 0)  {
 02640: a3,62,c6,4a        ldw   R4a,[R62+c6]     R4a = [646];
 02644: 08,06,4a           shrw  R4a,6            R4a >>= 6;                        ## R4a /= 64 
@@ -1468,7 +1468,7 @@
 02df8: 91,08,4a           orb   R4a,8            R4a |= 8;
 02dfb: 20,12              sjmp  02e0f            goto 02e0f;
 
-02dfd: 57,f5,81,0d,00,3a  ad3b  R3a,R0,[Rf4+d81] R3a = [4299];
+02dfd: 57,f5,81,0d,00,3a  ad3b  R3a,R0,[Rf4+d81] R3a = LPG_AVAILABLE;
 02e03: df,13              je    02e18            if (R3a = 0) goto 02e18;
 02e05: 99,8b,48           cmpb  R48,8b           
 02e08: d7,0e              jne   02e18            if (R48 != 8b) goto 02e18;
@@ -1551,7 +1551,7 @@
 02ebf: 91,08,4a           orb   R4a,8            R4a |= 8;
 02ec2: 20,12              sjmp  02ed6            goto 02ed6;
 
-02ec4: 57,f5,81,0d,00,3a  ad3b  R3a,R0,[Rf4+d81] R3a = [4299];
+02ec4: 57,f5,81,0d,00,3a  ad3b  R3a,R0,[Rf4+d81] R3a = LPG_AVAILABLE;
 02eca: df,15              je    02ee1            if (R3a = 0) goto 02ee1;
 02ecc: 99,8b,48           cmpb  R48,8b           
 02ecf: d7,10              jne   02ee1            if (R48 != 8b) goto 02ee1;
@@ -2272,7 +2272,7 @@
 03645: 29,82              scall 037c9            Sub20();
 03647: db,37              jc    03680            if (CY = 0)  {
 03649: 9b,f5,82,0d,00     cmpb  R0,[Rf4+d82]     
-0364e: d7,02              jne   03652            if ([429a] = 0)  {
+0364e: d7,02              jne   03652            if (DEDICATED_LPG = 0)  {
 03650: 29,bb              scall 0380d            Sub21(); }
 03652: db,2c              jc    03680            if (CY = 0)  {
 03654: 29,fa              scall 03850            Sub22();
@@ -2290,7 +2290,7 @@
 0366c: 2b,8c              scall 039fa            Sub28();
 0366e: db,10              jc    03680            if (CY = 0)  {
 03670: 9b,f5,82,0d,00     cmpb  R0,[Rf4+d82]     
-03675: d7,04              jne   0367b            if ([429a] != 0) goto 0367b;
+03675: d7,04              jne   0367b            if (DEDICATED_LPG != 0) goto 0367b;
 03677: 2b,cf              scall 03a48            Sub29();
 03679: db,05              jc    03680            if (CY = 0)  {
 0367b: ef,18,04           call  03a96            Sub30();
@@ -3155,7 +3155,7 @@
 03e9b: 34,8f,05           jnb   B4,R8f,03ea3     if (B4_R8f = 1)  {
 03e9e: ef,80,14           call  05321            Sub132(4d4);
 03ea1: d4,04              #args                  } } } }
-03ea3: 57,f5,81,0d,00,4a  ad3b  R4a,R0,[Rf4+d81] R4a = [4299];
+03ea3: 57,f5,81,0d,00,4a  ad3b  R4a,R0,[Rf4+d81] R4a = LPG_AVAILABLE;
 03ea9: df,29              je    03ed4            if (R4a != 0)  {
 03eab: b3,01,8f,04,3a     ldb   R3a,[R0+48f]     R3a = [48f];
 03eb0: ef,35,04           call  042e8            Sub71(8606,1130);
@@ -3303,7 +3303,7 @@
 0401d: df,0a              je    04029            if (R4a != 0)  {
 0401f: 29,ec              scall 0420d            Sub65(af,b308,800,4c4);
 04021: af,00,08,b3,00,08,c4,04 #args             }
-04029: 57,f5,81,0d,00,4a  ad3b  R4a,R0,[Rf4+d81] R4a = [4299];
+04029: 57,f5,81,0d,00,4a  ad3b  R4a,R0,[Rf4+d81] R4a = LPG_AVAILABLE;
 0402f: df,12              je    04043            if (R4a != 0)  {
 04031: 57,ff,8d,00,00,4a  ad3b  R4a,R0,[Rfe+8d]  R4a = [7f63];
 04037: df,0a              je    04043            if (R4a != 0)  {
@@ -3315,7 +3315,7 @@
 04050: df,08              je    0405a            if (R4a != 0)  {
 04052: 2a,04              scall 04258            Sub67(b106,1000,4f8);
 04054: 06,b1,00,10,f8,04  #args                  } }
-0405a: 57,f5,82,0d,00,4a  ad3b  R4a,R0,[Rf4+d82] R4a = [429a];
+0405a: 57,f5,82,0d,00,4a  ad3b  R4a,R0,[Rf4+d82] R4a = DEDICATED_LPG;
 04060: df,10              je    04072            if (R4a != 0)  {
 04062: 57,ff,8c,00,00,4a  ad3b  R4a,R0,[Rfe+8c]  R4a = [7f62];
 04068: df,08              je    04072            if (R4a != 0)  {
@@ -3930,7 +3930,7 @@
 
    Sub84:
 04641: 9b,f5,82,0d,00     cmpb  R0,[Rf4+d82]     
-04646: df,03              je    0464b            if ([429a] != 0)  {
+04646: df,03              je    0464b            if (DEDICATED_LPG != 0)  {
 04648: ef,9f,04           call  04aea            Sub114(); }
 0464b: b3,01,a0,04,4a     ldb   R4a,[R0+4a0]     R4a = [4a0];
 04650: 30,4a,05           jnb   B0,R4a,04658     if (B0_R4a = 0) goto 04658;
@@ -4048,9 +4048,9 @@
 04763: f0                 ret                    return;
 
    Sub92:
-04764: 57,f5,81,0d,00,4a  ad3b  R4a,R0,[Rf4+d81] R4a = [4299];
+04764: 57,f5,81,0d,00,4a  ad3b  R4a,R0,[Rf4+d81] R4a = LPG_AVAILABLE;
 0476a: df,17              je    04783            if (R4a != 0)  {
-0476c: 57,f5,82,0d,00,4a  ad3b  R4a,R0,[Rf4+d82] R4a = [429a];
+0476c: 57,f5,82,0d,00,4a  ad3b  R4a,R0,[Rf4+d82] R4a = DEDICATED_LPG;
 04772: d7,0f              jne   04783            if (R4a = 0)  {
 04774: b3,6c,3b,4a        ldb   R4a,[R6c+3b]     R4a = [b89];
 04778: 31,4a,03           jnb   B1,R4a,0477e     if (B1_R4a = 0) goto 0477e;
@@ -4329,7 +4329,7 @@
 04a31: 71,fd,4a           an2b  R4a,fd           R4a &= fd;
 04a34: 71,fe,4a           an2b  R4a,fe           R4a &= fe;
 04a37: c7,6c,3b,4a        stb   R4a,[R6c+3b]     [b89] = R4a;
-04a3b: 31,ed,0b           jnb   B1,Red,04a49     if (B1_Red = 1)  {
+04a3b: 31,ed,0b           jnb   B1,Red,04a49     if (LPG_Fuel_Selected = 1)  {
 04a3e: b3,6c,3c,4a        ldb   R4a,[R6c+3c]     R4a = [b8a];
 04a42: 91,04,4a           orb   R4a,4            R4a |= 4;
 04a45: c7,6c,3c,4a        stb   R4a,[R6c+3c]     [b8a] = R4a; }
@@ -4347,7 +4347,7 @@
 04a61: f0                 ret                    return;
 
    Sub110:
-04a62: 39,ed,0c           jb    B1,Red,04a71     if (B1_Red = 1) goto 04a71;
+04a62: 39,ed,0c           jb    B1,Red,04a71     if (LPG_Fuel_Selected = 1) goto 04a71;
 04a65: b3,62,69,4a        ldb   R4a,[R62+69]     R4a = [6e9];
 04a69: 15,4a              decb  R4a              R4a--;
 04a6b: c7,62,69,4a        stb   R4a,[R62+69]     [6e9] = R4a;
@@ -4552,7 +4552,7 @@
 04c70: 2c,08,5a,e0        #args  
 04c74: ef,c4,04           call  0513b            Sub121(8026);
 04c77: 26,80              #args                  }
-04c79: 57,f5,81,0d,00,4a  ad3b  R4a,R0,[Rf4+d81] R4a = [4299];
+04c79: 57,f5,81,0d,00,4a  ad3b  R4a,R0,[Rf4+d81] R4a = LPG_AVAILABLE;
 04c7f: df,18              je    04c99            if (R4a != 0)  {
 04c81: ef,61,f6           call  042e5            Sub70(8606,1130);
 04c84: 06,86,30,11        #args  
@@ -4824,7 +4824,7 @@
 04f7d: 71,bf,86           an2b  R86,bf           R86 &= bf; }
 04f80: 29,b9              scall 0513b            Sub121(8034);
 04f82: 34,80              #args                  } }
-04f84: 57,f5,82,0d,00,4a  ad3b  R4a,R0,[Rf4+d82] R4a = [429a];
+04f84: 57,f5,82,0d,00,4a  ad3b  R4a,R0,[Rf4+d82] R4a = DEDICATED_LPG;
 04f8a: df,15              je    04fa1            if (R4a != 0)  {
 04f8c: 57,ff,8c,00,00,4a  ad3b  R4a,R0,[Rfe+8c]  R4a = [7f62];
 04f92: df,0d              je    04fa1            if (R4a != 0)  {
@@ -4833,7 +4833,7 @@
 04f9a: 71,bf,86           an2b  R86,bf           R86 &= bf; }
 04f9d: 29,9c              scall 0513b            Sub121(8034);
 04f9f: 34,80              #args                  } }
-04fa1: 57,f5,81,0d,00,4a  ad3b  R4a,R0,[Rf4+d81] R4a = [4299];
+04fa1: 57,f5,81,0d,00,4a  ad3b  R4a,R0,[Rf4+d81] R4a = LPG_AVAILABLE;
 04fa7: df,15              je    04fbe            if (R4a != 0)  {
 04fa9: 57,ff,8d,00,00,4a  ad3b  R4a,R0,[Rfe+8d]  R4a = [7f63];
 04faf: df,0d              je    04fbe            if (R4a != 0)  {
@@ -5054,9 +5054,9 @@
 
    Sub124:
 0520f: f2                 pushp                  push(PSW);
-05210: 57,f5,81,0d,00,4a  ad3b  R4a,R0,[Rf4+d81] R4a = [4299];
+05210: 57,f5,81,0d,00,4a  ad3b  R4a,R0,[Rf4+d81] R4a = LPG_AVAILABLE;
 05216: df,23              je    0523b            if (R4a != 0)  {
-05218: 57,f5,82,0d,00,4a  ad3b  R4a,R0,[Rf4+d82] R4a = [429a];
+05218: 57,f5,82,0d,00,4a  ad3b  R4a,R0,[Rf4+d82] R4a = DEDICATED_LPG;
 0521e: d7,1b              jne   0523b            if (R4a = 0)  {
 05220: b3,6c,3b,4a        ldb   R4a,[R6c+3b]     R4a = [b89];
 05224: a3,62,c6,38        ldw   R38,[R62+c6]     R38 = [646];
@@ -6993,8 +6993,8 @@
 1428d: 19,23,19,00,85,80,85,80,85,80,85 ??? 
 
 14298: 00                 byte    0
-14299: 00                 byte    0
-1429a: 00                 byte    0
+14299: 00                 byte    0              LPG_AVAILABLE
+1429a: 00                 byte    0              DEDICATED_LPG
 1429b: 05                 byte    5
 
 1429c: 00,ff              ???   
@@ -12433,7 +12433,7 @@
 82242: c3,6a,4c,42        stw   R42,[R6a+4c]     [aac] = R42;
 82246: c3,01,fc,05,42     stw   R42,[R0+5fc]     [5fc] = R42;
 8224b: 9b,f5,82,0d,00     cmpb  R0,[Rf4+d82]     
-82250: df,06              je    82258            if ([429a] != 0)  {
+82250: df,06              je    82258            if (DEDICATED_LPG != 0)  {
 82252: b1,0c,24           ldb   R24,c            R24 = c;
 82255: ef,e8,29           call  84c40            Sub192(); }
 82258: ef,45,d9           call  8fba0            Sub418();
@@ -13076,9 +13076,9 @@
 82a0d: 3d,ed,02           jb    B5,Red,82a12     if (B5_Red = 1) goto 82a12;
 82a10: 20,b8              sjmp  82aca            goto 82aca;
 
-82a12: 31,ed,6f           jnb   B1,Red,82a84     if (B1_Red = 0) goto 82a84;
+82a12: 31,ed,6f           jnb   B1,Red,82a84     if (LPG_Fuel_Selected = 0) goto 82a84;
 82a15: 9b,f5,82,0d,00     cmpb  R0,[Rf4+d82]     
-82a1a: df,68              je    82a84            if ([429a] = 0) goto 82a84;
+82a1a: df,68              je    82a84            if (DEDICATED_LPG = 0) goto 82a84;
 82a1c: 34,81,65           jnb   B4,R81,82a84     if (B4_R81 = 0) goto 82a84;
 82a1f: 39,92,25           jb    B1,R92,82a47     if (B1_R92 = 1) goto 82a47;
 82a22: 8b,72,b4,00        cmpw  R0,[R72+b4]      
@@ -13139,7 +13139,7 @@
 82abd: 71,7f,ef           an2b  Ref,7f           Ref &= 7f;
 82ac0: 3b,ee,07           jb    B3,Ree,82aca     if (B3_Ree = 1) goto 82aca;
 82ac3: 9b,f5,81,0d,00     cmpb  R0,[Rf4+d81]     
-82ac8: d7,02              jne   82acc            if ([4299] != 0) goto 82acc;
+82ac8: d7,02              jne   82acc            if (LPG_AVAILABLE != 0) goto 82acc;
 82aca: 21,14              sjmp  82be0            goto 82be0;
 
 82acc: a3,72,a8,4c        ldw   R4c,[R72+a8]     R4c = [R72-58];
@@ -13150,8 +13150,8 @@
 
 82adc: 9b,72,d6,00        cmpb  R0,[R72+d6]      
 82ae0: d7,10              jne   82af2            if ([R72-2a] != 0) goto 82af2;
-82ae2: 71,f7,ed           an2b  Red,f7           Red &= f7;
-82ae5: 71,bf,ed           an2b  Red,bf           Red &= bf;
+82ae2: 71,f7,ed           an2b  Red,f7           B3_Red = 0;
+82ae5: 71,bf,ed           an2b  Red,bf           B6_Red = 0;
 82ae8: b3,72,e7,4c        ldb   R4c,[R72+e7]     R4c = [R72-19];
 82aec: c7,72,e8,4c        stb   R4c,[R72+e8]     [R72-18] = R4c;
 82af0: 20,ee              sjmp  82be0            goto 82be0;
@@ -14642,8 +14642,8 @@
 83b73: de,41              jlt   83bb6            if (R50 < 1) goto 83bb6;          ## (Signed)
 83b75: a3,6a,ee,50        ldw   R50,[R6a+ee]     R50 = [a4e];
 83b79: 9b,f5,81,0d,00     cmpb  R0,[Rf4+d81]     
-83b7e: df,0a              je    83b8a            if ([4299] = 0) goto 83b8a;
-83b80: 31,ed,07           jnb   B1,Red,83b8a     if (B1_Red = 0) goto 83b8a;
+83b7e: df,0a              je    83b8a            if (LPG_AVAILABLE = 0) goto 83b8a;
+83b80: 31,ed,07           jnb   B1,Red,83b8a     if (LPG_Fuel_Selected = 0) goto 83b8a;
 83b83: 67,f7,f8,07,50     ad2w  R50,[Rf6+7f8]    R50 += [5176];
 83b88: 20,04              sjmp  83b8e            goto 83b8e;
 
@@ -14727,7 +14727,7 @@
 83c75: c3,6a,e0,50        stw   R50,[R6a+e0]     [a40] = R50; } }
 83c79: 68,50,4e           sb2w  R4e,R50          R4e -= R50;
 83c7c: c3,6a,e2,50        stw   R50,[R6a+e2]     [a42] = R50; }
-83c80: 3d,7c,05           jb    B5,R7c,83c88     if (B5_R7c = 1) goto 83c88;
+83c80: 3d,7c,05           jb    B5,R7c,83c88     if (Lean_Cruise_Mode = 1) goto 83c88;
 83c83: 71,7f,8b           an2b  R8b,7f           R8b &= 7f;
 83c86: 20,37              sjmp  83cbf            goto 83cbf;
 
@@ -16467,8 +16467,8 @@
 84ea2: c3,62,b8,24        stw   R24,[R62+b8]     [638] = R24;
 84ea6: a3,f4,50,26        ldw   R26,[Rf4+50]     R26 = [3568];
 84eaa: 9b,f5,81,0d,00     cmpb  R0,[Rf4+d81]     
-84eaf: df,07              je    84eb8            if ([4299] = 0) goto 84eb8;
-84eb1: 31,ed,04           jnb   B1,Red,84eb8     if (B1_Red = 0) goto 84eb8;
+84eaf: df,07              je    84eb8            if (LPG_AVAILABLE = 0) goto 84eb8;
+84eb1: 31,ed,04           jnb   B1,Red,84eb8     if (LPG_Fuel_Selected = 0) goto 84eb8;
 84eb4: a3,72,90,26        ldw   R26,[R72+90]     R26 = [R72-70];
 84eb8: 88,26,24           cmpw  R24,R26          
 84ebb: d3,16              jnc   84ed3            if (R24 < R26) goto 84ed3;
@@ -16485,7 +16485,7 @@
 84ed6: 91,02,85           orb   R85,2            R85 |= 2;
 84ed9: b3,64,ed,38        ldb   R38,[R64+ed]     R38 = [76d];
 84edd: 91,01,85           orb   R85,1            R85 |= 1;
-84ee0: 91,80,ed           orb   Red,80           Red |= 80;
+84ee0: 91,80,ed           orb   Red,80           B7_Red = 1;
 84ee3: 17,38              incb  R38              R38++;
 84ee5: d3,02              jnc   84ee9            if (CY = 0) goto 84ee9;           ## jump if (R38++) not overflowed
 84ee7: 15,38              decb  R38              R38--;
@@ -16850,7 +16850,7 @@
 85311: 0d,0b,2c           shldw R2c,b            lR2c <<= b;                       ## R2c *= 2048 
 85314: fe,8c,26,2c        sdivw R2c,R26          R2c = slR2c / R26;
 85318: c3,68,f8,2c        stw   R2c,[R68+f8]     [978] = R2c;
-8531c: 31,ed,03           jnb   B1,Red,85322     if (B1_Red = 0) goto 85322;
+8531c: 31,ed,03           jnb   B1,Red,85322     if (LPG_Fuel_Selected = 0) goto 85322;
 8531f: e7,89,05           jump  858ab            goto 858ab;
 
 85322: 01,2e              clrw  R2e              R2e = 0;
@@ -17604,7 +17604,7 @@
 85c13: 0c,01,24           shrdw R24,1            lR24 >>= 1;                       ## R24 /= 2 
 85c16: 8c,40,24           divw  R24,R40          R24 = lR24 / R40;
 85c19: c7,64,b2,24        stb   R24,[R64+b2]     [732] = R24;
-85c1d: 31,ed,14           jnb   B1,Red,85c34     if (B1_Red = 0) goto 85c34;
+85c1d: 31,ed,14           jnb   B1,Red,85c34     if (LPG_Fuel_Selected = 0) goto 85c34;
 85c20: 9b,f5,84,0d,00     cmpb  R0,[Rf4+d84]     
 85c25: df,06              je    85c2d            if ([429c] = 0) goto 85c2d;
 85c27: a3,66,50,40        ldw   R40,[R66+50]     R40 = [8d0];
@@ -17631,7 +17631,7 @@
 85c62: 9b,f0,1a,26        cmpb  R26,[Rf0+1a]     
 85c66: de,11              jlt   85c79            if (R26 < [207a]) goto 85c79;     ## (Signed)
 85c68: b3,f4,5a,4a        ldb   R4a,[Rf4+5a]     R4a = [3572];
-85c6c: 31,ed,05           jnb   B1,Red,85c74     if (B1_Red = 0) goto 85c74;
+85c6c: 31,ed,05           jnb   B1,Red,85c74     if (LPG_Fuel_Selected = 0) goto 85c74;
 85c6f: b3,f5,bf,0d,4a     ldb   R4a,[Rf4+dbf]    R4a = [42d7];
 85c74: 98,4a,2a           cmpb  R2a,R4a          
 85c77: db,34              jc    85cad            if (R2a >= R4a) goto 85cad;
@@ -17640,14 +17640,14 @@
 85c7f: 9b,f0,1b,26        cmpb  R26,[Rf0+1b]     
 85c83: da,11              jle   85c96            if (R26 <= [207b]) goto 85c96;    ## (Signed)
 85c85: b3,f4,5b,4a        ldb   R4a,[Rf4+5b]     R4a = [3573];
-85c89: 31,ed,05           jnb   B1,Red,85c91     if (B1_Red = 0) goto 85c91;
+85c89: 31,ed,05           jnb   B1,Red,85c91     if (LPG_Fuel_Selected = 0) goto 85c91;
 85c8c: b3,f5,c0,0d,4a     ldb   R4a,[Rf4+dc0]    R4a = [42d8];
 85c91: 98,4a,2a           cmpb  R2a,R4a          
 85c94: db,17              jc    85cad            if (R2a >= R4a) goto 85cad;
 85c96: 9b,f0,1b,26        cmpb  R26,[Rf0+1b]     
 85c9a: d2,49              jgt   85ce5            if (R26 > [207b]) goto 85ce5;     ## (Signed)
 85c9c: b3,f4,5c,4a        ldb   R4a,[Rf4+5c]     R4a = [3574];
-85ca0: 31,ed,05           jnb   B1,Red,85ca8     if (B1_Red = 0) goto 85ca8;
+85ca0: 31,ed,05           jnb   B1,Red,85ca8     if (LPG_Fuel_Selected = 0) goto 85ca8;
 85ca3: b3,f5,c1,0d,4a     ldb   R4a,[Rf4+dc1]    R4a = [42d9];
 85ca8: 98,4a,2c           cmpb  R2c,R4a          
 85cab: d3,38              jnc   85ce5            if (R2c < R4a) goto 85ce5;
@@ -17668,7 +17668,7 @@
 85cdd: d3,06              jnc   85ce5            if (R38 < R40) goto 85ce5;
 85cdf: 91,04,86           orb   R86,4            R86 |= 4;
 85ce2: 91,02,86           orb   R86,2            R86 |= 2;
-85ce5: 31,ed,19           jnb   B1,Red,85d01     if (B1_Red = 0) goto 85d01;
+85ce5: 31,ed,19           jnb   B1,Red,85d01     if (LPG_Fuel_Selected = 0) goto 85d01;
 85ce8: ef,78,e9           call  84663            Sub170(FUNC_65,731);
 85ceb: e0,51,31,07        #args  
 85cef: b0,40,48           ldb   R48,R40          R48 = R40;
@@ -17766,7 +17766,7 @@
 
 85df9: a3,f5,84,00,2e     ldw   R2e,[Rf4+84]     R2e = [359c];
 85dfe: a3,f5,86,00,30     ldw   R30,[Rf4+86]     R30 = [359e];
-85e03: 31,ed,09           jnb   B1,Red,85e0f     if (B1_Red = 0) goto 85e0f;
+85e03: 31,ed,09           jnb   B1,Red,85e0f     if (LPG_Fuel_Selected = 0) goto 85e0f;
 85e06: ef,04,e9           call  8470d            UUWFunLU1(FUNC_47,610);
 85e09: 4e,4f,10,06        #args  
 85e0d: 20,14              sjmp  85e23            goto 85e23;
@@ -17804,7 +17804,7 @@
 85e68: 32,86,5e           jnb   B2,R86,85ec9     if (B2_R86 = 0) goto 85ec9;
 85e6b: 3d,86,5b           jb    B5,R86,85ec9     if (B5_R86 = 1) goto 85ec9;
 85e6e: 3f,79,58           jb    B7,R79,85ec9     if (B7_R79 = 1) goto 85ec9;
-85e71: 3d,7c,55           jb    B5,R7c,85ec9     if (B5_R7c = 1) goto 85ec9;
+85e71: 3d,7c,55           jb    B5,R7c,85ec9     if (Lean_Cruise_Mode = 1) goto 85ec9;
 85e74: 39,7c,52           jb    B1,R7c,85ec9     if (B1_R7c = 1) goto 85ec9;
 85e77: 3c,7f,4f           jb    B4,R7f,85ec9     if (B4_R7f = 1) goto 85ec9;
 85e7a: 9b,f0,1a,26        cmpb  R26,[Rf0+1a]     
@@ -17825,7 +17825,7 @@
 85ea9: d1,08              jleu  85eb3            if (R4a <= 8000) goto 85eb3;
 85eab: a1,00,80,4a        ldw   R4a,8000         R4a = 8000;
 85eaf: c3,62,86,4a        stw   R4a,[R62+86]     [606] = R4a;
-85eb3: 31,ed,0e           jnb   B1,Red,85ec4     if (B1_Red = 0) goto 85ec4;
+85eb3: 31,ed,0e           jnb   B1,Red,85ec4     if (LPG_Fuel_Selected = 0) goto 85ec4;
 85eb6: 32,94,0b           jnb   B2,R94,85ec4     if (B2_R94 = 0) goto 85ec4;
 85eb9: b3,62,1e,38        ldb   R38,[R62+1e]     R38 = [69e];
 85ebd: 9b,f5,83,0d,38     cmpb  R38,[Rf4+d83]    
@@ -18040,7 +18040,7 @@
 86118: a1,01,00,44        ldw   R44,1            R44 = 1;
 8611c: 21,43              sjmp  86261            goto 86261;
 
-8611e: 3d,7c,36           jb    B5,R7c,86157     if (B5_R7c = 1) goto 86157;
+8611e: 3d,7c,36           jb    B5,R7c,86157     if (Lean_Cruise_Mode = 1) goto 86157;
 86121: 45,e4,00,f4,3a     ad3w  R3a,Rf4,e4       R3a = @SCALER_0C;
 86126: b3,f5,8c,00,3e     ldb   R3e,[Rf4+8c]     R3e = [35a4];
 8612b: 29,aa              scall 862d7            862d7();
@@ -18067,7 +18067,7 @@
 86172: ef,27,e9           call  84a9c            UTabLU2();
 86175: 49,80,00,42,44     sb3w  R44,R42,80       R44 = R42 - 80;
 8617a: 30,7c,13           jnb   B0,R7c,86190     if (B0_R7c = 0) goto 86190;
-8617d: 71,fe,7c           an2b  R7c,fe           R7c &= fe;
+8617d: 71,fe,7c           an2b  R7c,fe           B0_R7c = 0;
 86180: a3,62,86,38        ldw   R38,[R62+86]     R38 = [606];
 86184: 01,3a              clrw  R3a              R3a = 0;
 86186: 0d,09,38           shldw R38,9            lR38 <<= 9;                       ## R38 *= 512 
@@ -18100,7 +18100,7 @@
 861e2: 68,42,44           sb2w  R44,R42          R44 -= R42;
 861e5: db,02              jc    861e9            if (R44 >= 0) goto 861e9;
 861e7: 01,44              clrw  R44              R44 = 0;
-861e9: 3d,7c,28           jb    B5,R7c,86214     if (B5_R7c = 1) goto 86214;
+861e9: 3d,7c,28           jb    B5,R7c,86214     if (Lean_Cruise_Mode = 1) goto 86214;
 861ec: a3,66,4e,38        ldw   R38,[R66+4e]     R38 = [8ce];
 861f0: 45,18,01,f4,3a     ad3w  R3a,Rf4,118      R3a = @SCALER_MAP2_(kPa);
 861f5: af,62,83,3c        ldzbw R3c,[R62+83]     wR3c = [603];
@@ -18177,7 +18177,7 @@
 862c9: c3,62,86,44        stw   R44,[R62+86]     [606] = R44;
 862cd: 89,00,80,44        cmpw  R44,8000         
 862d1: d9,03              jgtu  862d6            if (R44 > 8000) goto 862d6;
-862d3: 71,fd,7c           an2b  R7c,fd           R7c &= fd;
+862d3: 71,fd,7c           an2b  R7c,fd           B1_R7c = 0;
 862d6: f0                 ret                    return;
 
 862d7: b3,62,94,3c        ldb   R3c,[R62+94]     R3c = [614];
@@ -18240,8 +18240,8 @@
 8638d: 64,42,40           ad2w  R40,R42          R40 += R42;
 86390: c7,64,5e,41        stb   R41,[R64+5e]     [7de] = R41;
 86394: 9b,f5,81,0d,00     cmpb  R0,[Rf4+d81]     
-86399: df,05              je    863a0            if ([4299] = 0) goto 863a0;
-8639b: 31,ed,02           jnb   B1,Red,863a0     if (B1_Red = 0) goto 863a0;
+86399: df,05              je    863a0            if (LPG_AVAILABLE = 0) goto 863a0;
+8639b: 31,ed,02           jnb   B1,Red,863a0     if (LPG_Fuel_Selected = 0) goto 863a0;
 8639e: 21,de              sjmp  8657e            goto 8657e;
 
 863a0: 36,7b,26           jnb   B6,R7b,863c9     if (B6_R7b = 0) goto 863c9;
@@ -18642,8 +18642,8 @@
 86825: 20,e9              sjmp  86910            goto 86910;
 
 86827: 9b,f5,81,0d,00     cmpb  R0,[Rf4+d81]     
-8682c: df,03              je    86831            if ([4299] = 0) goto 86831;
-8682e: 39,ed,0b           jb    B1,Red,8683c     if (B1_Red = 1) goto 8683c;
+8682c: df,03              je    86831            if (LPG_AVAILABLE = 0) goto 86831;
+8682e: 39,ed,0b           jb    B1,Red,8683c     if (LPG_Fuel_Selected = 1) goto 8683c;
 86831: 3a,85,05           jb    B2,R85,86839     if (B2_R85 = 1) goto 86839;
 86834: ef,9d,f6           call  85ed4            85ed4();
 86837: 20,03              sjmp  8683c            goto 8683c;
@@ -18725,13 +18725,13 @@
 86917: a3,f0,10,42        ldw   R42,[Rf0+10]     R42 = [2070]; }
 8691b: 8b,62,90,42        cmpw  R42,[R62+90]     
 8691f: db,05              jc    86926            if (R42 >= [610]) goto 86926;
-86921: 91,04,7c           orb   R7c,4            R7c |= 4;
+86921: 91,04,7c           orb   R7c,4            B2_R7c = 1;
 86924: 20,0d              sjmp  86933            goto 86933;
 
 86926: 6b,f0,12,42        sb2w  R42,[Rf0+12]     R42 -= [2072];
 8692a: 8b,62,90,42        cmpw  R42,[R62+90]     
 8692e: d1,03              jleu  86933            if (R42 > [610])  {
-86930: 71,fb,7c           an2b  R7c,fb           R7c &= fb; }
+86930: 71,fb,7c           an2b  R7c,fb           B2_R7c = 0; }
 86933: b3,f0,16,42        ldb   R42,[Rf0+16]     R42 = [2076];
 86937: 9b,62,1e,42        cmpb  R42,[R62+1e]     
 8693b: db,05              jc    86942            if (R42 >= [69e]) goto 86942;
@@ -18756,8 +18756,8 @@
 86971: a1,00,80,4a        ldw   R4a,8000         R4a = 8000;
 86975: c3,62,86,4a        stw   R4a,[R62+86]     [606] = R4a; } } } } } }
 86979: 9b,f5,81,0d,00     cmpb  R0,[Rf4+d81]     
-8697e: df,0d              je    8698d            if ([4299] = 0) goto 8698d;
-86980: 31,ed,0a           jnb   B1,Red,8698d     if (B1_Red = 0) goto 8698d;
+8697e: df,0d              je    8698d            if (LPG_AVAILABLE = 0) goto 8698d;
+86980: 31,ed,0a           jnb   B1,Red,8698d     if (LPG_Fuel_Selected = 0) goto 8698d;
 86983: c3,72,aa,42        stw   R42,[R72+aa]     [R72-56] = R42;
 86987: c3,64,c8,00        stw   R0,[R64+c8]      [748] = 0;
 8698b: 20,08              sjmp  86995            goto 86995;
@@ -19084,7 +19084,7 @@
 86d61: 17,4a              incb  R4a              R4a++;
 86d63: 03,42              negw  R42              R42 = -R42;
 86d65: af,f5,93,00,40     ldzbw R40,[Rf4+93]     wR40 = [35ab];
-86d6a: 35,7c,05           jnb   B5,R7c,86d72     if (B5_R7c = 0) goto 86d72;
+86d6a: 35,7c,05           jnb   B5,R7c,86d72     if (Lean_Cruise_Mode = 0) goto 86d72;
 86d6d: af,f5,95,00,40     ldzbw R40,[Rf4+95]     wR40 = [35ad];
 86d72: 6c,42,40           ml2w  R40,R42          lR40 = R40 * R42;
 86d75: 0d,01,40           shldw R40,1            lR40 <<= 1;                       ## R40 *= 2 
@@ -19156,7 +19156,7 @@
 86e33: a0,36,3a           ldw   R3a,R36          R3a = R36;
 86e36: ad,0c,3c           ldzbw R3c,c            wR3c = c;
 86e39: 45,42,05,f2,40     ad3w  R40,Rf2,542      R40 = @TABLE_2C1E;
-86e3e: 35,7c,05           jnb   B5,R7c,86e46     if (B5_R7c = 0) goto 86e46;
+86e3e: 35,7c,05           jnb   B5,R7c,86e46     if (Lean_Cruise_Mode = 0) goto 86e46;
 86e41: 45,ae,05,f2,40     ad3w  R40,Rf2,5ae      R40 = @TABLE_2C8A;
 86e46: ef,53,dc           call  84a9c            UTabLU2();
 86e49: b3,66,2d,48        ldb   R48,[R66+2d]     R48 = [8ad];
@@ -19167,7 +19167,7 @@
 86e5a: a0,36,3a           ldw   R3a,R36          R3a = R36;
 86e5d: ad,0c,3c           ldzbw R3c,c            wR3c = c;
 86e60: 45,1a,06,f2,40     ad3w  R40,Rf2,61a      R40 = @TABLE_2CF6;
-86e65: 35,7c,05           jnb   B5,R7c,86e6d     if (B5_R7c = 0) goto 86e6d;
+86e65: 35,7c,05           jnb   B5,R7c,86e6d     if (Lean_Cruise_Mode = 0) goto 86e6d;
 86e68: 45,86,06,f2,40     ad3w  R40,Rf2,686      R40 = @TABLE_2D62;
 86e6d: ef,2c,dc           call  84a9c            UTabLU2();
 86e70: b3,66,2d,48        ldb   R48,[R66+2d]     R48 = [8ad];
@@ -19175,13 +19175,13 @@
 86e77: 08,06,48           shrw  R48,6            R48 >>= 6;                        ## R48 /= 64 
 86e7a: c3,64,f8,48        stw   R48,[R64+f8]     [778] = R48;
 86e7e: 9b,f5,81,0d,00     cmpb  R0,[Rf4+d81]     
-86e83: df,1b              je    86ea0            if ([4299] = 0) goto 86ea0;
-86e85: 31,ed,18           jnb   B1,Red,86ea0     if (B1_Red = 0) goto 86ea0;
+86e83: df,1b              je    86ea0            if (LPG_AVAILABLE = 0) goto 86ea0;
+86e85: 31,ed,18           jnb   B1,Red,86ea0     if (LPG_Fuel_Selected = 0) goto 86ea0;
 86e88: a0,34,38           ldw   R38,R34          R38 = R34;
 86e8b: a0,36,3a           ldw   R3a,R36          R3a = R36;
 86e8e: ad,0c,3c           ldzbw R3c,c            wR3c = c;
 86e91: 45,be,01,f2,40     ad3w  R40,Rf2,1be      R40 = @TABLE_Spark_LPG_MBT;
-86e96: 35,7c,1d           jnb   B5,R7c,86eb6     if (B5_R7c = 0) goto 86eb6;
+86e96: 35,7c,1d           jnb   B5,R7c,86eb6     if (Lean_Cruise_Mode = 0) goto 86eb6;
 86e99: 45,2a,02,f2,40     ad3w  R40,Rf2,22a      R40 = @TABLE_Spark_LPG_MBT_MPG;
 86e9e: 20,16              sjmp  86eb6            goto 86eb6;
 
@@ -19189,7 +19189,7 @@
 86ea3: a0,36,3a           ldw   R3a,R36          R3a = R36;
 86ea6: ad,0c,3c           ldzbw R3c,c            wR3c = c;
 86ea9: 45,e6,00,f2,40     ad3w  R40,Rf2,e6       R40 = @TABLE_Spark_MBT;
-86eae: 35,7c,05           jnb   B5,R7c,86eb6     if (B5_R7c = 0) goto 86eb6;
+86eae: 35,7c,05           jnb   B5,R7c,86eb6     if (Lean_Cruise_Mode = 0) goto 86eb6;
 86eb1: 45,52,01,f2,40     ad3w  R40,Rf2,152      R40 = @TABLE_Spark_MBT_MPG;
 86eb6: ef,de,db           call  84a97            STabLU1();
 86eb9: bc,43,44           ldsbw R44,R43          swR44 = yR43;
@@ -19207,7 +19207,7 @@
 86ee2: c3,64,04,44        stw   R44,[R64+4]      [784] = R44;
 86ee6: 67,64,fa,44        ad2w  R44,[R64+fa]     R44 += [77a];
 86eea: c2,64,44           stw   R44,[R64]        [R64] = R44;
-86eed: 3d,7c,68           jb    B5,R7c,86f58     if (B5_R7c = 1) goto 86f58;
+86eed: 3d,7c,68           jb    B5,R7c,86f58     if (Lean_Cruise_Mode = 1) goto 86f58;
 86ef0: 01,38              clrw  R38              R38 = 0;
 86ef2: 57,6a,37,00,39     ad3b  R39,R0,[R6a+37]  R39 = [a97];
 86ef7: 3f,39,29           jb    B7,R39,86f23     if (B7_R39 = 1) goto 86f23;
@@ -19239,13 +19239,13 @@
 86f51: 09,01,38           shlw  R38,1            R38 <<= 1;                        ## R38 *= 2 
 86f54: c3,70,32,38        stw   R38,[R70+32]     [10b2] = R38;
 86f58: 9b,f5,81,0d,00     cmpb  R0,[Rf4+d81]     
-86f5d: df,1b              je    86f7a            if ([4299] = 0) goto 86f7a;
-86f5f: 31,ed,18           jnb   B1,Red,86f7a     if (B1_Red = 0) goto 86f7a;
+86f5d: df,1b              je    86f7a            if (LPG_AVAILABLE = 0) goto 86f7a;
+86f5f: 31,ed,18           jnb   B1,Red,86f7a     if (LPG_Fuel_Selected = 0) goto 86f7a;
 86f62: a0,34,38           ldw   R38,R34          R38 = R34;
 86f65: a0,36,3a           ldw   R3a,R36          R3a = R36;
 86f68: ad,0c,3c           ldzbw R3c,c            wR3c = c;
 86f6b: 45,6e,03,f2,40     ad3w  R40,Rf2,36e      R40 = @TABLE_Spark_LPG_BDLN;
-86f70: 35,7c,1d           jnb   B5,R7c,86f90     if (B5_R7c = 0) goto 86f90;
+86f70: 35,7c,1d           jnb   B5,R7c,86f90     if (Lean_Cruise_Mode = 0) goto 86f90;
 86f73: 45,da,03,f2,40     ad3w  R40,Rf2,3da      R40 = @TABLE_Spark_LPG_BDLN_MPG;
 86f78: 20,16              sjmp  86f90            goto 86f90;
 
@@ -19253,7 +19253,7 @@
 86f7d: a0,36,3a           ldw   R3a,R36          R3a = R36;
 86f80: ad,0c,3c           ldzbw R3c,c            wR3c = c;
 86f83: 45,96,02,f2,40     ad3w  R40,Rf2,296      R40 = @TABLE_Spark_BDLN;
-86f88: 35,7c,05           jnb   B5,R7c,86f90     if (B5_R7c = 0) goto 86f90;
+86f88: 35,7c,05           jnb   B5,R7c,86f90     if (Lean_Cruise_Mode = 0) goto 86f90;
 86f8b: 45,02,03,f2,40     ad3w  R40,Rf2,302      R40 = @TABLE_Spark_BDLN_MPG;
 86f90: ef,04,db           call  84a97            STabLU1();
 86f93: bc,43,44           ldsbw R44,R43          swR44 = yR43;
@@ -19286,8 +19286,8 @@
 86fe7: d9,02              jgtu  86feb            if (R3b > 0) goto 86feb;
 86fe9: 11,3b              clrb  R3b              R3b = 0;
 86feb: 9b,f5,81,0d,00     cmpb  R0,[Rf4+d81]     
-86ff0: df,0d              je    86fff            if ([4299] = 0) goto 86fff;
-86ff2: 31,ed,0a           jnb   B1,Red,86fff     if (B1_Red = 0) goto 86fff;
+86ff0: df,0d              je    86fff            if (LPG_AVAILABLE = 0) goto 86fff;
+86ff2: 31,ed,0a           jnb   B1,Red,86fff     if (LPG_Fuel_Selected = 0) goto 86fff;
 86ff5: ad,0c,3c           ldzbw R3c,c            wR3c = c;
 86ff8: 45,ee,04,f2,40     ad3w  R40,Rf2,4ee      R40 = @TABLE_2BCA_LPG;
 86ffd: 20,08              sjmp  87007            goto 87007;
@@ -19522,11 +19522,11 @@
 872c9: a1,ff,7f,4a        ldw   R4a,7fff         R4a = 7fff;
 872cd: 20,57              sjmp  87326            goto 87326;
 
-872cf: 91,40,ed           orb   Red,40           Red |= 40;
+872cf: 91,40,ed           orb   Red,40           B6_Red = 1;
 872d2: b1,01,38           ldb   R38,1            R38 = 1;
 872d5: c7,72,e8,38        stb   R38,[R72+e8]     [R72-18] = R38;
 872d9: c7,72,e7,38        stb   R38,[R72+e7]     [R72-19] = R38;
-872dd: 71,7f,ed           an2b  Red,7f           Red &= 7f;
+872dd: 71,7f,ed           an2b  Red,7f           B7_Red = 0;
 872e0: b3,72,e5,38        ldb   R38,[R72+e5]     R38 = [R72-1b];
 872e4: af,72,e2,3a        ldzbw R3a,[R72+e2]     wR3a = [R72-1e];
 872e8: 39,85,22           jb    B1,R85,8730d     if (B1_R85 = 1) goto 8730d;
@@ -19620,9 +19620,9 @@
 
    Sub202:
 873e5: 9b,f5,81,0d,00     cmpb  R0,[Rf4+d81]     
-873ea: df,0c              je    873f8            if ([4299] = 0) return;
+873ea: df,0c              je    873f8            if (LPG_AVAILABLE = 0) return;
 873ec: 9b,f5,82,0d,00     cmpb  R0,[Rf4+d82]     
-873f1: d7,03              jne   873f6            if ([429a] = 0)  {
+873f1: d7,03              jne   873f6            if (DEDICATED_LPG = 0)  {
 873f3: 30,ed,02           jnb   B0,Red,873f8     if (B0_Red = 0) return; }
 873f6: 28,01              scall 873f9            Sub203();
 873f8: f0                 ret                    return;
@@ -19637,9 +19637,9 @@
 87408: c7,72,e8,38        stb   R38,[R72+e8]     [R72-18] = R38; }
 8740c: a1,00,80,44        ldw   R44,8000         R44 = 8000;
 87410: c3,62,86,44        stw   R44,[R62+86]     [606] = R44;
-87414: 71,fd,7c           an2b  R7c,fd           R7c &= fd;
-87417: 71,fe,7c           an2b  R7c,fe           R7c &= fe;
-8741a: 35,7c,06           jnb   B5,R7c,87423     if (B5_R7c = 0) goto 87423;
+87414: 71,fd,7c           an2b  R7c,fd           B1_R7c = 0;
+87417: 71,fe,7c           an2b  R7c,fe           B0_R7c = 0;
+8741a: 35,7c,06           jnb   B5,R7c,87423     if (Lean_Cruise_Mode = 0) goto 87423;
 8741d: b3,72,e0,44        ldb   R44,[R72+e0]     R44 = [R72-20];
 87421: 20,04              sjmp  87427            goto 87427;
 
@@ -19754,14 +19754,14 @@
 87584: 3a,ed,06           jb    B2,Red,8758d     if (B2_Red = 0)  {
 87587: c3,72,a8,00        stw   R0,[R72+a8]      [R72-58] = 0;
 8758b: 28,31              scall 875be            Sub204(); }
-8758d: 91,04,ed           orb   Red,4            Red |= 4;
+8758d: 91,04,ed           orb   Red,4            B2_Red = 1;
 87590: 20,10              sjmp  875a2            goto 875a2;
 
 87592: 58,38,4a,3a        sb3b  R3a,R4a,R38      R3a = R4a - R38;
 87596: 32,ed,06           jnb   B2,Red,8759f     if (B2_Red = 1)  {
 87599: c3,72,a8,00        stw   R0,[R72+a8]      [R72-58] = 0;
 8759d: 28,1f              scall 875be            Sub204(); }
-8759f: 71,fb,ed           an2b  Red,fb           Red &= fb;
+8759f: 71,fb,ed           an2b  Red,fb           B2_Red = 0;
 875a2: 9b,f5,94,0d,3a     cmpb  R3a,[Rf4+d94]    
 875a7: d1,11              jleu  875ba            if (R3a > [42ac])  {
 875a9: c7,72,d6,3a        stb   R3a,[R72+d6]     [R72-2a] = R3a;
@@ -20021,8 +20021,8 @@
 
    Sub210:
 8787e: 9b,f5,81,0d,00     cmpb  R0,[Rf4+d81]     
-87883: df,08              je    8788d            if ([4299] = 0) goto 8788d;
-87885: 31,ed,05           jnb   B1,Red,8788d     if (B1_Red = 0) goto 8788d;
+87883: df,08              je    8788d            if (LPG_AVAILABLE = 0) goto 8788d;
+87885: 31,ed,05           jnb   B1,Red,8788d     if (LPG_Fuel_Selected = 0) goto 8788d;
 87888: 91,40,8f           orb   R8f,40           R8f |= 40;
 8788b: 20,03              sjmp  87890            goto 87890;
 
@@ -24154,9 +24154,9 @@
 8a372: 6d,e8,03,38        ml2w  R38,3e8          lR38 = R38 * 3e8;
 8a376: c3,64,d0,3a        stw   R3a,[R64+d0]     [750] = R3a;
 8a37a: 9b,f5,82,0d,00     cmpb  R0,[Rf4+d82]     
-8a37f: d7,25              jne   8a3a6            if ([429a] != 0) goto 8a3a6;
+8a37f: d7,25              jne   8a3a6            if (DEDICATED_LPG != 0) goto 8a3a6;
 8a381: 9b,f5,81,0d,00     cmpb  R0,[Rf4+d81]     
-8a386: d7,05              jne   8a38d            if ([4299] != 0) goto 8a38d;
+8a386: d7,05              jne   8a38d            if (LPG_AVAILABLE != 0) goto 8a38d;
 8a388: 71,fd,ee           an2b  Ree,fd           Ree &= fd;
 8a38b: 20,21              sjmp  8a3ae            goto 8a3ae;
 
@@ -25652,7 +25652,7 @@
 8b42a: a3,62,90,4a        ldw   R4a,[R62+90]     R4a = [610];
 8b42e: 8b,f9,06,07,4a     cmpw  R4a,[Rf8+706]    
 8b433: d1,05              jleu  8b43a            if (R4a <= [587e]) goto 8b43a;
-8b435: 91,80,7c           orb   R7c,80           R7c |= 80;
+8b435: 91,80,7c           orb   R7c,80           B7_R7c = 1;
 8b438: 20,10              sjmp  8b44a            goto 8b44a;
 
 8b43a: 8b,f9,08,07,4a     cmpw  R4a,[Rf8+708]    
@@ -25660,7 +25660,7 @@
 8b441: c3,62,dc,00        stw   R0,[R62+dc]      [65c] = 0;
 8b445: 20,03              sjmp  8b44a            goto 8b44a;
 
-8b447: 71,7f,7c           an2b  R7c,7f           R7c &= 7f;
+8b447: 71,7f,7c           an2b  R7c,7f           B7_R7c = 0;
 8b44a: 71,7f,39           an2b  R39,7f           R39 &= 7f;
 8b44d: a3,62,dc,4a        ldw   R4a,[R62+dc]     R4a = [65c];
 8b451: 8b,f9,0a,07,4a     cmpw  R4a,[Rf8+70a]    
@@ -25737,7 +25737,7 @@
 8b522: c7,70,42,38        stb   R38,[R70+42]     [10c2] = R38;
 8b526: 9b,f9,f8,06,38     cmpb  R38,[Rf8+6f8]    
 8b52b: db,12              jc    8b53f            if (R38 >= [5870]) goto 8b53f;
-8b52d: 39,ed,0f           jb    B1,Red,8b53f     if (B1_Red = 1) goto 8b53f;
+8b52d: 39,ed,0f           jb    B1,Red,8b53f     if (LPG_Fuel_Selected = 1) goto 8b53f;
 8b530: b0,9b,38           ldb   R38,R9b          R38 = R9b;
 8b533: 30,38,03           jnb   B0,R38,8b539     if (B0_R38 = 0) goto 8b539;
 8b536: 3c,38,06           jb    B4,R38,8b53f     if (B4_R38 = 1) goto 8b53f;
@@ -26536,8 +26536,8 @@
 8be60: 20,87              sjmp  8bee9            return; }
 
 8be62: 9b,f5,81,0d,00     cmpb  R0,[Rf4+d81]     
-8be67: df,13              je    8be7c            if ([4299] = 0) goto 8be7c;
-8be69: 31,ed,10           jnb   B1,Red,8be7c     if (B1_Red = 0) goto 8be7c;
+8be67: df,13              je    8be7c            if (LPG_AVAILABLE = 0) goto 8be7c;
+8be69: 31,ed,10           jnb   B1,Red,8be7c     if (LPG_Fuel_Selected = 0) goto 8be7c;
 8be6c: fa                 di                     disable ints;
 8be6d: c3,68,dc,b6        stw   Rb6,[R68+dc]     [95c] = Rb6;
 8be71: a3,72,ae,24        ldw   R24,[R72+ae]     R24 = [R72-52];
@@ -26581,7 +26581,7 @@
 
    Sub344:
 8beea: 9b,f5,82,0d,00     cmpb  R0,[Rf4+d82]     
-8beef: df,16              je    8bf07            if ([429a] != 0)  {
+8beef: df,16              je    8bf07            if (DEDICATED_LPG != 0)  {
 8bef1: 3d,ee,13           jb    B5,Ree,8bf07     if (B5_Ree = 0)  {
 8bef4: a3,72,b8,4a        ldw   R4a,[R72+b8]     R4a = [R72-48];
 8bef8: 67,f5,86,0d,4a     ad2w  R4a,[Rf4+d86]    R4a += [429e];
@@ -26621,7 +26621,7 @@
 8bf51: 20,3a              sjmp  8bf8d            goto 8bf8d;
 
 8bf53: 9b,f5,82,0d,00     cmpb  R0,[Rf4+d82]     
-8bf58: df,15              je    8bf6f            if ([429a] = 0) goto 8bf6f;
+8bf58: df,15              je    8bf6f            if (DEDICATED_LPG = 0) goto 8bf6f;
 8bf5a: 3c,9b,12           jb    B4,R9b,8bf6f     if (B4_R9b = 1) goto 8bf6f;
 8bf5d: a3,62,c8,4a        ldw   R4a,[R62+c8]     R4a = [648];
 8bf61: 8b,f5,b2,0d,4a     cmpw  R4a,[Rf4+db2]    
@@ -28248,8 +28248,8 @@
 8d275: 89,00,04,24        cmpw  R24,400          
 8d279: db,0c              jc    8d287            if (R24 >= 400) goto 8d287;
 8d27b: 9b,f5,81,0d,00     cmpb  R0,[Rf4+d81]     
-8d280: df,09              je    8d28b            if ([4299] != 0)  {
-8d282: 31,ed,06           jnb   B1,Red,8d28b     if (B1_Red = 1)  {
+8d280: df,09              je    8d28b            if (LPG_AVAILABLE != 0)  {
+8d282: 31,ed,06           jnb   B1,Red,8d28b     if (LPG_Fuel_Selected = 1)  {
 8d285: 20,07              sjmp  8d28e            return;
 
 8d287: 71,fe,af           an2b  Raf,fe           Raf &= fe;
@@ -28570,7 +28570,7 @@
 8d607: a3,66,50,3a        ldw   R3a,[R66+50]     R3a = [8d0];
 8d60b: ad,0c,3c           ldzbw R3c,c            wR3c = c;
 8d60e: 45,52,02,f0,40     ad3w  R40,Rf0,252      R40 = @Table1;
-8d613: 35,7c,05           jnb   B5,R7c,8d61b     if (B5_R7c = 1)  {
+8d613: 35,7c,05           jnb   B5,R7c,8d61b     if (Lean_Cruise_Mode = 1)  {
 8d616: 45,be,02,f0,40     ad3w  R40,Rf0,2be      R40 = @Table2; }
 8d61b: ef,7e,74           call  84a9c            UTabLU2();
 8d61e: ef,32,70           call  84653            Sub167(2218,613);
@@ -28800,8 +28800,8 @@
 8d8a4: c7,62,1a,46        stb   R46,[R62+1a]     [69a] = R46;
 8d8a8: 64,46,46           ad2w  R46,R46          R46 += R46;
 8d8ab: 9b,f5,81,0d,00     cmpb  R0,[Rf4+d81]     
-8d8b0: df,0c              je    8d8be            if ([4299] = 0) goto 8d8be;
-8d8b2: 31,ed,09           jnb   B1,Red,8d8be     if (B1_Red = 0) goto 8d8be;
+8d8b0: df,0c              je    8d8be            if (LPG_AVAILABLE = 0) goto 8d8be;
+8d8b2: 31,ed,09           jnb   B1,Red,8d8be     if (LPG_Fuel_Selected = 0) goto 8d8be;
 8d8b5: 65,f0,07,46        ad2w  R46,7f0          R46 += 7f0;
 8d8b9: 64,f6,46           ad2w  R46,Rf6          R46 += Rf6;
 8d8bc: 20,07              sjmp  8d8c5            goto 8d8c5;
@@ -28990,8 +28990,8 @@
 8dafd: 67,62,14,48        ad2w  R48,[R62+14]     R48 += [694];
 8db01: 32,94,51           jnb   B2,R94,8db55     if (B2_R94 = 0) goto 8db55;
 8db04: 9b,f5,81,0d,00     cmpb  R0,[Rf4+d81]     
-8db09: df,1c              je    8db27            if ([4299] = 0) goto 8db27;
-8db0b: 31,ed,19           jnb   B1,Red,8db27     if (B1_Red = 0) goto 8db27;
+8db09: df,1c              je    8db27            if (LPG_AVAILABLE = 0) goto 8db27;
+8db0b: 31,ed,19           jnb   B1,Red,8db27     if (LPG_Fuel_Selected = 0) goto 8db27;
 8db0e: a3,f5,d4,0d,28     ldw   R28,[Rf4+dd4]    R28 = [42ec];
 8db13: a3,f5,d0,0d,2a     ldw   R2a,[Rf4+dd0]    R2a = [42e8];
 8db18: 3e,78,21           jb    B6,R78,8db3c     if (B6_R78 = 0)  {
@@ -29978,12 +29978,12 @@
 8e699: de,07              jlt   8e6a2            if (R38 >= [207e])  {             ## (Signed)
 8e69b: c3,70,12,00        stw   R0,[R70+12]      [1092] = 0;
 8e69f: 91,08,97           orb   R97,8            R97 |= 8; } }
-8e6a2: 91,40,7c           orb   R7c,40           R7c |= 40;
+8e6a2: 91,40,7c           orb   R7c,40           B6_R7c = 1;
 8e6a5: b3,62,1b,38        ldb   R38,[R62+1b]     R38 = [69b];
 8e6a9: 99,01,38           cmpb  R38,1            
 8e6ac: df,07              je    8e6b5            if (R38 != 1)  {
 8e6ae: c3,62,a8,00        stw   R0,[R62+a8]      [628] = 0;
-8e6b2: 71,bf,7c           an2b  R7c,bf           R7c &= bf; }
+8e6b2: 71,bf,7c           an2b  R7c,bf           B6_R7c = 0; }
 8e6b5: 30,76,04           jnb   B0,R76,8e6bc     if (B0_R76 = 1)  {
 8e6b8: c3,62,a4,00        stw   R0,[R62+a4]      [624] = 0; }
 8e6bc: 28,20              scall 8e6de            Sub385();
@@ -30064,18 +30064,18 @@
 8e7a6: d1,52              jleu  8e7fa            if (R45 <= [603]) goto 8e7fa;
 8e7a8: 9b,f5,57,07,00     cmpb  R0,[Rf4+757]     
 8e7ad: df,0e              je    8e7bd            if ([3c6f] = 0) goto 8e7bd;
-8e7af: 35,7c,46           jnb   B5,R7c,8e7f8     if (B5_R7c = 1)  {
-8e7b2: 91,02,7c           orb   R7c,2            R7c |= 2;
-8e7b5: 71,df,7c           an2b  R7c,df           R7c &= df;
+8e7af: 35,7c,46           jnb   B5,R7c,8e7f8     if (Lean_Cruise_Mode = 1)  {
+8e7b2: 91,02,7c           orb   R7c,2            B1_R7c = 1;
+8e7b5: 71,df,7c           an2b  R7c,df           Lean_Cruise_Mode = 0;
 8e7b8: 91,80,81           orb   R81,80           R81 |= 80;
 8e7bb: 20,3b              sjmp  8e7f8            goto 8e7f8;
 
-8e7bd: 35,7c,06           jnb   B5,R7c,8e7c6     if (B5_R7c = 1)  {
-8e7c0: 91,02,7c           orb   R7c,2            R7c |= 2;
-8e7c3: 71,df,7c           an2b  R7c,df           R7c &= df; }
+8e7bd: 35,7c,06           jnb   B5,R7c,8e7c6     if (Lean_Cruise_Mode = 1)  {
+8e7c0: 91,02,7c           orb   R7c,2            B1_R7c = 1;
+8e7c3: 71,df,7c           an2b  R7c,df           Lean_Cruise_Mode = 0; }
 8e7c6: 71,7f,81           an2b  R81,7f           R81 &= 7f;
-8e7c9: 91,10,7c           orb   R7c,10           R7c |= 10;
-8e7cc: 71,f7,7c           an2b  R7c,f7           R7c &= f7;
+8e7c9: 91,10,7c           orb   R7c,10           B4_R7c = 1;
+8e7cc: 71,f7,7c           an2b  R7c,f7           B3_R7c = 0;
 8e7cf: 8b,64,16,00        cmpw  R0,[R64+16]      
 8e7d3: d3,06              jnc   8e7db            if ([796] != 0) goto 8e7db;
 8e7d5: c3,64,16,00        stw   R0,[R64+16]      [796] = 0;
@@ -30091,7 +30091,7 @@
 8e7f4: c3,64,16,3c        stw   R3c,[R64+16]     [796] = R3c; } }
 8e7f8: 21,0a              sjmp  8e904            goto 8e904;
 
-8e7fa: 35,7c,06           jnb   B5,R7c,8e803     if (B5_R7c = 0) goto 8e803;
+8e7fa: 35,7c,06           jnb   B5,R7c,8e803     if (Lean_Cruise_Mode = 0) goto 8e803;
 8e7fd: c3,64,16,40        stw   R40,[R64+16]     [796] = R40;
 8e801: 21,01              sjmp  8e904            goto 8e904;
 
@@ -30134,9 +30134,9 @@
 
 8e871: 8b,f5,5c,07,38     cmpw  R38,[Rf4+75c]    
 8e876: d3,0e              jnc   8e886            if (R38 < [3c74]) goto 8e886;
-8e878: 3d,7c,09           jb    B5,R7c,8e884     if (B5_R7c = 0)  {
-8e87b: 91,20,7c           orb   R7c,20           R7c |= 20;
-8e87e: 91,01,7c           orb   R7c,1            R7c |= 1;
+8e878: 3d,7c,09           jb    B5,R7c,8e884     if (Lean_Cruise_Mode = 0)  {
+8e87b: 91,20,7c           orb   R7c,20           Lean_Cruise_Mode = 1;
+8e87e: 91,01,7c           orb   R7c,1            B0_R7c = 1;
 8e881: 71,7f,81           an2b  R81,7f           R81 &= 7f; }
 8e884: 20,7e              sjmp  8e904            goto 8e904;
 
@@ -30180,8 +30180,8 @@
 8e8f6: db,0c              jc    8e904            if (CY = 0)  {                    ## jump if (R3c+[3c6b]) not overflowed
 8e8f8: 9b,62,9b,3c        cmpb  R3c,[R62+9b]     
 8e8fc: db,06              jc    8e904            if (R3c < [61b])  {
-8e8fe: 71,ef,7c           an2b  R7c,ef           R7c &= ef;
-8e901: 91,08,7c           orb   R7c,8            R7c |= 8; } } } } } } } } } }
+8e8fe: 71,ef,7c           an2b  R7c,ef           B4_R7c = 0;
+8e901: 91,08,7c           orb   R7c,8            B3_R7c = 1; } } } } } } } } } }
 8e904: 71,df,dc           an2b  Rdc,df           Rdc &= df;
 8e907: f0                 ret                    return;
 
@@ -31267,7 +31267,7 @@
 
    Sub412:
 8f4b9: 9b,f5,82,0d,00     cmpb  R0,[Rf4+d82]     
-8f4be: d7,2a              jne   8f4ea            if ([429a] != 0) goto 8f4ea;
+8f4be: d7,2a              jne   8f4ea            if (DEDICATED_LPG != 0) goto 8f4ea;
 8f4c0: a3,62,c6,4a        ldw   R4a,[R62+c6]     R4a = [646];
 8f4c4: 8b,f5,88,0d,4a     cmpw  R4a,[Rf4+d88]    
 8f4c9: db,13              jc    8f4de            if (R4a >= [42a0]) goto 8f4de;
@@ -31279,12 +31279,12 @@
 8f4dc: 21,a6              sjmp  8f684            goto 8f684;
 
 8f4de: 9b,f5,81,0d,00     cmpb  R0,[Rf4+d81]     
-8f4e3: df,02              je    8f4e7            if ([4299] = 0) goto 8f4e7;
+8f4e3: df,02              je    8f4e7            if (LPG_AVAILABLE = 0) goto 8f4e7;
 8f4e5: 21,74              sjmp  8f65b            goto 8f65b;
 
 8f4e7: e7,74,04           jump  8f95e            goto 8f95e;
 
-8f4ea: 91,02,ed           orb   Red,2            Red |= 2;
+8f4ea: 91,02,ed           orb   Red,2            LPG_Fuel_Selected = 1;
 8f4ed: c3,64,ca,00        stw   R0,[R64+ca]      [74a] = 0;
 8f4f1: 3f,ef,49           jb    B7,Ref,8f53d     if (B7_Ref = 1) goto 8f53d;
 8f4f4: a3,62,c8,4a        ldw   R4a,[R62+c8]     R4a = [648];
@@ -31417,13 +31417,13 @@
 8f674: a3,62,c6,4a        ldw   R4a,[R62+c6]     R4a = [646];
 8f678: 8b,f5,88,0d,4a     cmpw  R4a,[Rf4+d88]    
 8f67d: db,30              jc    8f6af            if (R4a >= [42a0]) goto 8f6af;
-8f67f: 39,ed,02           jb    B1,Red,8f684     if (B1_Red = 1) goto 8f684;
+8f67f: 39,ed,02           jb    B1,Red,8f684     if (LPG_Fuel_Selected = 1) goto 8f684;
 8f682: 22,da              sjmp  8f95e            goto 8f95e;
 
 8f684: 35,ed,0d           jnb   B5,Red,8f694     if (B5_Red = 1)  {
-8f687: 71,fe,ed           an2b  Red,fe           Red &= fe;
-8f68a: 71,df,ed           an2b  Red,df           Red &= df;
-8f68d: 71,ef,ed           an2b  Red,ef           Red &= ef;
+8f687: 71,fe,ed           an2b  Red,fe           B0_Red = 0;
+8f68a: 71,df,ed           an2b  Red,df           B5_Red = 0;
+8f68d: 71,ef,ed           an2b  Red,ef           B4_Red = 0;
 8f690: c3,72,a0,b6        stw   Rb6,[R72+a0]     [R72-60] = Rb6; }
 8f694: 71,df,af           an2b  Raf,df           Raf &= df;
 8f697: ef,73,50           call  8470d            UUWFunLU1(FUNC_54,610);
@@ -31433,7 +31433,7 @@
 8f6a6: db,02              jc    8f6aa            if (R4a < R40)  {
 8f6a8: 22,bd              sjmp  8f967            return; }
 
-8f6aa: 71,fd,ed           an2b  Red,fd           Red &= fd;
+8f6aa: 71,fd,ed           an2b  Red,fd           LPG_Fuel_Selected = 0;
 8f6ad: 22,af              sjmp  8f95e            goto 8f95e;
 
 8f6af: a3,62,e6,4a        ldw   R4a,[R62+e6]     R4a = [666];
@@ -31442,18 +31442,18 @@
 8f6ba: 35,ed,35           jnb   B5,Red,8f6f2     if (B5_Red = 0) goto 8f6f2;
 8f6bd: 34,ed,32           jnb   B4,Red,8f6f2     if (B4_Red = 0) goto 8f6f2;
 8f6c0: 30,ee,2f           jnb   B0,Ree,8f6f2     if (B0_Ree = 0) goto 8f6f2;
-8f6c3: 71,df,ed           an2b  Red,df           Red &= df;
-8f6c6: 71,ef,ed           an2b  Red,ef           Red &= ef;
+8f6c3: 71,df,ed           an2b  Red,df           B5_Red = 0;
+8f6c6: 71,ef,ed           an2b  Red,ef           B4_Red = 0;
 8f6c9: 71,fe,ee           an2b  Ree,fe           Ree &= fe;
 8f6cc: c7,01,10,04,00     stb   R0,[R0+410]      [410] = 0;
-8f6d1: 71,fd,ed           an2b  Red,fd           Red &= fd;
-8f6d4: 71,fe,ed           an2b  Red,fe           Red &= fe;
+8f6d1: 71,fd,ed           an2b  Red,fd           LPG_Fuel_Selected = 0;
+8f6d4: 71,fe,ed           an2b  Red,fe           B0_Red = 0;
 8f6d7: 20,19              sjmp  8f6f2            goto 8f6f2;
 
 8f6d9: 34,81,16           jnb   B4,R81,8f6f2     if (B4_R81 = 0) goto 8f6f2;
 8f6dc: d9,14              jgtu  8f6f2            if (Red > 0) goto 8f6f2;
 8f6de: 3d,ee,08           jb    B5,Ree,8f6e9     if (B5_Ree = 1) goto 8f6e9;
-8f6e1: 39,ed,05           jb    B1,Red,8f6e9     if (B1_Red = 1) goto 8f6e9;
+8f6e1: 39,ed,05           jb    B1,Red,8f6e9     if (LPG_Fuel_Selected = 1) goto 8f6e9;
 8f6e4: 71,df,af           an2b  Raf,df           Raf &= df;
 8f6e7: 20,03              sjmp  8f6ec            goto 8f6ec;
 
@@ -31466,7 +31466,7 @@
 8f6f7: 91,04,a2           orb   Ra2,4            Ra2 |= 4;
 8f6fa: 91,08,a2           orb   Ra2,8            Ra2 |= 8;
 8f6fd: c4,02,a2           stb   Ra2,R2           LSO_Port = Ra2;
-8f700: 39,ed,71           jb    B1,Red,8f774     if (B1_Red = 1) goto 8f774;
+8f700: 39,ed,71           jb    B1,Red,8f774     if (LPG_Fuel_Selected = 1) goto 8f774;
 8f703: 3d,ee,63           jb    B5,Ree,8f769     if (B5_Ree = 1) goto 8f769;
 8f706: b3,f5,ab,0d,4a     ldb   R4a,[Rf4+dab]    R4a = [42c3];
 8f70b: 9b,62,a3,4a        cmpb  R4a,[R62+a3]     
@@ -31501,13 +31501,13 @@
 8f769: 4b,72,86,b6,40     sb3w  R40,Rb6,[R72+86] R40 = Rb6 - [R72-7a];
 8f76e: 8b,72,88,40        cmpw  R40,[R72+88]     
 8f772: d3,0a              jnc   8f77e            if (R40 >= [R72-78])  {
-8f774: 91,02,ed           orb   Red,2            Red |= 2;
+8f774: 91,02,ed           orb   Red,2            LPG_Fuel_Selected = 1;
 8f777: c3,64,ca,00        stw   R0,[R64+ca]      [74a] = 0;
 8f77b: 71,df,ee           an2b  Ree,df           Ree &= df; }
 8f77e: 3c,ed,02           jb    B4,Red,8f783     if (B4_Red = 1) goto 8f783;
 8f781: 20,28              sjmp  8f7ab            goto 8f7ab;
 
-8f783: 31,ed,25           jnb   B1,Red,8f7ab     if (B1_Red = 1)  {
+8f783: 31,ed,25           jnb   B1,Red,8f7ab     if (LPG_Fuel_Selected = 1)  {
 8f786: a3,68,3e,4a        ldw   R4a,[R68+3e]     R4a = [9be];
 8f78a: 38,af,10           jb    B0,Raf,8f79d     if (B0_Raf = 1) goto 8f79d;
 8f78d: 8b,f5,a2,0d,4a     cmpw  R4a,[Rf4+da2]    
@@ -31549,7 +31549,7 @@
 
 8f7f8: 09,01,40           shlw  R40,1            R40 <<= 1;                        ## R40 *= 2 
 8f7fb: c3,72,c2,40        stw   R40,[R72+c2]     [R72-3e] = R40;
-8f7ff: 91,01,ed           orb   Red,1            Red |= 1;
+8f7ff: 91,01,ed           orb   Red,1            B0_Red = 1;
 8f802: a3,72,9a,38        ldw   R38,[R72+9a]     R38 = [R72-66];
 8f806: 67,f5,8e,0d,38     ad2w  R38,[Rf4+d8e]    R38 += [42a6];
 8f80b: 8b,66,50,38        cmpw  R38,[R66+50]     
@@ -31605,7 +31605,7 @@
 8f8af: c7,01,85,0c,4a     stb   R4a,[R0+c85]     [c85] = R4a;
 8f8b4: c7,01,84,0c,00     stb   R0,[R0+c84]      [c84] = 0;
 8f8b9: 9b,f5,82,0d,00     cmpb  R0,[Rf4+d82]     
-8f8be: df,10              je    8f8d0            if ([429a] = 0) goto 8f8d0;
+8f8be: df,10              je    8f8d0            if (DEDICATED_LPG = 0) goto 8f8d0;
 8f8c0: b3,70,51,44        ldb   R44,[R70+51]     R44 = [10d1];
 8f8c4: 30,44,09           jnb   B0,R44,8f8d0     if (B0_R44 = 0) goto 8f8d0;
 8f8c7: b1,01,38           ldb   R38,1            R38 = 1;
@@ -31636,12 +31636,12 @@
 8f91a: b3,f5,99,0d,38     ldb   R38,[Rf4+d99]    R38 = [42b1]; }
 8f91f: c7,72,d6,38        stb   R38,[R72+d6]     [R72-2a] = R38;
 8f923: c7,72,e8,00        stb   R0,[R72+e8]      [R72-18] = 0;
-8f927: 91,20,ed           orb   Red,20           Red |= 20;
+8f927: 91,20,ed           orb   Red,20           B5_Red = 1;
 8f92a: 20,3b              sjmp  8f967            return;
 
 8f92c: 9b,72,d6,00        cmpb  R0,[R72+d6]      
 8f930: d7,35              jne   8f967            if ([R72-2a] != 0) return;
-8f932: 91,10,ed           orb   Red,10           Red |= 10;
+8f932: 91,10,ed           orb   Red,10           B4_Red = 1;
 8f935: b3,72,f5,38        ldb   R38,[R72+f5]     R38 = [R72-b];
 8f939: 3f,38,14           jb    B7,R38,8f950     if (B7_R38 = 1) goto 8f950;
 8f93c: b3,f5,99,0d,38     ldb   R38,[Rf4+d99]    R38 = [42b1];

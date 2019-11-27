@@ -28,6 +28,9 @@ code 84E5C 850EA
 code 85202 8683F
 code 86BC7 87235
 
+sym   000ED "LPG_Fuel_Selected" : T 1
+sym   0007C "Lean_Cruise_Mode" : T 5
+
 table 12132 1219D "Volumetric_Efficiency_Table" :Y X O +12 V +2.56
 #-------------------------------------------------------------------------------
 func  12586 125A5 "SCALER_01"                    :W V +1 :W V +256
@@ -71,6 +74,9 @@ table 13726 13791 "TABLE_Fuel_Stabilised_(CL)"   :Y X O +12 V +128
 table 13792 137EB "TABLE_Fuel_Base_(OL)"         :Y X O +10 V +128
 table 137EC 13845 "TABLE_Fuel_Startup"           :Y X O +10 V +128
 table 13966 139D1 "TABLE_Fuel_Lean_Cruise"       :Y X O +12 V +128
+#-------------------------------------------------------------------------------
+sym   14299 "LPG_AVAILABLE"
+sym   1429A "DEDICATED_LPG"
 #-------------------------------------------------------------------------------
 func  14436 14455 "FUNC_45"                      :W V +1 :W V +1
 func  14456 14465 "FUNC_46"                      :Y V +1 :Y V +1
