@@ -6,28 +6,6 @@ xcode 12060 184B3
 word 12004 12005 "FIXSUM"
 word 1200A 1200B "CALID"
 
-code 02797 0321E
-code 032BD 03506
-code 03575 03615
-code 03D49 03DE3 #some invalid 04 instructions?
-code 03E17 03ED3 #some invalid 04 instructions?
-code 03F1E 03F29 #some invalid 04 instructions?
-code 03F3D 03F67 #some invalid 04 instructions?
-code 03F87 03F9D #some invalid 04 instructions?
-code 053BC 053ED
-
-code 827B1 8282F
-code 8287C 82CD5
-code 82D38 82F7C
-code 8306F 831C0
-code 83247 834EB
-code 83AF0 83B34
-code 83FFA 8429A
-code 84B50 84BB0
-code 84E5C 850EA
-code 85202 8683F
-code 86BC7 87235
-
 sym   000ED "LPG_Fuel_Selected" : T 1
 sym   0007C "Lean_Cruise_Mode" : T 5
 
@@ -407,8 +385,8 @@ table 17D9A 17E29 "TABLE_77"                      :Y X O +12 V +1
 table 17E2A 17EB9 "TABLE_78"                      :Y X O +12 V +1
 #-------------------------------------------------------------------------------
 #VID BLOCK
-text  9FF06 9FF11 #CAL_ID
-fill  9FF12
-byte  9FF13       #?? PATS_CODE not used
-text  9FF63 9FF80 #TAG
+#text  9FF06 9FF11 #CAL_ID
+#fill  9FF12
+#byte  9FF13       #?? PATS_CODE not used
+#text  9FF63 9FF80 #TAG
 
