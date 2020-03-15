@@ -23,16 +23,19 @@
 
 
 --NOTES-------------------------------------------------------------------------
- B1_Red: 0 = Petrol selected, 1 = LPG selected
- B5_R7c: 0 = normal, 1 = lean cruise
+ B5_Reg_7C: 0 = normal, 1 = lean cruise
+ B6_Reg_8F: autopower/econ switch
+ B1_Reg_ED: 0 = Petrol selected, 1 = LPG selected
 
+ 086F = current gear auto?
+ 0871 = desired gear auto?
  08CC = Engine Load
  08CE = Engine RPM
  08D0 = Engine Load?
 --------------------------------------------------------------------------------
 
-
-02000: ff                 nop                                                      
+                                                                                   
+02000: ff                 nop                    
 02001: fa                 di                     disable ints;
 02002: 27,fe              sjmp  02002            goto 02002;
 
