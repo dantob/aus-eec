@@ -427,7 +427,7 @@ func  7F3F 7F48 "FN7F3F" :Y
 table 7F49 7FB4 "TBL7F49_(unused?)" :Y X O +12 P +3 #rpm&map
 fill  7FB5 #word must be aligned with even byte
 word  7FB6 7FB7
-table 7FB8 8023 "TBL7FB8_(CL_unused?)" :Y X O +12 P +3 #unused spark
+table 7FB8 8023 "TBL7FB8_(CL_unused?)" :Y X O +12 V +4 P +3
 word  8024 8025
 word  8026 8027
 word  8028 8029
