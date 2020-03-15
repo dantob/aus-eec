@@ -1,8 +1,11 @@
     1 |
     1 |--NOTES-------------------------------------------------------------------------
-    1 | B1_Red: 0 = Petrol selected, 1 = LPG selected
-    1 | B5_R7c: 0 = normal, 1 = lean cruise
+    1 | B5_Reg_7C: 0 = normal, 1 = lean cruise
+    1 | B6_Reg_8F: autopower/econ switch
+    1 | B1_Reg_ED: 0 = Petrol selected, 1 = LPG selected
     1 |
+    1 | 086F = current gear auto?
+    1 | 0871 = desired gear auto?
     1 | 08CC = Engine Load
     1 | 08CE = Engine RPM
     1 | 08D0 = Engine Load?
