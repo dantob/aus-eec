@@ -11,7 +11,6 @@
     1 | 08D0 = Engine Load?
     1 |--------------------------------------------------------------------------------
     1 |
-    1 |
 
 #1282D |# Values are degrees of ignition advance; Columns=SCALER_RPM1, Rows=SCALER_06
 #    1 |

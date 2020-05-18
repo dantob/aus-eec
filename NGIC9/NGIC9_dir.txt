@@ -10,25 +10,25 @@ sym   000ED "LPG_Fuel_Selected" : T 1
 sym   0007C "Lean_Cruise_Mode" : T 5
 
 func  12100 12127  "FUNC_74"                     :W V +1 :W V +1
-func  12128 12131  "FUNC_75"                     :Y V +1 S :Y V +1
+func  12128 12131  "FUNC_75"                     :SY V +1 :Y V +1
 table 12132 1219D  "Volumetric_Efficiency_Table" :Y X O +12 V +2.56
 #-------------------------------------------------------------------------------
 func  121E2 121EB "FUNC_76"                      :Y V +1 :Y V +1
 func  121EC 12217 "FUNC_77"                      :W V +1 :W V +1
-func  12218 12225 "FUNC_73"                      :Y V +1 S :Y V +1 S
+func  12218 12225 "FUNC_73"                      :SY V +1 :Y V +1 S
 func  12226 1222F "FUNC_72"                      :Y V +1 :Y V +1
 func  12230 12257 "FUNC_71"                      :W V +1 :W V +1
-func  12258 12265 "FUNC_70"                      :Y V +1 S :Y V +1 S
+func  12258 12265 "FUNC_70"                      :SY V +1 :Y V +1 S
 func  12266 1228D "FUNC_69"                      :W V +1 :W V +1
-func  1228E 122A9 "FUNC_68"                      :W V +1 S : W V +1 S
+func  1228E 122A9 "FUNC_68"                      :SW V +1 : W V +1 S
 func  122AA 122B1 "FUNC_67"                      :Y V +1 :Y V +1
 table 122B2 1231D "TABLE_1"                      :Y X O +12 V +1
 table 1231E 12389 "TABLE_2_MPG"                  :Y X O +12 V +1
 func  1238A 123B1 "FUNC_100"                     :W V +1 :W V +1
 func  123B2 123C5 "FUNC_78"                      :Y V +1 :Y V +1
 #-------------------------------------------------------------------------------
-func  12586 125A5 "SCALER_01"                    :W V +4 S :W V +256
-func  125A6 125C5 "SCALER_02"                    :W V +4 S :W V +256
+func  12586 125A5 "SCALER_01"                    :SW V +4 :W V +256
+func  125A6 125C5 "SCALER_02"                    :SW V +4 :W V +256
 func  125C6 125F5 "SCALER_LOAD_Petrol"           :W V +4 :W V +256
 func  125F6 12611 "SCALER_RPM1"                  :W V +4 :W V +256
 func  12612 12625 "SCALER_04"                    :W V +4 :W V +256
@@ -38,7 +38,7 @@ func  1266C 1269B "SCALER_LOAD_LPG"              :W V +4 :W V +256
 #-------------------------------------------------------------------------------
 func  12766 12781 "FUNC_95"                      :W V +1 :W V +1
 func  12782 12799 "FUNC_96"                      :W V +1 :W V +1
-func  1279A 127A5 "FUNC_97"                      :Y V +1 S:Y V +1
+func  1279A 127A5 "FUNC_97"                      :SY V +1:Y V +1
 func  127A6 127B3 "FUNC_98"                      :Y V +1:Y V +1
 func  127B4 127C1 "FUNC_99"                      :Y V +1:Y V +1
 table 127C2 1282D "TABLE_Spark_MBT"              :Y X O +12 V +2 S
@@ -57,8 +57,8 @@ table 12C8A 12CF5 "TABLE_2C8A_MPG"               :Y X O +12 V +2
 table 12CF6 12D61 "TABLE_2CF6"                   :Y X O +12 V +2
 table 12D62 12DCD "TABLE_2D62_MPG"               :Y X O +12 V +2
 #-------------------------------------------------------------------------------
-func  12F50 12F5B "FUNC_79"                      :Y V +1 S :Y V +1
-func  12F5C 12F67 "FUNC_80"                      :Y V +1 S :Y V +1
+func  12F50 12F5B "FUNC_79"                      :SY V +1 :Y V +1
+func  12F5C 12F67 "FUNC_80"                      :SY V +1 :Y V +1
 table 13480 1349D "TABLE_73"                     :Y X O +6 V +1
 table 1349E 134BB "TABLE_74"                     :Y X O +6 V +1
 #-------------------------------------------------------------------------------
@@ -67,14 +67,14 @@ func  134F8 13517 "SCALER_09"                    :W V +4 :W V +256
 #-------------------------------------------------------------------------------
 func  135CC 135E7 "SCALER_Fuel_Startup"          :W V +4 :W V +256
 func  135E8 135FB "SCALER_0B"                    :W V +1 :W V +256
-func  135FC 13613 "SCALER_0C"                    :W V +4 S :W V +256
+func  135FC 13613 "SCALER_0C"                    :SW V +4 :W V +256
 func  13614 1362F "SCALER_MAP1"                  :W V +4 :W V +256
 func  13630 1364B "SCALER_MAP2"                  :W V +4 :W V +256
 func  1364C 13667 "FUNC_81"                      :W V +1 :W V +1
 func  13668 13683 "FUNC_82"                      :W V +1 :W V +1
 func  13684 13693 "FUNC_83"                      :Y V +1 :Y V +1
-func  13694 136A1 "FUNC_84"                      :Y V +1 S :Y V +1
-func  136A2 136AB "FUNC_85"                      :Y V +1 S :Y V +1
+func  13694 136A1 "FUNC_84"                      :SY V +1 :Y V +1
+func  136A2 136AB "FUNC_85"                      :SY V +1 :Y V +1
 func  136AC 136BF "FUNC_86"                      :W V +1 :W V +1
 func  136C0 136D1 "FUNC_87"                      :Y V +1 :Y V +1
 func  136D2 136DD "FUNC_88"                      :Y V +1 :Y V +1
@@ -96,13 +96,13 @@ sym   14299 "LPG_AVAILABLE"
 sym   1429A "DEDICATED_LPG"
 #-------------------------------------------------------------------------------
 func  14436 14455 "FUNC_45"                      :W V +4 :W V +1
-func  14456 14465 "FUNC_46"                      :Y V +4 S :Y V +1
+func  14456 14465 "FUNC_46"                      :SY V +4 :Y V +1
 func  14466 14481 "FUNC_47"                      :W V +1 :W V +1
 func  14482 1448F "FUNC_48"                      :Y V +1 :Y V +1
 func  14490 144B3 "FUNC_49"                      :W V +1 :W V +1
 func  144B4 144C1 "FUNC_50"                      :Y V +1 :Y V +1
 func  144C2 144CF "FUNC_51"                      :Y V +1 :Y V +1
-func  144D0 144F7 "FUNC_52"                      :Y V +1 :Y V +1
+func  144D0 144F7 "FUNC_52"                      :W V +1 :W V +1
 func  144F8 1451F "FUNC_53"                      :W V +1 :W V +1
 func  14520 1453F "FUNC_54"                      :W V +1 :W V +1
 func  14540 1455F "FUNC_55"                      :W V +1 :W V +1
@@ -124,8 +124,8 @@ table 1484C 148B7 "TABLE_72"                     :Y X O +12 V +1
 #-------------------------------------------------------------------------------
 func  1437A 143A1 "SCALER_0D"                    :W V +1 :W V +256
 func  14B70 14b87 "SCALER_0E"                    :W V +1 :W V +256
-func  14B88 14B9B "FUNC_14"                      :Y V +1 :Y V +1
-func  14CD2 14CED "FUNC_15"                      :W V +1 :W V +1
+func  14B88 14B9B "FUNC_14"                      :SY V +1 :Y V +1
+func  14CD2 14CED "FUNC_15"                      :SW V +1 :W V +1
 func  14D0A 14D3D "SCALER_0F"                    :W V +1 :W V +256
 func  14D3E 14D5D "SCALER_10"                    :W V +1 :W V +256
 #-------------------------------------------------------------------------------
@@ -144,10 +144,10 @@ table 14FEE 1502D "TABLE_66X"                    :Y X O +8 V +1
 func  1502E 15051 "FUNC_36"                      :W V +1 :W V +1
 func  15052 15075 "FUNC_37"                      :W V +1 :W V +1
 func  15076 15099 "SCALER_651"                   :W V +1 :W V +256
-func  1509A 150B9 "SCALER_652"                   :W V +1 :W V +256
+func  1509A 150B9 "SCALER_652"                   :SW V +1 :W V +256
 table 150BA 150F1 "TABLE_65X"                    :Y X O +8 V +1
 func  150F2 15115 "SCALER_641"                   :W V +1 :W V +256
-func  15116 15135 "SCALER_642"                   :W V +1 :W V +256
+func  15116 15135 "SCALER_642"                   :SW V +1 :W V +256
 table 15136 15175 "TABLE_64X"                    :Y X O +8 V +1
 #-------------------------------------------------------------------------------
 func  1517A 15195 "FUNC_38"                      :W V +1 :W V +1
@@ -173,9 +173,9 @@ func  15B1E 15B3D "FUNC_35"                      :W V +1 :W V +1
 fill  158ED # odd address padding, words must start on an even address
 fill  15921 # odd address padding, words must start on an even address
 fill  15929 # odd address padding, words must start on an even address
-func  15934 1595B "FUNC_40"                      :W V +1 :W V +1
+func  15934 1595B "FUNC_40"                      :W V +1 :SW V +1
 func  1595C 15983 "FUNC_41"                      :W V +1 :W V +1
-func  15984 159AF "FUNC_42"                      :W V +1 :W V +1
+func  15984 159AF "FUNC_42"                      :W V +1 :SW V +1
 func  159B0 159CB "FUNC_43"                      :W V +1 :W V +1
 #-------------------------------------------------------------------------------
 func  159CE 159F9 "FUNC_44"                      :W V +1 :W V +1
@@ -215,7 +215,7 @@ fill  15E43 # odd address padding, words must start on an even address
 fill  15E49 # odd address padding, words must start on an even address
 fill  15E51 # odd address padding, words must start on an even address
 fill  15E61 # odd address padding, words must start on an even address
-func  15E62 15E8D "FUNC_01"                      :W V +1 :W V +1
+func  15E62 15E8D "FUNC_01"                      :W V +1 :SW V +1
 func  15E8E 15EB5 "FUNC_Trans_000"               :W V +4 :W V +4
 func  15EB6 15EDD "FUNC_Trans_003"               :W V +4 :W V +4
 func  15EDE 15F05 "FUNC_Trans_006"               :W V +4 :W V +4
@@ -317,14 +317,14 @@ func  16DB6 16DDD "FUNC_Trans97"                 :W V +1 :W V +1
 func  16DDE 16E05 "FUNC_Trans98"                 :W V +1 :W V +1
 func  16E06 16E2D "FUNC_Trans99"                 :W V +1 :W V +1
 func  16E2E 16E55 "FUNC_TransA0"                 :W V +1 :W V +1
-func  16E56 16E7D "SCALER_26"                    :W V +4 S :W V +256
+func  16E56 16E7D "SCALER_26"                    :SW V +4 :W V +256
 func  16E7E 16E91 "SCALER_27"                    :W V +4 :W V +256
 func  16E92 16EB1 "FUNC_17"                      :W V +1 :W V +1
 func  16EB2 16ED1 "FUNC_18"                      :W V +1 :W V +1
 func  16ED2 16EFD "SCALER_28"                    :W V +1 :W V +256
 func  16EFE 16F29 "SCALER_RPM3"                  :W V +4 :W V +256
 func  16F2A 16F39 "FUNC_19"                      :W V +1 :W V +1
-func  16F3A 16F59 "FUNC_20"                      :W V +1 :W V +1
+func  16F3A 16F59 "FUNC_20"                      :SW V +1 :W V +1
 func  16F5A 16F71 "SCALER_29"                    :W V +1 :W V +256
 func  16F72 16F85 "FUNC_21"                      :W V +1 :W V +1
 func  16F86 16FAD "FUNC_Trans_00"                :W V +4 :W V +4
@@ -366,7 +366,7 @@ func  1748E 174BD "FUNC_02"                      :W V +4 :W V +1
 func  174BE 174ED "FUNC_03"                      :W V +1 :W V +1
 func  174EE 1751D "FUNC_04"                      :W V +4 :W V +1
 func  1751E 1754D "FUNC_05"                      :W V +1 :W V +1
-func  1754E 17575 "FUNC_27"                      :W V +1 :W V +1
+func  1754E 17575 "FUNC_27"                      :SW V +1 :W V +1
 func  17576 1758D "FUNC_28"                      :W V +1 :W V +1
 func  1758E 175BD "FUNC_29"                      :W V +1 :W V +1
 func  175BE 175D1 "FUNC_06"                      :W V +1 :W V +1
