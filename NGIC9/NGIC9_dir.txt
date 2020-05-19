@@ -9,6 +9,7 @@ word 1200A 1200B "CALID"
 sym   000ED "LPG_Fuel_Selected" : T 1
 sym   0007C "Lean_Cruise_Mode" : T 5
 
+word  1206E 1206F  "RPM_Limit"
 func  12100 12127  "FUNC_74"                     :W V +1 :W V +1
 func  12128 12131  "FUNC_75"                     :SY V +1 :Y V +1
 table 12132 1219D  "Volumetric_Efficiency_Table" :Y X O +12 V +2.56
@@ -56,6 +57,8 @@ table 12C1E 12C89 "TABLE_2C1E"                   :Y X O +12 V +2
 table 12C8A 12CF5 "TABLE_2C8A_MPG"               :Y X O +12 V +2
 table 12CF6 12D61 "TABLE_2CF6"                   :Y X O +12 V +2
 table 12D62 12DCD "TABLE_2D62_MPG"               :Y X O +12 V +2
+func  12EAE 12EC9 "FUNC_12EAE"                   :W :W                          #BROKEN?
+func  12EE4 12EF7 "FUNC_12EEE4"                  :Y :Y                          #BROKEN?
 #-------------------------------------------------------------------------------
 func  12F50 12F5B "FUNC_79"                      :SY V +1 :Y V +1
 func  12F5C 12F67 "FUNC_80"                      :SY V +1 :Y V +1
@@ -92,10 +95,14 @@ table 138B2 1390B "TABLE_84"                     :Y X O +10 V +1
 table 1390C 13965 "TABLE_85"                     :Y X O +10 V +1
 table 13966 139D1 "TABLE_Fuel_Lean_Cruise"       :Y X O +12 V +128
 #-------------------------------------------------------------------------------
+func  13ECA 13EED "FUNC_13ECA"                   :SW :UW                        #BROKEN?
+func  13EEE 13F11 "FUNC_13EEE"                   :SW :SW                        #BROKEN?
+func  140A4 140B5 "FUNC_140A4"                   :SY :UY                        #BROKEN?
+#-------------------------------------------------------------------------------
 sym   14299 "LPG_AVAILABLE"
 sym   1429A "DEDICATED_LPG"
 #-------------------------------------------------------------------------------
-func  14436 14455 "FUNC_45"                      :W V +4 :W V +1
+func  14436 14455 "FUNC_45"                      :W :W                          #BROKEN?
 func  14456 14465 "FUNC_46"                      :SY V +4 :Y V +1
 func  14466 14481 "FUNC_47"                      :W V +1 :W V +1
 func  14482 1448F "FUNC_48"                      :Y V +1 :Y V +1
@@ -103,7 +110,7 @@ func  14490 144B3 "FUNC_49"                      :W V +1 :W V +1
 func  144B4 144C1 "FUNC_50"                      :Y V +1 :Y V +1
 func  144C2 144CF "FUNC_51"                      :Y V +1 :Y V +1
 func  144D0 144F7 "FUNC_52"                      :W V +1 :W V +1
-func  144F8 1451F "FUNC_53"                      :W V +1 :W V +1
+func  144F8 1451F "FUNC_53"                      :W :W                          #BROKEN?
 func  14520 1453F "FUNC_54"                      :W V +1 :W V +1
 func  14540 1455F "FUNC_55"                      :W V +1 :W V +1
 func  14560 145BF "FUNC_56"                      :W V +1 :W V +1
@@ -125,7 +132,7 @@ table 1484C 148B7 "TABLE_72"                     :Y X O +12 V +1
 func  1437A 143A1 "SCALER_0D"                    :W V +1 :W V +256
 func  14B70 14b87 "SCALER_0E"                    :W V +1 :W V +256
 func  14B88 14B9B "FUNC_14"                      :SY V +1 :Y V +1
-func  14CD2 14CED "FUNC_15"                      :SW V +1 :W V +1
+func  14CD2 14CED "FUNC_15"                      :SW :W                         #BROKEN?
 func  14D0A 14D3D "SCALER_0F"                    :W V +1 :W V +256
 func  14D3E 14D5D "SCALER_10"                    :W V +1 :W V +256
 #-------------------------------------------------------------------------------
@@ -161,6 +168,13 @@ table 15386 153F1 "TABLE_12X"                    :Y X O +12 V +1
 #-------------------------------------------------------------------------------
 func  15462 1547D "SCALER_1D"                    :W V +1 :W V +256
 #-------------------------------------------------------------------------------
+func  15934 1595B "FUNC_40"                      :W V +1 :SW V +1
+func  1595C 15983 "FUNC_41"                      :W V +1 :W V +1
+func  15984 159AF "FUNC_42"                      :W V +1 :SW V +1
+func  159B0 159CB "FUNC_43"                      :W V +1 :W V +1
+#-------------------------------------------------------------------------------
+func  159CE 159F9 "FUNC_44"                      :W V +1 :W V +1
+#-------------------------------------------------------------------------------
 func  15A2A 15A51 "SCALER_631"                   :W V +1 :W V +256
 func  15A52 15A79 "SCALER_632"                   :W V +1 :W V +256
 table 15A7A 15AB9 "TABLE_63X"                    :Y X O +8 V +1
@@ -170,31 +184,9 @@ func  15ADA 15AF9 "SCALER_622"                   :W V +1 :W V +256
 table 15AFA 15B1D "TABLE_62X"                    :Y X O +6 V +1
 func  15B1E 15B3D "FUNC_35"                      :W V +1 :W V +1
 #-------------------------------------------------------------------------------
-fill  158ED # odd address padding, words must start on an even address
-fill  15921 # odd address padding, words must start on an even address
-fill  15929 # odd address padding, words must start on an even address
-func  15934 1595B "FUNC_40"                      :W V +1 :SW V +1
-func  1595C 15983 "FUNC_41"                      :W V +1 :W V +1
-func  15984 159AF "FUNC_42"                      :W V +1 :SW V +1
-func  159B0 159CB "FUNC_43"                      :W V +1 :W V +1
-#-------------------------------------------------------------------------------
-func  159CE 159F9 "FUNC_44"                      :W V +1 :W V +1
-#-------------------------------------------------------------------------------
-fill  15AFD # odd address padding, words must start on an even address
-fill  15A01 # odd address padding, words must start on an even address
-fill  15A0D # odd address padding, words must start on an even address
-fill  15A15 # odd address padding, words must start on an even address
-fill  15A25 # odd address padding, words must start on an even address
 func  15B3E 15B55 "SCALER_601"                   :W V +1 :W V +256
 func  15B56 15B6D "SCALER_602"                   :W V +1 :W V +256
 table 15B6E 15B7D "TABLE_60X"                    :Y X O +4 V +1
-fill  15B81 # odd address padding, words must start on an even address
-fill  15B87 # odd address padding, words must start on an even address
-fill  15B9D # odd address padding, words must start on an even address
-fill  15BAB # odd address padding, words must start on an even address
-fill  15BB3 # odd address padding, words must start on an even address
-fill  15BC1 # odd address padding, words must start on an even address
-fill  15BE9 # odd address padding, words must start on an even address
 func  15BEA 15C05 "FUNC_33"                      :W V +1 :W V +1
 func  15C06 15C21 "FUNC_34"                      :W V +1 :W V +1
 func  15C22 15C3D "FUNC_16"                      :W V +1 :W V +1
@@ -206,15 +198,6 @@ func  15CEA 15D05 "FUNC_31"                      :W V +1 :W V +1
 #-------------------------------------------------------------------------------
 func  15D08 15D23 "FUNC_32"                      :W V +1 :W V +1
 #-------------------------------------------------------------------------------
-fill  15D2F # odd address padding, words must start on an even address
-fill  15D3F # odd address padding, words must start on an even address
-fill  15D91 # odd address padding, words must start on an even address
-fill  15E13 # odd address padding, words must start on an even address
-fill  15E2B # odd address padding, words must start on an even address
-fill  15E43 # odd address padding, words must start on an even address
-fill  15E49 # odd address padding, words must start on an even address
-fill  15E51 # odd address padding, words must start on an even address
-fill  15E61 # odd address padding, words must start on an even address
 func  15E62 15E8D "FUNC_01"                      :W V +1 :SW V +1
 func  15E8E 15EB5 "FUNC_Trans_000"               :W V +4 :W V +4
 func  15EB6 15EDD "FUNC_Trans_003"               :W V +4 :W V +4
@@ -383,6 +366,21 @@ table 17C7A 17D09 "TABLE_75"                      :Y X O +12 V +1
 table 17D0A 17D99 "TABLE_76"                      :Y X O +12 V +1
 table 17D9A 17E29 "TABLE_77"                      :Y X O +12 V +1
 table 17E2A 17EB9 "TABLE_78"                      :Y X O +12 V +1
+#-------------------------------------------------------------------------------
+subr  82000  "reset_entry_point"                                                #BROKEN?
+word  8200a  "ROM_TO"
+word  8200c  "SMP_Base_Address"
+word  8200e  "CC_EXECUTION_TIME"
+byte  82060  "NUM_OF_LEVELS"
+byte  82061  "NUM_OF_CALIBRATIONS"
+sym   82062  "RF0"
+sym   82064  "RF2"
+word  82066  "RF4"
+word  82068  "RF6"
+word  8206a  "RF8"
+word  8206c  "RFA"
+word  8206e  "RFC"
+word  82070  "RFE"
 #-------------------------------------------------------------------------------
 #VID BLOCK
 #text  9FF06 9FF11 #CAL_ID

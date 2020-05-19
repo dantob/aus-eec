@@ -21,6 +21,18 @@
 ########################################################################
 
 
+--NOTES-------------------------------------------------------------------------
+ B5_Reg_7C: 0 = normal, 1 = lean cruise
+ B6_Reg_8F: autopower/econ switch
+ B1_Reg_ED: 0 = Petrol selected, 1 = LPG selected
+
+ 086F = current gear auto?
+ 0871 = desired gear auto?
+ 08CC = Engine Load
+ 08CE = Engine RPM
+ 08D0 = Engine Load?
+--------------------------------------------------------------------------------
+
 02000: ff                 nop                    
 02001: fa                 di                     disable intps;
 02002: 27,fe              sjmp  02002            goto 02002;
@@ -5344,7 +5356,7 @@
 1206b: 15                 byte     15
 
 1206c: a8,06              word    6a8
-1206e: 10,59              word   5910
+1206e: 10,59              word   5910            RPM_Limit
 12070: 90,35              word   3590
 12072: 90,01              word    190
 
@@ -6369,7 +6381,7 @@
 12eaa: 00,0c  func                0, 12
 12eac: 00,0c  func                0, 12
 
-   Func_12eae:
+   FUNC_12EAE:
 12eae: ff,ff,23,00  func        65535,   35
 12eb2: 00,00,23,00  func            0,   35
 
@@ -6393,7 +6405,7 @@
 12ee0: 10,10  func               16, 16
 12ee2: 00,00  func                0,  0
 
-   Func_12ee4:
+   FUNC_12EEE4:
 12ee4: ff,08  func              255,  8
 12ee6: 4e,05  func               78,  5
 12ee8: 1f,0d  func               31, 13
@@ -7419,14 +7431,14 @@
 13ec2: 00,00,cd,04  func            0, 1229
 13ec6: 00,00,cd,04  func            0, 1229
 
-   Func_13eca:
+   FUNC_13ECA:
 13eca: ff,7f,00,02  func         32767,  512
 13ece: 00,80,00,02  func        -32768,  512
 
 13ed2: 00,80,00,00,00,80,00,00,00,80,00,00,00,80,00,00 ??? 
 13ee2: 00,80,00,00,00,80,00,00,00,80,00,00 ??? 
 
-   Func_13eee:
+   FUNC_13EEE:
 13eee: ff,7f,cd,fe  func         32767,  -307
 13ef2: 00,80,cd,fe  func        -32768,  -307
 
@@ -7567,7 +7579,7 @@
 1409c: 00,00,00,04  func            0, 1024
 140a0: 00,00,00,04  func            0, 1024
 
-   Func_140a4:
+   FUNC_140A4:
 140a4: 7f,1a  func               127, 26
 140a6: 2d,1a  func                45, 26
 140a8: 1e,12  func                30, 18
@@ -7954,8 +7966,8 @@
 14432: 00,00,dc,05  func            0, 1500
 
    FUNC_45:
-14436: ff,ff,e8,03  func        16383.75 , 1000    
-1443a: 00,00,e8,03  func            0    , 1000    
+14436: ff,ff,e8,03  func        65535, 1000
+1443a: 00,00,e8,03  func            0, 1000
 
 1443e: 00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00 ??? 
 1444e: 00,00,00,00,00,00,00,00 ??? 
@@ -8030,8 +8042,8 @@
 144f4: 00,00,00,00  func            0    ,    0    
 
    FUNC_53:
-144f8: ff,ff,58,02  func        65535    ,  600    
-144fc: 00,00,58,02  func            0    ,  600    
+144f8: ff,ff,58,02  func        65535,  600
+144fc: 00,00,58,02  func            0,  600
 
 14500: 00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00 ??? 
 14510: 00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00 ??? 
@@ -8574,31 +8586,33 @@
 14cce: 00,80,f0,ff  func        -32768,   -16
 
    FUNC_15:
-14cd2: ff,7f,14,00  func        32767    ,   20    
-14cd6: 5a,00,14,00  func           90    ,   20    
-14cda: 4b,00,30,00  func           75    ,   48    
-14cde: 41,00,3c,00  func           65    ,   60    
-14ce2: 00,80,3c,00  func        32768    ,   60    
-14ce6: 00,80,50,00  func        32768    ,   80    
-14cea: 00,80,50,00  func        32768    ,   80    
+14cd2: ff,7f,14,00  func         32767,   20
+14cd6: 5a,00,14,00  func            90,   20
+14cda: 4b,00,30,00  func            75,   48
+14cde: 41,00,3c,00  func            65,   60
+14ce2: 00,80,3c,00  func        -32768,   60
+
+14ce6: 00,80,50,00,00,80,50,00 ??? 
+
    Func_14cee:
-14cee: ff,7f,0a,00  func        32767    ,   10    
-14cf2: 00,80,0a,00  func        32768    ,   10    
-14cf6: 00,80,0a,00  func        32768    ,   10    
-14cfa: 00,80,0a,00  func        32768    ,   10    
-14cfe: 00,80,0a,00  func        32768    ,   10    
-14d02: 00,80,0a,00  func        32768    ,   10    
-14d06: 00,80,0a,00  func        32768    ,   10    
+14cee: ff,7f,0a,00  func         32767,   10
+14cf2: 00,80,0a,00  func        -32768,   10
+14cf6: 00,80,0a,00  func        -32768,   10
+14cfa: 00,80,0a,00  func        -32768,   10
+14cfe: 00,80,0a,00  func        -32768,   10
+14d02: 00,80,0a,00  func        -32768,   10
+14d06: 00,80,0a,00  func        -32768,   10
+
    SCALER_0F:
-14d0a: ff,ff,00,0b  func        65535    , 2816    
-14d0e: 14,16,00,0b  func         5652    , 2816    
-14d12: 48,15,00,0a  func         5448    , 2560    
-14d16: ae,13,00,09  func         5038    , 2304    
-14d1a: ec,0d,00,06  func         3564    , 1536    
-14d1e: e1,06,00,04  func         1761    , 1024    
-14d22: f6,04,00,03  func         1270    ,  768    
-14d26: 66,02,00,02  func          614    ,  512    
-14d2a: 29,00,00,01  func           41    ,  256    
+14d0a: ff,ff,00,0b  func        65535    ,   11    
+14d0e: 14,16,00,0b  func         5652    ,   11    
+14d12: 48,15,00,0a  func         5448    ,   10    
+14d16: ae,13,00,09  func         5038    ,    9    
+14d1a: ec,0d,00,06  func         3564    ,    6    
+14d1e: e1,06,00,04  func         1761    ,    4    
+14d22: f6,04,00,03  func         1270    ,    3    
+14d26: 66,02,00,02  func          614    ,    2    
+14d2a: 29,00,00,01  func           41    ,    1    
 14d2e: 00,00,00,00  func            0    ,    0    
 14d32: 00,00,00,00  func            0    ,    0    
 14d36: 00,00,00,00  func            0    ,    0    
@@ -13055,9 +13069,9 @@
 
 82005: ff,ff,df,00,ff     ???   
 
-8200a: de,c0              word   c0de
-8200c: 00,e0              word   e000
-8200e: 5d,00              word     5d
+8200a: de,c0              word   c0de            ROM_TO
+8200c: 00,e0              word   e000            SMP_Base_Address
+8200e: 5d,00              word     5d            CC_EXECUTION_TIME
 
 82010: 72,20              vect  82072            I8_HSO_0
 82012: 75,20              vect  82075            I8_HSO_1
@@ -13100,17 +13114,17 @@
 8205c: e4,20              vect  820e4            I8_Software_8
 8205e: e7,20              vect  820e7            I8_Software_9
 
-82060: 08                 byte      8
-82061: 01                 byte      1
+82060: 08                 byte      8            NUM_OF_LEVELS
+82061: 01                 byte      1            NUM_OF_CALIBRATIONS
 
-82062: 60,20              word   2060
-82064: dc,26              word   26dc
-82066: 18,35              word   3518
-82068: 7e,49              word   497e
-8206a: 78,51              word   5178
-8206c: ca,58              word   58ca
-8206e: 2c,5d              word   5d2c
-82070: d6,7e              word   7ed6
+82062: 60,20              word   2060            RF0
+82064: dc,26              word   26dc            RF2
+82066: 18,35              word   3518            RF4
+82068: 7e,49              word   497e            RF6
+8206a: 78,51              word   5178            RF8
+8206c: ca,58              word   58ca            RFA
+8206e: 2c,5d              word   5d2c            RFC
+82070: d6,7e              word   7ed6            RFE
 
    I8_HSO_0:
 82072: e7,77,14           jump  834ec            goto 834ec;
@@ -13552,10 +13566,10 @@
 82501: f0                 ret                    return;
 
    Sub_82502:
-82502: a1,62,20,24        ldw   R24,2062         R24 = 2062;
+82502: a1,62,20,24        ldw   R24,2062         R24 = RF0;
 82506: a1,f0,00,28        ldw   R28,f0           R28 = f0;
 8250a: 10,08              bank  8
-8250c: b3,01,60,20,2a     ldb   R2a,[R0+2060]    R2a = [82060];
+8250c: b3,01,60,20,2a     ldb   R2a,[R0+2060]    R2a = NUM_OF_LEVELS;
 82511: 10,08              bank  8
 82513: a2,25,2c           ldw   R2c,[R24++]      R2c = [R24++];
 82516: c2,29,2c           stw   R2c,[R28++]      [R28++] = R2c;
@@ -15884,6 +15898,8 @@
 83f00: c7,68,4c,4d        stb   R4d,[R68+4c]     [9cc] = R4d;
 83f04: f0                 ret                    return;
 
+ What is this?? data?
+
 
 83f05: ff                 ???   
 
@@ -17736,6 +17752,8 @@
 851f0: c3,66,4e,40        stw   R40,[R66+4e]     [8ce] = R40;
 851f4: f0                 ret                    return;
 
+ What is this?? data?                                                              
+
 
 851f5: ff,c9,01           ???   
 
@@ -17807,7 +17825,7 @@
 852b4: ef,9c,f3           call  84653            SUYFuncLU_84653(Func_140b6,613);
 852b7: 9e,4b,13,06        #args  
 852bb: b0,40,26           ldb   R26,R40          R26 = R40;
-852be: ef,92,f3           call  84653            SUYFuncLU_84653(Func_140a4,614);
+852be: ef,92,f3           call  84653            SUYFuncLU_84653(FUNC_140A4,614);
 852c1: 8c,4b,14,06        #args  
 852c5: b0,40,41           ldb   R41,R40          R41 = R40;
 852c8: 11,40              clrb  R40              R40 = 0;
@@ -17860,7 +17878,7 @@
 85363: 20,b6              sjmp  8541b            goto 8541b;
 
 85365: bf,62,93,24        ldsbw R24,[R62+93]     swR24 = [613];
-85369: ef,97,f3           call  84703            SSWFuncLU_84703(Func_13eee,24);
+85369: ef,97,f3           call  84703            SSWFuncLU_84703(FUNC_13EEE,24);
 8536c: d6,49,24,00        #args  
 85370: c3,68,1e,40        stw   R40,[R68+1e]     [99e] = R40;
 85374: a3,62,90,24        ldw   R24,[R62+90]     R24 = [610];
@@ -17868,7 +17886,7 @@
 8537b: 8e,49,24,00        #args  
 8537f: a0,40,26           ldw   R26,R40          R26 = R40;
 85382: bf,62,93,24        ldsbw R24,[R62+93]     swR24 = [613];
-85386: ef,74,f3           call  846fd            SUWFuncLU_846fd(Func_13eca,24);
+85386: ef,74,f3           call  846fd            SUWFuncLU_846fd(FUNC_13ECA,24);
 85389: b2,49,24,00        #args  
 8538d: 64,26,40           ad2w  R40,R26          R40 += R26;
 85390: d3,04              jnc   85396            if (CY = 0) goto 85396;           #[ jump if (R40+R26) not overflows]
@@ -18368,7 +18386,7 @@
 8595f: 34,82,3b           jnb   B4,R82,8599d     if (B4_R82 = 0) goto 8599d;
 85962: 28,43              scall 859a7            Sub_859a7();
 85964: 3a,81,13           jb    B2,R81,8597a     if (B2_R81 = 1) goto 8597a;
-85967: ef,a3,ed           call  8470d            UUWFuncLU_8470d(Func_12eae,6a6);
+85967: ef,a3,ed           call  8470d            UUWFuncLU_8470d(FUNC_12EAE,6a6);
 8596a: d2,27,a6,06        #args  
 8596e: c3,6a,e4,40        stw   R40,[R6a+e4]     [a44] = R40;
 85972: 91,04,81           orb   R81,4            B2_R81 = 1;
@@ -19725,9 +19743,9 @@
 86908: 88,42,00           cmpw  R0,R42           
 8690b: df,03              je    86910            if (R42 != 0)  {
 8690d: bd,ff,40           ldsbw R40,ff           swR40 = ff; }
-86910: a3,f0,0e,42        ldw   R42,[Rf0+e]      R42 = [8206e];
+86910: a3,f0,0e,42        ldw   R42,[Rf0+e]      R42 = RFC;
 86914: 33,87,04           jnb   B3,R87,8691b     if (B3_R87 = 1)  {
-86917: a3,f0,10,42        ldw   R42,[Rf0+10]     R42 = [82070]; }
+86917: a3,f0,10,42        ldw   R42,[Rf0+10]     R42 = RFE; }
 8691b: 8b,62,90,42        cmpw  R42,[R62+90]     
 8691f: db,05              jc    86926            if (R42 >= [610]) goto 86926;
 86921: 91,04,7c           orb   R7c,4            B2_R7c = 1;
@@ -25242,7 +25260,7 @@
 
 8a433: b3,64,11,3e        ldb   R3e,[R64+11]     R3e = [791];
 8a437: 9b,f0,0a,3e        cmpb  R3e,[Rf0+a]      
-8a43b: db,02              jc    8a43f            if (R3e >= [8206a]) goto 8a43f;
+8a43b: db,02              jc    8a43f            if (R3e >= RF8) goto 8a43f;
 8a43d: 21,00              sjmp  8a53f            goto 8a53f;
 
 8a43f: 71,f7,7b           an2b  R7b,f7           B3_R7b = 0;
@@ -25298,7 +25316,7 @@
 8a4d8: 01,42              clrw  R42              R42 = 0;
 8a4da: a1,66,36,40        ldw   R40,3666         R40 = 3666;
 8a4de: 0d,0a,40           shldw R40,a            lR40 <<= a;                       #[ R40 *= 1024] 
-8a4e1: 8f,f0,06,40        divw  R40,[Rf0+6]      R40 = lR40 / [82066];
+8a4e1: 8f,f0,06,40        divw  R40,[Rf0+6]      R40 = lR40 / RF4;
 8a4e5: d5,03              jnv   8a4ea            if (OVF = 1)  {
 8a4e7: bd,ff,40           ldsbw R40,ff           swR40 = ff; }
 8a4ea: af,f0,0b,3c        ldzbw R3c,[Rf0+b]      wR3c = [8206b];
@@ -25344,7 +25362,7 @@
 8a56d: c7,62,1e,38        stb   R38,[R62+1e]     [69e] = R38;
 8a571: a3,64,0c,3a        ldw   R3a,[R64+c]      R3a = [78c];
 8a575: a3,64,0a,3c        ldw   R3c,[R64+a]      R3c = [78a];
-8a579: a3,f0,08,3e        ldw   R3e,[Rf0+8]      R3e = [82068];
+8a579: a3,f0,08,3e        ldw   R3e,[Rf0+8]      R3e = RF6;
 8a57d: ef,e2,a1           call  84762            Sub_84762();
 8a580: a3,64,0c,3a        ldw   R3a,[R64+c]      R3a = [78c];
 8a584: 48,46,3a,38        sb3w  R38,R3a,R46      R38 = R3a - R46;
@@ -27753,7 +27771,7 @@
 8c071: c3,66,1c,46        stw   R46,[R66+1c]     [89c] = R46;
 8c075: a3,62,aa,3a        ldw   R3a,[R62+aa]     R3a = [62a];
 8c079: a3,62,8e,3c        ldw   R3c,[R62+8e]     R3c = [60e];
-8c07d: a3,f0,0c,3e        ldw   R3e,[Rf0+c]      R3e = [8206c];
+8c07d: a3,f0,0c,3e        ldw   R3e,[Rf0+c]      R3e = RFA;
 8c081: ef,de,86           call  84762            Sub_84762();
 8c084: c3,62,aa,46        stw   R46,[R62+aa]     [62a] = R46;
 8c088: a3,62,90,4a        ldw   R4a,[R62+90]     R4a = [610];
@@ -29150,7 +29168,7 @@
 8d0de: 36,84,62           jnb   B6,R84,8d143     if (B6_R84 = 1)  {
 8d0e1: a3,62,90,28        ldw   R28,[R62+90]     R28 = [610];
 8d0e5: 08,07,28           shrw  R28,7            R28 >>= 7;                        #[ R28 /= 128] 
-8d0e8: ef,78,75           call  84663            UUYFuncLU_84663(Func_12ee4,28);
+8d0e8: ef,78,75           call  84663            UUYFuncLU_84663(FUNC_12EEE4,28);
 8d0eb: 08,28,28,00        #args  
 8d0ef: 09,04,40           shlw  R40,4            R40 <<= 4;                        #[ R40 *= 16] 
 8d0f2: 8b,66,54,40        cmpw  R40,[R66+54]     
@@ -32759,10 +32777,10 @@
 8f9c6: f0                 ret                    return;
 
    Sub_8f9c7:
-8f9c7: a1,62,20,24        ldw   R24,2062         R24 = 2062;
+8f9c7: a1,62,20,24        ldw   R24,2062         R24 = RF0;
 8f9cb: a1,f0,00,28        ldw   R28,f0           R28 = f0;
 8f9cf: 10,08              bank  8
-8f9d1: b3,01,60,20,2a     ldb   R2a,[R0+2060]    R2a = [82060];
+8f9d1: b3,01,60,20,2a     ldb   R2a,[R0+2060]    R2a = NUM_OF_LEVELS;
 8f9d6: 10,08              bank  8
 8f9d8: a2,25,2c           ldw   R2c,[R24++]      R2c = [R24++];
 8f9db: c2,29,2c           stw   R2c,[R28++]      [R28++] = R2c;

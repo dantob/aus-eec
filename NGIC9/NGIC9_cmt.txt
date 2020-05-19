@@ -1,4 +1,3 @@
-    1 |
     1 |--NOTES-------------------------------------------------------------------------
     1 | B5_Reg_7C: 0 = normal, 1 = lean cruise
     1 | B6_Reg_8F: autopower/econ switch
@@ -11,6 +10,11 @@
     1 | 08D0 = Engine Load?
     1 |--------------------------------------------------------------------------------
     1 |
+
+83F04  |
+    1  | What is this?? data?
+851F4  |
+    1  | What is this?? data?
 
 #1282D |# Values are degrees of ignition advance; Columns=SCALER_RPM1, Rows=SCALER_06
 #    1 |
