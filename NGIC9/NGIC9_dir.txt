@@ -28,6 +28,10 @@ table 1231E 12389 "TABLE_2_MPG"                  :Y X O +12 V +1
 func  1238A 123B1 "FUNC_100"                     :W V +1 :W V +1
 func  123B2 123C5 "FUNC_78"                      :Y V +1 :Y V +1
 #-------------------------------------------------------------------------------
+func  124B6 12501 "01_volts_to_temperature"      :W V +12800 :SW
+func  12502 12531 "03_volts_to_??"               :W V +12800 :W
+func  12532 12561 "02_volts_to_temperature"      :W V +12800 :SW
+func  12562 12579 "MAP_volts_to_inHg"            :W V +12800 :W V +2048
 func  12586 125A5 "SCALER_01"                    :SW V +4 :W V +256
 func  125A6 125C5 "SCALER_02"                    :SW V +4 :W V +256
 func  125C6 125F5 "SCALER_LOAD_Petrol"           :W V +4 :W V +256
@@ -50,9 +54,9 @@ table 12972 129DD "TABLE_Spark_BDLN"             :Y X O +12 V +2 S
 table 129DE 12A49 "TABLE_Spark_BDLN_MPG"         :Y X O +12 V +2 S
 table 12A4A 12AB5 "TABLE_Spark_LPG_BDLN"         :Y X O +12 V +2 S
 table 12AB6 12B21 "TABLE_Spark_LPG_BDLN_MPG"     :Y X O +12 V +2 S
-table 12B22 12B75 "TABLE_FIXED_TIMING?"          :Y X O +12 V +2
-table 12B76 12BC9 "TABLE_2B76_PET"               :Y X O +12 V +2
-table 12BCA 12C1D "TABLE_2BCA_LPG"               :Y X O +12 V +2
+table 12B22 12B75 "TABLE_2B22_ADDER?"            :Y X O +12 V +2
+table 12B76 12BC9 "TABLE_2B76_ADDER_PET?"        :Y X O +12 V +2
+table 12BCA 12C1D "TABLE_2BCA_ADDER_LPG"         :Y X O +12 V +2
 table 12C1E 12C89 "TABLE_2C1E"                   :Y X O +12 V +2
 table 12C8A 12CF5 "TABLE_2C8A_MPG"               :Y X O +12 V +2
 table 12CF6 12D61 "TABLE_2CF6"                   :Y X O +12 V +2
@@ -79,14 +83,14 @@ func  13684 13693 "FUNC_83"                      :Y V +1 :Y V +1
 func  13694 136A1 "FUNC_84"                      :SY V +1 :Y V +1
 func  136A2 136AB "FUNC_85"                      :SY V +1 :Y V +1
 func  136AC 136BF "FUNC_86"                      :W V +1 :W V +1
-func  136C0 136D1 "FUNC_87"                      :Y V +1 :Y V +1
+func  136C0 136D1 "volts_injector_dead_time?"    :Y V +16 :Y V +32
 func  136D2 136DD "FUNC_88"                      :Y V +1 :Y V +1
 func  136DE 136E9 "FUNC_89"                      :Y V +1 :Y V +1
 func  136EA 136FF "FUNC_90"                      :Y V +1 :Y V +1
 func  13700 13715 "FUNC_91"                      :Y V +1 :Y V +1
 func  13716 13725 "FUNC_92"                      :Y V +1 :Y V +1
-table 13726 13791 "TABLE_Fuel_Stabilised_(CL)"   :Y X O +12 V +128
-table 13792 137EB "TABLE_Fuel_Base_(OL)"         :Y X O +10 V +128
+table 13726 13791 "TABLE_Fuel_Stabilised"        :Y X O +12 V +128
+table 13792 137EB "TABLE_Fuel_Base"              :Y X O +10 V +128
 table 137EC 1383B "TABLE_Fuel_Startup"           :Y X O +10 V +128
 func  1383C 13849 "FUNC_93"                      :Y V +1 :Y V +1
 func  1384A 13857 "FUNC_94"                      :Y V +1 :Y V +1
@@ -94,6 +98,7 @@ table 13858 138B1 "TABLE_83"                     :Y X O +10 V +1
 table 138B2 1390B "TABLE_84"                     :Y X O +10 V +1
 table 1390C 13965 "TABLE_85"                     :Y X O +10 V +1
 table 13966 139D1 "TABLE_Fuel_Lean_Cruise"       :Y X O +12 V +128
+func  13DA2 13DB1 "volts_2??"                    :Y V +1 : Y
 #-------------------------------------------------------------------------------
 func  13ECA 13EED "FUNC_13ECA"                   :SW :UW                        #BROKEN?
 func  13EEE 13F11 "FUNC_13EEE"                   :SW :SW                        #BROKEN?
@@ -168,9 +173,9 @@ table 15386 153F1 "TABLE_12X"                    :Y X O +12 V +1
 #-------------------------------------------------------------------------------
 func  15462 1547D "SCALER_1D"                    :W V +1 :W V +256
 #-------------------------------------------------------------------------------
-func  15934 1595B "FUNC_40"                      :W V +1 :SW V +1
-func  1595C 15983 "FUNC_41"                      :W V +1 :W V +1
-func  15984 159AF "FUNC_42"                      :W V +1 :SW V +1
+func  15934 1595B "04_volts_to_??"               :W V +12800 :SW V +1
+func  1595C 15983 "05_volts_to_??"               :W V +12800 :W V +1
+func  15984 159AF "06_volts_to_??"               :W V +12800 :SW V +1
 func  159B0 159CB "FUNC_43"                      :W V +1 :W V +1
 #-------------------------------------------------------------------------------
 func  159CE 159F9 "FUNC_44"                      :W V +1 :W V +1
@@ -366,6 +371,17 @@ table 17C7A 17D09 "TABLE_75"                      :Y X O +12 V +1
 table 17D0A 17D99 "TABLE_76"                      :Y X O +12 V +1
 table 17D9A 17E29 "TABLE_77"                      :Y X O +12 V +1
 table 17E2A 17EB9 "TABLE_78"                      :Y X O +12 V +1
+#-------------------------------------------------------------------------------
+word  17F16 17F17 "01_Voltage_Lower_limit"                                      # 500 =  1280 / 12800 = 0.100v
+word  17F18 17F19 "01_Voltage_Upper_limit"                                      #FA00 = 64000 / 12800 = 5.000v
+word  17F1C 17F1D "04_Voltage_Lower_limit"                                      # 500 =  1280 / 12800 = 0.100v
+word  17F1E 17F1F "04_Voltage_Upper_limit"                                      #FA00 = 64000 / 12800 = 5.000v
+word  17F30 17F31 "05_Voltage_Upper_limit"                                      #FA00 = 64000 / 12800 = 5.000v
+word  17F32 17F33 "05_Voltage_Lower_limit"                                      # 500 =  1280 / 12800 = 0.100v
+word  17F34 17F35 "06_Voltage_Upper_limit"                                      #ED80 = 60800 / 12800 = 4.750v
+word  17F36 17F37 "06_Voltage_Lower_limit"                                      # 3C0 =   960 / 12800 = 0.075v
+word  17F4C 17F4D "MAP_Voltage_Lower_limit"                                     # 280 =   640 / 12800 = 0.050v
+word  17F4E 17F4F "MAP_Voltage_Upper_limit"                                     #F280 = 62080 / 12800 = 4.850v
 #-------------------------------------------------------------------------------
 subr  82000  "reset_entry_point"                                                #BROKEN?
 word  8200a  "ROM_TO"
