@@ -10,55 +10,55 @@ sym   000ED "LPG_Fuel_Selected" : T 1
 sym   0007C "Lean_Cruise_Mode" : T 5
 #-------------------------------------------------------------------------------
 word  1206E 1206F "RPM_Limit"
-func  12100 12127 "F12100"                      :W V +1 :W V +1
-func  12128 12131 "F12128"                      :SY V +1 :Y V +1
-table 12132 1219D "Volumetric_Efficiency_Table" :Y X O +12 V +2.56
+func  12100 12127 "FUNC_12100"                   :W V +1 :W V +1
+func  12128 12131 "FUNC_12128"                   :SY V +1 :Y V +1
+table 12132 1219D "TABLE_Volumetric_Efficiency"  :Y X O +12 V +2.56
 #-------------------------------------------------------------------------------
-func  121E2 121EB "F121E2"                       :Y V +1 :Y V +1
+func  121E2 121EB "FUNC_121E2"                   :Y V +1 :Y V +1
 #-------------------------------------------------------------------------------
-func  12424 12453 "F12424"                       :W V +1 :W V +1
-func  12454 12483 "F12454"                       :W V +1 :W V +1
-func  12484 124B3 "F12484"                       :SW V +1 :W V +1
+func  12424 12453 "FUNC_12424"                   :W V +1 :W V +1
+func  12454 12483 "FUNC_12454"                   :W V +1 :W V +1
+func  12484 124B3 "FUNC_12484"                   :SW V +1 :W V +1
 #-------------------------------------------------------------------------------
-func  121EC 12217 "F121EC"                       :W V +1 :W V +1
-func  12218 12225 "F12218"                       :SY V +1 :Y V +1 S
-func  12226 1222F "F12226"                       :Y V +1 :Y V +1
-func  12230 12257 "F12230"                       :W V +1 :W V +1
-func  12258 12265 "F12258"                       :SY V +1 :Y V +1 S
-func  12266 1228D "F12266"                       :W V +1 :W V +1
-func  1228E 122A9 "F1228E"                       :SW V +1 : W V +1 S
-func  122AA 122B1 "F122AA"                       :Y V +1 :Y V +1
-table 122B2 1231D "TABLE_1"                      :Y X O +12 V +1
-table 1231E 12389 "TABLE_2_MPG"                  :Y X O +12 V +1
-func  1238A 123B1 "F1238A"                       :W V +1 :W V +1
-func  123B2 123C5 "F123B2"                       :Y V +1 :Y V +1
+func  121EC 12217 "FUNC_121EC"                   :W V +1 :W V +1
+func  12218 12225 "FUNC_12218"                   :SY V +1 :Y V +1 S
+func  12226 1222F "FUNC_12226"                   :Y V +1 :Y V +1
+func  12230 12257 "FUNC_12230"                   :W V +1 :W V +1
+func  12258 12265 "FUNC_12258"                   :SY V +1 :Y V +1 S
+func  12266 1228D "FUNC_12266"                   :W V +1 :W V +1
+func  1228E 122A9 "FUNC_1228E"                   :SW V +1 : W V +1 S
+func  122AA 122B1 "FUNC_122AA"                   :Y V +1 :Y V +1
+table 122B2 1231D "TABLE_122B2"                  :Y X O +12 V +1
+table 1231E 12389 "TABLE_1231E_MPG"              :Y X O +12 V +1
+func  1238A 123B1 "FUNC_1238A"                   :W V +1 :W V +1
+func  123B2 123C5 "FUNC_123B2"                   :Y V +1 :Y V +1
 #-------------------------------------------------------------------------------
-func  123D4 123EB  "F123D4"                      :W V +1 :W V +1
-func  124B6 12501 "01_volts_to_temperature"      :W V +12800 :SW
-func  12502 12531 "03_volts_to_??"               :W V +12800 :W
-func  12532 12561 "02_volts_to_temperature"      :W V +12800 :SW
-func  12562 12579 "MAP_volts_to_inHg"            :W V +12800 :W V +2048
-func  1257A 12585 "F1257A"                       :SY V +1 :Y V +1
-func  12586 125A5 "SCALER_01"                    :SW V +4 :W V +256
-func  125A6 125C5 "SCALER_02"                    :SW V +4 :W V +256
+func  123D4 123EB "FUNC_123D4"                   :W V +1 :W V +1
+func  124B6 12501 "FUNC_01_volts_to_temperature" :W V +12800 :SW
+func  12502 12531 "FUNC_03_volts_to_??"          :W V +12800 :W
+func  12532 12561 "FUNC_02_volts_to_temperature" :W V +12800 :SW
+func  12562 12579 "FUNC_MAP_volts_to_inHg"       :W V +12800 :W V +2048
+func  1257A 12585 "FUNC_1257A"                   :SY V +1 :Y V +1
+func  12586 125A5 "SCALER_12586"                 :SW V +4 :W V +256
+func  125A6 125C5 "SCALER_125A6"                 :SW V +4 :W V +256
 func  125C6 125F5 "SCALER_LOAD_Petrol"           :W V +4 :W V +256
 func  125F6 12611 "SCALER_RPM1"                  :W V +4 :W V +256
-func  12612 12625 "SCALER_04"                    :W V +4 :W V +256
-func  12626 12639 "SCALER_05"                    :W V +4 :W V +256
-func  1263A 12655 "SCALER_06"                    :W V +4 :W V +256
+func  12612 12625 "SCALER_12612"                 :W V +4 :W V +256
+func  12626 12639 "SCALER_12626"                 :W V +4 :W V +256
+func  1263A 12655 "SCALER_1263A"                 :W V +4 :W V +256
 #-------------------------------------------------------------------------------
 func  1266C 1269B "SCALER_LOAD_LPG"              :W V +4 :W V +256
 #-------------------------------------------------------------------------------
-func  126C7 126DA "F126C7"                       :Y V +1 :Y V +1
+func  126C7 126DA "FUNC_126C7"                   :Y V +1 :Y V +1
 #-------------------------------------------------------------------------------
-func  12720 1273B "F12720"                       :SW V +1 :W V +1
-func  1273C 12757 "F1273C"                       :W V +1 :SW V +1
-func  12758 12765 "F12758"                       :Y V +1 :Y V +1
-func  12766 12781 "F12766"                       :W V +1 :W V +1
-func  12782 12799 "F12782"                       :W V +1 :W V +1
-func  1279A 127A5 "F1279A"                       :SY V +1:Y V +1
-func  127A6 127B3 "F127A6"                       :Y V +1:Y V +1
-func  127B4 127C1 "F127B4"                       :Y V +1:Y V +1
+func  12720 1273B "FUNC_12720"                   :SW V +1 :W V +1
+func  1273C 12757 "FUNC_1273C"                   :W V +1 :SW V +1
+func  12758 12765 "FUNC_12758"                   :Y V +1 :Y V +1
+func  12766 12781 "FUNC_12766"                   :W V +1 :W V +1
+func  12782 12799 "FUNC_12782"                   :W V +1 :W V +1
+func  1279A 127A5 "FUNC_1279A"                   :SY V +1:Y V +1
+func  127A6 127B3 "FUNC_127A6"                   :Y V +1:Y V +1
+func  127B4 127C1 "FUNC_127B4"                   :Y V +1:Y V +1
 table 127C2 1282D "TABLE_Spark_MBT"              :Y X O +12 V +2 S
 table 1282E 12899 "TABLE_Spark_MBT_MPG"          :Y X O +12 V +2 S
 table 1289A 12905 "TABLE_Spark_LPG_MBT"          :Y X O +12 V +2 S
@@ -67,132 +67,270 @@ table 12972 129DD "TABLE_Spark_BDLN"             :Y X O +12 V +2 S
 table 129DE 12A49 "TABLE_Spark_BDLN_MPG"         :Y X O +12 V +2 S
 table 12A4A 12AB5 "TABLE_Spark_LPG_BDLN"         :Y X O +12 V +2 S
 table 12AB6 12B21 "TABLE_Spark_LPG_BDLN_MPG"     :Y X O +12 V +2 S
-table 12B22 12B75 "TABLE_2B22_ADDER?"            :Y X O +12 V +2
-table 12B76 12BC9 "TABLE_2B76_ADDER_PET?"        :Y X O +12 V +2
-table 12BCA 12C1D "TABLE_2BCA_ADDER_LPG"         :Y X O +12 V +2
-table 12C1E 12C89 "TABLE_2C1E"                   :Y X O +12 V +2
-table 12C8A 12CF5 "TABLE_2C8A_MPG"               :Y X O +12 V +2
-table 12CF6 12D61 "TABLE_2CF6"                   :Y X O +12 V +2
-table 12D62 12DCD "TABLE_2D62_MPG"               :Y X O +12 V +2
+table 12B22 12B75 "TABLE_12B22_ADDER?"           :Y X O +12 V +2
+table 12B76 12BC9 "TABLE_12B76_ADDER_PET?"       :Y X O +12 V +2
+table 12BCA 12C1D "TABLE_12BCA_ADDER_LPG"        :Y X O +12 V +2
+table 12C1E 12C89 "TABLE_12C1E"                  :Y X O +12 V +2
+table 12C8A 12CF5 "TABLE_12C8A_MPG"              :Y X O +12 V +2
+table 12CF6 12D61 "TABLE_12CF6"                  :Y X O +12 V +2
+table 12D62 12DCD "TABLE_12D62_MPG"              :Y X O +12 V +2
 #-------------------------------------------------------------------------------
-func  12E0C 12E27 "F12E0C"                       :W V +1 :W V +1
-func  12E28 12E35 "F12E28"                       :SY V +1 :Y V +1
-func  12E36 12E43 "F12E36"                       :SY V +1 :Y V +1
-func  12E44 12E67 "F12E44"                       :W V +1 :W V +1
-func  12E68 12E83 "F12E68"                       :W V +1 :W V +1
-func  12E84 12E9F "F12E84"                       :W V +1 :W V +1
-func  12EA0 12EAD "F12EA0"                       :Y V +1 :Y V +1
-func  12EAE 12EC9 "F12EAE"                       :W V +1 :W V +1                #BROKEN?
-func  12ECA 12ED5 "F12ECA"                       :Y V +1 :Y V +1
-func  12ED6 12EE3 "F12ED6"                       :Y V +1 :Y V +1
-func  12EE4 12EF7 "F12EE4"                       :Y V +1 :Y V +1                #BROKEN?
+func  12E0C 12E27 "FUNC_12E0C"                   :W V +1 :W V +1
+func  12E28 12E35 "FUNC_12E28"                   :SY V +1 :Y V +1
+func  12E36 12E43 "FUNC_12E36"                   :SY V +1 :Y V +1
+func  12E44 12E67 "FUNC_12E44"                   :W V +1 :W V +1
+func  12E68 12E83 "FUNC_12E68"                   :W V +1 :W V +1
+func  12E84 12E9F "FUNC_12E84"                   :W V +1 :W V +1
+func  12EA0 12EAD "FUNC_12EA0"                   :Y V +1 :Y V +1
+func  12EAE 12EC9 "FUNC_12EAE"                   :W V +1 :W V +1                #BROKEN?
+func  12ECA 12ED5 "FUNC_12ECA"                   :Y V +1 :Y V +1
+func  12ED6 12EE3 "FUNC_12ED6"                   :Y V +1 :Y V +1
+func  12EE4 12EF7 "FUNC_12EE4"                   :Y V +1 :Y V +1                #BROKEN?
 #-------------------------------------------------------------------------------
-func  12F50 12F5B "F12F50"                       :SY V +1 :Y V +1
-func  12F5C 12F67 "F12F5C"                       :SY V +1 :Y V +1
+func  12F50 12F5B "FUNC_12F50"                   :SY V +1 :Y V +1
+func  12F5C 12F67 "FUNC_12F5C"                   :SY V +1 :Y V +1
 #-------------------------------------------------------------------------------
-table 13480 1349D "TABLE_73"                     :Y X O +6 V +1
-table 1349E 134BB "TABLE_74"                     :Y X O +6 V +1
+table 13480 1349D "TABLE_13480"                  :Y X O +6 V +1
+table 1349E 134BB "TABLE_1349E"                  :Y X O +6 V +1
 #-------------------------------------------------------------------------------
-func  134D0 134F7 "SCALER_08"                    :W V +4 :W V +256
-func  134F8 13517 "SCALER_09"                    :W V +4 :W V +256
+func  134D0 134F7 "SCALER_134D0"                 :W V +4 :W V +256
+func  134F8 13517 "SCALER_1349E"                 :W V +4 :W V +256
 #-------------------------------------------------------------------------------
-func  1352E 13549 "F1352E"                       :W V +1 :W V +1
-func  1354A 13565 "F1354A"                       :W V +1 :W V +1
+func  1352E 13549 "FUNC_1352E"                   :W V +1 :W V +1
+func  1354A 13565 "FUNC_1354A"                   :W V +1 :W V +1
 #-------------------------------------------------------------------------------
 func  135CC 135E7 "SCALER_Fuel_Startup"          :W V +4 :W V +256
-func  135E8 135FB "SCALER_0B"                    :W V +1 :W V +256
-func  135FC 13613 "SCALER_0C"                    :SW V +4 :W V +256
+func  135E8 135FB "SCALER_135EB"                 :W V +1 :W V +256
+func  135FC 13613 "SCALER_135FC"                 :SW V +4 :W V +256
 func  13614 1362F "SCALER_MAP1"                  :W V +4 :W V +256
 func  13630 1364B "SCALER_MAP2"                  :W V +4 :W V +256
-func  1364C 13667 "F1364C"                       :W V +1 :W V +1
-func  13668 13683 "F13668"                       :W V +1 :W V +1
-func  13684 13693 "F13684"                       :Y V +1 :Y V +1
-func  13694 136A1 "F13694"                       :SY V +1 :Y V +1
-func  136A2 136AB "F136A2"                       :SY V +1 :Y V +1
-func  136AC 136BF "F136AC"                       :W V +1 :W V +1
-func  136C0 136D1 "volts_injector_dead_time?"    :Y V +16 :Y V +32
-func  136D2 136DD "F136D2"                       :Y V +1 :Y V +1
-func  136DE 136E9 "F136DE"                       :Y V +1 :Y V +1
-func  136EA 136FF "F136EA"                       :Y V +1 :Y V +1
-func  13700 13715 "F13700"                       :Y V +1 :Y V +1
-func  13716 13725 "F13716"                       :Y V +1 :Y V +1
+func  1364C 13667 "FUNC_1364C"                   :W V +1 :W V +1
+func  13668 13683 "FUNC_13668"                   :W V +1 :W V +1
+func  13684 13693 "FUNC_13684"                   :Y V +1 :Y V +1
+func  13694 136A1 "FUNC_13694"                   :SY V +1 :Y V +1
+func  136A2 136AB "FUNC_136A2"                   :SY V +1 :Y V +1
+func  136AC 136BF "FUNC_136AC"                   :W V +1 :W V +1
+func  136C0 136D1 "FUNC_injector_dead_time"      :Y V +16 :Y V +32
+func  136D2 136DD "FUNC_136D2"                   :Y V +1 :Y V +1
+func  136DE 136E9 "FUNC_136DE"                   :Y V +1 :Y V +1
+func  136EA 136FF "FUNC_136EA"                   :Y V +1 :Y V +1
+func  13700 13715 "FUNC_13700"                   :Y V +1 :Y V +1
+func  13716 13725 "FUNC_13716"                   :Y V +1 :Y V +1
 table 13726 13791 "TABLE_Fuel_Stabilised"        :Y X O +12 V +128
 table 13792 137EB "TABLE_Fuel_Base"              :Y X O +10 V +128
 table 137EC 1383B "TABLE_Fuel_Startup"           :Y X O +10 V +128
-func  1383C 13849 "F1383C"                       :Y V +1 :Y V +1
-func  1384A 13857 "F1384A"                       :Y V +1 :Y V +1
-table 13858 138B1 "TABLE_83"                     :Y X O +10 V +1
-table 138B2 1390B "TABLE_84"                     :Y X O +10 V +1
-table 1390C 13965 "TABLE_85"                     :Y X O +10 V +1
+func  1383C 13849 "FUNC_1383C"                   :Y V +1 :Y V +1
+func  1384A 13857 "FUNC_1384A"                   :Y V +1 :Y V +1
+table 13858 138B1 "TABLE_13858"                  :Y X O +10 V +1
+table 138B2 1390B "TABLE_138B2"                  :Y X O +10 V +1
+table 1390C 13965 "TABLE_1390C"                  :Y X O +10 V +1
 table 13966 139D1 "TABLE_Fuel_Lean_Cruise"       :Y X O +12 V +128
-func  139D2 139DF "F139D2"                       :Y V +1 :Y V +1
-func  139E0 139ED "F139E0"                       :Y V +1 :Y V +1
-func  139EE 139F7 "F139EE"                       :Y V +1 :Y V +1
-func  139F8 13A17 "F139F8"                       :W V +1 :W V +1
-func  13A18 13A3B "F13A18"                       :SW V +1 :W V +1
-func  13A3C 13A5F "F13A3C"                       :W V +1 :W V +1
-func  13A60 13A69 "F13A60"                       :SY V +1 :Y V +1
-func  13A6A 13A91 "F13A6A"                       :W V +1 :W V +1
-func  13A92 13AB1 "F13A92"                       :W V +1 :W V +1
+func  139D2 139DF "FUNC_139D2"                   :Y V +1 :Y V +1
+func  139E0 139ED "FUNC_139E0"                   :Y V +1 :Y V +1
+func  139EE 139F7 "FUNC_139EE"                   :Y V +1 :Y V +1
+func  139F8 13A17 "FUNC_139F8"                   :W V +1 :W V +1
+func  13A18 13A3B "FUNC_13A18"                   :SW V +1 :W V +1
+func  13A3C 13A5F "FUNC_13A3C"                   :W V +1 :W V +1
+func  13A60 13A69 "FUNC_13A60"                   :SY V +1 :Y V +1
+func  13A6A 13A91 "FUNC_13A6A"                   :W V +1 :W V +1
+func  13A92 13AB1 "FUNC_13A92"                   :W V +1 :W V +1
 #-------------------------------------------------------------------------------
-func  13BA2 13BAB "F13BA2"                       :Y V +1 :Y V +1
-func  13BAc 13BB9 "F13BAC"                       :Y V +1 :Y V +1
-func  13BBA 13BC3 "F13BBA"                       :Y V +1 :Y V +1
-func  13BC4 13BD9 "F13BC4"                       :Y V +1 :Y V +1
-func  13BDA 13BE7 "F13BDA"                       :SY V +1 :Y V +1
-func  13BE8 13BF5 "F13BE8"                       :SY V +1 :Y V +1
-func  13BF6 13C03 "F13BF6"                       :Y V +1 :Y V +1
+func  13BA2 13BAB "FUNC_13BA2"                   :Y V +1 :Y V +1
+func  13BAc 13BB9 "FUNC_13BAC"                   :Y V +1 :Y V +1
+func  13BBA 13BC3 "FUNC_13BBA"                   :Y V +1 :Y V +1
+func  13BC4 13BD9 "FUNC_13BC4"                   :Y V +1 :Y V +1
+func  13BDA 13BE7 "FUNC_13BDA"                   :SY V +1 :Y V +1
+func  13BE8 13BF5 "FUNC_13BE8"                   :SY V +1 :Y V +1
+func  13BF6 13C03 "FUNC_13BF6"                   :Y V +1 :Y V +1
 #-------------------------------------------------------------------------------
-func  13DA2 13DB1 "volts_2??"                    :Y V +1 : Y
+func  13C76 13C95 "FUNC_13C76"                   :W V +1 :W V +1
+func  13C96 13CB5 "FUNC_13C96"                   :W V +1 :W V +1
+func  13CB6 13CD5 "FUNC_13CB6"                   :W V +1 :W V +1
+func  13CD6 13CF5 "FUNC_13CD6"                   :W V +1 :W V +1
+func  13CF6 13D05 "FUNC_13CF6"                   :Y V +1 :Y V +1
+func  13D06 13D15 "FUNC_13D06"                   :Y V +1 :Y V +1
+func  13D16 13D25 "FUNC_13D16"                   :Y V +1 :Y V +1
+func  13D26 13D35 "FUNC_13D26"                   :Y V +1 :Y V +1
+func  13D36 13D51 "FUNC_13D36"                   :W V +1 :W V +1
+func  13D52 13D6D "FUNC_13D52"                   :W V +1 :W V +1
+word  13D6E 13D6F
+word  13D70 13D71
+word  13D72 13D73
+word  13D74 13D75
+word  13D76 13D77
+word  13D78 13D79
+byte  13D7A
+byte  13D7B
+byte  13D7C
+fill  13D7D
+func  13D7E 13DA1 "FUNC_13D7E"                   :W V +1 :W V +1
+func  13DA2 13DB1 "FUNC_volts_2??"               :Y V +1 : Y V +1
+func  13DB2 13DC1 "FUNC_13DB2"                   :Y V +1 :Y V +1
+func  13DC2 13DE1 "FUNC_13DC2"                   :W V +1 :SW V +1
+func  13DE2 13E09 "FUNC_13DE2"                   :W V +1 :W V +1
+func  13E0A 13E31 "FUNC_13E0A"                   :SW V +1 :W V +1
+func  13E32 13E45 "FUNC_13E32"                   :SY V +1 :Y V +1
+func  13E46 13E59 "FUNC_13E46"                   :SY V +1 :Y V +1
+func  13E5A 13E81 "FUNC_13E5A"                   :SW V +1 :W V +1
+func  13E82 13EA5 "FUNC_13E82"                   :W V +1 :W V +1
+func  13EA6 13EC9 "FUNC_13EA6"                   :W V +1 :W V +1
+func  13ECA 13EED "FUNC_13ECA"                   :SW V +1 :W V +1               #BROKEN?
+func  13EEE 13F11 "FUNC_13EEE"                   :SW V +1 :SW V +1              #BROKEN?
+func  13F12 13F35 "FUNC_13F12"                   :SW V +1 :W V +1
+func  13F36 13F59 "FUNC_13F36"                   :W V +1 :W V +1
+func  13F5A 13F75 "FUNC_13F5A"                   :W V +1 :W V +1
+word  13F76 13F77
+word  13F78 13F79
+word  13F7A 13F7B
+word  13F7C 13F7D
+word  13F7E 13F7F
+word  13F80 13F81
+word  13F82 13F83
+word  13F84 13F85
+word  13F86 13F87
+func  13F88 13F9B "FUNC_13F88"                   :W V +1 :W V +1
+func  13F9C 13FB7 "FUNC_13F9C"                   :W V +1 :W V +1
+func  13FB8 13FC9 "FUNC_13FB8"                   :SY V +1 :Y V +1
+func  13FCa 13FED "FUNC_13FCA"                   :W V +1 :W V +1
+func  13FEE 14011 "FUNC_13FEE"                   :SW V +1 :W V +1
+func  14012 14023 "FUNC_14012"                   :SY V +1 :Y V +1
+func  14024 14043 "FUNC_14024"                   :W V +1 :W V +1                #BROKEN?
+func  14044 14067 "FUNC_14044"                   :W V +1 :W V +1
+func  14068 1407F "FUNC_14068"                   :W V +1 :W V +1
+func  14080 140a3 "FUNC_14080"                   :W V +1 :W V +1
+func  140A4 140B5 "FUNC_140A4"                   :SY V +1 :Y V +1               #BROKEN?
+func  140B6 140C7 "FUNC_140B6"                   :SY V +1 :Y V +1
+func  140C8 140EB "FUNC_140C8"                   :W V +1 :W V +1
+func  140EC 14103 "FUNC_140EC"                   :W V +1 :W V +1
+func  14104 1411B "FUNC_14104"                   :W V +1 :W V +1
+func  1411C 1413B "FUNC_1411C"                   :W V +1 :SW V +1
+func  1413C 1415B "FUNC_1413C"                   :W V +1 :SW V +1
+func  1415C 1417F "FUNC_1415C"                   :W V +1 :W V +1
+byte  14180
+byte  14181
+byte  14182
+table 14183 14187                                :Y                             #??
+byte  14188
+byte  14189
+byte  1418A
+fill  1418B
+word  1418C 1418D
+byte  1418E
+fill  1418F
+word  14190 14191
+byte  14192
+fill  14193
+word  14194 14195
+word  14196 14197
+word  14198 14199
+word  1419A 1419B
+word  1419C 1419D
+word  1419E 1419F
+func  141A0 141AB "FUNC_141A0"                   :Y V +1 :Y V +1
+func  141AC 141B7 "FUNC_141AC"                   :Y V +1 :Y V +1
+func  141B8 141C3 "FUNC_141B8"                   :SY V +1 :Y V +1
+func  141C4 141DB "FUNC_141C4"                   :W V +1 :W V +1
+func  141DC 141E7 "FUNC_141DC"                   :Y V +1 :Y V +1
+func  141E8 141F3 "FUNC_141E8"                   :Y V +1 :Y V +1
+word  141F4 141F5
+word  141F6 141F7
+word  141F8 141F9
+word  141FA 141FB
+word  141FC 141FD
+word  141FE 141FF
+word  14200 14201
+word  14202 14203
+word  14204 14205
+word  14206 14207
+byte  14208
+byte  14209
+byte  1420A
+byte  1420B
+byte  1420C
+byte  1420D
+byte  1420E
+fill  1420F
+word  14210 14211
+byte  14212
+byte  14213
+table 14214 1427F "TABLE_14214"                  :Y X O +12                     #unknown rows/cols, guess
 #-------------------------------------------------------------------------------
-func  13ECA 13EED "F13ECA"                       :SW :UW                        #BROKEN?
-func  13EEE 13F11 "F13EEE"                       :SW :SW                        #BROKEN?
+func  14280 1428B "FUNC_14280"                   :SY V +1 :Y V +1
+func  1428C 14297 "FUNC_1428C"                   :SY V +1 :Y V +1
+byte  14298
+byte   14299 "LPG_AVAILABLE"
+byte   1429A "DEDICATED_LPG"
 #-------------------------------------------------------------------------------
-func  140A4 140B5 "F140A4"                       :SY :UY                        #BROKEN?
+#byte  1429C
+#  1429D
 #-------------------------------------------------------------------------------
-sym   14299 "LPG_AVAILABLE"
-sym   1429A "DEDICATED_LPG"
+func  142FE 14325 "FUNC_142FE"                   :SW V +1 :W V +1
+func  14326 1434D "FUNC_14326"                   :W V +1 :W V +1
+func  1434E 14379 "FUNC_1434E"                   :SW V +1 :W V +1
+func  1437A 143A1 "SCALER_1437A"                 :W V +1 :W V +256
+func  143A2 143B5 "FUNC_143A2"                   :SY V +1 : Y V +1
+func  143B6 143C9 "FUNC_143B6"                   :SY V +1 : Y V +1
+func  143CA 143D7 "FUNC_143CA"                   :Y V +1 : SY V +1
+func  143D8 143E5 "FUNC_143D8"                   :Y V +1 : SY V +1
+func  143E6 1440D "FUNC_143E6"                   :SY V +1 : SY V +1
+func  1440E 14435 "FUNC_1440E"                   :W V +1 :W V +1
+func  14436 14455 "FUNC_14436"                   :W V +1 :W V +1                #BROKEN?
+func  14456 14465 "FUNC_14456"                   :SY V +4 :Y V +1
+func  14466 14481 "FUNC_14466"                   :W V +1 :W V +1
+func  14482 1448F "FUNC_14482"                   :Y V +1 :Y V +1
+func  14490 144B3 "FUNC_14490"                   :W V +1 :W V +1
+func  144B4 144C1 "FUNC_144B4"                   :Y V +1 :Y V +1
+func  144C2 144CF "FUNC_144C2"                   :Y V +1 :Y V +1
+func  144D0 144F7 "FUNC_144D0"                   :W V +1 :W V +1
+func  144F8 1451F "FUNC_144F8"                   :W V +1 :W V +1                #BROKEN?
+func  14520 1453F "FUNC_14520"                   :W V +1 :W V +1
+func  14540 1455F "FUNC_14540"                   :W V +1 :W V +1
+func  14560 145BF "FUNC_14560"                   :W V +1 :W V +1
+func  145C0 145DF "FUNC_145C0"                   :W V +1 :W V +1
+func  145E0 145FF "FUNC_145E0"                   :W V +1 :W V +1
+func  14600 1461F "FUNC_14600"                   :W V +1 :W V +1
+func  14620 1463F "FUNC_14620"                   :W V +1 :W V +1
+func  14640 1465F "FUNC_14640"                   :W V +1 :W V +1
+func  14660 1467F "FUNC_14660"                   :W V +1 :W V +1
+func  14680 146DF "FUNC_14680"                   :W V +1 :W V +1
+func  146E0 146F7 "FUNC_146E0"                   :W V +1 :W V +1
+func  146F8 14703 "FUNC_146F8"                   :Y V +1 :Y V +1
+func  14704 14719 "FUNC_14704"                   :Y V +1 :Y V +1
+table 1471A 14773 "TABLE_1471A"                  :Y X O +10 V +1
+table 14774 147DF "TABLE_14774"                  :Y X O +12 V +1
+table 147E0 1484B "TABLE_147E0"                  :Y X O +12 V +1
+table 1484C 148B7 "TABLE_1484C"                  :Y X O +12 V +1
+table 148B8 14923 "TABLE_148B8"                  :Y X O +12 V +1
 #-------------------------------------------------------------------------------
-func  142FE 14325 "F142FE"                       :SW V +1 :W V +1
-func  14326 1434D "F14326"                       :W V +1 :W V +1
-func  1434E 14379 "F1434E"                       :SW V +1 :W V +1
-func  1437A 143A1 "SCALER_0D"                    :W V +1 :W V +256
+func  14A1C 14A37 "FUNC_14A1C"                   :SW V +1 :W V +1
+func  14A38 14A53 "FUNC_14A38"                   :SW V +1 :W V +1
+func  14A54 14A77 "FUNC_14A54"                   :SW V +1 :W V +1
+func  14A78 14A9B "FUNC_14A78"                   :SW V +1 :W V +1
+func  14A9C 14AB3 "FUNC_14A9C"                   :SW V +1 :W V +1
+func  14AB4 14ACB "FUNC_14AB4"                   :W V +1 :W V +1
+func  14ACC 14AEF "FUNC_14ACC"                   :W V +1 :W V +1
+func  14AF0 14B17 "FUNC_14AF0"                   :W V +1 :W V +1
+func  14B18 14B3F "FUNC_14B18"                   :W V +1 :W V +1
+func  14B40 14B5B "FUNC_14B40"                   :SW V +1 :W V +1
+func  14B5C 14B6F "FUNC_14B5C"                   :W V +1 :W V +1
+func  14B70 14B87 "SCALER_14B70"                 :W V +1 :W V +256
+func  14B88 14B9B "FUNC_14B88"                   :SY V +1 :Y V +1
+func  14B9C 14BB3 "FUNC_14B9C"                   :W V +1 :W V +1
 #-------------------------------------------------------------------------------
-func  14436 14455 "F14436"                       :W V +1 :W V +1                #BROKEN?
-func  14456 14465 "F14456"                       :SY V +4 :Y V +1
-func  14466 14481 "F14466"                       :W V +1 :W V +1
-func  14482 1448F "F14482"                       :Y V +1 :Y V +1
-func  14490 144B3 "F14490"                       :W V +1 :W V +1
-func  144B4 144C1 "F144B4"                       :Y V +1 :Y V +1
-func  144C2 144CF "F144C2"                       :Y V +1 :Y V +1
-func  144D0 144F7 "F144D0"                       :W V +1 :W V +1
-func  144F8 1451F "F144F8"                       :W V +1 :W V +1                #BROKEN?
-func  14520 1453F "F14520"                       :W V +1 :W V +1
-func  14540 1455F "F14540"                       :W V +1 :W V +1
-func  14560 145BF "F14560"                       :W V +1 :W V +1
-func  145C0 145DF "F145C0"                       :W V +1 :W V +1
-func  145E0 145FF "F145E0"                       :W V +1 :W V +1
-func  14600 1461F "F14600"                       :W V +1 :W V +1
-func  14620 1463F "F14620"                       :W V +1 :W V +1
-func  14640 1465F "F14640"                       :W V +1 :W V +1
-func  14660 1467F "F14660"                       :W V +1 :W V +1
-func  14680 146DF "F14680"                       :W V +1 :W V +1
-func  146E0 146F7 "F146E0"                       :W V +1 :W V +1
-func  146F8 14703 "F146F8"                       :Y V +1 :Y V +1
-func  14704 14719 "F14704"                       :Y V +1 :Y V +1
-table 1471A 14773 "TABLE_82"                     :Y X O +10 V +1
-table 14774 147DF "TABLE_70"                     :Y X O +12 V +1
-table 147E0 1484B "TABLE_71"                     :Y X O +12 V +1
-table 1484C 148B7 "TABLE_72"                     :Y X O +12 V +1
-#-------------------------------------------------------------------------------
-func  14B70 14b87 "SCALER_0E"                    :W V +1 :W V +256
-func  14B88 14B9B "F14B88"                       :SY V +1 :Y V +1
-#-------------------------------------------------------------------------------
-func  14CD2 14CED "F14CD2"                       :SW V +1 :W V +1               #BROKEN?
-#-------------------------------------------------------------------------------
-func  14D0A 14D3D "SCALER_0F"                    :W V +1 :W V +256
-func  14D3E 14D5D "SCALER_10"                    :W V +1 :W V +256
-#-------------------------------------------------------------------------------
+func  14C1A 14C35 "FUNC_14C1A"                   :W V +1 :W V +1
+func  14C36 14C51 "FUNC_14C36"                   :W V +1 :W V +1
+func  14C52 14C71 "FUNC_14C52"                   :W V +1 :SW V +1
+func  14C72 14CA1 "FUNC_14C72"                   :SW V +1 :SW V +1
+func  14CA2 14CD1 "FUNC_14CA2"                   :SW V +1 :SW V +1
+func  14CD2 14CED "FUNC_14CD2"                   :SW V +1 :W V +1               #BROKEN?
+func  14CEE 14D09 "FUNC_14CEE"                   :SW V +1 :W V +1
+func  14D0A 14D3D "SCALER_14D0A"                 :W V +1 :W V +256
+func  14D3E 14D5D "SCALER_14D3E"                 :W V +1 :W V +256
+func  14D5E 14D85 "FUNC_14D5E"                   :SW V +1 :W V +1
+func  14D86 14DA1 "FUNC_14D86"                   :SW V +1 :W V +1
+func  14DA2 14DBD "FUNC_14DA2"                   :SW V +1 :W V +1
+func  14DBE 14DD9 "FUNC_14DBE"                   :W V +1 :W V +1
+func  14DDA 14DFD "FUNC_14DDA"                   :SW V +1 :W V +1
 func  14DFE 14E21 "SCALER_691"                   :W V +1 :W V +256
 func  14E22 14E49 "SCALER_692"                   :W V +1 :W V +256
 table 14E4A 14E89 "TABLE_69X"                    :Y X O +8 V +1
@@ -205,8 +343,8 @@ table 14F62 14FA1 "TABLE_67X"                    :Y X O +8 V +1
 func  14FA2 14FC5 "SCALER_661"                   :W V +1 :W V +256
 func  14FC6 14FED "SCALER_662"                   :W V +1 :W V +256
 table 14FEE 1502D "TABLE_66X"                    :Y X O +8 V +1
-func  1502E 15051 "F1502E"                       :W V +1 :W V +1
-func  15052 15075 "F15052"                       :W V +1 :W V +1
+func  1502E 15051 "FUNC_1502E"                   :W V +1 :W V +1
+func  15052 15075 "FUNC_15052"                   :W V +1 :W V +1
 func  15076 15099 "SCALER_651"                   :W V +1 :W V +256
 func  1509A 150B9 "SCALER_652"                   :SW V +1 :W V +256
 table 150BA 150F1 "TABLE_65X"                    :Y X O +8 V +1
@@ -214,23 +352,28 @@ func  150F2 15115 "SCALER_641"                   :W V +1 :W V +256
 func  15116 15135 "SCALER_642"                   :SW V +1 :W V +256
 table 15136 15175 "TABLE_64X"                    :Y X O +8 V +1
 #-------------------------------------------------------------------------------
-func  1517A 15195 "F1517A"                       :W V +1 :W V +1
-func  15196 151B1 "F15196"                       :W V +1 :W V +1
-table 151B2 1521D "TABLE_79"                     :Y X O +12 V +1
-table 1521E 15289 "TABLE_80"                     :Y X O +12 V +1
-table 1528A 152DD "TABLE_81"                     :Y X O +12 V +1
+func  1517A 15195 "FUNC_1517A"                   :W V +1 :W V +1
+func  15196 151B1 "FUNC_15196"                   :W V +1 :W V +1
+table 151B2 1521D "TABLE_151B2"                  :Y X O +12 V +1
+table 1521E 15289 "TABLE_1521E"                  :Y X O +12 V +1
+table 1528A 152DD "TABLE_1528A"                  :Y X O +12 V +1
 #-------------------------------------------------------------------------------
 func  1535E 15385 "SCALER_RPM2"                  :W V +4 :W V +256
-table 15386 153F1 "TABLE_12X"                    :Y X O +12 V +1
+table 15386 153F1 "TABLE_15386"                  :Y X O +12 V +1
+func  153F2 15409 "FUNC_153F2"                   :W V +1 :W V +1
+func  1540A 15413 "FUNC_1540A"                   :SY V +1 :SY V +1
+func  15414 15425 "FUNC_15414"                   :Y V +1 :Y V +1
+func  15426 15441 "FUNC_15426"                   :W V +1 :W V +1
+func  15442 1544D "FUNC_15442"                   :SY V +1 :Y V +1
+func  1544E 15461 "FUNC_1544E"                   :Y V +1 :Y V +1
+func  15462 1547D "SCALER_15462"                 :W V +1 :W V +256
 #-------------------------------------------------------------------------------
-func  15462 1547D "SCALER_1D"                    :W V +1 :W V +256
+func  15934 1595B "FUNC_volts_to_01??"           :W V +12800 :SW V +1
+func  1595C 15983 "FUNC_volts_to_02??"           :W V +12800 :W V +1
+func  15984 159AF "FUNC_volts_to_03??"           :W V +12800 :SW V +1
+func  159B0 159CB "FUNC_159B0"                   :W V +1 :W V +1
 #-------------------------------------------------------------------------------
-func  15934 1595B "04_volts_to_??"               :W V +12800 :SW V +1
-func  1595C 15983 "05_volts_to_??"               :W V +12800 :W V +1
-func  15984 159AF "06_volts_to_??"               :W V +12800 :SW V +1
-func  159B0 159CB "F159B0"                       :W V +1 :W V +1
-#-------------------------------------------------------------------------------
-func  159CE 159F9 "F159CE"                       :W V +1 :W V +1
+func  159CE 159F9 "FUNC_159CE"                   :W V +1 :W V +1
 #-------------------------------------------------------------------------------
 func  15A2A 15A51 "SCALER_631"                   :W V +1 :W V +256
 func  15A52 15A79 "SCALER_632"                   :W V +1 :W V +256
@@ -239,26 +382,26 @@ table 15A7A 15AB9 "TABLE_63X"                    :Y X O +8 V +1
 func  15ABA 15AD9 "SCALER_621"                   :W V +1 :W V +256
 func  15ADA 15AF9 "SCALER_622"                   :W V +1 :W V +256
 table 15AFA 15B1D "TABLE_62X"                    :Y X O +6 V +1
-func  15B1E 15B3D "FUNC_35"                      :W V +1 :W V +1
+func  15B1E 15B3D "FUNC_15B1E"                   :W V +1 :W V +1
 func  15B3E 15B55 "SCALER_601"                   :W V +1 :W V +256
 func  15B56 15B6D "SCALER_602"                   :W V +1 :W V +256
 table 15B6E 15B7D "TABLE_60X"                    :Y X O +4 V +1
 #-------------------------------------------------------------------------------
-func  15BEA 15C05 "F15BEA"                       :W V +1 :W V +1
-func  15C06 15C21 "F15C06"                       :W V +1 :W V +1
-func  15C22 15C3D "F15C22"                       :W V +1 :W V +1
+func  15BEA 15C05 "FUNC_15BEA"                   :W V +1 :W V +1
+func  15C06 15C21 "FUNC_15C06"                   :W V +1 :W V +1
+func  15C22 15C3D "FUNC_15C22"                   :W V +1 :W V +1
 func  15C3E 15C65 "SCALER_611"                   :W V +1 :W V +256
 func  15C66 15C8D "SCALER_612"                   :W V +1 :W V +256
 table 15C8E 15CCD "TABLE_61X"                    :Y X O +8 V +1
-func  15CCE 15CE9 "F15CCE"                       :W V +1 :W V +1
-func  15CEA 15D05 "F15CEA"                       :W V +1 :W V +1
+func  15CCE 15CE9 "FUNC_15CCE"                   :W V +1 :W V +1
+func  15CEA 15D05 "FUNC_15CEA"                   :W V +1 :W V +1
 #-------------------------------------------------------------------------------
-func  15D08 15D23 "F15D08"                       :W V +1 :W V +1
+func  15D08 15D23 "FUNC_15D08"                   :W V +1 :W V +1
 #-------------------------------------------------------------------------------
 word  15D86 15D87 "F15E62_Voltage_Lower_limit"                                  #FA00 = 64000 / 12800 = 5.000v
 word  15D88 15D89 "F15E62_Voltage_Upper_limit"                                  # 500 =  1280 / 12800 = 0.100v
 #-------------------------------------------------------------------------------
-func  15E62 15E8D "F15E62"                       :W V +12800 :SW V +1
+func  15E62 15E8D "FUNC_15E62"                   :W V +12800 :SW V +1
 func  15E8E 15EB5 "FUNC_Trans_000"               :W V +4 :W V +4
 func  15EB6 15EDD "FUNC_Trans_003"               :W V +4 :W V +4
 func  15EDE 15F05 "FUNC_Trans_006"               :W V +4 :W V +4
@@ -360,16 +503,16 @@ func  16DB6 16DDD "FUNC_Trans97"                 :W V +4 :W V +4
 func  16DDE 16E05 "FUNC_Trans98"                 :W V +4 :W V +4
 func  16E06 16E2D "FUNC_Trans99"                 :W V +4 :W V +4
 func  16E2E 16E55 "FUNC_TransA0"                 :W V +4 :W V +4
-func  16E56 16E7D "SCALER_26"                    :SW V +4 :W V +256
-func  16E7E 16E91 "SCALER_27"                    :W V +4 :W V +256
-func  16E92 16EB1 "F16E92"                       :W V +1 :W V +1
-func  16EB2 16ED1 "F16EB2"                       :W V +1 :W V +1
-func  16ED2 16EFD "SCALER_28"                    :W V +1 :W V +256
+func  16E56 16E7D "SCALER_16E56"                 :SW V +4 :W V +256
+func  16E7E 16E91 "SCALER_16E7E"                 :W V +4 :W V +256
+func  16E92 16EB1 "FUNC_16E92"                   :W V +1 :W V +1
+func  16EB2 16ED1 "FUNC_16EB2"                   :W V +1 :W V +1
+func  16ED2 16EFD "SCALER_16ED2"                 :W V +1 :W V +256
 func  16EFE 16F29 "SCALER_RPM3"                  :W V +4 :W V +256
-func  16F2A 16F39 "F16F2A"                       :W V +1 :W V +1
-func  16F3A 16F59 "F16F3A"                       :SW V +1 :W V +1
-func  16F5A 16F71 "SCALER_29"                    :W V +1 :W V +256
-func  16F72 16F85 "F16F72"                       :W V +1 :W V +1
+func  16F2A 16F39 "FUNC_16F2A"                   :W V +1 :W V +1
+func  16F3A 16F59 "FUNC_16F3A"                   :SW V +1 :W V +1
+func  16F5A 16F71 "SCALER_16F5A"                 :W V +1 :W V +256
+func  16F72 16F85 "FUNC_16F72"                   :W V +1 :W V +1
 func  16F86 16FAD "FUNC_Trans_00"                :W V +4 :W V +4
 func  16FAE 16FD5 "FUNC_Trans_03"                :W V +4 :W V +4
 func  16FD6 16FFD "FUNC_Trans_06"                :W V +4 :W V +4
@@ -399,32 +542,32 @@ func  1736E 17395 "FUNC_TransP"                  :W V +4 :W V +4
 func  17396 173BD "FUNC_TransQ"                  :W V +4 :W V +4
 func  173BE 173E5 "FUNC_TransR"                  :W V +4 :W V +4
 func  173E6 1740D "FUNC_TransS"                  :W V +4 :W V +4
-func  1740E 1742D "SCALER_2A"                    :W V +1 :W V +256
-func  1742E 17449 "F1742E"                       :W V +1 :W V +1
-func  1744A 17457 "F1744A"                       :Y V +1 :Y V +1
-func  17458 17465 "F17458"                       :Y V +1 :Y V +1
-func  17466 1747F "F17466"                       :Y V +1 :Y V +1
-func  17480 1748D "F17480"                       :Y V +1 :Y V +1
-func  1748E 174BD "F1748E"                       :W V +4 :W V +1
-func  174BE 174ED "F174BE"                       :W V +1 :W V +1
-func  174EE 1751D "F174EE"                       :W V +4 :W V +1
-func  1751E 1754D "F1751E"                       :W V +1 :W V +1
-func  1754E 17575 "F1754E"                       :SW V +1 :W V +1
-func  17576 1758D "F17576"                       :W V +1 :W V +1
-func  1758E 175BD "F1758E"                       :W V +1 :W V +1
-func  175BE 175D1 "F175BE"                       :W V +1 :W V +1
-func  175D2 175E5 "F175D2"                       :W V +1 :W V +1
-func  175E6 175F9 "F175E6"                       :W V +1 :W V +1
-func  175FA 1760D "F175FA"                       :W V +1 :W V +1
-func  1760E 17621 "F1760E"                       :W V +1 :W V +1
-func  17622 17635 "F17622"                       :W V +1 :W V +1
-func  17636 17649 "F17636"                       :W V +1 :W V +1
-func  1764A 1765D "F1764A"                       :W V +1 :W V +1
+func  1740E 1742D "SCALER_1740E"                 :W V +1 :W V +256
+func  1742E 17449 "FUNC_1742E"                   :W V +1 :W V +1
+func  1744A 17457 "FUNC_1744A"                   :Y V +1 :Y V +1
+func  17458 17465 "FUNC_17458"                   :Y V +1 :Y V +1
+func  17466 1747F "FUNC_17466"                   :Y V +1 :Y V +1
+func  17480 1748D "FUNC_17480"                   :Y V +1 :Y V +1
+func  1748E 174BD "FUNC_1748E"                   :W V +4 :W V +1
+func  174BE 174ED "FUNC_174BE"                   :W V +1 :W V +1
+func  174EE 1751D "FUNC_174EE"                   :W V +4 :W V +1
+func  1751E 1754D "FUNC_1751E"                   :W V +1 :W V +1
+func  1754E 17575 "FUNC_1754E"                   :SW V +1 :W V +1
+func  17576 1758D "FUNC_17576"                   :W V +1 :W V +1
+func  1758E 175BD "FUNC_1758E"                   :W V +1 :W V +1
+func  175BE 175D1 "FUNC_175BE"                   :W V +1 :W V +1
+func  175D2 175E5 "FUNC_175D2"                   :W V +1 :W V +1
+func  175E6 175F9 "FUNC_175E6"                   :W V +1 :W V +1
+func  175FA 1760D "FUNC_175FA"                   :W V +1 :W V +1
+func  1760E 17621 "FUNC_1760E"                   :W V +1 :W V +1
+func  17622 17635 "FUNC_17622"                   :W V +1 :W V +1
+func  17636 17649 "FUNC_17636"                   :W V +1 :W V +1
+func  1764A 1765D "FUNC_1764A"                   :W V +1 :W V +1
 #-------------------------------------------------------------------------------
-table 17C7A 17D09 "TABLE_75"                     :Y X O +12 V +1
-table 17D0A 17D99 "TABLE_76"                     :Y X O +12 V +1
-table 17D9A 17E29 "TABLE_77"                     :Y X O +12 V +1
-table 17E2A 17EB9 "TABLE_78"                     :Y X O +12 V +1
+table 17C7A 17D09 "TABLE_17C7A"                  :Y X O +12 V +1
+table 17D0A 17D99 "TABLE_17D0A"                  :Y X O +12 V +1
+table 17D9A 17E29 "TABLE_17D9A"                  :Y X O +12 V +1
+table 17E2A 17EB9 "TABLE_17E2A"                  :Y X O +12 V +1
 #-------------------------------------------------------------------------------
 word  17F16 17F17 "01_Voltage_Lower_limit"                                      # 500 =  1280 / 12800 = 0.100v
 word  17F18 17F19 "01_Voltage_Upper_limit"                                      #FA00 = 64000 / 12800 = 5.000v
@@ -440,20 +583,20 @@ word  17F36 17F37 "06_Voltage_Lower_limit"                                      
 word  17F4C 17F4D "MAP_Voltage_Lower_limit"                                     # 280 =   640 / 12800 = 0.050v
 word  17F4E 17F4F "MAP_Voltage_Upper_limit"                                     #F280 = 62080 / 12800 = 4.850v
 #-------------------------------------------------------------------------------
-subr  82000  "reset_entry_point"                                                #BROKEN?
-word  8200a  "ROM_TO"
-word  8200c  "SMP_Base_Address"
-word  8200e  "CC_EXECUTION_TIME"
-byte  82060  "NUM_OF_LEVELS"
-byte  82061  "NUM_OF_CALIBRATIONS"
-sym   82062  "RF0"
-sym   82064  "RF2"
-word  82066  "RF4"
-word  82068  "RF6"
-word  8206a  "RF8"
-word  8206c  "RFA"
-word  8206e  "RFC"
-word  82070  "RFE"
+subr  82000       "reset_entry_point"                                           #BROKEN?
+word  8200A 8200B "ROM_TO"
+word  8200C 8200D "SMP_Base_Address"
+word  8200E 8200F "CC_EXECUTION_TIME"
+byte  82060       "NUM_OF_LEVELS"
+byte  82061       "NUM_OF_CALIBRATIONS"
+word  82062 82063 "RF0"
+word  82064 82065 "RF2"
+word  82066 82067 "RF4"
+word  82068 82069 "RF6"
+word  8206A 8206B "RF8"
+word  8206C 8206D "RFA"
+word  8206E 8206F "RFC"
+word  82070 82071 "RFE"
 #-------------------------------------------------------------------------------
 #VID BLOCK
 #text  9FF06 9FF11 #CAL_ID
