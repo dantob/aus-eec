@@ -3,23 +3,65 @@
 
 xcode 12060 184B3
 
-word 12004 12005 "FIXSUM"
-word 1200A 1200B "CALID"
+word  12004 12005 "FIXSUM"
+word  1200A 1200B "CALID"
 
 sym   000ED "LPG_Fuel_Selected" : T 1
 sym   0007C "Lean_Cruise_Mode" : T 5
 #-------------------------------------------------------------------------------
 word  1206E 1206F "RPM_Limit"
+#-------------------------------------------------------------------------------
+func  120EC 120F5 "F120EC"                       :Y V +1 :Y V +1
+word  120F6 120F7
+word  120F8 120F9
+word  120FA 120FB
+word  120FC 120FD
+byte  120FE
+byte  120FF
 func  12100 12127 "FUNC_12100"                   :W V +1 :W V +1
 func  12128 12131 "FUNC_12128"                   :SY V +1 :Y V +1
-table 12132 1219D "TABLE_Volumetric_Efficiency"  :Y X O +12 V +2.56
-#-------------------------------------------------------------------------------
+table 12132 1219D "TABLE_Volumetric_Efficiency"  :Y X O +12 V +2.56             #probably wrong scale?
+word  1219E 1219F
+word  121A0 121A1
+byte  121A2
+byte  121A3
+byte  121A4
+byte  121A5
+#table 121A6 121A7 121A8                          :Y                            #?? func or table? Sub_84b2a
+byte  121A9
+byte  121AA
+byte  121AB
+byte  121AC
+byte  121AD
+word  121AE 121AF
+word  121B0 121B1
+word  121B2 121B3
+byte  121B4
+byte  121B5
+byte  121B6
+fill  121B7
+word  121B8 121B9
+word  121BA 121BB
+word  121BC 121BD
+word  121BE 121BF
+word  121C0 121C1
+byte  121C2
+byte  121C3
+word  121C4 121C5
+word  121C6 121C7
+word  121C8 121C9
+#121CA 121CB                                                                    ??
+word  121CC 121CD
+word  121CE 121CF
+word  121D0 121D1
+word  121D2 121D3
+word  121D4 121D5
+word  121D6 121D7
+word  121D8 121D9
+#121DA 121DB 121DC 121DD                                                        #??
+word  121DE 121DF
+word  121E0 121E1
 func  121E2 121EB "FUNC_121E2"                   :Y V +1 :Y V +1
-#-------------------------------------------------------------------------------
-func  12424 12453 "FUNC_12424"                   :W V +1 :W V +1
-func  12454 12483 "FUNC_12454"                   :W V +1 :W V +1
-func  12484 124B3 "FUNC_12484"                   :SW V +1 :W V +1
-#-------------------------------------------------------------------------------
 func  121EC 12217 "FUNC_121EC"                   :W V +1 :W V +1
 func  12218 12225 "FUNC_12218"                   :SY V +1 :Y V +1 S
 func  12226 1222F "FUNC_12226"                   :Y V +1 :Y V +1
@@ -32,8 +74,28 @@ table 122B2 1231D "TABLE_122B2"                  :Y X O +12 V +1
 table 1231E 12389 "TABLE_1231E_MPG"              :Y X O +12 V +1
 func  1238A 123B1 "FUNC_1238A"                   :W V +1 :W V +1
 func  123B2 123C5 "FUNC_123B2"                   :Y V +1 :Y V +1
-#-------------------------------------------------------------------------------
+word  123C6 123C7
+word  123C8 123C9
+word  123CA 123CB
+word  123CC 123CD
+word  123CE 123CF
+byte  123D0
+byte  123D1
+byte  123D2
+fill  123D3
 func  123D4 123EB "FUNC_123D4"                   :W V +1 :W V +1
+table 123EC 12418 "TABLE_123EC"                  :Y X O +5 V +1
+byte  12419
+word  1241A 1241B
+word  1241C 1241D
+byte  1241E
+byte  1241F
+#table  12420 12421 12422 12423                                                   #?? func or table? Sub_84762
+func  12424 12453 "FUNC_12424"                   :W V +1 :W V +1
+func  12454 12483 "FUNC_12454"                   :W V +1 :W V +1
+func  12484 124B3 "FUNC_12484"                   :SW V +1 :W V +1
+byte  124B4
+fill  124B5
 func  124B6 12501 "FUNC_01_volts_to_temperature" :W V +12800 :SW
 func  12502 12531 "FUNC_03_volts_to_??"          :W V +12800 :W
 func  12532 12561 "FUNC_02_volts_to_temperature" :W V +12800 :SW
@@ -46,7 +108,26 @@ func  125F6 12611 "SCALER_RPM1"                  :W V +4 :W V +256
 func  12612 12625 "SCALER_12612"                 :W V +4 :W V +256
 func  12626 12639 "SCALER_12626"                 :W V +4 :W V +256
 func  1263A 12655 "SCALER_1263A"                 :W V +4 :W V +256
-#-------------------------------------------------------------------------------
+byte  12656
+byte  12657
+byte  12658
+byte  12659
+byte  1265A
+byte  1265B
+byte  1265C
+byte  1265D
+byte  1265E
+byte  1265F
+byte  12660
+byte  12661
+byte  12662
+byte  12663
+byte  12664
+byte  12665
+word  12666 12667 "F14560_F14680_Lower_Limit"
+word  12668 12669 "F14560_F14680_Upper_Limit"
+byte  1266A
+byte  1266B
 func  1266C 1269B "SCALER_LOAD_LPG"              :W V +4 :W V +256
 #-------------------------------------------------------------------------------
 func  126C7 126DA "FUNC_126C7"                   :Y V +1 :Y V +1
