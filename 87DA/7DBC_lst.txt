@@ -105,18 +105,18 @@
    setup_initial_state:
 20a2: fa                  di                     disable intps;                    #disable interupts, (they were already disabled, seems redundant?)
 20a3: ff                  nop                    
-20a4: 11,0c               clrb  Rc               HSI_MASK = 0;                     #all HSI inputs disabled
-20a6: a1,12,00,10         ldw   R10,12           STACK_POINTER = 12;               #temporarily point the SP at 0012; we are going to use it to clear memory
-20aa: c6,11,00            stb   R0,[R10++]       [STACK_POINTER] = 0;              #clear current memory location and increment SP
+20a4: 11,0c               clrb  Rc               HSI_Mask = 0;                     #all HSI inputs disabled
+20a6: a1,12,00,10         ldw   R10,12           StackPtr = 12;                    #temporarily point the SP at 0012; we are going to use it to clear memory
+20aa: c6,11,00            stb   R0,[R10++]       [StackPtr] = 0;                   #clear current memory location and increment SP
 20ad: 17,05               incb  R5               WDG_Timer++;                      #inc WD timer
 20af: 3e,2a,03            jb    B6,R2a,20b5      if (B6_VIP_mode_flag = 1) goto 20b5;   #if VIP_mode_flag (NO_START_TESTS) is set (KOEO)
 20b2: 35,2a,08            jnb   B5,R2a,20bd      if (B5_VIP_mode_flag = 1)  {      #and/or if VIP_mode_flag (RUNNING_TESTS) is set (KOER)
 20b5: 89,2a,00,10         cmpw  R10,2a                                             #and sp points at = R2A (VIP_mode_flag)
-20b9: d7,02               jne   20bd             if (STACK_POINTER = 2a)  {        #
-20bb: 17,10               incb  R10              STACK_POINTER++; } }              #inc SP and skip clearing VIP_mode_flag
+20b9: d7,02               jne   20bd             if (StackPtr = 2a)  {             #
+20bb: 17,10               incb  R10              StackPtr++; } }                   #inc SP and skip clearing VIP_mode_flag
 20bd: 17,05               incb  R5               WDG_Timer++;                      #inc WD timer
 20bf: 89,a0,02,10         cmpw  R10,2a0          
-20c3: d3,e5               jnc   20aa             if (STACK_POINTER < 2a0) goto 20aa;   #if SP less than 02A0, not finished clearing memory, else done
+20c3: d3,e5               jnc   20aa             if (StackPtr < 2a0) goto 20aa;    #if SP less than 02A0, not finished clearing memory, else done
 #-------------------------------------------------------------------------------
 20c5: a1,62,6a,14         ldw   R14,6a62         R14 = 6a62;                       #R14 points to first init table in rom
 20c9: 89,ff,ff,14         cmpw  R14,ffff                                           #if R14 points to FFFF (no more table to process, break)
@@ -177,19 +177,19 @@
 2169: c3,01,3c,03,30      stw   R30,[R0+33c]     [33c] = R30; }
 216e: c7,01,de,01,b4      stb   Rb4,[R0+1de]     [1de] = Rb4;
 2173: ef,90,49            call  6b06             common_Sub22();
-2176: 11,09               clrb  R9               INT_PEND = 0;
-2178: 32,0a,06            jnb   B2,Ra,2181       if (HSI_RDY = 1)  {
-217b: b0,0d,00            ldb   R0,Rd            R0 = HSI_DATA;
+2176: 11,09               clrb  R9               INT_Pend = 0;
+2178: 32,0a,06            jnb   B2,Ra,2181       if (HSI_Ready = 1)  {
+217b: b0,0d,00            ldb   R0,Rd            R0 = HSI_Data;
 217e: ff                  nop                    
 217f: 27,f7               sjmp  2178             goto 2178; }
 
-2181: b0,0b,8e            ldb   R8e,Rb           R8e = HSI_SAMPLE;
-2184: b1,a1,08            ldb   R8,a1            INT_MASK = a1;
-2187: b1,a7,0c            ldb   Rc,a7            HSI_MASK = a7;
+2181: b0,0b,8e            ldb   R8e,Rb           R8e = HSI_Sample;
+2184: b1,a1,08            ldb   R8,a1            INT_Mask = a1;
+2187: b1,a7,0c            ldb   Rc,a7            HSI_Mask = a7;
 218a: 9b,f7,c1,02,00      cmpb  R0,[Rf6+2c1]     
 218f: d7,03               jne   2194             if ([7975] = 0)  {
-2191: b1,a5,0c            ldb   Rc,a5            HSI_MASK = a5; }
-2194: 45,03,00,06,0e      ad3w  Re,R6,3          HSI_TIME = IO_TIMER + 3;
+2191: b1,a5,0c            ldb   Rc,a5            HSI_Mask = a5; }
+2194: 45,03,00,06,0e      ad3w  Re,R6,3          HSI_Time = IO_Timer + 3;
 2199: b1,2a,0d            ldb   Rd,2a            HSO_Cmd = 2a;
 219c: fb                  ei                     enable intps;
 219d: f0                  ret                    return;
@@ -201,7 +201,7 @@
 
    init:
 219e: 11,2a               clrb  R2a              VIP_mode_flag = 0;                #clear the VIP_mode_flag; all bits
-21a0: a1,a2,02,10         ldw   R10,2a2          STACK_POINTER = 2a2;              #initialise stack pointer at 02A2, stack grows downwards
+21a0: a1,a2,02,10         ldw   R10,2a2          StackPtr = 2a2;                   #initialise stack pointer at 02A2, stack grows downwards
 21a4: 2e,fc               scall 20a2             setup_initial_state();            #save return address to stack; interrupts enabled before returning
 
 ################################################################################
@@ -329,14 +329,14 @@
 225d: fb                  ei                     enable intps;
 225e: 56,30,00,04         ad3b  R4,R0,[R30]      AD_Cmd = [R30];
 2262: de,22               jlt   2286             if (AD_Cmd < 0) return;           #[Signed]
-2264: 33,0a,fd            jnb   B3,Ra,2264       if (AD_RDY = 0) goto 2264;
+2264: 33,0a,fd            jnb   B3,Ra,2264       if (AD_Ready = 0) goto 2264;
 2267: fa                  di                     disable intps;
 2268: ff                  nop                    
-2269: 51,0f,04,34         an3b  R34,R4,f         R34 = AD_LO & f;
+2269: 51,0f,04,34         an3b  R34,R4,f         R34 = AD_Low & f;
 226d: 9a,30,34            cmpb  R34,[R30]        
 2270: d7,eb               jne   225d             if (R34 != [R30]) goto 225d;
-2272: 51,f0,04,34         an3b  R34,R4,f0        R34 = AD_LO & f0;
-2276: b0,05,35            ldb   R35,R5           R35 = AD_HI;
+2272: 51,f0,04,34         an3b  R34,R4,f0        R34 = AD_Low & f0;
+2276: b0,05,35            ldb   R35,R5           R35 = AD_High;
 2279: 07,30               incw  R30              R30++;
 227b: b2,31,32            ldb   R32,[R30++]      R32 = [R30++];
 227e: b2,31,33            ldb   R33,[R30++]      R33 = [R30++];
@@ -370,11 +370,11 @@
 22b4: 6c,28               vect  286c             Sub_286c
 
    Sub_22b6:
-22b6: b1,a7,0c            ldb   Rc,a7            HSI_MASK = a7;
+22b6: b1,a7,0c            ldb   Rc,a7            HSI_Mask = a7;
 22b9: 9b,f7,c1,02,00      cmpb  R0,[Rf6+2c1]     
 22be: d7,03               jne   22c3             if ([7975] = 0)  {
-22c0: b1,a5,0c            ldb   Rc,a5            HSI_MASK = a5; }
-22c3: 70,0c,83            an2b  R83,Rc           R83 &= HSI_MASK;
+22c0: b1,a5,0c            ldb   Rc,a5            HSI_Mask = a5; }
+22c3: 70,0c,83            an2b  R83,Rc           R83 &= HSI_Mask;
 22c6: 91,01,4e            orb   R4e,1            B0_R4e = 1;
 22c9: f0                  ret                    return;
 
@@ -516,7 +516,7 @@
                                                  B4_R4c = 0;
                                                  B5_R4c = 0;
                                                  B6_R4c = 0;
-247d: 48,8a,06,80         sb3w  R80,R6,R8a       R80 = IO_TIMER - R8a;
+247d: 48,8a,06,80         sb3w  R80,R6,R8a       R80 = IO_Timer - R8a;
 2481: 64,80,8a            ad2w  R8a,R80          R8a += R80;
 2484: b4,00,8c            adcb  R8c,R0           R8c += CY;
 2487: 3b,4c,4b            jb    B3,R4c,24d5      if (B3_R4c = 1) goto 24d5;
@@ -556,7 +556,7 @@
 24dd: b4,00,7e            adcb  R7e,R0           R7e += CY;
 24e0: 38,0a,2f            jb    B0,Ra,2512       if (HSO_OVF = 0)  {
    Sub_24e3:
-24e3: a0,7c,0e            ldw   Re,R7c           HSI_TIME = R7c;
+24e3: a0,7c,0e            ldw   Re,R7c           HSI_Time = R7c;
 24e6: b0,79,0d            ldb   Rd,R79           HSO_Cmd = R79;
 24e9: 07,7c               incw  R7c              R7c++;
 24eb: b4,00,7e            adcb  R7e,R0           R7e += CY;
@@ -680,18 +680,18 @@
 2615: f0                  ret                    return;
 
    common_Sub8:
-2616: 48,8a,06,80         sb3w  R80,R6,R8a       R80 = IO_TIMER - R8a;
+2616: 48,8a,06,80         sb3w  R80,R6,R8a       R80 = IO_Timer - R8a;
 261a: 64,80,8a            ad2w  R8a,R80          R8a += R80;
 261d: b4,00,8c            adcb  R8c,R0           R8c += CY;
 2620: b0,8c,78            ldb   R78,R8c          R78 = R8c;
-2623: 48,0e,8a,80         sb3w  R80,R8a,Re       R80 = R8a - HSI_TIME;
+2623: 48,0e,8a,80         sb3w  R80,R8a,Re       R80 = R8a - HSI_Time;
 2627: 65,02,00,80         ad2w  R80,2            R80 += 2;
 262b: 48,80,8a,76         sb3w  R76,R8a,R80      R76 = R8a - R80;
 262f: b8,00,78            sbbb  R78,R0           R78 -= CY;
-2632: b0,0d,7f            ldb   R7f,Rd           R7f = HSI_DATA;
+2632: b0,0d,7f            ldb   R7f,Rd           R7f = HSI_Data;
 2635: b0,8e,83            ldb   R83,R8e          R83 = R8e;
 2638: 94,7f,83            xorb  R83,R7f          R83 ^= R7f;
-263b: 70,0c,83            an2b  R83,Rc           R83 &= HSI_MASK;
+263b: 70,0c,83            an2b  R83,Rc           R83 &= HSI_Mask;
 263e: b0,7f,8e            ldb   R8e,R7f          R8e = R7f;
    common_Sub9:
 2641: 11,4c               clrb  R4c              R4c = 0;
@@ -704,7 +704,7 @@
 2654: cb,59,a6,22         push  [R58+22a6]       push([R58+22a6]);
 2658: f0                  ret                    return; }
 
-2659: 3a,0a,ba            jb    B2,Ra,2616       if (HSI_RDY = 1) goto common_Sub8;
+2659: 3a,0a,ba            jb    B2,Ra,2616       if (HSI_Ready = 1) goto common_Sub8;
 265c: f0                  ret                    return;
 
    I_HSO_1:
@@ -713,11 +713,11 @@
 265f: ff                  nop                    
 2660: ff                  nop                    
 2661: ff                  nop                    
-2662: 45,4d,01,06,0e      ad3w  Re,R6,14d        HSI_TIME = IO_TIMER + 14d;
+2662: 45,4d,01,06,0e      ad3w  Re,R6,14d        HSI_Time = IO_Timer + 14d;
 2667: b1,2a,0d            ldb   Rd,2a            HSO_Cmd = 2a;
-266a: c3,01,76,01,06      stw   R6,[R0+176]      [176] = IO_TIMER;
-266f: c3,01,ea,01,10      stw   R10,[R0+1ea]     [1ea] = STACK_POINTER;
-2674: ad,6c,10            ldzbw R10,6c           STACK_POINTER = 6c;
+266a: c3,01,76,01,06      stw   R6,[R0+176]      [176] = IO_Timer;
+266f: c3,01,ea,01,10      stw   R10,[R0+1ea]     [1ea] = StackPtr;
+2674: ad,6c,10            ldzbw R10,6c           StackPtr = 6c;
 2677: ac,8f,54            ldzbw R54,R8f          wR54 = yR8f;
 267a: 51,07,8b,8f         an3b  R8f,R8b,7        R8f = R8b & 7;
 267e: 98,54,8f            cmpb  R8f,R54          
@@ -732,8 +732,8 @@
 
 2698: e7,ab,08            jump  2f46             goto 2f46;
 
-269b: b0,46,02            ldb   R2,R46           LSO_PORT = R46;
-269e: b0,47,03            ldb   R3,R47           BIO_PORT = R47;
+269b: b0,46,02            ldb   R2,R46           LSO_Port = R46;
+269e: b0,47,03            ldb   R3,R47           LIO_Port = R47;
 26a1: b1,10,56            ldb   R56,10           R56 = 10;
 26a4: 90,e7,56            orb   R56,Re7          R56 |= Re7;
 26a7: c7,01,2f,09,56      stb   R56,[R0+92f]     [92f] = R56;
@@ -756,7 +756,7 @@
 26e1: 27,d0               sjmp  26b3             goto 26b3;
 
 26e3: 11,91               clrb  R91              R91 = 0;
-26e5: 48,8a,06,80         sb3w  R80,R6,R8a       R80 = IO_TIMER - R8a;
+26e5: 48,8a,06,80         sb3w  R80,R6,R8a       R80 = IO_Timer - R8a;
 26e9: 64,80,8a            ad2w  R8a,R80          R8a += R80;
 26ec: b4,00,8c            adcb  R8c,R0           R8c += CY;
 26ef: a3,7b,22,02,7c      ldw   R7c,[R7a+222]    R7c = [R7a+222];
@@ -785,7 +785,7 @@
 272d: 57,6d,20,02,00,6c   ad3b  R6c,R0,[R6c+220] R6c = [R6c+220];
 2733: df,0c               je    2741             if (R6c = 0) goto 2741;
 2735: 65,05,00,6c         ad2w  R6c,5            R6c += 5;
-2739: 32,0a,03            jnb   B2,Ra,273f       if (HSI_RDY = 1)  {
+2739: 32,0a,03            jnb   B2,Ra,273f       if (HSI_Ready = 1)  {
 273c: ef,d7,fe            call  2616             common_Sub8(); }
 273f: 27,6f               sjmp  26b0             goto 26b0;
 
@@ -793,7 +793,7 @@
 2745: a0,48,6c            ldw   R6c,R48          R6c = R48;
 2748: a0,4a,6e            ldw   R6e,R4a          R6e = R4a;
    Sub_274b:
-274b: 32,0a,02            jnb   B2,Ra,2750       if (HSI_RDY = 1)  {
+274b: 32,0a,02            jnb   B2,Ra,2750       if (HSI_Ready = 1)  {
 274e: 2e,c6               scall 2616             common_Sub8(); }
 2750: 11,4c               clrb  R4c              R4c = 0;
 2752: 88,6c,00            cmpw  R0,R6c           
@@ -814,9 +814,9 @@
 2778: 51,ef,e7,57         an3b  R57,Re7,ef       R57 = Re7 & ef;
 277c: 90,56,57            orb   R57,R56          R57 |= R56;
 277f: b0,57,e7            ldb   Re7,R57          Re7 = R57;
-2782: b0,0b,92            ldb   R92,Rb           R92 = HSI_SAMPLE;
+2782: b0,0b,92            ldb   R92,Rb           R92 = HSI_Sample;
 2785: 85,08,00,92         xrw   R92,8            B3_R92 ^= 1;
-2789: a0,06,5c            ldw   R5c,R6           R5c = IO_TIMER;
+2789: a0,06,5c            ldw   R5c,R6           R5c = IO_Timer;
 278c: 58,8d,5d,54         sb3b  R54,R5d,R8d      R54 = R5d - R8d;
 2790: 99,02,54            cmpb  R54,2            
 2793: d3,1f               jnc   27b4             if (R54 >= 2)  {
@@ -834,9 +834,9 @@
 27ad: 77,55,5f,02,58      ad2b  R58,[R54+25f]    R58 += [R54+25f];
 27b2: 27,f1               sjmp  27a5             goto 27a5; }
 
-27b4: 31,09,03            jnb   B1,R9,27ba       if (B1_INT_PEND = 1)  {
-27b7: b1,02,08            ldb   R8,2             INT_MASK = 2; }
-27ba: a3,01,ea,01,10      ldw   R10,[R0+1ea]     STACK_POINTER = [1ea];
+27b4: 31,09,03            jnb   B1,R9,27ba       if (B1_INT_Pend = 1)  {
+27b7: b1,02,08            ldb   R8,2             INT_Mask = 2; }
+27ba: a3,01,ea,01,10      ldw   R10,[R0+1ea]     StackPtr = [1ea];
 27bf: 91,00,4b            orb   R4b,0            R4b |= 0;
 27c2: ff                  nop                    
 27c3: ff                  nop                    
@@ -848,10 +848,10 @@
 
    I_HSI_0:
 27c9: f2                  pushp                  push(PSW);
-27ca: 91,00,02            orb   R2,0             LSO_PORT |= 0;
-27cd: c3,01,ea,01,10      stw   R10,[R0+1ea]     [1ea] = STACK_POINTER;
-27d2: ad,6c,10            ldzbw R10,6c           STACK_POINTER = 6c;
-27d5: 32,0a,02            jnb   B2,Ra,27da       if (HSI_RDY = 1)  {
+27ca: 91,00,02            orb   R2,0             LSO_Port |= 0;
+27cd: c3,01,ea,01,10      stw   R10,[R0+1ea]     [1ea] = StackPtr;
+27d2: ad,6c,10            ldzbw R10,6c           StackPtr = 6c;
+27d5: 32,0a,02            jnb   B2,Ra,27da       if (HSI_Ready = 1)  {
 27d8: 2e,3c               scall 2616             common_Sub8(); }
 27da: 27,de               sjmp  27ba             goto 27ba;
 
@@ -861,9 +861,9 @@
 27df: d7,03               jne   27e4             if (R12 = 0)  {
 27e1: 91,04,4f            orb   R4f,4            B2_R4f = 1; }
 27e4: b0,12,8c            ldb   R8c,R12          R8c = R12;
-27e7: a0,06,8a            ldw   R8a,R6           R8a = IO_TIMER;
+27e7: a0,06,8a            ldw   R8a,R6           R8a = IO_Timer;
 27ea: fa                  di                     disable intps;
-27eb: b1,a1,08            ldb   R8,a1            INT_MASK = a1;
+27eb: b1,a1,08            ldb   R8,a1            INT_Mask = a1;
 27ee: f3                  popp                   PSW = pop();
    I_Ignore:
 27ef: f1                  reti                   return;
@@ -874,7 +874,7 @@
 27f2: ff                  nop                    
 27f3: 47,01,dc,01,00,54   ad3w  R54,R0,[R0+1dc]  R54 = [1dc];
 27f9: df,22               je    281d             if (R54 != 0)  {
-27fb: 48,06,54,56         sb3w  R56,R54,R6       R56 = R54 - IO_TIMER;
+27fb: 48,06,54,56         sb3w  R56,R54,R6       R56 = R54 - IO_Timer;
 27ff: 37,57,1b            jnb   B7,R57,281d      if (B7_R57 = 1)  {
 2802: 30,0a,05            jnb   B0,Ra,280a       if (HSO_OVF = 0) goto 280a;
 2805: 91,80,4b            orb   R4b,80           B7_R4b = 1;
@@ -884,7 +884,7 @@
 280e: d7,02               jne   2812             if (R54 = 0)  {
 2810: 07,54               incw  R54              R54++; }
 2812: c3,01,dc,01,54      stw   R54,[R0+1dc]     [1dc] = R54;
-2817: a0,54,0e            ldw   Re,R54           HSI_TIME = R54;
+2817: a0,54,0e            ldw   Re,R54           HSI_Time = R54;
 281a: b1,0f,0d            ldb   Rd,f             HSO_Cmd = f; } }
 281d: a3,01,00,0d,54      ldw   R54,[R0+d00]     R54 = CC_PRESENT;
 2822: 47,01,1a,c1,00,56   ad3w  R56,R0,[R0+c11a] R56 = [c11a];
@@ -893,7 +893,7 @@
 282d: d7,14               jne   2843             if (R55 = 2a)  {
 282f: 8b,01,1a,c1,00      cmpw  R0,[R0+c11a]     
 2834: df,0d               je    2843             if ([c11a] != 0)  {
-2836: 68,06,56            sb2w  R56,R6           R56 -= IO_TIMER;
+2836: 68,06,56            sb2w  R56,R6           R56 -= IO_Timer;
 2839: 37,57,07            jnb   B7,R57,2843      if (B7_R57 = 1)  {
 283c: fa                  di                     disable intps;
 283d: ff                  nop                    
@@ -913,7 +913,7 @@
 2853: d7,02               jne   2857             if (R54 = 0)  {
 2855: 07,54               incw  R54              R54++; }
 2857: c3,01,dc,01,54      stw   R54,[R0+1dc]     [1dc] = R54;
-285c: a0,54,0e            ldw   Re,R54           HSI_TIME = R54;
+285c: a0,54,0e            ldw   Re,R54           HSI_Time = R54;
 285f: b1,0f,0d            ldb   Rd,f             HSO_Cmd = f;
 2862: 71,7f,4b            an2b  R4b,7f           B7_R4b = 0; }
 2865: f0                  ret                    return;
@@ -1038,9 +1038,9 @@
 29b2: f0                  ret                    return;
 
    Sub_29b3:
-29b3: 33,0a,fd            jnb   B3,Ra,29b3       if (AD_RDY = 0) goto Sub_29b3;
-29b6: 51,f0,04,54         an3b  R54,R4,f0        R54 = AD_LO & f0;
-29ba: b0,05,55            ldb   R55,R5           R55 = AD_HI;
+29b3: 33,0a,fd            jnb   B3,Ra,29b3       if (AD_Ready = 0) goto Sub_29b3;
+29b6: 51,f0,04,54         an3b  R54,R4,f0        R54 = AD_Low & f0;
+29ba: b0,05,55            ldb   R55,R5           R55 = AD_High;
 29bd: a3,01,20,01,56      ldw   R56,[R0+120]     R56 = [120];
 29c2: c3,01,20,01,54      stw   R54,[R0+120]     [120] = R54;
 29c7: 08,01,54            shrw  R54,1            R54 >>= 1;                        #[ R54 /= 2] 
@@ -1553,7 +1553,7 @@
 2f2d: b1,12,79            ldb   R79,12           R79 = 12;
 2f30: ef,47,f5            call  247a             common_Sub3();
 2f33: 3c,4c,0f            jb    B4,R4c,2f45      if (B4_R4c = 1) return;
-2f36: 47,01,da,01,06,7c   ad3w  R7c,R6,[R0+1da]  R7c = IO_TIMER + [1da];
+2f36: 47,01,da,01,06,7c   ad3w  R7c,R6,[R0+1da]  R7c = IO_Timer + [1da];
 2f3c: b1,02,79            ldb   R79,2            R79 = 2;
 2f3f: ef,a1,f5            call  24e3             Sub_24e3();
 2f42: 71,ef,4b            an2b  R4b,ef           B4_R4b = 0; }
@@ -1650,13 +1650,13 @@
 3038: c7,01,fc,01,78      stb   R78,[R0+1fc]     [1fc] = R78;
 303d: f0                  ret                    return;
 
-   Sub_303e:
+   SUYFuncLU_303e:
 303e: 91,20,a1            orb   Ra1,20           B5_Ra1 = 1;
-3041: 20,06               sjmp  3049             goto Sub_3049;
+3041: 20,06               sjmp  3049             goto UUYFuncLU_3049;
 
 3043: 91,20,a1            orb   Ra1,20           B5_Ra1 = 1;
 3046: 91,10,a1            orb   Ra1,10           B4_Ra1 = 1;
-   Sub_3049:
+   UUYFuncLU_3049:
 3049: 9b,32,02,34         cmpb  R34,[R32+2]      
 304d: 3d,a1,04            jb    B5,Ra1,3054      if (B5_Ra1 = 1) goto 3054;
 3050: db,0a               jc    305c             if (R34 >= [R32+2]) goto 305c;
@@ -1664,7 +1664,7 @@
 
 3054: d6,06               jge   305c             if (R34 >= [R32+2]) goto 305c;    #[Signed]
 3056: 65,02,00,32         ad2w  R32,2            R32 += 2;
-305a: 27,ed               sjmp  3049             goto Sub_3049;
+305a: 27,ed               sjmp  3049             goto UUYFuncLU_3049;
 
 305c: 71,df,a1            an2b  Ra1,df           B5_Ra1 = 0;
 305f: b2,33,36            ldb   R36,[R32++]      R36 = [R32++];
@@ -1689,15 +1689,15 @@
 308f: 71,ef,a1            an2b  Ra1,ef           B4_Ra1 = 0;
 3092: f0                  ret                    return;
 
-   Sub_3093:
+   SUWFuncLU_3093:
 3093: 91,20,a1            orb   Ra1,20           B5_Ra1 = 1;
-3096: 20,06               sjmp  309e             goto Sub_309e;
+3096: 20,06               sjmp  309e             goto UUWFuncLU_309e;
 
-   Sub_3098:
+   SSWFuncLU_3098:
 3098: 91,20,a1            orb   Ra1,20           B5_Ra1 = 1;
-   Sub_309b:
+   USWFuncLU_309b:
 309b: 91,10,a1            orb   Ra1,10           B4_Ra1 = 1;
-   Sub_309e:
+   UUWFuncLU_309e:
 309e: 8b,32,04,34         cmpw  R34,[R32+4]      
 30a2: 3d,a1,04            jb    B5,Ra1,30a9      if (B5_Ra1 = 1) goto 30a9;
 30a5: db,0a               jc    30b1             if (R34 >= [R32+4]) goto 30b1;
@@ -1705,7 +1705,7 @@
 
 30a9: d6,06               jge   30b1             if (R34 >= [R32+4]) goto 30b1;    #[Signed]
 30ab: 65,04,00,32         ad2w  R32,4            R32 += 4;
-30af: 27,ed               sjmp  309e             goto Sub_309e;
+30af: 27,ed               sjmp  309e             goto UUWFuncLU_309e;
 
 30b1: 71,df,a1            an2b  Ra1,df           B5_Ra1 = 0;
 30b4: a2,33,36            ldw   R36,[R32++]      R36 = [R32++];
@@ -1757,7 +1757,7 @@
 3118: 64,32,3e            ad2w  R3e,R32          R3e += R32;
 311b: f0                  ret                    return;
 
-   Sub_311c:
+   UYTabLU_311c:
 311c: 5c,33,34,36         ml3b  R36,R34,R33      wR36 = R34 * R33;
 3120: 74,31,36            ad2b  R36,R31          R36 += R31;
 3123: d3,02               jnc   3127             if (CY = 1)  {                    #[ jump if (R36+R31) overflows]
@@ -1887,7 +1887,7 @@
 3244: 34,2d,04            jnb   B4,R2d,324b      if (B4_R2d = 1)  {
 3247: a1,ff,ff,30         ldw   R30,ffff         R30 = ffff; }
 324b: c3,01,ca,01,30      stw   R30,[R0+1ca]     [1ca] = R30;
-3250: c3,01,cc,01,06      stw   R6,[R0+1cc]      [1cc] = IO_TIMER;
+3250: c3,01,cc,01,06      stw   R6,[R0+1cc]      [1cc] = IO_Timer;
 3255: e7,6d,00            jump  32c5             goto 32c5;
 
 3258: a1,ae,a3,38         ldw   R38,a3ae         R38 = a3ae;
@@ -1897,7 +1897,7 @@
 3265: 6d,ae,bc,38         ml2w  R38,bcae         lR38 = R38 * bcae;
 3269: 65,80,00,3a         ad2w  R3a,80           R3a += 80;
 326d: ac,3b,e4            ldzbw Re4,R3b          wRe4 = yR3b;
-3270: a0,06,38            ldw   R38,R6           R38 = IO_TIMER;
+3270: a0,06,38            ldw   R38,R6           R38 = IO_Timer;
 3273: a3,01,ca,01,32      ldw   R32,[R0+1ca]     R32 = [1ca];
 3278: 48,32,30,34         sb3w  R34,R30,R32      R34 = R30 - R32;
 327c: a3,01,cc,01,3a      ldw   R3a,[R0+1cc]     R3a = [1cc];
@@ -1953,28 +1953,28 @@
 
 3317: 45,9e,01,f0,32      ad3w  R32,Rf0,19e      R32 = Scaler_for_TBL7B12;
 331c: a0,e4,34            ldw   R34,Re4          R34 = Re4;
-331f: ef,7c,fd            call  309e             Sub_309e();
+331f: ef,7c,fd            call  309e             UUWFuncLU_309e();
 3322: a0,38,30            ldw   R30,R38          R30 = R38;
 3325: 45,88,01,f8,32      ad3w  R32,Rf8,188      R32 = Scaler_for_TBL7B12;
 332a: b3,f3,92,01,36      ldb   R36,[Rf2+192]    R36 = [73b4];
 332f: ef,48,0c            call  3f7a             Sub_3f7a();
-3332: ef,5e,fd            call  3093             Sub_3093();
+3332: ef,5e,fd            call  3093             SUWFuncLU_3093();
 3335: a0,38,32            ldw   R32,R38          R32 = R38;
 3338: ad,08,34            ldzbw R34,8            wR34 = 8;
 333b: 45,9c,01,f8,38      ad3w  R38,Rf8,19c      R38 = TBL7B12;
-3340: ef,d9,fd            call  311c             Sub_311c();
+3340: ef,d9,fd            call  311c             UYTabLU_311c();
 3343: b0,3b,3c            ldb   R3c,R3b          R3c = R3b;
 3346: b3,01,d9,00,34      ldb   R34,[R0+d9]      R34 = [d9];
-334b: 45,d8,00,f6,32      ad3w  R32,Rf6,d8       R32 = 778c;
-3350: ef,f6,fc            call  3049             Sub_3049();
+334b: 45,d8,00,f6,32      ad3w  R32,Rf6,d8       R32 = FN778C;
+3350: ef,f6,fc            call  3049             UUYFuncLU_3049();
 3353: 7c,38,3c            ml2b  R3c,R38          wR3c = R3c * R38;
 3356: a3,01,1c,01,34      ldw   R34,[R0+11c]     R34 = [11c];
-335b: 45,54,00,f0,32      ad3w  R32,Rf0,54       R32 = 6fa4;
-3360: ef,3b,fd            call  309e             Sub_309e();
+335b: 45,54,00,f0,32      ad3w  R32,Rf0,54       R32 = FN6FA4;
+3360: ef,3b,fd            call  309e             UUWFuncLU_309e();
 3363: 6c,38,3c            ml2w  R3c,R38          lR3c = R3c * R38;
 3366: a3,01,7a,01,34      ldw   R34,[R0+17a]     R34 = [17a];
-336b: 45,68,00,f0,32      ad3w  R32,Rf0,68       R32 = 6fb8;
-3370: ef,2b,fd            call  309e             Sub_309e();
+336b: 45,68,00,f0,32      ad3w  R32,Rf0,68       R32 = FN6FB8;
+3370: ef,2b,fd            call  309e             UUWFuncLU_309e();
 3373: 6f,fa,48,38         ml2w  R38,[Rfa+48]     lR38 = R38 * [7e5c];
 3377: 0f,34,38            norm  R38,R34          R34 = normalize(lR38);
 337a: 0f,35,3c            norm  R3c,R35          R35 = normalize(lR3c);
@@ -1988,9 +1988,9 @@
 3391: bd,ff,38            ldsbw R38,ff           swR38 = ff; }
 3394: c7,01,a9,01,39      stb   R39,[R0+1a9]     [1a9] = R39;
 3399: a0,38,3a            ldw   R3a,R38          R3a = R38;
-339c: 45,ce,00,f6,32      ad3w  R32,Rf6,ce       R32 = 7782;
+339c: 45,ce,00,f6,32      ad3w  R32,Rf6,ce       R32 = FN7782;
 33a1: b0,39,34            ldb   R34,R39          R34 = R39;
-33a4: ef,a2,fc            call  3049             Sub_3049();
+33a4: ef,a2,fc            call  3049             UUYFuncLU_3049();
 33a7: 7d,a2,38            ml2b  R38,a2           wR38 = R38 * a2;
 33aa: c7,01,c7,01,39      stb   R39,[R0+1c7]     [1c7] = R39;
 33af: 6c,3a,38            ml2w  R38,R3a          lR38 = R38 * R3a;
@@ -2027,7 +2027,7 @@
 3409: 8b,f3,28,02,34      cmpw  R34,[Rf2+228]    
 340e: d1,0d               jleu  341d             if (R34 <= [744a]) goto 341d;
 3410: 45,42,01,f0,32      ad3w  R32,Rf0,142      R32 = ECT_Transfer;
-3415: 2c,84               scall 309b             Sub_309b();
+3415: 2c,84               scall 309b             USWFuncLU_309b();
 3417: 65,80,00,38         ad2w  R38,80           R38 += 80;
 341b: 20,0e               sjmp  342b             goto 342b;
 
@@ -2063,7 +2063,7 @@
 3469: a1,16,05,36         ldw   R36,516          R36 = 516;
 346d: 8c,18,34            divw  R34,R18          R34 = lR34 / R18;
 3470: 45,6a,01,f0,32      ad3w  R32,Rf0,16a      R32 = Barrometric_Pressure_Transfer;
-3475: ef,26,fc            call  309e             Sub_309e();
+3475: ef,26,fc            call  309e             UUWFuncLU_309e();
 3478: 65,80,00,38         ad2w  R38,80           R38 += 80;
 347c: c7,01,ac,01,39      stb   R39,[R0+1ac]     [1ac] = R39;
 3481: c3,01,28,01,16      stw   R16,[R0+128]     [128] = R16;
@@ -2077,8 +2077,8 @@
 349e: 4b,01,1e,01,ac,34   sb3w  R34,Rac,[R0+11e] R34 = Rac - [11e];
 34a4: db,02               jc    34a8             if (R34 < 0)  {
 34a6: 01,34               clrw  R34              R34 = 0; }
-34a8: 45,b6,02,f0,32      ad3w  R32,Rf0,2b6      R32 = 7206;
-34ad: ef,ee,fb            call  309e             Sub_309e();
+34a8: 45,b6,02,f0,32      ad3w  R32,Rf0,2b6      R32 = FN7206;
+34ad: ef,ee,fb            call  309e             UUWFuncLU_309e();
 34b0: 20,0d               sjmp  34bf             goto 34bf;
 
 34b2: b1,e9,42            ldb   R42,e9           R42 = e9;
@@ -2089,7 +2089,7 @@
 34bf: b0,38,b4            ldb   Rb4,R38          Rb4 = R38;
 34c2: c7,01,ac,01,38      stb   R38,[R0+1ac]     [1ac] = R38;
 34c7: 11,b0               clrb  Rb0              Rb0 = 0;
-34c9: c3,01,28,01,06      stw   R6,[R0+128]      [128] = IO_TIMER;
+34c9: c3,01,28,01,06      stw   R6,[R0+128]      [128] = IO_Timer;
 34ce: 91,01,2d            orb   R2d,1            B0_R2d = 1;
 34d1: af,01,ac,01,34      ldzbw R34,[R0+1ac]     wR34 = [1ac];
 34d6: ac,b4,32            ldzbw R32,Rb4          wR32 = yRb4;
@@ -2148,7 +2148,7 @@
 3578: c7,01,95,00,3e      stb   R3e,[R0+95]      [95] = R3e;
 357d: b0,3e,34            ldb   R34,R3e          R34 = R3e;
 3580: 45,16,00,f6,32      ad3w  R32,Rf6,16       R32 = Injector_comp_batt_volts;
-3585: ef,c1,fa            call  3049             Sub_3049();
+3585: ef,c1,fa            call  3049             UUYFuncLU_3049();
 3588: c7,01,c6,01,38      stb   R38,[R0+1c6]     [1c6] = R38;
 358d: 01,30               clrw  R30              R30 = 0;
 358f: b0,38,31            ldb   R31,R38          R31 = R38;
@@ -2205,7 +2205,7 @@
 363d: 8b,f3,3a,02,34      cmpw  R34,[Rf2+23a]    
 3642: d1,0d               jleu  3651             if (R34 <= [745c]) goto 3651;
 3644: 45,42,01,f0,32      ad3w  R32,Rf0,142      R32 = ECT_Transfer;
-3649: ef,4f,fa            call  309b             Sub_309b();
+3649: ef,4f,fa            call  309b             USWFuncLU_309b();
 364c: bc,39,34            ldsbw R34,R39          swR34 = yR39;
 364f: 20,3f               sjmp  3690             goto 3690;
 
@@ -2262,8 +2262,8 @@
 36da: 37,27,1f            jnb   B7,R27,36fc      if (B7_R27 = 0) goto 36fc;
 36dd: 37,2c,1c            jnb   B7,R2c,36fc      if (B7_R2c = 0) goto 36fc;
 36e0: b3,01,a2,01,34      ldb   R34,[R0+1a2]     R34 = [1a2];
-36e5: 45,98,01,f2,32      ad3w  R32,Rf2,198      R32 = 73ba;
-36ea: ef,5c,f9            call  3049             Sub_3049();
+36e5: 45,98,01,f2,32      ad3w  R32,Rf2,198      R32 = Func_73ba;
+36ea: ef,5c,f9            call  3049             UUYFuncLU_3049();
 36ed: 74,b4,38            ad2b  R38,Rb4          R38 += Rb4;
 36f0: db,0a               jc    36fc             if (CY = 1) goto 36fc;            #[ jump if (R38+Rb4) overflows]
 36f2: 98,d9,38            cmpb  R38,Rd9          
@@ -2287,8 +2287,8 @@
 3721: a1,80,3e,34         ldw   R34,3e80         R34 = 3e80;
 3725: c3,01,1e,01,34      stw   R34,[R0+11e]     [11e] = R34;
 372a: ac,b4,34            ldzbw R34,Rb4          wR34 = yRb4;
-372d: 45,a2,02,f0,32      ad3w  R32,Rf0,2a2      R32 = 71f2;
-3732: ef,69,f9            call  309e             Sub_309e();
+372d: 45,a2,02,f0,32      ad3w  R32,Rf0,2a2      R32 = FN71F2;
+3732: ef,69,f9            call  309e             UUWFuncLU_309e();
 3735: 67,01,1e,01,38      ad2w  R38,[R0+11e]     R38 += [11e];
 373a: d3,03               jnc   373f             if (CY = 1)  {                    #[ jump if (R38+[11e]) overflows]
 373c: bd,ff,38            ldsbw R38,ff           swR38 = ff; }
@@ -2309,9 +2309,9 @@
 3768: 01,d0               clrw  Rd0              Rd0 = 0;
 376a: 91,40,a1            orb   Ra1,40           B6_Ra1 = 1; } }
 376d: 36,a1,15            jnb   B6,Ra1,3785      if (B6_Ra1 = 0) goto 3785;
-3770: 45,08,00,f0,32      ad3w  R32,Rf0,8        R32 = 6f58;
+3770: 45,08,00,f0,32      ad3w  R32,Rf0,8        R32 = FN6F58;
 3775: ac,b2,34            ldzbw R34,Rb2          wR34 = yRb2;
-3778: ef,18,f9            call  3093             Sub_3093();
+3778: ef,18,f9            call  3093             SUWFuncLU_3093();
 377b: 88,38,d0            cmpw  Rd0,R38          
 377e: d3,11               jnc   3791             if (Rd0 >= R38)  {
 3780: 91,40,26            orb   R26,40           B6_R26 = 1;
@@ -2324,9 +2324,9 @@
 3791: 9b,f3,fe,02,00      cmpb  R0,[Rf2+2fe]     
 3796: d7,59               jne   37f1             if ([7520] = 0)  {
 3798: 36,26,2d            jnb   B6,R26,37c8      if (B6_R26 = 0) goto 37c8;
-379b: 45,36,01,f0,32      ad3w  R32,Rf0,136      R32 = 7086;
+379b: 45,36,01,f0,32      ad3w  R32,Rf0,136      R32 = FN7086;
 37a0: b0,b2,34            ldb   R34,Rb2          R34 = Rb2;
-37a3: ef,98,f8            call  303e             Sub_303e();
+37a3: ef,98,f8            call  303e             SUYFuncLU_303e();
 37a6: b3,01,a0,01,34      ldb   R34,[R0+1a0]     R34 = [1a0];
 37ab: 98,34,38            cmpb  R38,R34          
 37ae: d9,28               jgtu  37d8             if (R38 > R34) goto 37d8;
@@ -2347,9 +2347,9 @@
 37d8: 32,a1,16            jnb   B2,Ra1,37f1      if (B2_Ra1 = 1)  {
 37db: 31,26,13            jnb   B1,R26,37f1      if (B1_R26 = 1)  {
 37de: 71,fd,26            an2b  R26,fd           B1_R26 = 0;
-37e1: 45,2a,01,f0,32      ad3w  R32,Rf0,12a      R32 = 707a;
+37e1: 45,2a,01,f0,32      ad3w  R32,Rf0,12a      R32 = FN707A;
 37e6: b0,b2,34            ldb   R34,Rb2          R34 = Rb2;
-37e9: ef,52,f8            call  303e             Sub_303e();
+37e9: ef,52,f8            call  303e             SUYFuncLU_303e();
 37ec: c7,01,a1,01,38      stb   R38,[R0+1a1]     [1a1] = R38; } } } }
 37f1: 01,36               clrw  R36              R36 = 0;
 37f3: a3,01,2a,01,14      ldw   R14,[R0+12a]     R14 = [12a];
@@ -2419,25 +2419,25 @@
 38a6: 37,2c,01            jnb   B7,R2c,38aa      if (B7_R2c = 1)  {
 38a9: f0                  ret                    return; }
 
-38aa: 45,02,00,f6,32      ad3w  R32,Rf6,2        R32 = 76b6;
+38aa: 45,02,00,f6,32      ad3w  R32,Rf6,2        R32 = FN76B6;
 38af: b0,b3,34            ldb   R34,Rb3          R34 = Rb3;
-38b2: ef,89,f7            call  303e             Sub_303e();
+38b2: ef,89,f7            call  303e             SUYFuncLU_303e();
 38b5: b0,38,3c            ldb   R3c,R38          R3c = R38;
-38b8: 45,0c,00,f6,32      ad3w  R32,Rf6,c        R32 = 76c0;
+38b8: 45,0c,00,f6,32      ad3w  R32,Rf6,c        R32 = FN76C0;
 38bd: b0,b2,34            ldb   R34,Rb2          R34 = Rb2;
-38c0: ef,7b,f7            call  303e             Sub_303e();
+38c0: ef,7b,f7            call  303e             SUYFuncLU_303e();
 38c3: 7c,38,3c            ml2b  R3c,R38          wR3c = R3c * R38;
 38c6: 45,1a,02,f0,32      ad3w  R32,Rf0,21a      R32 = Scaler_for_RPM;
 38cb: a0,ae,34            ldw   R34,Rae          R34 = Engine_RPM;
-38ce: ef,cd,f7            call  309e             Sub_309e();
+38ce: ef,cd,f7            call  309e             UUWFuncLU_309e();
 38d1: a0,38,30            ldw   R30,R38          R30 = R38;
 38d4: 45,d2,01,f0,32      ad3w  R32,Rf0,1d2      R32 = Scaler_for_Abs_Exh_Pressure;
 38d9: af,01,a3,01,34      ldzbw R34,[R0+1a3]     wR34 = [1a3];
-38de: ef,bd,f7            call  309e             Sub_309e();
+38de: ef,bd,f7            call  309e             UUWFuncLU_309e();
 38e1: a0,38,32            ldw   R32,R38          R32 = R38;
 38e4: ad,0c,34            ldzbw R34,c            wR34 = c;
 38e7: 45,12,00,f2,38      ad3w  R38,Rf2,12       R38 = Volumetric_Efficiency_Table;
-38ec: ef,2d,f8            call  311c             Sub_311c();
+38ec: ef,2d,f8            call  311c             UYTabLU_311c();
 38ef: 69,80,00,3a         sb2w  R3a,80           R3a -= 80;
 38f3: 6c,3a,3c            ml2w  R3c,R3a          lR3c = R3c * R3a;
 38f6: 4f,f2,0c,3e,3c      ml3w  R3c,R3e,[Rf2+c]  lR3c = R3e * Engine_Displacement;
@@ -2573,8 +2573,8 @@
 3a97: a3,fe,02,38         ldw   R38,[Rfe+2]      R38 = [7f24]; }
 3a9b: a0,38,9a            ldw   R9a,R38          R9a = R38;
 3a9e: a0,9a,34            ldw   R34,R9a          R34 = R9a;
-3aa1: 45,2c,00,f4,32      ad3w  R32,Rf4,2c       R32 = 7550;
-3aa6: ef,f5,f5            call  309e             Sub_309e();
+3aa1: 45,2c,00,f4,32      ad3w  R32,Rf4,2c       R32 = FN7550;
+3aa6: ef,f5,f5            call  309e             UUWFuncLU_309e();
 3aa9: 6d,00,ef,38         ml2w  R38,ef00         lR38 = R38 * ef00;
 3aad: b0,d9,35            ldb   R35,Rd9          R35 = Rd9;
 3ab0: 11,34               clrb  R34              R34 = 0;
@@ -2611,9 +2611,9 @@
 3b0d: 9b,01,9f,01,3e      cmpb  R3e,[R0+19f]     
 3b12: d6,05               jge   3b19             if (R3e < [19f])  {               #[Signed]
 3b14: c7,01,9f,01,3e      stb   R3e,[R0+19f]     [19f] = R3e; }
-3b19: 45,e0,00,f4,32      ad3w  R32,Rf4,e0       R32 = 7604;
+3b19: 45,e0,00,f4,32      ad3w  R32,Rf4,e0       R32 = FN7604;
 3b1e: b0,b4,34            ldb   R34,Rb4          R34 = Rb4;
-3b21: ef,25,f5            call  3049             Sub_3049();
+3b21: ef,25,f5            call  3049             UUYFuncLU_3049();
 3b24: b0,38,37            ldb   R37,R38          R37 = R38;
 3b27: 11,36               clrb  R36              R36 = 0;
 3b29: a3,01,b6,01,32      ldw   R32,[R0+1b6]     R32 = [1b6];
@@ -2686,13 +2686,13 @@
 3c0b: d1,06               jleu  3c13             if (Rca > [72b0])  {
 3c0d: 91,04,a2            orb   Ra2,4            B2_Ra2 = 1;
 3c10: 91,02,a2            orb   Ra2,2            B1_Ra2 = 1; } } } }
-3c13: 45,24,00,f0,32      ad3w  R32,Rf0,24       R32 = 6f74;
+3c13: 45,24,00,f0,32      ad3w  R32,Rf0,24       R32 = FN6F74;
 3c18: b3,01,a2,01,34      ldb   R34,[R0+1a2]     R34 = [1a2];
-3c1d: ef,29,f4            call  3049             Sub_3049();
+3c1d: ef,29,f4            call  3049             UUYFuncLU_3049();
 3c20: b0,38,3a            ldb   R3a,R38          R3a = R38;
-3c23: 45,30,00,f0,32      ad3w  R32,Rf0,30       R32 = 6f80;
+3c23: 45,30,00,f0,32      ad3w  R32,Rf0,30       R32 = FN6F80;
 3c28: b3,01,a2,01,34      ldb   R34,[R0+1a2]     R34 = [1a2];
-3c2d: ef,19,f4            call  3049             Sub_3049();
+3c2d: ef,19,f4            call  3049             UUYFuncLU_3049();
 3c30: b0,38,3c            ldb   R3c,R38          R3c = R38;
 3c33: 98,a3,3a            cmpb  R3a,Ra3          
 3c36: d1,10               jleu  3c48             if (R3a <= Ra3) goto 3c48;
@@ -2765,7 +2765,7 @@
    Sub_3ced:
 3ced: 45,1a,02,f0,32      ad3w  R32,Rf0,21a      R32 = Scaler_for_RPM;
 3cf2: a0,ae,34            ldw   R34,Rae          R34 = Engine_RPM;
-3cf5: ef,a0,f3            call  3098             Sub_3098();
+3cf5: ef,a0,f3            call  3098             SSWFuncLU_3098();
 3cf8: a0,38,30            ldw   R30,R38          R30 = R38;
 3cfb: 08,01,30            shrw  R30,1            R30 >>= 1;                        #[ R30 /= 2] 
 3cfe: 89,00,03,30         cmpw  R30,300          
@@ -2773,26 +2773,26 @@
 3d04: a1,00,03,30         ldw   R30,300          R30 = 300; }
 3d08: 45,6e,02,f0,32      ad3w  R32,Rf0,26e      R32 = Scaler_for_MAP;
 3d0d: ac,b4,34            ldzbw R34,Rb4          wR34 = yRb4;
-3d10: ef,85,f3            call  3098             Sub_3098();
+3d10: ef,85,f3            call  3098             SSWFuncLU_3098();
 3d13: a0,38,32            ldw   R32,R38          R32 = R38;
 3d16: 89,00,04,32         cmpw  R32,400          
 3d1a: d1,04               jleu  3d20             if (R32 > 400)  {
 3d1c: a1,00,04,32         ldw   R32,400          R32 = 400; }
 3d20: 45,32,00,fa,38      ad3w  R38,Rfa,32       R38 = 7e46;
 3d25: ad,04,34            ldzbw R34,4            wR34 = 4;
-3d28: ef,f1,f3            call  311c             Sub_311c();
+3d28: ef,f1,f3            call  311c             UYTabLU_311c();
 3d2b: b0,3b,20            ldb   R20,R3b          R20 = R3b;
 3d2e: a3,fa,1e,38         ldw   R38,[Rfa+1e]     R38 = [7e32];
 3d32: 38,a0,0b            jb    B0,Ra0,3d40      if (B0_Ra0 = 0)  {
-3d35: 45,28,00,f6,32      ad3w  R32,Rf6,28       R32 = 76dc;
+3d35: 45,28,00,f6,32      ad3w  R32,Rf6,28       R32 = FN76DC;
 3d3a: ac,a3,34            ldzbw R34,Ra3          wR34 = yRa3;
-3d3d: ef,5b,f3            call  309b             Sub_309b(); }
+3d3d: ef,5b,f3            call  309b             USWFuncLU_309b(); }
 3d40: a0,38,40            ldw   R40,R38          R40 = R38;
-3d43: 45,3c,00,f6,32      ad3w  R32,Rf6,3c       R32 = 76f0;
+3d43: 45,3c,00,f6,32      ad3w  R32,Rf6,3c       R32 = FN76F0;
 3d48: a0,ae,34            ldw   R34,Rae          R34 = Engine_RPM;
-3d4b: ef,50,f3            call  309e             Sub_309e();
+3d4b: ef,50,f3            call  309e             UUWFuncLU_309e();
 3d4e: a0,38,3c            ldw   R3c,R38          R3c = R38;
-3d51: 45,02,00,f0,32      ad3w  R32,Rf0,2        R32 = 6f52;
+3d51: 45,02,00,f0,32      ad3w  R32,Rf0,2        R32 = FN6F52;
 3d56: a0,40,36            ldw   R36,R40          R36 = R40;
 3d59: 37,37,02            jnb   B7,R37,3d5e      if (B7_R37 = 1)  {
 3d5c: 03,36               negw  R36              R36 = -R36; }
@@ -2803,7 +2803,7 @@
 3d68: 89,cd,00,34         cmpw  R34,cd           
 3d6c: d1,03               jleu  3d71             if (R34 > cd)  {
 3d6e: b1,cd,34            ldb   R34,cd           R34 = cd; }
-3d71: ef,d5,f2            call  3049             Sub_3049();
+3d71: ef,d5,f2            call  3049             UUYFuncLU_3049();
 3d74: 3f,41,05            jb    B7,R41,3d7c      if (B7_R41 = 1) goto 3d7c;
 3d77: 39,a1,0a            jb    B1,Ra1,3d84      if (B1_Ra1 = 0)  {
 3d7a: 20,03               sjmp  3d7f             goto 3d7f;
@@ -2823,7 +2823,7 @@
 3d9d: d5,03               jnv   3da2             if (OVF = 1)  {
 3d9f: bd,ff,38            ldsbw R38,ff           swR38 = ff; }
 3da2: 6c,ae,38            ml2w  R38,Rae          lR38 = R38 * Engine_RPM;
-3da5: 4b,01,b0,01,06,34   sb3w  R34,R6,[R0+1b0]  R34 = IO_TIMER - [1b0];
+3da5: 4b,01,b0,01,06,34   sb3w  R34,R6,[R0+1b0]  R34 = IO_Timer - [1b0];
 3dab: 6d,55,32,34         ml2w  R34,3255         lR34 = R34 * 3255;
 3daf: a0,36,34            ldw   R34,R36          R34 = R36;
 3db2: 30,a1,25            jnb   B0,Ra1,3dda      if (B0_Ra1 = 0) goto 3dda;
@@ -2862,7 +2862,7 @@
 3e15: 8b,f3,94,00,96      cmpw  R96,[Rf2+94]     
 3e1a: db,05               jc    3e21             if (R96 < [72b6])  {
 3e1c: a3,f3,94,00,96      ldw   R96,[Rf2+94]     R96 = [72b6]; }
-3e21: c3,01,b0,01,06      stw   R6,[R0+1b0]      [1b0] = IO_TIMER;
+3e21: c3,01,b0,01,06      stw   R6,[R0+1b0]      [1b0] = IO_Timer;
 3e26: f0                  ret                    return;
 
 #starting at 3E27 is choosing fueling table(s)
@@ -2878,30 +2878,30 @@
 3e3b: 45,02,02,f0,32      ad3w  R32,Rf0,202      R32 = Scaler_for_ECT;
 3e40: b3,f3,a0,00,36      ldb   R36,[Rf2+a0]     R36 = [72c2];
 3e45: 29,33               scall 3f7a             Sub_3f7a();
-3e47: ef,4e,f2            call  3098             Sub_3098();
+3e47: ef,4e,f2            call  3098             SSWFuncLU_3098();
 3e4a: a0,38,30            ldw   R30,R38          R30 = R38;
 3e4d: 45,36,02,f0,32      ad3w  R32,Rf0,236      R32 = Scaler_for_Load_(fuel);
 3e52: ac,a3,34            ldzbw R34,Ra3          wR34 = yRa3;
-3e55: ef,46,f2            call  309e             Sub_309e();
+3e55: ef,46,f2            call  309e             UUWFuncLU_309e();
 3e58: a0,38,3c            ldw   R3c,R38          R3c = R38;
 3e5b: a0,3c,32            ldw   R32,R3c          R32 = R3c;
 3e5e: ad,0a,34            ldzbw R34,a            wR34 = a;
 3e61: 45,72,00,f8,38      ad3w  R38,Rf8,72       R38 = Fuel_Table_Base_(OL);
-3e66: ef,b3,f2            call  311c             Sub_311c();
+3e66: ef,b3,f2            call  311c             UYTabLU_311c();
 3e69: 49,80,00,3a,3c      sb3w  R3c,R3a,80       R3c = R3a - 80;
 3e6e: 20,50               sjmp  3ec0             goto 3ec0;
 
 3e70: 45,1a,02,f0,32      ad3w  R32,Rf0,21a      R32 = Scaler_for_RPM;
 3e75: a0,ae,34            ldw   R34,Rae          R34 = Engine_RPM;
-3e78: ef,1d,f2            call  3098             Sub_3098();
+3e78: ef,1d,f2            call  3098             SSWFuncLU_3098();
 3e7b: a0,38,30            ldw   R30,R38          R30 = R38;
 3e7e: 45,36,02,f0,32      ad3w  R32,Rf0,236      R32 = Scaler_for_Load_(fuel);
 3e83: ac,a3,34            ldzbw R34,Ra3          wR34 = yRa3;
-3e86: ef,15,f2            call  309e             Sub_309e();
+3e86: ef,15,f2            call  309e             UUWFuncLU_309e();
 3e89: a0,38,32            ldw   R32,R38          R32 = R38;
 3e8c: ad,0c,34            ldzbw R34,c            wR34 = c;
 3e8f: 45,1c,01,f8,38      ad3w  R38,Rf8,11c      R38 = MFA_Fuel_Multiplier_Table;
-3e94: ef,85,f2            call  311c             Sub_311c();
+3e94: ef,85,f2            call  311c             UYTabLU_311c();
 3e97: 49,80,00,3a,3c      sb3w  R3c,R3a,80       R3c = R3a - 80;
 3e9c: a3,01,04,02,3a      ldw   R3a,[R0+204]     R3a = [204];
 3ea1: 6c,3a,3c            ml2w  R3c,R3a          lR3c = R3c * R3a;
@@ -2917,15 +2917,15 @@
 3ec0: 45,02,02,f0,32      ad3w  R32,Rf0,202      R32 = Scaler_for_ECT;
 3ec5: b3,f3,a1,00,36      ldb   R36,[Rf2+a1]     R36 = [72c3];
 3eca: 28,ae               scall 3f7a             Sub_3f7a();
-3ecc: ef,c9,f1            call  3098             Sub_3098();
+3ecc: ef,c9,f1            call  3098             SSWFuncLU_3098();
 3ecf: a0,38,30            ldw   R30,R38          R30 = R38;
 3ed2: 45,82,01,f0,32      ad3w  R32,Rf0,182      R32 = Scaler_for_Time(fuel);
 3ed7: ac,cb,34            ldzbw R34,Rcb          wR34 = yRcb;
-3eda: ef,c1,f1            call  309e             Sub_309e();
+3eda: ef,c1,f1            call  309e             UUWFuncLU_309e();
 3edd: a0,38,32            ldw   R32,R38          R32 = R38;
 3ee0: ad,0a,34            ldzbw R34,a            wR34 = a;
 3ee3: 45,cc,00,f8,38      ad3w  R38,Rf8,cc       R38 = Fuel_Table_Startup;
-3ee8: ef,31,f2            call  311c             Sub_311c();
+3ee8: ef,31,f2            call  311c             UYTabLU_311c();
 3eeb: 69,80,00,3a         sb2w  R3a,80           R3a -= 80;
 3eef: 68,3a,3c            sb2w  R3c,R3a          R3c -= R3a;
 3ef2: db,02               jc    3ef6             if (R3c < 0)  {
@@ -2933,15 +2933,15 @@
 3ef6: 3d,2b,31            jb    B5,R2b,3f2a      if (B5_R2b = 1) goto 3f2a;
 3ef9: 45,1a,02,f0,32      ad3w  R32,Rf0,21a      R32 = Scaler_for_RPM;
 3efe: a0,ae,34            ldw   R34,Rae          R34 = Engine_RPM;
-3f01: ef,9a,f1            call  309e             Sub_309e();
+3f01: ef,9a,f1            call  309e             UUWFuncLU_309e();
 3f04: a0,38,30            ldw   R30,R38          R30 = R38;
 3f07: 45,52,02,f0,32      ad3w  R32,Rf0,252      R32 = Scaler_for_Load_(fuelstable);
 3f0c: ac,a3,34            ldzbw R34,Ra3          wR34 = yRa3;
-3f0f: ef,8c,f1            call  309e             Sub_309e();
+3f0f: ef,8c,f1            call  309e             UUWFuncLU_309e();
 3f12: a0,38,32            ldw   R32,R38          R32 = R38;
 3f15: ad,0c,34            ldzbw R34,c            wR34 = c;
 3f18: 45,06,00,f8,38      ad3w  R38,Rf8,6        R38 = Fuel_Table_Stabilised_(CL);
-3f1d: ef,fc,f1            call  311c             Sub_311c();
+3f1d: ef,fc,f1            call  311c             UYTabLU_311c();
 3f20: 49,80,00,3a,40      sb3w  R40,R3a,80       R40 = R3a - 80;
 3f25: b0,41,38            ldb   R38,R41          R38 = R41;
 3f28: 20,03               sjmp  3f2d             goto 3f2d;
@@ -3016,7 +3016,7 @@
 3fe1: c3,01,9e,00,38      stw   R38,[R0+9e]      [9e] = R38;
 3fe6: 45,d2,01,f0,32      ad3w  R32,Rf0,1d2      R32 = Scaler_for_Abs_Exh_Pressure;
 3feb: af,01,a3,01,34      ldzbw R34,[R0+1a3]     wR34 = [1a3];
-3ff0: ef,ab,f0            call  309e             Sub_309e();
+3ff0: ef,ab,f0            call  309e             UUWFuncLU_309e();
 3ff3: a0,38,aa            ldw   Raa,R38          Raa = R38;
 3ff6: 65,80,00,38         ad2w  R38,80           R38 += 80;
 3ffa: bf,01,9e,00,3a      ldsbw R3a,[R0+9e]      swR3a = [9e];
@@ -3025,7 +3025,7 @@
 4007: c4,30,39            stb   R39,R30          R30 = R39;
 400a: 45,1a,02,f0,32      ad3w  R32,Rf0,21a      R32 = Scaler_for_RPM;
 400f: a0,ae,34            ldw   R34,Rae          R34 = Engine_RPM;
-4012: ef,89,f0            call  309e             Sub_309e();
+4012: ef,89,f0            call  309e             UUWFuncLU_309e();
 4015: a0,38,a8            ldw   Ra8,R38          Ra8 = R38;
 4018: 65,80,00,38         ad2w  R38,80           R38 += 80;
 401c: bf,01,9f,00,3a      ldsbw R3a,[R0+9f]      swR3a = [9f];
@@ -3095,9 +3095,9 @@
 40f4: d3,f3               jnc   40e9             if (R38 < [7518]) goto 40e9;
 40f6: a3,fa,1e,38         ldw   R38,[Rfa+1e]     R38 = [7e32];
 40fa: 38,a0,0b            jb    B0,Ra0,4108      if (B0_Ra0 = 0)  {
-40fd: 45,28,00,f6,32      ad3w  R32,Rf6,28       R32 = 76dc;
+40fd: 45,28,00,f6,32      ad3w  R32,Rf6,28       R32 = FN76DC;
 4102: ac,a3,34            ldzbw R34,Ra3          wR34 = yRa3;
-4105: ef,93,ef            call  309b             Sub_309b(); }
+4105: ef,93,ef            call  309b             USWFuncLU_309b(); }
 4108: fe,6d,08,00,38      sml2w R38,8            slR38 = R38 * 8;
 410d: 65,00,80,38         ad2w  R38,8000         R38 += 8000;
 4111: a3,fb,d8,00,3a      ldw   R3a,[Rfa+d8]     R3a = [7eec];
@@ -3164,11 +3164,11 @@
 
 41d8: 45,1a,02,f0,32      ad3w  R32,Rf0,21a      R32 = Scaler_for_RPM;
 41dd: a0,ae,34            ldw   R34,Rae          R34 = Engine_RPM;
-41e0: ef,bb,ee            call  309e             Sub_309e();
+41e0: ef,bb,ee            call  309e             UUWFuncLU_309e();
 41e3: a0,38,a8            ldw   Ra8,R38          Ra8 = R38;
 41e6: 45,d2,01,f0,32      ad3w  R32,Rf0,1d2      R32 = Scaler_for_Abs_Exh_Pressure;
 41eb: af,01,a3,01,34      ldzbw R34,[R0+1a3]     wR34 = [1a3];
-41f0: ef,ab,ee            call  309e             Sub_309e();
+41f0: ef,ab,ee            call  309e             UUWFuncLU_309e();
 41f3: a0,38,aa            ldw   Raa,R38          Raa = R38;
 41f6: b0,ab,30            ldb   R30,Rab          R30 = Rab;
 41f9: 7d,0c,30            ml2b  R30,c            wR30 = R30 * c;
@@ -3200,7 +3200,7 @@
 4241: ac,aa,32            ldzbw R32,Raa          wR32 = yRaa;
 4244: ad,02,34            ldzbw R34,2            wR34 = 2;
 4247: a1,3c,00,38         ldw   R38,3c           R38 = 3c;
-424b: ef,ce,ee            call  311c             Sub_311c();
+424b: ef,ce,ee            call  311c             UYTabLU_311c();
 424e: ac,3b,3a            ldzbw R3a,R3b          wR3a = yR3b;
 4251: 65,80,00,3a         ad2w  R3a,80           R3a += 80;
 4255: c3,01,c2,01,3a      stw   R3a,[R0+1c2]     [1c2] = R3a;
@@ -3256,13 +3256,13 @@
 42d5: 01,38               clrw  R38              R38 = 0;
 42d7: 20,ef               sjmp  43c8             goto 43c8;
 
-42d9: 45,54,00,f6,32      ad3w  R32,Rf6,54       R32 = 7708;
+42d9: 45,54,00,f6,32      ad3w  R32,Rf6,54       R32 = FN7708;
 42de: b3,01,33,01,34      ldb   R34,[R0+133]     R34 = [133];
-42e3: ef,63,ed            call  3049             Sub_3049();
+42e3: ef,63,ed            call  3049             UUYFuncLU_3049();
 42e6: 5c,b4,38,30         ml3b  R30,R38,Rb4      wR30 = R38 * Rb4;
-42ea: 45,5e,00,f6,32      ad3w  R32,Rf6,5e       R32 = 7712;
+42ea: 45,5e,00,f6,32      ad3w  R32,Rf6,5e       R32 = FN7712;
 42ef: bc,b2,34            ldsbw R34,Rb2          swR34 = yRb2;
-42f2: ef,9e,ed            call  3093             Sub_3093();
+42f2: ef,9e,ed            call  3093             SUWFuncLU_3093();
 42f5: 6c,30,38            ml2w  R38,R30          lR38 = R38 * R30;
 42f8: 8d,c0,3b,38         divw  R38,3bc0         R38 = lR38 / 3bc0;
 42fc: d5,03               jnv   4301             if (OVF = 1)  {
@@ -3318,9 +3318,9 @@
 4382: bd,ff,38            ldsbw R38,ff           swR38 = ff; }
 4385: 30,24,1c            jnb   B0,R24,43a4      if (B0_R24 = 1)  {
 4388: c0,16,38            stw   R38,R16          R16 = R38;
-438b: 45,82,00,f6,32      ad3w  R32,Rf6,82       R32 = 7736;
+438b: 45,82,00,f6,32      ad3w  R32,Rf6,82       R32 = FN7736;
 4390: b0,b2,34            ldb   R34,Rb2          R34 = Rb2;
-4393: ef,a8,ec            call  303e             Sub_303e();
+4393: ef,a8,ec            call  303e             SUYFuncLU_303e();
 4396: 6c,16,38            ml2w  R38,R16          lR38 = R38 * R16;
 4399: 0c,06,38            shrdw R38,6            lR38 >>= 6;                       #[ R38 /= 64] 
 439c: 88,00,3a            cmpw  R3a,R0           
@@ -3451,14 +3451,14 @@
 451b: 20,2b               sjmp  4548             goto 4548;
 
 451d: b0,a3,34            ldb   R34,Ra3          R34 = Ra3;
-4520: 45,66,01,f2,32      ad3w  R32,Rf2,166      R32 = 7388;
-4525: ef,21,eb            call  3049             Sub_3049();
+4520: 45,66,01,f2,32      ad3w  R32,Rf2,166      R32 = Func_7388;
+4525: ef,21,eb            call  3049             UUYFuncLU_3049();
 4528: c7,01,bb,01,38      stb   R38,[R0+1bb]     [1bb] = R38;
 452d: 31,27,18            jnb   B1,R27,4548      if (B1_R27 = 1)  {
 4530: 71,fd,27            an2b  R27,fd           B1_R27 = 0;
 4533: b3,01,a2,01,34      ldb   R34,[R0+1a2]     R34 = [1a2];
-4538: 45,74,01,f2,32      ad3w  R32,Rf2,174      R32 = 7396;
-453d: ef,09,eb            call  3049             Sub_3049();
+4538: 45,74,01,f2,32      ad3w  R32,Rf2,174      R32 = Func_7396;
+453d: ef,09,eb            call  3049             UUYFuncLU_3049();
 4540: c7,01,ba,01,38      stb   R38,[R0+1ba]     [1ba] = R38;
 4545: 91,02,c8            orb   Rc8,2            B1_Rc8 = 1; }
 4548: b3,01,ba,01,30      ldb   R30,[R0+1ba]     R30 = [1ba];
@@ -3504,26 +3504,26 @@
 45b2: 45,02,02,f0,32      ad3w  R32,Rf0,202      R32 = Scaler_for_ECT;
 45b7: b3,f3,8a,01,36      ldb   R36,[Rf2+18a]    R36 = [73ac];
 45bc: ef,bb,f9            call  3f7a             Sub_3f7a();
-45bf: ef,d6,ea            call  3098             Sub_3098();
+45bf: ef,d6,ea            call  3098             SSWFuncLU_3098();
 45c2: a0,38,a8            ldw   Ra8,R38          Ra8 = R38;
 45c5: 45,6e,02,f0,32      ad3w  R32,Rf0,26e      R32 = Scaler_for_MAP;
 45ca: ac,b4,34            ldzbw R34,Rb4          wR34 = yRb4;
-45cd: ef,ce,ea            call  309e             Sub_309e();
+45cd: ef,ce,ea            call  309e             UUWFuncLU_309e();
 45d0: a0,38,aa            ldw   Raa,R38          Raa = R38;
 45d3: a0,a8,30            ldw   R30,Ra8          R30 = Ra8;
 45d6: a0,aa,32            ldw   R32,Raa          R32 = Raa;
 45d9: ad,0a,34            ldzbw R34,a            wR34 = a;
 45dc: 45,01,01,f2,38      ad3w  R38,Rf2,101      R38 = TBL7323;
-45e1: ef,38,eb            call  311c             Sub_311c();
-45e4: 45,46,00,f0,32      ad3w  R32,Rf0,46       R32 = 6f96;
+45e1: ef,38,eb            call  311c             UYTabLU_311c();
+45e4: 45,46,00,f0,32      ad3w  R32,Rf0,46       R32 = FN6F96;
 45e9: b3,01,a2,01,34      ldb   R34,[R0+1a2]     R34 = [1a2];
-45ee: ef,58,ea            call  3049             Sub_3049();
+45ee: ef,58,ea            call  3049             UUYFuncLU_3049();
 45f1: 5c,38,3b,40         ml3b  R40,R3b,R38      wR40 = R3b * R38;
 45f5: a0,a8,30            ldw   R30,Ra8          R30 = Ra8;
 45f8: a0,aa,32            ldw   R32,Raa          R32 = Raa;
 45fb: ad,0a,34            ldzbw R34,a            wR34 = a;
 45fe: 45,a7,00,f2,38      ad3w  R38,Rf2,a7       R38 = TBL72C9;
-4603: ef,16,eb            call  311c             Sub_311c();
+4603: ef,16,eb            call  311c             UYTabLU_311c();
 4606: 5f,fa,2c,3b,3a      ml3b  R3a,R3b,[Rfa+2c] wR3a = R3b * [7e40];
 460b: 08,01,3a            shrw  R3a,1            R3a >>= 1;                        #[ R3a /= 2] 
 460e: 33,28,16            jnb   B3,R28,4627      if (B3_R28 = 0) goto 4627;
@@ -3544,8 +3544,8 @@
 463b: 91,08,28            orb   R28,8            B3_R28 = 1;
 463e: f0                  ret                    return; }
 
-463f: 4b,01,d6,01,06,34   sb3w  R34,R6,[R0+1d6]  R34 = IO_TIMER - [1d6];
-4645: c3,01,d6,01,06      stw   R6,[R0+1d6]      [1d6] = IO_TIMER;
+463f: 4b,01,d6,01,06,34   sb3w  R34,R6,[R0+1d6]  R34 = IO_Timer - [1d6];
+4645: c3,01,d6,01,06      stw   R6,[R0+1d6]      [1d6] = IO_Timer;
 464a: 6d,55,32,34         ml2w  R34,3255         lR34 = R34 * 3255;
 464e: a0,36,34            ldw   R34,R36          R34 = R36;
 4651: fe,6c,98,34         sml2w R34,R98          slR34 = R34 * R98;
@@ -3601,8 +3601,8 @@
 46df: 88,00,36            cmpw  R36,R0           
 46e2: df,03               je    46e7             if (R36 != 0)  {
 46e4: bd,ff,34            ldsbw R34,ff           swR34 = ff; }
-46e7: 45,04,00,f4,32      ad3w  R32,Rf4,4        R32 = 7528;
-46ec: ef,ac,e9            call  309b             Sub_309b();
+46e7: 45,04,00,f4,32      ad3w  R32,Rf4,4        R32 = FN7528;
+46ec: ef,ac,e9            call  309b             USWFuncLU_309b();
 46ef: 11,32               clrb  R32              R32 = 0;
 46f1: 37,39,04            jnb   B7,R39,46f8      if (B7_R39 = 1)  {
 46f4: 15,32               decb  R32              R32--;
@@ -3643,8 +3643,8 @@
 475d: d3,03               jnc   4762             if (R34 >= 0)  {
 475f: bd,ff,34            ldsbw R34,ff           swR34 = ff; } }
 4762: c3,01,98,01,34      stw   R34,[R0+198]     [198] = R34;
-4767: 45,58,00,f4,32      ad3w  R32,Rf4,58       R32 = 757c;
-476c: ef,2f,e9            call  309e             Sub_309e();
+4767: 45,58,00,f4,32      ad3w  R32,Rf4,58       R32 = FN757C;
+476c: ef,2f,e9            call  309e             UUWFuncLU_309e();
 476f: b3,01,d9,00,34      ldb   R34,[R0+d9]      R34 = [d9];
 4774: 7d,4b,34            ml2b  R34,4b           wR34 = R34 * 4b;
 4777: 65,75,3a,34         ad2w  R34,3a75         R34 += 3a75;
@@ -3656,22 +3656,22 @@
 4789: ef,68,01            call  48f4             Sub_48f4();
 478c: 45,1a,02,f0,32      ad3w  R32,Rf0,21a      R32 = Scaler_for_RPM;
 4791: a0,ae,34            ldw   R34,Rae          R34 = Engine_RPM;
-4794: ef,07,e9            call  309e             Sub_309e();
+4794: ef,07,e9            call  309e             UUWFuncLU_309e();
 4797: a0,38,30            ldw   R30,R38          R30 = R38;
 479a: 45,6e,02,f0,32      ad3w  R32,Rf0,26e      R32 = Scaler_for_MAP;
 479f: ac,b4,34            ldzbw R34,Rb4          wR34 = yRb4;
-47a2: ef,f9,e8            call  309e             Sub_309e();
+47a2: ef,f9,e8            call  309e             UUWFuncLU_309e();
 47a5: a0,38,32            ldw   R32,R38          R32 = R38;
 47a8: ad,0c,34            ldzbw R34,c            wR34 = c;
-47ab: 45,27,00,fe,38      ad3w  R38,Rfe,27       R38 = TBL7F49_(unused?);
-47b0: ef,69,e9            call  311c             Sub_311c();
-47b3: 45,1e,00,fc,32      ad3w  R32,Rfc,1e       R32 = 7f16;
+47ab: 45,27,00,fe,38      ad3w  R38,Rfe,27       R38 = TBL7F49;
+47b0: ef,69,e9            call  311c             UYTabLU_311c();
+47b3: 45,1e,00,fc,32      ad3w  R32,Rfc,1e       R32 = FN7F16;
 47b8: b0,b2,34            ldb   R34,Rb2          R34 = Rb2;
-47bb: ef,80,e8            call  303e             Sub_303e();
+47bb: ef,80,e8            call  303e             SUYFuncLU_303e();
 47be: 5c,3b,38,3e         ml3b  R3e,R38,R3b      wR3e = R38 * R3b;
 47c2: 45,1d,00,fe,32      ad3w  R32,Rfe,1d       R32 = FN7F3F;
 47c7: b3,01,d9,00,34      ldb   R34,[R0+d9]      R34 = [d9];
-47cc: ef,7a,e8            call  3049             Sub_3049();
+47cc: ef,7a,e8            call  3049             UUYFuncLU_3049();
 47cf: 11,39               clrb  R39              R39 = 0;
 47d1: 6c,3e,38            ml2w  R38,R3e          lR38 = R38 * R3e;
 47d4: 0d,09,38            shldw R38,9            lR38 <<= 9;                       #[ R38 *= 512] 
@@ -3730,8 +3730,8 @@
 4872: c7,01,89,02,3a      stb   R3a,[R0+289]     [289] = R3a;
 4877: c7,01,e0,01,3f      stb   R3f,[R0+1e0]     [1e0] = R3f;
 487c: a0,3a,34            ldw   R34,R3a          R34 = R3a;
-487f: 45,80,00,f4,32      ad3w  R32,Rf4,80       R32 = 75a4;
-4884: ef,17,e8            call  309e             Sub_309e();
+487f: 45,80,00,f4,32      ad3w  R32,Rf4,80       R32 = FN75A4;
+4884: ef,17,e8            call  309e             UUWFuncLU_309e();
 4887: 6d,00,ef,38         ml2w  R38,ef00         lR38 = R38 * ef00;
 488b: b3,01,d9,00,37      ldb   R37,[R0+d9]      R37 = [d9];
 4890: 11,36               clrb  R36              R36 = 0;
@@ -3837,8 +3837,8 @@
 49a8: 08,01,34            shrw  R34,1            R34 >>= 1;                        #[ R34 /= 2] 
 49ab: 68,30,34            sb2w  R34,R30          R34 -= R30;
 49ae: c3,01,9c,01,34      stw   R34,[R0+19c]     [19c] = R34;
-49b3: 45,a8,00,f4,32      ad3w  R32,Rf4,a8       R32 = 75cc;
-49b8: ef,dd,e6            call  3098             Sub_3098();
+49b3: 45,a8,00,f4,32      ad3w  R32,Rf4,a8       R32 = FN75CC;
+49b8: ef,dd,e6            call  3098             SSWFuncLU_3098();
 49bb: a0,d6,36            ldw   R36,Rd6          R36 = Rd6;
 49be: 08,01,36            shrw  R36,1            R36 >>= 1;                        #[ R36 /= 2] 
 49c1: 64,38,36            ad2w  R36,R38          R36 += R38;
@@ -3909,19 +3909,19 @@
 4a58: 71,df,26            an2b  R26,df           B5_R26 = 0;
 4a5b: 45,1a,02,f0,32      ad3w  R32,Rf0,21a      R32 = Scaler_for_RPM;             #Pointer to table
 4a60: a0,ae,34            ldw   R34,Rae          R34 = Engine_RPM;                 #RAE = engine RPM * 4
-4a63: ef,38,e6            call  309e             Sub_309e();                       #2D interpolation routine (R32=Table,R34=InVar,R38=OutVar)
+4a63: ef,38,e6            call  309e             UUWFuncLU_309e();                 #2D interpolation routine (R32=Table,R34=InVar,R38=OutVar)
 4a66: a0,38,a8            ldw   Ra8,R38          Ra8 = R38;                        #Table column no. set based on RPM result
 4a69: 45,6e,02,f0,32      ad3w  R32,Rf0,26e      R32 = Scaler_for_MAP;             #Pointer to table
 4a6e: ac,b4,34            ldzbw R34,Rb4          wR34 = yRb4;
-4a71: ef,2a,e6            call  309e             Sub_309e();                       #2D interpolation routine (R32=Table,R34=InVar,R38=OutVar)
+4a71: ef,2a,e6            call  309e             UUWFuncLU_309e();                 #2D interpolation routine (R32=Table,R34=InVar,R38=OutVar)
 4a74: a0,38,aa            ldw   Raa,R38          Raa = R38;                        #Table row no. set based on MAP result
 4a77: a0,a8,30            ldw   R30,Ra8          R30 = Ra8;
 4a7a: a0,aa,32            ldw   R32,Raa          R32 = Raa;
 4a7d: ad,0c,34            ldzbw R34,c            wR34 = c;
 4a80: 45,40,02,f8,38      ad3w  R38,Rf8,240      R38 = TBL7BB6_(OL_unused?);
 4a85: 35,2b,05            jnb   B5,R2b,4a8d      if (B5_R2b = 1)  {
-4a88: 45,96,00,fe,38      ad3w  R38,Rfe,96       R38 = TBL7FB8_(CL_unused?); }
-4a8d: ef,8c,e6            call  311c             Sub_311c();
+4a88: 45,96,00,fe,38      ad3w  R38,Rfe,96       R38 = TBL7FB8; }
+4a8d: ef,8c,e6            call  311c             UYTabLU_311c();
 4a90: 5d,c8,d8,34         ml3b  R34,Rd8,c8       wR34 = Rd8 * c8;
 4a94: 01,36               clrw  R36              R36 = 0;
 4a96: 0d,05,34            shldw R34,5            lR34 <<= 5;                       #[ R34 *= 32] 
@@ -3943,15 +3943,15 @@
 4acc: 45,d4,01,f8,38      ad3w  R38,Rf8,1d4      R38 = Spark_Table_Alt_(OL);
 4ad1: 35,2b,05            jnb   B5,R2b,4ad9      if (B5_R2b = 1)  {
 4ad4: 45,18,03,f8,38      ad3w  R38,Rf8,318      R38 = Spark_Table_Base_(CL); }
-4ad9: ef,40,e6            call  311c             Sub_311c();
+4ad9: ef,40,e6            call  311c             UYTabLU_311c();
 4adc: ac,3b,3c            ldzbw R3c,R3b          wR3c = yR3b;
 4adf: b3,f3,b6,01,36      ldb   R36,[Rf2+1b6]    R36 = [73d8];
 4ae4: ef,93,f4            call  3f7a             Sub_3f7a();
 4ae7: a0,34,36            ldw   R36,R34          R36 = R34;
 4aea: 09,01,36            shlw  R36,1            R36 <<= 1;                        #[ R36 *= 2] 
 4aed: c7,01,c8,01,37      stb   R37,[R0+1c8]     [1c8] = R37;
-4af2: 45,c4,00,f4,32      ad3w  R32,Rf4,c4       R32 = 75e8;
-4af7: ef,99,e5            call  3093             Sub_3093();
+4af2: 45,c4,00,f4,32      ad3w  R32,Rf4,c4       R32 = FN75E8;
+4af7: ef,99,e5            call  3093             SUWFuncLU_3093();
 4afa: 28,e3               scall 4bdf             Sub_4bdf();
 4afc: a0,3c,42            ldw   R42,R3c          R42 = R3c;
 4aff: c7,01,f4,01,3c      stb   R3c,[R0+1f4]     [1f4] = R3c;
@@ -3959,14 +3959,14 @@
 4b07: a0,aa,32            ldw   R32,Raa          R32 = Raa;
 4b0a: ad,0c,34            ldzbw R34,c            wR34 = c;
 4b0d: 45,ac,02,f8,38      ad3w  R38,Rf8,2ac      R38 = Spark_Table_Borderline_Knock;
-4b12: ef,07,e6            call  311c             Sub_311c();
+4b12: ef,07,e6            call  311c             UYTabLU_311c();
 4b15: ac,3b,3c            ldzbw R3c,R3b          wR3c = yR3b;
 4b18: 09,03,3c            shlw  R3c,3            R3c <<= 3;                        #[ R3c *= 8] 
 4b1b: a0,a8,30            ldw   R30,Ra8          R30 = Ra8;
 4b1e: a0,aa,32            ldw   R32,Raa          R32 = Raa;
 4b21: ad,0c,34            ldzbw R34,c            wR34 = c;
 4b24: 45,84,03,f8,38      ad3w  R38,Rf8,384      R38 = Spark_Table_??(wot-adder?);
-4b29: ef,f0,e5            call  311c             Sub_311c();
+4b29: ef,f0,e5            call  311c             UYTabLU_311c();
 4b2c: b3,f3,b6,01,36      ldb   R36,[Rf2+1b6]    R36 = [73d8];
 4b31: fe,5f,fa,6a,36,34   sml3b R34,R36,[Rfa+6a] swR34 = R36 * [7e7e];
 4b37: 13,36               negb  R36              R36 = -R36;
@@ -3997,9 +3997,9 @@
 
 4b85: 44,42,40,3c         ad3w  R3c,R40,R42      R3c = R40 + R42;
 4b89: 37,27,0e            jnb   B7,R27,4b9a      if (B7_R27 = 1)  {
-4b8c: 45,82,00,f0,32      ad3w  R32,Rf0,82       R32 = 6fd2;
+4b8c: 45,82,00,f0,32      ad3w  R32,Rf0,82       R32 = FN6FD2;
 4b91: a0,ae,34            ldw   R34,Rae          R34 = Engine_RPM;
-4b94: ef,04,e5            call  309b             Sub_309b();
+4b94: ef,04,e5            call  309b             USWFuncLU_309b();
 4b97: 64,38,3c            ad2w  R3c,R38          R3c += R38; }
 4b9a: af,fa,66,38         ldzbw R38,[Rfa+66]     wR38 = [7e7a];
 4b9e: 28,3f               scall 4bdf             Sub_4bdf();
@@ -4086,17 +4086,17 @@
 4c7c: f0                  ret                    return; } } } }
 
 4c7d: 71,ef,25            an2b  R25,ef           B4_R25 = 0;
-4c80: 45,60,02,f6,32      ad3w  R32,Rf6,260      R32 = 7914;
+4c80: 45,60,02,f6,32      ad3w  R32,Rf6,260      R32 = FN7914;
 4c85: bc,b2,34            ldsbw R34,Rb2          swR34 = yRb2;
-4c88: ef,08,e4            call  3093             Sub_3093();
+4c88: ef,08,e4            call  3093             SUWFuncLU_3093();
 4c8b: a0,38,40            ldw   R40,R38          R40 = R38;
-4c8e: 45,0e,01,f0,32      ad3w  R32,Rf0,10e      R32 = 705e;
+4c8e: 45,0e,01,f0,32      ad3w  R32,Rf0,10e      R32 = FN705E;
 4c93: bc,b3,34            ldsbw R34,Rb3          swR34 = yRb3;
-4c96: ef,fa,e3            call  3093             Sub_3093();
+4c96: ef,fa,e3            call  3093             SUWFuncLU_3093();
 4c99: 64,38,40            ad2w  R40,R38          R40 += R38;
-4c9c: 45,88,02,f6,32      ad3w  R32,Rf6,288      R32 = 793c;
+4c9c: 45,88,02,f6,32      ad3w  R32,Rf6,288      R32 = FN793C;
 4ca1: bc,b1,34            ldsbw R34,Rb1          swR34 = yRb1;
-4ca4: ef,ec,e3            call  3093             Sub_3093();
+4ca4: ef,ec,e3            call  3093             SUWFuncLU_3093();
 4ca7: 9b,f3,0a,02,cb      cmpb  Rcb,[Rf2+20a]    
 4cac: db,11               jc    4cbf             if (Rcb >= [742c]) goto 4cbf;
 4cae: 9b,74,42,cb         cmpb  Rcb,[R74+42]     
@@ -4248,35 +4248,35 @@
 4e94: c3,72,0a,16         stw   R16,[R72+a]      [18a] = R16;
 4e98: c3,01,06,02,20      stw   R20,[R0+206]     [206] = R20;
 4e9d: 3d,2a,22            jb    B5,R2a,4ec2      if (B5_VIP_mode_flag = 0)  {
-4ea0: 45,f2,00,f6,32      ad3w  R32,Rf6,f2       R32 = 77a6;
+4ea0: 45,f2,00,f6,32      ad3w  R32,Rf6,f2       R32 = FN77A6;
 4ea5: 9b,f3,fe,02,00      cmpb  R0,[Rf2+2fe]     
 4eaa: d7,08               jne   4eb4             if ([7520] = 0)  {
 4eac: 36,26,05            jnb   B6,R26,4eb4      if (B6_R26 = 1)  {
-4eaf: 45,16,01,f6,32      ad3w  R32,Rf6,116      R32 = 77ca; } }
+4eaf: 45,16,01,f6,32      ad3w  R32,Rf6,116      R32 = FN77CA; } }
 4eb4: bc,b2,34            ldsbw R34,Rb2          swR34 = yRb2;
-4eb7: ef,d9,e1            call  3093             Sub_3093();
+4eb7: ef,d9,e1            call  3093             SUWFuncLU_3093();
 4eba: 88,38,40            cmpw  R40,R38          
 4ebd: d1,03               jleu  4ec2             if (R40 > R38)  {
 4ebf: a0,38,40            ldw   R40,R38          R40 = R38; } }
 4ec2: c3,01,48,01,40      stw   R40,[R0+148]     [148] = R40;
 4ec7: 45,b2,01,f0,32      ad3w  R32,Rf0,1b2      R32 = Scaler_for_TBL782E;
 4ecc: bc,b2,34            ldsbw R34,Rb2          swR34 = yRb2;
-4ecf: ef,c6,e1            call  3098             Sub_3098();
+4ecf: ef,c6,e1            call  3098             SSWFuncLU_3098();
 4ed2: a0,38,30            ldw   R30,R38          R30 = R38;
 4ed5: 45,62,01,f6,32      ad3w  R32,Rf6,162      R32 = Scaler_for_TBL782E;
 4eda: ac,cd,34            ldzbw R34,Rcd          wR34 = yRcd;
-4edd: ef,be,e1            call  309e             Sub_309e();
+4edd: ef,be,e1            call  309e             UUWFuncLU_309e();
 4ee0: a0,38,32            ldw   R32,R38          R32 = R38;
 4ee3: ad,07,34            ldzbw R34,7            wR34 = 7;
 4ee6: 45,7a,01,f6,38      ad3w  R38,Rf6,17a      R38 = TBL782E_(ISC_Airflow_X);
-4eeb: ef,2e,e2            call  311c             Sub_311c();
+4eeb: ef,2e,e2            call  311c             UYTabLU_311c();
 4eee: b0,3b,20            ldb   R20,R3b          R20 = R3b;
-4ef1: 45,f6,00,f0,32      ad3w  R32,Rf0,f6       R32 = 7046;
+4ef1: 45,f6,00,f0,32      ad3w  R32,Rf0,f6       R32 = FN7046;
 4ef6: b3,72,1a,3e         ldb   R3e,[R72+1a]     R3e = [19a];
 4efa: 39,3e,05            jb    B1,R3e,4f02      if (B1_R3e = 0)  {
-4efd: 45,de,00,f0,32      ad3w  R32,Rf0,de       R32 = 702e; }
+4efd: 45,de,00,f0,32      ad3w  R32,Rf0,de       R32 = FN702E; }
 4f02: a0,40,34            ldw   R34,R40          R34 = R40;
-4f05: ef,96,e1            call  309e             Sub_309e();
+4f05: ef,96,e1            call  309e             UUWFuncLU_309e();
 4f08: 7c,38,20            ml2b  R20,R38          wR20 = R20 * R38;
 4f0b: 08,02,20            shrw  R20,2            R20 >>= 2;                        #[ R20 /= 4] 
 4f0e: 35,26,0a            jnb   B5,R26,4f1b      if (B5_R26 = 1)  {
@@ -4306,9 +4306,9 @@
 4f63: db,17               jc    4f7c             if (R3f >= 20) goto 4f7c;
 4f65: 0d,02,3c            shldw R3c,2            lR3c <<= 2;                       #[ R3c *= 4] 
 4f68: 67,74,10,3e         ad2w  R3e,[R74+10]     R3e += [7eb0];
-4f6c: 45,1e,04,f8,32      ad3w  R32,Rf8,41e      R32 = 7d94;
+4f6c: 45,1e,04,f8,32      ad3w  R32,Rf8,41e      R32 = FN7D94;
 4f71: a0,ae,34            ldw   R34,Rae          R34 = Engine_RPM;
-4f74: ef,27,e1            call  309e             Sub_309e();
+4f74: ef,27,e1            call  309e             UUWFuncLU_309e();
 4f77: 88,38,3e            cmpw  R3e,R38          
 4f7a: d1,03               jleu  4f7f             if (R3e > R38)  {
 4f7c: a0,38,3e            ldw   R3e,R38          R3e = R38; }
@@ -4321,7 +4321,7 @@
 4f8f: a3,72,08,34         ldw   R34,[R72+8]      R34 = [188];
 4f93: a0,34,1c            ldw   R1c,R34          R1c = R34;
 4f96: 45,a4,02,f6,32      ad3w  R32,Rf6,2a4      R32 = Dashpot_Decay_Rate;
-4f9b: ef,00,e1            call  309e             Sub_309e();
+4f9b: ef,00,e1            call  309e             UUWFuncLU_309e();
 4f9e: a3,72,08,34         ldw   R34,[R72+8]      R34 = [188];
 4fa2: 68,38,1c            sb2w  R1c,R38          R1c -= R38;
 4fa5: db,02               jc    4fa9             if (R1c < 0)  {
@@ -4351,8 +4351,8 @@
 4fee: c7,72,03,38         stb   R38,[R72+3]      [183] = R38;
 4ff2: a0,1c,34            ldw   R34,R1c          R34 = R1c;
 4ff5: 08,05,34            shrw  R34,5            R34 >>= 5;                        #[ R34 /= 32] 
-4ff8: 45,dc,01,f6,32      ad3w  R32,Rf6,1dc      R32 = 7890;
-4ffd: ef,49,e0            call  3049             Sub_3049();
+4ff8: 45,dc,01,f6,32      ad3w  R32,Rf6,1dc      R32 = FN7890;
+4ffd: ef,49,e0            call  3049             UUYFuncLU_3049();
 5000: c7,72,02,38         stb   R38,[R72+2]      [182] = R38;
 5004: 20,58               sjmp  505e             goto 505e;
 
@@ -4415,10 +4415,10 @@
 50b7: b3,33,35,03,3d      ldb   R3d,[R32+335]    R3d = [R32+335];
 50bc: 0a,01,3c            asrw  R3c,1            wR3c >>= 1; }                     #[ R3c /= 2] 
 50bf: a0,ae,34            ldw   R34,Rae          R34 = Engine_RPM;
-50c2: 45,a4,01,f6,32      ad3w  R32,Rf6,1a4      R32 = 7858;
+50c2: 45,a4,01,f6,32      ad3w  R32,Rf6,1a4      R32 = FN7858;
 50c7: 3e,a1,05            jb    B6,Ra1,50cf      if (B6_Ra1 = 0)  {
-50ca: 45,c0,01,f6,32      ad3w  R32,Rf6,1c0      R32 = 7874; }
-50cf: ef,cc,df            call  309e             Sub_309e();
+50ca: 45,c0,01,f6,32      ad3w  R32,Rf6,1c0      R32 = FN7874; }
+50cf: ef,cc,df            call  309e             UUWFuncLU_309e();
 50d2: 64,1c,20            ad2w  R20,R1c          R20 += R1c;
 50d5: 64,38,20            ad2w  R20,R38          R20 += R38;
 50d8: 64,30,20            ad2w  R20,R30          R20 += R30;
@@ -4459,15 +4459,15 @@
 5146: db,02               jc    514a             if (R14 < 0)  {
 5148: 17,16               incb  R16              R16++; }
 514a: 3e,26,11            jb    B6,R26,515e      if (B6_R26 = 1) goto 515e;
-514d: 45,e4,01,f6,32      ad3w  R32,Rf6,1e4      R32 = 7898;
+514d: 45,e4,01,f6,32      ad3w  R32,Rf6,1e4      R32 = FN7898;
 5152: a0,14,34            ldw   R34,R14          R34 = R14;
-5155: ef,3b,df            call  3093             Sub_3093();
+5155: ef,3b,df            call  3093             SUWFuncLU_3093();
 5158: c7,72,02,38         stb   R38,[R72+2]      [182] = R38;
 515c: 20,0f               sjmp  516d             goto 516d;
 
-515e: 45,00,02,f6,32      ad3w  R32,Rf6,200      R32 = 78b4;
+515e: 45,00,02,f6,32      ad3w  R32,Rf6,200      R32 = FN78B4;
 5163: a0,14,34            ldw   R34,R14          R34 = R14;
-5166: ef,2a,df            call  3093             Sub_3093();
+5166: ef,2a,df            call  3093             SUWFuncLU_3093();
 5169: c7,72,02,38         stb   R38,[R72+2]      [182] = R38;
 516d: a0,14,34            ldw   R34,R14          R34 = R14;
 5170: 30,16,02            jnb   B0,R16,5175      if (B0_R16 = 1)  {
@@ -4477,8 +4477,8 @@
 517b: 20,8a               sjmp  5207             goto 5207;
 
 517d: c7,01,4f,01,00      stb   R0,[R0+14f]      [14f] = 0;
-5182: 45,1c,02,f6,32      ad3w  R32,Rf6,21c      R32 = 78d0;
-5187: ef,09,df            call  3093             Sub_3093();
+5182: 45,1c,02,f6,32      ad3w  R32,Rf6,21c      R32 = FN78D0;
+5187: ef,09,df            call  3093             SUWFuncLU_3093();
 518a: 88,38,1c            cmpw  R1c,R38          
 518d: d3,78               jnc   5207             if (R1c >= R38)  {
 518f: 01,1c               clrw  R1c              R1c = 0;
@@ -4487,8 +4487,8 @@
 5198: 89,70,7d,e2         cmpw  Re2,7d70         
 519c: db,69               jc    5207             if (Re2 < 7d70)  {
 519e: 48,ae,40,34         sb3w  R34,R40,Rae      R34 = R40 - Engine_RPM;
-51a2: 45,46,01,f6,32      ad3w  R32,Rf6,146      R32 = 77fa;
-51a7: ef,e9,de            call  3093             Sub_3093();
+51a2: 45,46,01,f6,32      ad3w  R32,Rf6,146      R32 = FN77FA;
+51a7: ef,e9,de            call  3093             SUWFuncLU_3093();
 51aa: 6c,14,38            ml2w  R38,R14          lR38 = R38 * R14;
 51ad: 3e,26,0d            jb    B6,R26,51bd      if (B6_R26 = 1) goto 51bd;
 51b0: a3,74,02,32         ldw   R32,[R74+2]      R32 = [7ea2];
@@ -4529,12 +4529,12 @@
 5214: 8b,f3,fa,01,34      cmpw  R34,[Rf2+1fa]    
 5219: db,05               jc    5220             if (R34 < [741c])  {
 521b: a3,f3,fa,01,34      ldw   R34,[Rf2+1fa]    R34 = [741c]; }
-5220: 45,38,02,f6,32      ad3w  R32,Rf6,238      R32 = 78ec;
-5225: ef,76,de            call  309e             Sub_309e();
+5220: 45,38,02,f6,32      ad3w  R32,Rf6,238      R32 = FN78EC;
+5225: ef,76,de            call  309e             UUWFuncLU_309e();
 5228: a0,38,40            ldw   R40,R38          R40 = R38;
 522b: b0,b4,34            ldb   R34,Rb4          R34 = Rb4;
-522e: 45,3a,01,f6,32      ad3w  R32,Rf6,13a      R32 = 77ee;
-5233: ef,13,de            call  3049             Sub_3049();
+522e: 45,3a,01,f6,32      ad3w  R32,Rf6,13a      R32 = FN77EE;
+5233: ef,13,de            call  3049             UUYFuncLU_3049();
 5236: 09,08,38            shlw  R38,8            R38 <<= 8;                        #[ R38 *= 256] 
 5239: 6c,40,38            ml2w  R38,R40          lR38 = R38 * R40;
 523c: 0d,01,38            shldw R38,1            lR38 <<= 1;                       #[ R38 *= 2] 
@@ -4640,13 +4640,13 @@
 5361: 20,5e               sjmp  53c1             goto 53c1;
 
 5363: 91,20,2c            orb   R2c,20           B5_R2c = 1;
-5366: 45,e7,00,f6,32      ad3w  R32,Rf6,e7       R32 = 779b;
+5366: 45,e7,00,f6,32      ad3w  R32,Rf6,e7       R32 = FN779B;
 536b: b3,01,aa,01,34      ldb   R34,[R0+1aa]     R34 = [1aa];
-5370: ef,d6,dc            call  3049             Sub_3049();
+5370: ef,d6,dc            call  3049             UUYFuncLU_3049();
 5373: b0,38,3c            ldb   R3c,R38          R3c = R38;
-5376: 45,d2,01,f2,32      ad3w  R32,Rf2,1d2      R32 = 73f4;
+5376: 45,d2,01,f2,32      ad3w  R32,Rf2,1d2      R32 = Func_73f4;
 537b: a0,9a,34            ldw   R34,R9a          R34 = R9a;
-537e: ef,1d,dd            call  309e             Sub_309e();
+537e: ef,1d,dd            call  309e             UUWFuncLU_309e();
 5381: 7c,39,3c            ml2b  R3c,R39          wR3c = R3c * R39;
 5384: b0,3d,38            ldb   R38,R3d          R38 = R3d;
 5387: c7,01,a7,01,38      stb   R38,[R0+1a7]     [1a7] = R38;
@@ -4659,7 +4659,7 @@
 539c: 39,47,07            jb    B1,R47,53a6      if (B1_R47 = 0)  {
 539f: b1,82,34            ldb   R34,82           R34 = 82;
 53a2: 58,39,34,39         sb3b  R39,R34,R39      R39 = R34 - R39; }
-53a6: a0,06,32            ldw   R32,R6           R32 = IO_TIMER;
+53a6: a0,06,32            ldw   R32,R6           R32 = IO_Timer;
 53a9: 77,01,a8,01,39      ad2b  R39,[R0+1a8]     R39 += [1a8];
 53ae: 98,39,33            cmpb  R33,R39          
 53b1: de,04               jlt   53b7             if (R33 < R39) goto 53b7;         #[Signed]
@@ -4671,7 +4671,7 @@
 53bc: 20,03               sjmp  53c1             goto 53c1;
 
 53be: 91,02,47            orb   R47,2            B1_R47 = 1;
-53c1: a0,06,32            ldw   R32,R6           R32 = IO_TIMER;
+53c1: a0,06,32            ldw   R32,R6           R32 = IO_Timer;
 53c4: c7,01,a8,01,33      stb   R33,[R0+1a8]     [1a8] = R33; } }
 53c9: f0                  ret                    return;
 
@@ -4744,25 +4744,25 @@
 547c: d5,03               jnv   5481             if (OVF = 1)  {
 547e: b1,ff,34            ldb   R34,ff           R34 = ff; }
 5481: c7,01,01,02,34      stb   R34,[R0+201]     [201] = R34;
-5486: 45,8e,00,f6,32      ad3w  R32,Rf6,8e       R32 = 7742;
+5486: 45,8e,00,f6,32      ad3w  R32,Rf6,8e       R32 = FN7742;
 548b: b3,01,01,02,34      ldb   R34,[R0+201]     R34 = [201];
-5490: ef,b6,db            call  3049             Sub_3049();
+5490: ef,b6,db            call  3049             UUYFuncLU_3049();
 5493: b0,38,3c            ldb   R3c,R38          R3c = R38;
-5496: 45,9e,00,f6,32      ad3w  R32,Rf6,9e       R32 = 7752;
+5496: 45,9e,00,f6,32      ad3w  R32,Rf6,9e       R32 = FN7752;
 549b: b3,01,01,02,34      ldb   R34,[R0+201]     R34 = [201];
-54a0: ef,a6,db            call  3049             Sub_3049();
+54a0: ef,a6,db            call  3049             UUYFuncLU_3049();
 54a3: b0,38,3d            ldb   R3d,R38          R3d = R38;
-54a6: 45,ae,00,f6,32      ad3w  R32,Rf6,ae       R32 = 7762;
+54a6: 45,ae,00,f6,32      ad3w  R32,Rf6,ae       R32 = FN7762;
 54ab: b3,01,01,02,34      ldb   R34,[R0+201]     R34 = [201];
-54b0: ef,96,db            call  3049             Sub_3049();
+54b0: ef,96,db            call  3049             UUYFuncLU_3049();
 54b3: b0,38,3e            ldb   R3e,R38          R3e = R38;
-54b6: 45,be,00,f6,32      ad3w  R32,Rf6,be       R32 = 7772;
+54b6: 45,be,00,f6,32      ad3w  R32,Rf6,be       R32 = FN7772;
 54bb: b3,01,01,02,34      ldb   R34,[R0+201]     R34 = [201];
-54c0: ef,86,db            call  3049             Sub_3049();
+54c0: ef,86,db            call  3049             UUYFuncLU_3049();
 54c3: b0,38,40            ldb   R40,R38          R40 = R38;
-54c6: 45,02,00,fc,32      ad3w  R32,Rfc,2        R32 = 7efa;
+54c6: 45,02,00,fc,32      ad3w  R32,Rfc,2        R32 = FN7EFA;
 54cb: af,01,f9,01,34      ldzbw R34,[R0+1f9]     wR34 = [1f9];
-54d0: ef,cb,db            call  309e             Sub_309e();
+54d0: ef,cb,db            call  309e             UUWFuncLU_309e();
 54d3: 51,41,2d,34         an3b  R34,R2d,41       R34 = R2d & 41;
 54d7: d7,2d               jne   5506             if (R34 != 0) goto 5506;
 54d9: 98,a3,3c            cmpb  R3c,Ra3          
@@ -4838,7 +4838,7 @@
    Sub_55a0:
 55a0: a3,01,30,01,3c      ldw   R3c,[R0+130]     R3c = [130];
 55a5: a1,53,56,30         ldw   R30,5653         R30 = 5653;
-55a9: a0,06,36            ldw   R36,R6           R36 = IO_TIMER;
+55a9: a0,06,36            ldw   R36,R6           R36 = IO_Timer;
 55ac: 4b,01,2c,01,36,38   sb3w  R38,R36,[R0+12c] R38 = R36 - [12c];
 55b2: 01,3a               clrw  R3a              R3a = 0;
 55b4: 0d,07,38            shldw R38,7            lR38 <<= 7;                       #[ R38 *= 128] 
@@ -4907,29 +4907,34 @@
 5652: f0                  ret                    return;
 
 
-5653: 83                  byte     83
-5654: 02                  byte      2
-5655: 02                  byte      2
-5656: 08                  byte      8
-5657: 2b                  byte     2b
-5658: 87                  byte     87
-5659: 02                  byte      2
-565a: 02                  byte      2
-565b: 10                  byte     10
-565c: 2b                  byte     2b
-565d: 80                  byte     80
-565e: fd                  byte     fd
-565f: 01                  byte      1
-5660: 20                  byte     20
-5661: ab                  byte     ab
-
-5662: 01,41,33,01,10,24,42,34,01,89,cb,00,80,2c,81,cc ??? 
-5672: 00,40,24,89,cd,00,01,24,2b,ce,00,01,24,83,d2,00 ??? 
-5682: 40,2b,23,2e,01,40,27,23,d8,01,40,4f,41,95,01,80 ??? 
-5692: 24,81,aa,01,20,2c,81,ca,00,20,24,83,26,01,01,2c ??? 
-56a2: 40,8b,01,22,24,01,83,54,01,40,2a,22,2a,01,20,32 ??? 
-56b2: 02,80,4f,01,20,a0,01,22,6c,02,22,d0,00,81,32,01 ??? 
-56c2: 01,28,00            ???   
+5653: 83,02,02,08,2b      timer 83,   202,  B3_2b
+5658: 87,02,02,10,2b      timer 87,   202,  B4_2b
+565d: 80,fd,01            timer 80,   1fd, 
+5660: 20,ab,01            timer 20,   1ab, 
+5663: 41,33,01,10,24      timer 41,   133,  B4_24
+5668: 42,34,01            timer 42,   134, 
+566b: 89,cb,00,80,2c      timer 89,    cb,  B7_2c
+5670: 81,cc,00,40,24      timer 81,    cc,  B6_24
+5675: 89,cd,00,01,24      timer 89,    cd,  B0_24
+567a: 2b,ce,00,01,24      timer 2b,    ce,  B0_24
+567f: 83,d2,00,40,2b      timer 83,    d2,  B6_2b
+5684: 23,2e,01,40,27      timer 23,   12e,  B6_27
+5689: 23,d8,01,40,4f      timer 23,   1d8,  B6_4f
+568e: 41,95,01,80,24      timer 41,   195,  B7_24
+5693: 81,aa,01,20,2c      timer 81,   1aa,  B5_2c
+5698: 81,ca,00,20,24      timer 81,    ca,  B5_24
+569d: 83,26,01,01,2c      timer 83,   126,  B0_2c
+56a2: 40,8b,01            timer 40,   18b, 
+56a5: 22,24,01            timer 22,   124, 
+56a8: 83,54,01,40,2a      timer 83,   154, VIP_mode_flag, 
+56ad: 22,2a,01            timer 22,   12a, 
+56b0: 20,32,02            timer 20,   232, 
+56b3: 80,4f,01            timer 80,   14f, 
+56b6: 20,a0,01            timer 20,   1a0, 
+56b9: 22,6c,02            timer 22,   26c, 
+56bc: 22,d0,00            timer 22,    d0, 
+56bf: 81,32,01,01,28      timer 81,   132,  B0_28
+56c4: 00                  byte  
 
    Sub_56c5:
 56c5: 9b,f4,02,bb         cmpb  Rbb,[Rf4+2]      
@@ -5086,26 +5091,26 @@
 584e: 27,f4               sjmp  5844             goto 5844;
 
    Sub_5850:
-5850: 45,24,01,f4,32      ad3w  R32,Rf4,124      R32 = 7648;
+5850: 45,24,01,f4,32      ad3w  R32,Rf4,124      R32 = FN7648;
 5855: a0,ae,34            ldw   R34,Rae          R34 = Engine_RPM;
-5858: ef,43,d8            call  309e             Sub_309e();
+5858: ef,43,d8            call  309e             UUWFuncLU_309e();
 585b: 67,fa,78,38         ad2w  R38,[Rfa+78]     R38 += [7e8c];
 585f: c3,01,6a,01,38      stw   R38,[R0+16a]     [16a] = R38;
-5864: 45,08,01,f4,32      ad3w  R32,Rf4,108      R32 = 762c;
+5864: 45,08,01,f4,32      ad3w  R32,Rf4,108      R32 = FN762C;
 5869: a0,ae,34            ldw   R34,Rae          R34 = Engine_RPM;
-586c: ef,2f,d8            call  309e             Sub_309e();
+586c: ef,2f,d8            call  309e             UUWFuncLU_309e();
 586f: 6c,b8,38            ml2w  R38,Rb8          lR38 = R38 * Rb8;
 5872: 0d,01,38            shldw R38,1            lR38 <<= 1;                       #[ R38 *= 2] 
 5875: 67,fa,7a,3a         ad2w  R3a,[Rfa+7a]     R3a += [7e8e];
 5879: c3,01,6c,01,3a      stw   R3a,[R0+16c]     [16c] = R3a;
-587e: 45,f0,00,f4,32      ad3w  R32,Rf4,f0       R32 = 7614;
+587e: 45,f0,00,f4,32      ad3w  R32,Rf4,f0       R32 = FN7614;
 5883: a0,ae,34            ldw   R34,Rae          R34 = Engine_RPM;
-5886: ef,15,d8            call  309e             Sub_309e();
+5886: ef,15,d8            call  309e             UUWFuncLU_309e();
 5889: c7,01,df,01,39      stb   R39,[R0+1df]     [1df] = R39;
 588e: 36,4f,44            jnb   B6,R4f,58d5      if (B6_R4f = 1)  {
-5891: 45,38,01,f4,32      ad3w  R32,Rf4,138      R32 = 765c;
+5891: 45,38,01,f4,32      ad3w  R32,Rf4,138      R32 = FN765C;
 5896: a0,ae,34            ldw   R34,Rae          R34 = Engine_RPM;
-5899: ef,02,d8            call  309e             Sub_309e();
+5899: ef,02,d8            call  309e             UUWFuncLU_309e();
 589c: 8b,01,d8,01,38      cmpw  R38,[R0+1d8]     
 58a1: d9,32               jgtu  58d5             if (R38 <= [1d8])  {
 58a3: a3,01,d8,01,40      ldw   R40,[R0+1d8]     R40 = [1d8];
@@ -5919,7 +5924,7 @@
 608f: fa                  di                     disable intps;
 6090: ff                  nop                    
 6091: 71,df,4a            an2b  R4a,df           B5_R4a = 0;
-6094: 45,0a,00,06,3a      ad3w  R3a,R6,a         R3a = IO_TIMER + a;
+6094: 45,0a,00,06,3a      ad3w  R3a,R6,a         R3a = IO_Timer + a;
 6099: 28,23               scall 60be             Sub_60be();
 609b: 28,12               scall 60af             Sub_60af();
 609d: 28,10               scall 60af             Sub_60af();
@@ -5942,7 +5947,7 @@
    Sub_60ba:
 60ba: 65,9a,02,3a         ad2w  R3a,29a          R3a += 29a;
    Sub_60be:
-60be: a0,3a,0e            ldw   Re,R3a           HSI_TIME = R3a;
+60be: a0,3a,0e            ldw   Re,R3a           HSI_Time = R3a;
 60c1: f0                  ret                    return;
 
    Sub_60c2:
@@ -6084,10 +6089,10 @@
 6224: 20,48               sjmp  626e             goto Sub_626e;
 
 6226: 28,16               scall 623e             Sub_623e();
-6228: 45,03,00,06,0e      ad3w  Re,R6,3          HSI_TIME = IO_TIMER + 3;
+6228: 45,03,00,06,0e      ad3w  Re,R6,3          HSI_Time = IO_Timer + 3;
 622d: 55,10,1c,0d         ad3b  Rd,R1c,10        HSO_Cmd = R1c + 10;
 6231: 28,25               scall 6258             Sub_6258();
-6233: 45,03,00,06,0e      ad3w  Re,R6,3          HSI_TIME = IO_TIMER + 3;
+6233: 45,03,00,06,0e      ad3w  Re,R6,3          HSI_Time = IO_Timer + 3;
 6238: 51,0f,1c,0d         an3b  Rd,R1c,f         HSO_Cmd = R1c & f;
 623c: 20,30               sjmp  626e             goto Sub_626e;
 
@@ -6115,8 +6120,8 @@
 626d: f0                  ret                    return;
 
    Sub_626e:
-626e: c0,3c,06            stw   R6,R3c           R3c = IO_TIMER;
-6271: 48,3c,06,3e         sb3w  R3e,R6,R3c       R3e = IO_TIMER - R3c;
+626e: c0,3c,06            stw   R6,R3c           R3c = IO_Timer;
+6271: 48,3c,06,3e         sb3w  R3e,R6,R3c       R3e = IO_Timer - R3c;
 6275: 89,1b,41,3e         cmpw  R3e,411b         
 6279: db,0b               jc    6286             if (R3e >= 411b) goto 6286;
 627b: ef,0e,fa            call  5c8c             Sub_5c8c();
@@ -6128,7 +6133,7 @@
 
    Sub_6287:
 6287: 01,46               clrw  R46              R46 = 0;
-6289: 45,03,00,06,0e      ad3w  Re,R6,3          HSI_TIME = IO_TIMER + 3;
+6289: 45,03,00,06,0e      ad3w  Re,R6,3          HSI_Time = IO_Timer + 3;
 628e: 01,d6               clrw  Rd6              Rd6 = 0;
 6290: f0                  ret                    return;
 
@@ -6136,7 +6141,7 @@
 6295: 3b,de,10            jb    B3,Rde,62a8      if (B3_Rde = 1) goto 62a8;
 6298: 2f,ed               scall 6287             Sub_6287();
 629a: 85,00,00,46         xrw   R46,0            R46 ^= 0;
-629e: 45,03,00,06,0e      ad3w  Re,R6,3          HSI_TIME = IO_TIMER + 3;
+629e: 45,03,00,06,0e      ad3w  Re,R6,3          HSI_Time = IO_Timer + 3;
 62a3: b1,09,0d            ldb   Rd,9             HSO_Cmd = 9;
 62a6: 17,38               incb  R38              R38++;
 62a8: f0                  ret                    return;
@@ -6151,7 +6156,7 @@
 62c1: 11,1e               clrb  R1e              R1e = 0;
 62c3: 39,45,03            jb    B1,R45,62c9      if (B1_R45 = 1) goto 62c9;
 62c6: b1,10,1e            ldb   R1e,10           R1e = 10;
-62c9: 45,03,00,06,0e      ad3w  Re,R6,3          HSI_TIME = IO_TIMER + 3;
+62c9: 45,03,00,06,0e      ad3w  Re,R6,3          HSI_Time = IO_Timer + 3;
 62ce: 55,09,1e,0d         ad3b  Rd,R1e,9         HSO_Cmd = R1e + 9;
 62d2: 95,02,45            xorb  R45,2            B1_R45 ^= 1;
 62d5: 31,45,06            jnb   B1,R45,62de      if (B1_R45 = 0) goto 62de;
@@ -6166,7 +6171,7 @@
 62ee: 89,58,02,1a         cmpw  R1a,258          
 62f2: d3,0d               jnc   6301             if (R1a < 258) goto 6301;
 62f4: 2f,91               scall 6287             Sub_6287();
-62f6: 45,03,00,06,0e      ad3w  Re,R6,3          HSI_TIME = IO_TIMER + 3;
+62f6: 45,03,00,06,0e      ad3w  Re,R6,3          HSI_Time = IO_Timer + 3;
 62fb: b1,09,0d            ldb   Rd,9             HSO_Cmd = 9;
 62fe: 71,fd,45            an2b  R45,fd           B1_R45 = 0;
 6301: f0                  ret                    return;
@@ -6302,7 +6307,7 @@
 6423: 02                  #args  
 6424: ef,a2,fd            call  61c9             Sub_61c9(1a);
 6427: 1a,00               #args  
-6429: 4b,72,d6,06,34      sb3w  R34,R6,[R72+d6]  R34 = IO_TIMER - [156];
+6429: 4b,72,d6,06,34      sb3w  R34,R6,[R72+d6]  R34 = IO_Timer - [156];
 642e: 6d,55,32,34         ml2w  R34,3255         lR34 = R34 * 3255;
 6432: 4e,1a,36,3c         ml3w  R3c,R36,[R1a]    lR3c = R36 * [R1a];
 6436: 36,2c,13            jnb   B6,R2c,644c      if (B6_R2c = 0) goto 644c;
@@ -6319,7 +6324,7 @@
 6456: d1,05               jleu  645d             if (R96 <= [8036]) goto Sub_645d;
 6458: a3,ff,14,01,96      ldw   R96,[Rfe+114]    R96 = [8036];
    Sub_645d:
-645d: c3,72,d6,06         stw   R6,[R72+d6]      [156] = IO_TIMER;
+645d: c3,72,d6,06         stw   R6,[R72+d6]      [156] = IO_Timer;
 6461: f0                  ret                    return;
 
    Sub_6462:
@@ -6553,8 +6558,8 @@
 669f: fa                  di                     disable intps;
 66a0: ff                  nop                    
 66a1: ff                  nop                    
-66a2: c3,72,6a,10         stw   R10,[R72+6a]     [1ea] = STACK_POINTER;
-66a6: a1,5c,00,10         ldw   R10,5c           STACK_POINTER = 5c;
+66a2: c3,72,6a,10         stw   R10,[R72+6a]     [1ea] = StackPtr;
+66a6: a1,5c,00,10         ldw   R10,5c           StackPtr = 5c;
 66aa: a1,7c,a1,3c         ldw   R3c,a17c         R3c = a17c;
 66ae: a1,7c,a1,3a         ldw   R3a,a17c         R3a = a17c;
 66b2: 05,3a               decw  R3a              R3a--;
@@ -6651,7 +6656,7 @@
 6764: d7,38               jne   679e             if (R3c != [20c]) goto 679e;
 6766: 88,30,3c            cmpw  R3c,R30          
 6769: d7,33               jne   679e             if (R3c != R30) goto 679e;
-676b: a1,00,04,10         ldw   R10,400          STACK_POINTER = 400;
+676b: a1,00,04,10         ldw   R10,400          StackPtr = 400;
 676f: a1,75,55,3c         ldw   R3c,5575         R3c = 5575;
 6773: c3,73,88,00,3c      stw   R3c,[R72+88]     [208] = R3c;
 6778: 28,29               scall 67a3             common_Sub20();
@@ -6699,7 +6704,7 @@
 67ec: c2,43,34            stw   R34,[R42++]      [R42++] = R34;
 67ef: 88,3a,42            cmpw  R42,R3a          
 67f2: d3,d7               jnc   67cb             if (R42 < R3a) goto 67cb;
-67f4: a3,72,6a,10         ldw   R10,[R72+6a]     STACK_POINTER = [1ea];
+67f4: a3,72,6a,10         ldw   R10,[R72+6a]     StackPtr = [1ea];
 67f8: fb                  ei                     enable intps;
 67f9: f0                  ret                    return; } }
 
@@ -6710,7 +6715,7 @@
 6800: 3d,4a,24            jb    B5,R4a,6827      if (B5_R4a = 1) return;
 6803: fa                  di                     disable intps;
 6804: ff                  nop                    
-6805: a1,a2,02,10         ldw   R10,2a2          STACK_POINTER = 2a2;
+6805: a1,a2,02,10         ldw   R10,2a2          StackPtr = 2a2;
 6809: ef,7b,fa            call  6287             Sub_6287();
 680c: ef,93,b8            call  20a2             setup_initial_state();
 680f: 35,2a,06            jnb   B5,R2a,6818      if (B5_VIP_mode_flag = 1)  {
@@ -6745,11 +6750,11 @@
 6853: 99,2a,15            cmpb  R15,2a           
 6856: d7,29               jne   6881             if (R15 != 2a) goto 6881;
 6858: 38,0a,18            jb    B0,Ra,6873       if (HSO_OVF = 0)  {
-685b: 47,01,0e,20,06,7c   ad3w  R7c,R6,[R0+200e] R7c = IO_TIMER + CC_EXECUTION_TIME;
+685b: 47,01,0e,20,06,7c   ad3w  R7c,R6,[R0+200e] R7c = IO_Timer + CC_EXECUTION_TIME;
 6861: d7,02               jne   6865             if (R7c = 0)  {
 6863: 07,7c               incw  R7c              R7c++; }
 6865: c3,01,1a,c1,7c      stw   R7c,[R0+c11a]    [c11a] = R7c;
-686a: a0,7c,0e            ldw   Re,R7c           HSI_TIME = R7c;
+686a: a0,7c,0e            ldw   Re,R7c           HSI_Time = R7c;
 686d: b1,0f,0d            ldb   Rd,f             HSO_Cmd = f;
 6870: ef,93,67            call  d006             d006(); }
 6873: a3,01,80,0c,14      ldw   R14,[R0+c80]     R14 = [c80];
@@ -6875,9 +6880,9 @@
 69ce: 99,fe,14            cmpb  R14,fe           
 69d1: d1,03               jleu  69d6             if (R14 > fe)  {
 69d3: b1,fe,14            ldb   R14,fe           R14 = fe; }
-69d6: 45,50,01,f4,32      ad3w  R32,Rf4,150      R32 = 7674;
+69d6: 45,50,01,f4,32      ad3w  R32,Rf4,150      R32 = FN7674;
 69db: ac,14,34            ldzbw R34,R14          wR34 = yR14;
-69de: ef,bd,c6            call  309e             Sub_309e();
+69de: ef,bd,c6            call  309e             UUWFuncLU_309e();
 69e1: 88,38,18            cmpw  R18,R38          
 69e4: d9,02               jgtu  69e8             if (R18 <= R38)  {
 69e6: 20,68               sjmp  6a50             return; }
@@ -6888,17 +6893,17 @@
 69f5: d9,59               jgtu  6a50             if (R30 > [7e94]) return;
 69f7: 51,51,2d,32         an3b  R32,R2d,51       R32 = R2d & 51;
 69fb: d7,53               jne   6a50             if (R32 != 0) return;
-69fd: 45,7c,01,f4,32      ad3w  R32,Rf4,17c      R32 = 76a0;
+69fd: 45,7c,01,f4,32      ad3w  R32,Rf4,17c      R32 = FN76A0;
 6a02: a0,18,34            ldw   R34,R18          R34 = R18;
-6a05: ef,96,c6            call  309e             Sub_309e();
+6a05: ef,96,c6            call  309e             UUWFuncLU_309e();
 6a08: a0,38,30            ldw   R30,R38          R30 = R38;
-6a0b: 45,68,01,f4,32      ad3w  R32,Rf4,168      R32 = 768c;
+6a0b: 45,68,01,f4,32      ad3w  R32,Rf4,168      R32 = FN768C;
 6a10: ac,14,34            ldzbw R34,R14          wR34 = yR14;
-6a13: ef,88,c6            call  309e             Sub_309e();
+6a13: ef,88,c6            call  309e             UUWFuncLU_309e();
 6a16: a0,38,32            ldw   R32,R38          R32 = R38;
 6a19: ad,05,34            ldzbw R34,5            wR34 = 5;
 6a1c: 45,f0,03,f8,38      ad3w  R38,Rf8,3f0      R38 = TBL7D66;
-6a21: ef,f8,c6            call  311c             Sub_311c();
+6a21: ef,f8,c6            call  311c             UYTabLU_311c();
 6a24: 5f,01,d9,00,3b,3e   ml3b  R3e,R3b,[R0+d9]  wR3e = R3b * [d9];
 6a2a: 08,08,3e            shrw  R3e,8            R3e >>= 8;                        #[ R3e /= 256] 
 6a2d: 74,b4,3e            ad2b  R3e,Rb4          R3e += Rb4;
@@ -7123,28 +7128,42 @@
 
 6f50: 22,72               word   7222            CP_RF0_Header_Points_to_CP_RF2
 
+   FN6F52:
 6f52: ff,7b   func              255,123
 6f54: cd,7b   func              205,123
 6f56: 00,44   func                0, 68
 
-6f58: ff,7f,66,01   func        32767,  358
-6f5c: 00,80,66,01   func        32768,  358
-6f60: 00,80,66,01   func        32768,  358
-6f64: 00,80,66,01   func        32768,  358
-6f68: 00,80,66,01   func        32768,  358
-6f6c: 00,80,66,01   func        32768,  358
-6f70: 00,80,66,01   func        32768,  358
-6f74: ff,46,db,46   func        18175,18139
-6f78: 9c,60,00,60   func        24732,24576
-6f7c: 00,60,00,60   func        24576,24576
-6f80: ff,00,00,00   func          255,    0
-6f84: 00,00,00,00   func            0,    0
-6f88: 00,00,00,00   func            0,    0
-6f8c: 00,00,00,00   func            0,    0
-6f90: 00,00,00,00   func            0,    0
+   FN6F58:
+6f58: ff,7f,66,01   func         32767,  358
+6f5c: 00,80,66,01   func        -32768,  358
+6f60: 00,80,66,01   func        -32768,  358
+6f64: 00,80,66,01   func        -32768,  358
+6f68: 00,80,66,01   func        -32768,  358
+6f6c: 00,80,66,01   func        -32768,  358
+6f70: 00,80,66,01   func        -32768,  358
 
+   FN6F74:
+6f74: ff,46   func              255, 70
+6f76: db,46   func              219, 70
+6f78: 9c,60   func              156, 96
+6f7a: 00,60   func                0, 96
+6f7c: 00,60   func                0, 96
+6f7e: 00,60   func                0, 96
+
+   FN6F80:
+6f80: ff,00   func              255,  0
+6f82: 00,00   func                0,  0
+6f84: 00,00   func                0,  0
+6f86: 00,00   func                0,  0
+6f88: 00,00   func                0,  0
+6f8a: 00,00   func                0,  0
+6f8c: 00,00   func                0,  0
+6f8e: 00,00   func                0,  0
+6f90: 00,00   func                0,  0
+6f92: 00,00   func                0,  0
 6f94: 00,00   func                0,  0
 
+   FN6F96:
 6f96: ff,02   func              255,  2
 6f98: 00,02   func                0,  2
 6f9a: 00,02   func                0,  2
@@ -7153,12 +7172,14 @@
 6fa0: 00,02   func                0,  2
 6fa2: 00,02   func                0,  2
 
+   FN6FA4:
 6fa4: ff,ff,80,00   func        65535,  128
 6fa8: 00,00,80,00   func            0,  128
 6fac: 00,00,80,00   func            0,  128
 6fb0: 00,00,80,00   func            0,  128
 6fb4: 00,00,80,00   func            0,  128
 
+   FN6FB8:
 6fb8: ff,ff,40,00   func        65535,   64
 6fbc: 00,00,40,00   func            0,   64
 6fc0: 00,00,40,00   func            0,   64
@@ -7168,13 +7189,14 @@
 
 6fd0: 00,06               word    600
 
-6fd2: ff,ff,00,00   func        65535,    0
-6fd6: 00,00,00,00   func            0,    0
-6fda: 00,00,00,00   func            0,    0
-6fde: 00,00,00,00   func            0,    0
-6fe2: 00,00,00,00   func            0,    0
-6fe6: 00,00,00,00   func            0,    0
-6fea: 00,00,00,00   func            0,    0
+   FN6FD2:
+6fd2: ff,ff,00,00   func        65535,     0
+6fd6: 00,00,00,00   func            0,     0
+6fda: 00,00,00,00   func            0,     0
+6fde: 00,00,00,00   func            0,     0
+6fe2: 00,00,00,00   func            0,     0
+6fe6: 00,00,00,00   func            0,     0
+6fea: 00,00,00,00   func            0,     0
 
    Scaler_6FEE:
 6fee: ff,7f,00,09   func        32767,    9    
@@ -7186,7 +7208,6 @@
 7006: 00,80,00,00   func        32768,    0    
 700a: 00,80,00,00   func        32768,    0    
 700e: 00,80,00,00   func        32768,    0    
-#				??	Row
    Scaler_7012:
 7012: ff,ff,00,07   func        65535,    7    
 7016: 00,af,00,07   func        44800,    7    
@@ -7195,8 +7216,8 @@
 7022: 00,00,00,00   func            0,    0    
 7026: 00,00,00,00   func            0,    0    
 702a: 00,00,00,00   func            0,    0    
-#				??	Row
 
+   FN702E:
 702e: ff,ff,93,00   func        65535,  147
 7032: 48,0d,93,00   func         3400,  147
 7036: f0,0a,6d,00   func         2800,  109
@@ -7204,6 +7225,7 @@
 703e: 34,08,43,00   func         2100,   67
 7042: 00,00,43,00   func            0,   67
 
+   FN7046:
 7046: ff,ff,cd,00   func        65535,  205
 704a: 70,17,cd,00   func         6000,  205
 704e: 10,0e,60,00   func         3600,   96
@@ -7211,30 +7233,42 @@
 7056: 00,00,41,00   func            0,   65
 705a: 00,00,41,00   func            0,   65
 
-705e: ff,7f,00,00   func        32767,    0
-7062: 00,80,00,00   func        32768,    0
-7066: 00,80,00,00   func        32768,    0
-706a: 00,80,00,00   func        32768,    0
-706e: 00,80,00,00   func        32768,    0
-7072: 00,80,00,00   func        32768,    0
-7076: 00,80,00,00   func        32768,    0
-707a: 7f,ff,4b,ff   func        65407,65355
-707e: 3c,e6,14,b3   func        58940,45844
-7082: 80,b3,80,b3   func        45952,45952
-7086: 7f,19,23,19   func         6527, 6435
-708a: 00,85,80,85   func        34048,34176
-708e: 80,85,80,85   func        34176,34176
+   FN705E:
+705e: ff,7f,00,00   func         32767,    0
+7062: 00,80,00,00   func        -32768,    0
+7066: 00,80,00,00   func        -32768,    0
+706a: 00,80,00,00   func        -32768,    0
+706e: 00,80,00,00   func        -32768,    0
+7072: 00,80,00,00   func        -32768,    0
+7076: 00,80,00,00   func        -32768,    0
+
+   FN707A:
+707a: 7f,ff   func               127,255
+707c: 4b,ff   func                75,255
+707e: 3c,e6   func                60,230
+7080: 14,b3   func                20,179
+7082: 80,b3   func              -128,179
+7084: 80,b3   func              -128,179
+
+   FN7086:
+7086: 7f,19   func               127, 25
+7088: 23,19   func                35, 25
+708a: 00,85   func                 0,133
+708c: 80,85   func              -128,133
+708e: 80,85   func              -128,133
+7090: 80,85   func              -128,133
+
    ECT_Transfer:
-7092: ff,ff,00,ec   func        65535,60416
-7096: 80,e7,00,ec   func        59264,60416
-709a: c0,df,80,fb   func        57280,64384
-709e: c0,d0,80,09   func        53440, 2432
-70a2: 40,b8,00,17   func        47168, 5888
-70a6: 80,48,80,42   func        18560,17024
-70aa: 00,25,80,59   func         9472,22912
-70ae: c0,13,00,6f   func         5056,28416
-70b2: 80,0c,00,7f   func         3200,32512
-70b6: 00,00,00,7f   func            0,32512
+7092: ff,ff,00,ec   func            5.12 , -5120
+7096: 80,e7,00,ec   func            4.63 , -5120
+709a: c0,df,80,fb   func            4.475, -1152
+709e: c0,d0,80,09   func            4.175,  2432
+70a2: 40,b8,00,17   func            3.685,  5888
+70a6: 80,48,80,42   func            1.45 , 17024
+70aa: 00,25,80,59   func            0.74 , 22912
+70ae: c0,13,00,6f   func            0.395, 28416
+70b2: 80,0c,00,7f   func            0.25 , 32512
+70b6: 00,00,00,7f   func            0    , 32512
 
    Barrometric_Pressure_Transfer:
 70ba: ff,ff,d1,f7   func            5.12 ,63441
@@ -7252,24 +7286,23 @@
 70e2: 00,00,00,00   func            0    ,    0    
 70e6: 00,00,00,00   func            0    ,    0    
 70ea: 00,00,00,00   func            0    ,    0    
-#				Seconds	 Row
 
    Scaler_for_TBL7B12:
-70ee: ff,ff,00,07   func        65535,    7    
-70f2: c0,03,00,07   func          960,    7    
-70f6: a0,00,00,03   func          160,    3    
-70fa: 0a,00,00,00   func           10,    0    
-70fe: 00,00,00,00   func            0,    0    
-#				??	Row
+70ee: ff,ff,00,07   func        65535    ,    7    
+70f2: c0,03,00,07   func          960    ,    7    
+70f6: a0,00,00,03   func          160    ,    3    
+70fa: 0a,00,00,00   func           10    ,    0    
+70fe: 00,00,00,00   func            0    ,    0    
 
    Scaler_for_TBL782E:
-7102: ff,7f,00,06   func        32767,    6    
-7106: 5a,00,00,06   func           90,    6    
-710a: 00,00,00,00   func            0,    0    
-
-710e: 00,80,00,00,00,80,00,00,00,80,00,00,00,80,00,00 ??? 
-711e: 00,80,00,00         ???   
-#				??	Row
+7102: ff,7f,00,06   func         32767    ,  1536    
+7106: 5a,00,00,06   func            90    ,  1536    
+710a: 00,00,00,00   func             0    ,     0    
+710e: 00,80,00,00   func        -32768    ,     0    
+7112: 00,80,00,00   func        -32768    ,     0    
+7116: 00,80,00,00   func        -32768    ,     0    
+711a: 00,80,00,00   func        -32768    ,     0    
+711e: 00,80,00,00   func        -32768    ,     0    
 
    Scaler_for_Abs_Exh_Pressure:
 7122: ff,ff,00,08   func        16383.75 ,    8    
@@ -7284,15 +7317,14 @@
 7146: 00,00,00,00   func            0    ,    0    
 714a: 00,00,00,00   func            0    ,    0    
 714e: 00,00,00,00   func            0    ,    0    
-#				??	 Row
 
    Scaler_for_ECT:
-7152: ff,7f,00,09   func        32767,    9    
-7156: 00,2d,00,09   func        11520,    9    
-715a: 00,00,00,00   func            0,    0    
-
-715e: 00,80,00,00,00,80,00,00,00,80,00,00 ??? 
-#				??	Row
+7152: ff,7f,00,09   func         32767    ,  2304    
+7156: 00,2d,00,09   func         11520    ,  2304    
+715a: 00,00,00,00   func             0    ,     0    
+715e: 00,80,00,00   func        -32768    ,     0    
+7162: 00,80,00,00   func        -32768    ,     0    
+7166: 00,80,00,00   func        -32768    ,     0    
 
    Scaler_for_RPM:
 716a: ff,ff,00,0b   func        16383.75 ,   11    
@@ -7302,7 +7334,6 @@
 717a: a0,0f,00,02   func         1000    ,    2    
 717e: 40,06,00,00   func          400    ,    0    
 7182: 00,00,00,00   func            0    ,    0    
-#				RPM	 Row
 
    Scaler_for_Load_(fuel):
 7186: ff,ff,00,08   func        51199.219,    8    
@@ -7312,7 +7343,6 @@
 7196: 00,00,00,00   func            0    ,    0    
 719a: 00,00,00,00   func            0    ,    0    
 719e: 00,00,00,00   func            0    ,    0    
-#				Load %	 Row
 
    Scaler_for_Load_(fuelstable):
 71a2: ff,ff,00,08   func        51199.219,    8    
@@ -7322,7 +7352,6 @@
 71b2: 1a,00,00,00   func           20.312,    0    
 71b6: 00,00,00,00   func            0    ,    0    
 71ba: 00,00,00,00   func            0    ,    0    
-#				Load %	 Row
 
    Scaler_for_MAP:
 71be: ff,ff,00,08   func         8191.875,    8    
@@ -7332,7 +7361,6 @@
 71ce: 00,00,00,00   func            0    ,    0    
 71d2: 00,00,00,00   func            0    ,    0    
 71d6: 00,00,00,00   func            0    ,    0    
-#				inHga	 Row
 
    Scaler_FN71DA:
 71da: ff,7f,00,09   func        32767,    9    
@@ -7341,13 +7369,14 @@
 71e6: 00,80,00,00   func        32768,    0    
 71ea: 00,80,00,00   func        32768,    0    
 71ee: 00,80,00,00   func        32768,    0    
-#				??	Row
+   FN71F2:
 71f2: ff,ff,00,af   func        65535,  175    
 71f6: a0,00,00,af   func          160,  175    
 71fa: 80,00,00,00   func          128,    0    
 71fe: 00,00,00,00   func            0,    0    
 7202: 00,00,00,00   func            0,    0    
 
+   FN7206:
 7206: ff,ff,e0,00   func        65535,  224
 720a: 00,64,e0,00   func        25600,  224
 720e: 00,19,c8,00   func         6400,  200
@@ -7458,8 +7487,23 @@
 7386: 00                  byte      0
 7387: 00                  byte      0
 
-7388: ff,4d,80,4d,33,1a,26,01,00,01,00,01,00,01,ff,4d ??? 
-7398: 7d,46,00,46,00,46,00,46,00,46,00,46 ??? 
+   Func_7388:
+7388: ff,4d   func              255, 77
+738a: 80,4d   func              128, 77
+738c: 33,1a   func               51, 26
+738e: 26,01   func               38,  1
+7390: 00,01   func                0,  1
+7392: 00,01   func                0,  1
+7394: 00,01   func                0,  1
+
+   Func_7396:
+7396: ff,4d   func              255, 77
+7398: 7d,46   func              125, 70
+739a: 00,46   func                0, 70
+739c: 00,46   func                0, 70
+739e: 00,46   func                0, 70
+73a0: 00,46   func                0, 70
+73a2: 00,46   func                0, 70
 
 73a4: f2,02               word    2f2
 
@@ -7489,7 +7533,14 @@
 73b6: 80,f7               word   f780
 73b8: 00,0a               word    a00
 
-73ba: ff,38,16,38,06,1c,01,1c,00,f8,ff,ff ??? 
+   Func_73ba:
+73ba: ff,38   func              255, 56
+73bc: 16,38   func               22, 56
+73be: 06,1c   func                6, 28
+73c0: 01,1c   func                1, 28
+73c2: 00,f8   func                0,248
+
+73c4: ff,ff               ???   
 
 73c6: fe,54               word   54fe
 
@@ -7542,9 +7593,19 @@
 
 73f2: 01                  byte      1
 
-73f3: ff,ff,ff,fa,fe,00,18,fa,fe,00,10,66,66,66,0e,33 ??? 
-7403: 33,cd,0c,9a,19,9a,09,00,00,00,00,00,00,00,00,00 ??? 
-7413: 00,00,00,00,00,00,00,00,00 ??? 
+73f3: ff                  ???   
+
+   Func_73f4:
+73f4: ff,ff,fa,fe   func        65535,65274
+73f8: 00,18,fa,fe   func         6144,65274
+73fc: 00,10,66,66   func         4096,26214
+7400: 66,0e,33,33   func         3686,13107
+7404: cd,0c,9a,19   func         3277, 6554
+7408: 9a,09,00,00   func         2458,    0
+740c: 00,00,00,00   func            0,    0
+7410: 00,00,00,00   func            0,    0
+7414: 00,00,00,00   func            0,    0
+7418: 00,00,00,00   func            0,    0
 
 741c: 00,00               word      0
 741e: 80,00               word     80
@@ -7713,17 +7774,19 @@
 
 7527: ff                  ???   
 
-7528: ff,ff,00,3b   func        65535,15104
-752c: 00,40,00,3b   func        16384,15104
-7530: 00,30,7d,1c   func        12288, 7293
-7534: 00,28,db,13   func        10240, 5083
-7538: 00,20,ce,0d   func         8192, 3534
-753c: 00,18,96,09   func         6144, 2454
-7540: 00,10,ae,06   func         4096, 1710
-7544: 33,07,9f,04   func         1843, 1183
-7548: 33,03,0d,04   func          819, 1037
-754c: 00,00,00,00   func            0,    0
+   FN7528:
+7528: ff,ff,00,3b   func        65535, 15104
+752c: 00,40,00,3b   func        16384, 15104
+7530: 00,30,7d,1c   func        12288,  7293
+7534: 00,28,db,13   func        10240,  5083
+7538: 00,20,ce,0d   func         8192,  3534
+753c: 00,18,96,09   func         6144,  2454
+7540: 00,10,ae,06   func         4096,  1710
+7544: 33,07,9f,04   func         1843,  1183
+7548: 33,03,0d,04   func          819,  1037
+754c: 00,00,00,00   func            0,     0
 
+   FN7550:
 7550: ff,ff,b0,00   func        65535,  176
 7554: 00,98,b0,00   func        38912,  176
 7558: 00,90,8b,00   func        36864,  139
@@ -7736,6 +7799,7 @@
 7574: 00,00,00,00   func            0,    0
 7578: 00,00,00,00   func            0,    0
 
+   FN757C:
 757c: ff,ff,5e,3a   func        65535,14942
 7580: 00,78,5e,3a   func        30720,14942
 7584: 00,46,25,26   func        17920, 9765
@@ -7747,6 +7811,7 @@
 759c: 00,00,00,00   func            0,    0
 75a0: 00,00,00,00   func            0,    0
 
+   FN75A4:
 75a4: ff,ff,00,78   func        65535,30720
 75a8: 5e,3a,00,78   func        14942,30720
 75ac: 25,26,00,46   func         9765,17920
@@ -7758,24 +7823,36 @@
 75c4: 00,00,00,00   func            0,    0
 75c8: 00,00,00,00   func            0,    0
 
-75cc: ff,7f,8f,02   func        32767,  655
-75d0: 80,59,8f,02   func        22912,  655
-75d4: 80,a6,71,fd   func        42624,64881
-75d8: 00,80,71,fd   func        32768,64881
-75dc: 00,80,71,fd   func        32768,64881
-75e0: 00,80,71,fd   func        32768,64881
-75e4: 00,80,71,fd   func        32768,64881
-75e8: ff,7f,80,00   func        32767,  128
-75ec: 00,80,80,00   func        32768,  128
-75f0: 00,80,80,00   func        32768,  128
-75f4: 00,80,80,00   func        32768,  128
-75f8: 00,80,80,00   func        32768,  128
-75fc: 00,80,80,00   func        32768,  128
-7600: 00,80,80,00   func        32768,  128
-7604: ff,1a,c8,1a   func         6911, 6856
-7608: 78,ff,00,ff   func        65400,65280
-760c: 00,ff,00,ff   func        65280,65280
-7610: 00,ff,ae,07   func        65280, 1966
+   FN75CC:
+75cc: ff,7f,8f,02   func         32767,   655
+75d0: 80,59,8f,02   func         22912,   655
+75d4: 80,a6,71,fd   func        -22912,  -655
+75d8: 00,80,71,fd   func        -32768,  -655
+75dc: 00,80,71,fd   func        -32768,  -655
+75e0: 00,80,71,fd   func        -32768,  -655
+75e4: 00,80,71,fd   func        -32768,  -655
+
+   FN75E8:
+75e8: ff,7f,80,00   func         32767,  128
+75ec: 00,80,80,00   func        -32768,  128
+75f0: 00,80,80,00   func        -32768,  128
+75f4: 00,80,80,00   func        -32768,  128
+75f8: 00,80,80,00   func        -32768,  128
+75fc: 00,80,80,00   func        -32768,  128
+7600: 00,80,80,00   func        -32768,  128
+
+   FN7604:
+7604: ff,1a   func              255, 26
+7606: c8,1a   func              200, 26
+7608: 78,ff   func              120,255
+760a: 00,ff   func                0,255
+760c: 00,ff   func                0,255
+760e: 00,ff   func                0,255
+7610: 00,ff   func                0,255
+
+7612: ae,07               word    7ae
+
+   FN7614:
 7614: ff,ff,00,02   func        65535,  512
 7618: 20,4e,00,02   func        20000,  512
 761c: e0,2e,00,06   func        12000, 1536
@@ -7783,6 +7860,7 @@
 7624: 00,00,00,10   func            0, 4096
 7628: 00,00,00,10   func            0, 4096
 
+   FN762C:
 762c: ff,ff,10,01   func        65535,  272
 7630: 20,4e,10,01   func        20000,  272
 7634: e0,2e,d2,00   func        12000,  210
@@ -7791,12 +7869,14 @@
 7640: 00,00,76,00   func            0,  118
 7644: 00,00,76,00   func            0,  118
 
+   FN7648:
 7648: ff,ff,00,00   func        65535,    0
 764c: 00,00,00,00   func            0,    0
 7650: 00,00,00,00   func            0,    0
 7654: 00,00,00,00   func            0,    0
 7658: 00,00,00,00   func            0,    0
 
+   FN765C:
 765c: ff,ff,80,00   func        65535,  128
 7660: 00,00,80,00   func            0,  128
 7664: 00,00,80,00   func            0,  128
@@ -7804,6 +7884,7 @@
 766c: 00,00,80,00   func            0,  128
 7670: 00,00,80,00   func            0,  128
 
+   FN7674:
 7674: ff,ff,80,70   func        65535,28800
 7678: 73,00,80,70   func          115,28800
 767c: 40,00,80,57   func           64,22400
@@ -7811,12 +7892,14 @@
 7684: 00,00,00,4b   func            0,19200
 7688: 00,00,00,4b   func            0,19200
 
+   FN768C:
 768c: ff,ff,00,08   func        65535, 2048
 7690: 73,00,00,08   func          115, 2048
 7694: 0d,00,00,00   func           13,    0
 7698: 00,00,00,00   func            0,    0
 769c: 00,00,00,00   func            0,    0
 
+   FN76A0:
 76a0: ff,ff,00,04   func        65535, 1024
 76a4: 80,a2,00,04   func        41600, 1024
 76a8: 80,57,00,01   func        22400,  256
@@ -7825,13 +7908,20 @@
 
 76b4: 76,79               word   7976            CP_RF6_Header_Points_to_CP_RF8
 
-76b6: 7f,83,55,83,34,80,23,7d,80,7d ??? 
+   FN76B6:
+76b6: 7f,83   func               127,131
+76b8: 55,83   func                85,131
+76ba: 34,80   func                52,128
+76bc: 23,7d   func                35,125
+76be: 80,7d   func              -128,125
 
-76c0: 7f,80   func              127,128
-76c2: 80,80   func              128,128
-76c4: 80,80   func              128,128
-76c6: 80,80   func              128,128
-76c8: 80,80   func              128,128
+   FN76C0:
+76c0: 7f,80   func               127,128
+76c2: 80,80   func              -128,128
+76c4: 80,80   func              -128,128
+76c6: 80,80   func              -128,128
+76c8: 80,80   func              -128,128
+
    Injector_comp_batt_volts:
 76ca: ff,26   func              255, 38
 76cc: e0,26   func              224, 38
@@ -7843,12 +7933,14 @@
 76d8: 00,a0   func                0,160
 76da: 00,a0   func                0,160
 
-76dc: ff,ff,00,00   func        65535,    0
-76e0: 00,00,00,00   func            0,    0
-76e4: 00,00,00,00   func            0,    0
-76e8: 00,00,00,00   func            0,    0
-76ec: 00,00,00,00   func            0,    0
+   FN76DC:
+76dc: ff,ff,00,00   func        65535,     0
+76e0: 00,00,00,00   func            0,     0
+76e4: 00,00,00,00   func            0,     0
+76e8: 00,00,00,00   func            0,     0
+76ec: 00,00,00,00   func            0,     0
 
+   FN76F0:
 76f0: ff,ff,9a,01   func        65535,  410
 76f4: a0,0f,9a,01   func         4000,  410
 76f8: f0,0a,cd,00   func         2800,  205
@@ -7856,78 +7948,139 @@
 7700: 00,00,cd,00   func            0,  205
 7704: 00,00,cd,00   func            0,  205
 
+   FN7708:
 7708: ff,33   func              255, 51
 770a: 50,3a   func               80, 58
 770c: 28,40   func               40, 64
 770e: 00,40   func                0, 64
 7710: 00,40   func                0, 64
 
-7712: ff,7f,c6,04   func        32767, 1222
-7716: 69,00,c6,04   func          105, 1222
-771a: 4b,00,88,05   func           75, 1416
-771e: 3c,00,c2,06   func           60, 1730
-7722: 26,00,4a,0c   func           38, 3146
-7726: 0f,00,f6,17   func           15, 6134
-772a: 00,00,f6,28   func            0,10486
+   FN7712:
+7712: ff,7f,c6,04   func         32767, 1222
+7716: 69,00,c6,04   func           105, 1222
+771a: 4b,00,88,05   func            75, 1416
+771e: 3c,00,c2,06   func            60, 1730
+7722: 26,00,4a,0c   func            38, 3146
+7726: 0f,00,f6,17   func            15, 6134
+772a: 00,00,f6,28   func             0,10486
+772e: 00,80,f6,28   func        -32768,10486
+7732: 00,80,f6,28   func        -32768,10486
 
-772e: 00,80,f6,28,00,80,f6,28 ??? 
+   FN7736:
+7736: 7f,53   func               127, 83
+7738: 80,53   func              -128, 83
+773a: 80,53   func              -128, 83
+773c: 80,53   func              -128, 83
+773e: 80,53   func              -128, 83
+7740: 80,53   func              -128, 83
 
-7736: 7f,53,80,53   func        21375,21376
-773a: 80,53,80,53   func        21376,21376
-773e: 80,53,80,53   func        21376,21376
-7742: ff,5a,00,5a   func        23295,23040
-7746: 00,5a,00,5a   func        23040,23040
-774a: 00,5a,00,5a   func        23040,23040
-774e: 00,5a,00,5a   func        23040,23040
-7752: ff,48,00,48   func        18687,18432
-7756: 00,48,00,48   func        18432,18432
-775a: 00,48,00,48   func        18432,18432
-775e: 00,48,00,48   func        18432,18432
-7762: ff,fe,62,fe   func        65279,65122
-7766: 60,46,00,46   func        18016,17920
-776a: 00,46,00,46   func        17920,17920
-776e: 00,46,00,46   func        17920,17920
-7772: ff,96,00,96   func        38655,38400
-7776: 00,96,00,96   func        38400,38400
-777a: 00,96,00,96   func        38400,38400
-777e: 00,96,00,96   func        38400,38400
-7782: ff,52,0f,52   func        21247,21007
-7786: 07,b4,02,fe   func        46087,65026
-778a: 00,fe,ff,80   func        65024,33023
-778e: 00,80,00,80   func        32768,32768
-7792: 00,80,00,80   func        32768,32768
-7796: ae,07,48,01   func         1966,  328
-779a: 18,ff,40,3c   func        65304,15424
-779e: 40,00,0d,00   func           64,   13
-77a2: 0d,00,0d,ff   func           13,65293
-77a6: ff,7f,d8,0e   func        32767, 3800
-77aa: 6e,00,d8,0e   func          110, 3800
-77ae: 69,00,10,0e   func          105, 3600
-77b2: 00,80,10,0e   func        32768, 3600
-77b6: 00,80,10,0e   func        32768, 3600
-77ba: 00,80,10,0e   func        32768, 3600
-77be: 00,80,10,0e   func        32768, 3600
-77c2: 00,80,10,0e   func        32768, 3600
-77c6: 00,80,10,0e   func        32768, 3600
-77ca: ff,7f,60,09   func        32767, 2400
-77ce: 73,00,60,09   func          115, 2400
-77d2: 6f,00,f0,0a   func          111, 2800
-77d6: 69,00,b8,0b   func          105, 3000
-77da: 00,80,b8,0b   func        32768, 3000
-77de: 00,80,b8,0b   func        32768, 3000
-77e2: 00,80,b8,0b   func        32768, 3000
-77e6: 00,80,b8,0b   func        32768, 3000
-77ea: 00,80,b8,0b   func        32768, 3000
-77ee: ff,80,50,80   func        33023,32848
-77f2: 28,8c,00,8c   func        35880,35840
-77f6: 00,8c,00,8c   func        35840,35840
-77fa: ff,7f,00,a0   func        32767,40960
-77fe: e8,03,00,a0   func         1000,40960
-7802: 78,00,00,40   func          120,16384
-7806: 88,ff,00,40   func        65416,16384
-780a: 18,fc,cd,4c   func        64536,19661
-780e: 80,f3,66,66   func        62336,26214
-7812: 00,80,66,66   func        32768,26214
+   FN7742:
+7742: ff,5a   func              255, 90
+7744: 00,5a   func                0, 90
+7746: 00,5a   func                0, 90
+7748: 00,5a   func                0, 90
+774a: 00,5a   func                0, 90
+774c: 00,5a   func                0, 90
+774e: 00,5a   func                0, 90
+7750: 00,5a   func                0, 90
+
+   FN7752:
+7752: ff,48   func              255, 72
+7754: 00,48   func                0, 72
+7756: 00,48   func                0, 72
+7758: 00,48   func                0, 72
+775a: 00,48   func                0, 72
+775c: 00,48   func                0, 72
+775e: 00,48   func                0, 72
+7760: 00,48   func                0, 72
+
+   FN7762:
+7762: ff,fe   func              255,254
+7764: 62,fe   func               98,254
+7766: 60,46   func               96, 70
+7768: 00,46   func                0, 70
+776a: 00,46   func                0, 70
+776c: 00,46   func                0, 70
+776e: 00,46   func                0, 70
+7770: 00,46   func                0, 70
+
+   FN7772:
+7772: ff,96   func              255,150
+7774: 00,96   func                0,150
+7776: 00,96   func                0,150
+7778: 00,96   func                0,150
+777a: 00,96   func                0,150
+777c: 00,96   func                0,150
+777e: 00,96   func                0,150
+7780: 00,96   func                0,150
+
+   FN7782:
+7782: ff,52   func              255, 82
+7784: 0f,52   func               15, 82
+7786: 07,b4   func                7,180
+7788: 02,fe   func                2,254
+778a: 00,fe   func                0,254
+
+   FN778C:
+778c: ff,80   func              255,128
+778e: 00,80   func                0,128
+7790: 00,80   func                0,128
+7792: 00,80   func                0,128
+7794: 00,80   func                0,128
+
+7796: ae,07               word    7ae
+7798: 48,01               word    148
+
+779a: 18                  byte     18
+
+   FN779B:
+779b: ff,40   func              255, 64
+779d: 3c,40   func               60, 64
+779f: 00,0d   func                0, 13
+77a1: 00,0d   func                0, 13
+77a3: 00,0d   func                0, 13
+
+77a5: ff                  ???   
+
+   FN77A6:
+77a6: ff,7f,d8,0e   func         32767, 3800
+77aa: 6e,00,d8,0e   func           110, 3800
+77ae: 69,00,10,0e   func           105, 3600
+77b2: 00,80,10,0e   func        -32768, 3600
+77b6: 00,80,10,0e   func        -32768, 3600
+77ba: 00,80,10,0e   func        -32768, 3600
+77be: 00,80,10,0e   func        -32768, 3600
+77c2: 00,80,10,0e   func        -32768, 3600
+77c6: 00,80,10,0e   func        -32768, 3600
+
+   FN77CA:
+77ca: ff,7f,60,09   func         32767, 2400
+77ce: 73,00,60,09   func           115, 2400
+77d2: 6f,00,f0,0a   func           111, 2800
+77d6: 69,00,b8,0b   func           105, 3000
+77da: 00,80,b8,0b   func        -32768, 3000
+77de: 00,80,b8,0b   func        -32768, 3000
+77e2: 00,80,b8,0b   func        -32768, 3000
+77e6: 00,80,b8,0b   func        -32768, 3000
+77ea: 00,80,b8,0b   func        -32768, 3000
+
+   FN77EE:
+77ee: ff,80   func              255,128
+77f0: 50,80   func               80,128
+77f2: 28,8c   func               40,140
+77f4: 00,8c   func                0,140
+77f6: 00,8c   func                0,140
+77f8: 00,8c   func                0,140
+
+   FN77FA:
+77fa: ff,7f,00,a0   func         32767,40960
+77fe: e8,03,00,a0   func          1000,40960
+7802: 78,00,00,40   func           120,16384
+7806: 88,ff,00,40   func          -120,16384
+780a: 18,fc,cd,4c   func         -1000,19661
+780e: 80,f3,66,66   func         -3200,26214
+7812: 00,80,66,66   func        -32768,26214
+
    Scaler_for_TBL782E:
 7816: ff,ff,00,05   func        65535, 1280
 781a: 3c,00,00,05   func           60, 1280
@@ -7945,6 +8098,7 @@
 7851: 80,73,66,4d,4a,40,40   table 128,115,102, 77, 74, 64, 64
 # Columns=??(7102), Rows=??(7816)
 
+   FN7858:
 7858: ff,ff,00,10   func        65535, 4096
 785c: e0,2e,00,10   func        12000, 4096
 7860: 10,27,66,02   func        10000,  614
@@ -7953,6 +8107,7 @@
 786c: 00,00,00,00   func            0,    0
 7870: 00,00,00,00   func            0,    0
 
+   FN7874:
 7874: ff,ff,00,00   func        65535,    0
 7878: 00,00,00,00   func            0,    0
 787c: 00,00,00,00   func            0,    0
@@ -7961,32 +8116,40 @@
 7888: 00,00,00,00   func            0,    0
 788c: 00,00,00,00   func            0,    0
 
+   FN7890:
 7890: ff,7f   func              255,127
 7892: 2d,7f   func               45,127
 7894: 00,60   func                0, 96
 7896: 00,60   func                0, 96
 
-7898: ff,7f,7f,00   func        32767,  127
-789c: a0,00,7f,00   func          160,  127
-78a0: 60,ff,40,00   func        65376,   64
-78a4: 00,80,40,00   func        32768,   64
-78a8: 00,80,40,00   func        32768,   64
-78ac: 00,80,40,00   func        32768,   64
-78b0: 00,80,40,00   func        32768,   64
-78b4: ff,7f,7f,00   func        32767,  127
-78b8: 78,00,7f,00   func          120,  127
-78bc: 88,ff,40,00   func        65416,   64
-78c0: 00,80,40,00   func        32768,   64
-78c4: 00,80,40,00   func        32768,   64
-78c8: 00,80,40,00   func        32768,   64
-78cc: 00,80,40,00   func        32768,   64
-78d0: ff,7f,14,00   func        32767,   20
-78d4: 9c,ff,14,00   func        65436,   20
-78d8: 0c,fe,1e,00   func        65036,   30
-78dc: 00,80,1e,00   func        32768,   30
-78e0: 00,80,1e,00   func        32768,   30
-78e4: 00,80,1e,00   func        32768,   30
-78e8: 00,80,1e,00   func        32768,   30
+   FN7898:
+7898: ff,7f,7f,00   func         32767,  127
+789c: a0,00,7f,00   func           160,  127
+78a0: 60,ff,40,00   func          -160,   64
+78a4: 00,80,40,00   func        -32768,   64
+78a8: 00,80,40,00   func        -32768,   64
+78ac: 00,80,40,00   func        -32768,   64
+78b0: 00,80,40,00   func        -32768,   64
+
+   FN78B4:
+78b4: ff,7f,7f,00   func         32767,  127
+78b8: 78,00,7f,00   func           120,  127
+78bc: 88,ff,40,00   func          -120,   64
+78c0: 00,80,40,00   func        -32768,   64
+78c4: 00,80,40,00   func        -32768,   64
+78c8: 00,80,40,00   func        -32768,   64
+78cc: 00,80,40,00   func        -32768,   64
+
+   FN78D0:
+78d0: ff,7f,14,00   func         32767,   20
+78d4: 9c,ff,14,00   func          -100,   20
+78d8: 0c,fe,1e,00   func          -500,   30
+78dc: 00,80,1e,00   func        -32768,   30
+78e0: 00,80,1e,00   func        -32768,   30
+78e4: 00,80,1e,00   func        -32768,   30
+78e8: 00,80,1e,00   func        -32768,   30
+
+   FN78EC:
 78ec: ff,ff,00,80   func        65535,32768
 78f0: 37,19,00,80   func         6455,32768
 78f4: 29,18,33,73   func         6185,29491
@@ -7998,23 +8161,27 @@
 790c: 14,00,9a,19   func           20, 6554
 7910: 00,00,00,00   func            0,    0
 
-7914: ff,7f,20,03   func        32767,  800
-7918: 6e,00,20,03   func          110,  800
-791c: 69,00,00,00   func          105,    0
-7920: 4b,00,00,00   func           75,    0
-7924: 3c,00,64,00   func           60,  100
-7928: 26,00,58,02   func           38,  600
-792c: 00,80,58,02   func        32768,  600
-7930: 00,80,58,02   func        32768,  600
-7934: 00,80,58,02   func        32768,  600
-7938: 00,80,58,02   func        32768,  600
-793c: ff,7f,00,00   func        32767,    0
-7940: 00,80,00,00   func        32768,    0
-7944: 00,80,00,00   func        32768,    0
-7948: 00,80,00,00   func        32768,    0
-794c: 00,80,00,00   func        32768,    0
-7950: 00,80,00,00   func        32768,    0
-7954: 00,80,00,00   func        32768,    0
+   FN7914:
+7914: ff,7f,20,03   func         32767,  800
+7918: 6e,00,20,03   func           110,  800
+791c: 69,00,00,00   func           105,    0
+7920: 4b,00,00,00   func            75,    0
+7924: 3c,00,64,00   func            60,  100
+7928: 26,00,58,02   func            38,  600
+792c: 00,80,58,02   func        -32768,  600
+7930: 00,80,58,02   func        -32768,  600
+7934: 00,80,58,02   func        -32768,  600
+7938: 00,80,58,02   func        -32768,  600
+
+   FN793C:
+793c: ff,7f,00,00   func         32767,    0
+7940: 00,80,00,00   func        -32768,    0
+7944: 00,80,00,00   func        -32768,    0
+7948: 00,80,00,00   func        -32768,    0
+794c: 00,80,00,00   func        -32768,    0
+7950: 00,80,00,00   func        -32768,    0
+7954: 00,80,00,00   func        -32768,    0
+
    Dashpot_Decay_Rate:
 7958: ff,ff,9a,01   func        65535,  410
 795c: 00,20,9a,01   func         8192,  410
@@ -8160,30 +8327,19 @@
 # Values are degrees of ignition advance; Columns=RPM(716A), Rows=MAP(71BE)
 
    TBL7D66:
-7d66: 04,02   table             516
-7d68: 02,02   table             514
-7d6a: 01,06   table             1537
-7d6c: 03,02   table             515
-7d6e: 02,02   table             514
-7d70: 08,04   table             1032
-7d72: 03,05   table             1283
-7d74: 02,0a   table             2562
-7d76: 06,04   table             1030
-7d78: 04,03   table             772
-7d7a: 0f,09   table             2319
-7d7c: 06,05   table             1286
-7d7e: 03,14   table             5123
-7d80: 0e,08   table             2062
-7d82: 06,04   table             1030
-7d84: 1c,14   table             5148
-7d86: 0a,08   table             2058
-7d88: 06,26   table             9734
-7d8a: 1e,0e   table             3614
-7d8c: 0a,07   table             1802
-7d8e: 35,2c   table             11317
-7d90: 12,0d   table             3346
-7d92: 09,ff   table             65289
+7d66: 04,02,02,02,01   table      4,  2,  2,  2,  1
+7d6b: 06,03,02,02,02   table      6,  3,  2,  2,  2
+7d70: 08,04,03,05,02   table      8,  4,  3,  5,  2
+7d75: 0a,06,04,04,03   table     10,  6,  4,  4,  3
+7d7a: 0f,09,06,05,03   table     15,  9,  6,  5,  3
+7d7f: 14,0e,08,06,04   table     20, 14,  8,  6,  4
+7d84: 1c,14,0a,08,06   table     28, 20, 10,  8,  6
+7d89: 26,1e,0e,0a,07   table     38, 30, 14, 10,  7
+7d8e: 35,2c,12,0d,09   table     53, 44, 18, 13,  9
 
+7d93: ff                  ???   
+
+   FN7D94:
 7d94: ff,ff,66,06   func        65535, 1638
 7d98: 70,17,66,06   func         6000, 1638
 7d9c: c0,12,00,04   func         4800, 1024
@@ -8379,6 +8535,7 @@
 
 7ef8: 22,7f               word   7f22            CP_RFC_Header_Points_to_CP_RFE
 
+   FN7EFA:
 7efa: ff,ff,0a,00   func        65535,   10
 7efe: 00,00,0a,00   func            0,   10
 7f02: 00,00,0a,00   func            0,   10
@@ -8387,84 +8544,97 @@
 7f0e: 00,00,0a,00   func            0,   10
 7f12: 00,00,0a,00   func            0,   10
 
-7f16: 7f,00,80,00   func          127,  128
-7f1a: 80,00,80,00   func          128,  128
-7f1e: 80,00,80,00   func          128,  128
-   CP_RFE_Header_Points_to_EOF:
-7f22: 4c,80,33,03   func        32844,  819
-7f26: ea,00,9a,19   func          234, 6554
-7f2a: 02,ff,03,ba   func        65282,47619
-7f2e: 14,0e,02,10   func         3604, 4098
-7f32: 6e,58,02,00   func        22638,    2
-7f36: b8,06,bd,01   func         1720,  445
-7f3a: 0a,ff,20,03   func        65290,  800
-7f3e: 00,ff,80,00   func        65280,  128
-7f42: 80,00,80,00   func          128,  128
-7f46: 80,00,80,00   func          128,  128
-7f4a: 00,00,00,00   func            0,    0
-7f4e: 00,00,00,00   func            0,    0
-7f52: 00,00,00,00   func            0,    0
-7f56: 00,00,00,00   func            0,    0
-7f5a: 00,00,00,00   func            0,    0
-7f5e: 00,00,00,00   func            0,    0
-7f62: 00,00,00,00   func            0,    0
-7f66: 00,00,00,00   func            0,    0
-7f6a: 00,00,00,00   func            0,    0
-7f6e: 00,00,00,00   func            0,    0
-7f72: 00,00,00,00   func            0,    0
-7f76: 00,00,00,00   func            0,    0
-7f7a: 00,00,00,00   func            0,    0
-7f7e: 00,00,00,00   func            0,    0
-7f82: 00,00,00,00   func            0,    0
-7f86: 00,00,00,00   func            0,    0
-7f8a: 00,00,00,00   func            0,    0
-7f8e: 00,00,00,00   func            0,    0
-7f92: 00,00,00,00   func            0,    0
-7f96: 00,00,00,00   func            0,    0
-7f9a: 00,00,00,00   func            0,    0
-7f9e: 00,00,00,00   func            0,    0
-7fa2: 00,00,00,00   func            0,    0
-7fa6: 00,00,00,00   func            0,    0
-7faa: 00,00,00,00   func            0,    0
-7fae: 00,00,00,00   func            0,    0
+   FN7F16:
+7f16: 7f,00   func               127,  0
+7f18: 80,00   func              -128,  0
+7f1a: 80,00   func              -128,  0
+7f1c: 80,00   func              -128,  0
+7f1e: 80,00   func              -128,  0
+7f20: 80,00   func              -128,  0
 
-7fb2: 00,00,00   table            0,  0,  0,255,
+7f22: 4c,80               word   804c            CP_RFE_Header_Points_to_EOF
+7f24: 33,03               word    333
+7f26: ea,00               word     ea
+7f28: 9a,19               word   199a
+7f2a: 02,ff               word   ff02
+7f2c: 03,ba               word   ba03
+
+7f2e: 14                  byte     14
+7f2f: 0e                  byte      e
+7f30: 02                  byte      2
+7f31: 10                  byte     10
+7f32: 6e                  byte     6e
+7f33: 58                  byte     58
+
+7f34: 02,00               word      2
+
+7f36: b8                  byte     b8
+7f37: 06                  byte      6
+
+7f38: bd,01               word    1bd
+7f3a: 0a,ff               word   ff0a
+7f3c: 20,03               word    320
+
+7f3e: 00                  byte      0
+
+   FN7F3F:
+7f3f: ff,80   func              255,128
+7f41: 00,80   func                0,128
+7f43: 00,80   func                0,128
+7f45: 00,80   func                0,128
+7f47: 00,80   func                0,128
+
+   TBL7F49:
+7f49: 00,00,00,00,00,00,00,00,00,00,00,00   table   0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
+7f55: 00,00,00,00,00,00,00,00,00,00,00,00   table   0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
+7f61: 00,00,00,00,00,00,00,00,00,00,00,00   table   0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
+7f6d: 00,00,00,00,00,00,00,00,00,00,00,00   table   0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
+7f79: 00,00,00,00,00,00,00,00,00,00,00,00   table   0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
+7f85: 00,00,00,00,00,00,00,00,00,00,00,00   table   0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
+7f91: 00,00,00,00,00,00,00,00,00,00,00,00   table   0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
+7f9d: 00,00,00,00,00,00,00,00,00,00,00,00   table   0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
+7fa9: 00,00,00,00,00,00,00,00,00,00,00,00   table   0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
 # Columns=RPM(716A), Rows=MAP(71BE)
 
 7fb5: ff                  ???   
 
 7fb6: 00,00               word      0
 
-   TBL7FB8_(CL_unused?):
-7fb8: 00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
-7fc2: 00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
-7fcc: 00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
-7fd6: 00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
-7fe0: 00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
-7fea: 00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
-7ff4: 00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
-7ffe: 00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
-8008: 00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
-8012: 00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
-801c: 00,00,00,00,00,00,00,00,00,ff   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    , 63.75 
+   TBL7FB8:
+7fb8: 00,00,00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
+7fc4: 00,00,00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
+7fd0: 00,00,00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
+7fdc: 00,00,00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
+7fe8: 00,00,00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
+7ff4: 00,00,00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
+8000: 00,00,00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
+800c: 00,00,00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
+8018: 00,00,00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
 # Values are degrees of ignition advance; Columns=RPM(716A), Rows=MAP(71BE)        
-8026: f6,06,00,00,9a,60,80,00,f6,00   table  61.5  ,  1.5  ,  0    ,  0    , 38.5  , 24    , 32    ,  0    , 61.5  ,  0    
 
-8030: a4,00,0a,01,00,60,cd,ac ??? 
+8024: 00,ff               word   ff00
+8026: f6,06               word    6f6
+8028: 00,00               word      0
+802a: 9a,60               word   609a
+802c: 80,00               word     80
+802e: f6,00               word     f6
+8030: a4,00               word     a4
+8032: 0a,01               word    10a
+8034: 00,60               word   6000
+8036: cd,ac               word   accd
+8038: 00,60               word   6000
 
-8038: 00,60   table             24576
-803a: 50,6a   table             27216
-803c: 50,46   table             18000
-803e: 5a,ff   table             65370
+803a: 50,6a,50,46,5a,ff   ???   
 
-8040: f0,0a   table              2800
-8042: 58,02   table               600
-8044: 60,50   table             20576
+8040: f0,0a               word    af0
 
-8046: 60,17   table              5984
-8048: 58,02   table               600
-804a: 20   table                   32
+8042: 58,02,60,50         ???   
 
+8046: 60,17               word   1760
+
+8048: 58,02               ???   
+
+804a: 20                  byte     20
 804b: 00                  byte      0
 
 804c -> ffff = 0xff  ## Ignored ## 

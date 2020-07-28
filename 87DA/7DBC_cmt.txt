@@ -183,19 +183,6 @@
 6F4F |
 6F4F |# Data -------------------------------------------------------------------------
 
-7011 |#				??	Row
-702D |#				??	Row
-70ED |#				Seconds	 Row
-7101 |#				??	Row
-7121 |#				??	Row
-7151 |#				??	 Row
-7169 |#				??	Row
-7185 |#				RPM	 Row
-71A1 |#				Load %	 Row
-71BD |#				Load %	 Row
-71D9 |#				inHga	 Row
-71F1 |#				??	Row
-
 729F |# Values are a fraction of 100%; Columns=RPM(716A), Rows=MAP(7122)
 7857 |# Columns=??(7102), Rows=??(7816)
 79E7 |# Values are in lambda, multiply by 14.64 to get AFR; Columns=RPM(716A), Rows=Load%(71A2)
