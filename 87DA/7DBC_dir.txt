@@ -240,7 +240,8 @@ byte  7E2E
 byte  7E2F
 word  7E30 7E31
 word  7E32 7E33
-word  7E34 7E35
+byte  7E34
+fill  7E35
 word  7E36 7E37
 byte  7E38
 fill  7E39 #word must be aligned with even byte
@@ -367,7 +368,8 @@ word  7F22 7F23 "CP_RFE_Header_Points_to_EOF"
 word  7F24 7F25
 word  7F26 7F27
 word  7F28 7F29
-word  7F2A 7F2B
+byte  7F2A
+fill  7F2B
 word  7F2C 7F2D
 byte  7F2E
 byte  7F2F
@@ -379,7 +381,8 @@ word  7F34 7F35
 byte  7F36
 byte  7F37
 word  7F38 7F39
-word  7F3A 7F3B
+byte  7F3A
+fill  7F3B
 word  7F3C 7F3D
 byte  7F3E
 func  7F3F 7F48 "FN7F3F" :Y :Y
@@ -387,10 +390,12 @@ table 7F49 7FB4 "TBL7F49" :Y X O +12
 fill  7FB5 #word must be aligned with even byte
 word  7FB6 7FB7
 table 7FB8 8023 "TBL7FB8" :Y X O +12 V +1
-word  8024 8025
+byte  8024
+fill  8025
 word  8026 8027
 word  8028 8029
-word  802A 802B
+byte  802A
+byte  802B
 word  802C 802D
 word  802E 802F
 word  8030 8031

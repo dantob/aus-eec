@@ -8380,7 +8380,11 @@
 
 7e30: e8,fd               word   fde8
 7e32: 00,00               word      0
-7e34: 01,ff               word   ff01
+
+7e34: 01                  byte      1
+
+7e35: ff                  ???   
+
 7e36: e8,fd               word   fde8
 
 7e38: 80                  byte     80
@@ -8556,7 +8560,11 @@
 7f24: 33,03               word    333
 7f26: ea,00               word     ea
 7f28: 9a,19               word   199a
-7f2a: 02,ff               word   ff02
+
+7f2a: 02                  byte      2
+
+7f2b: ff                  ???   
+
 7f2c: 03,ba               word   ba03
 
 7f2e: 14                  byte     14
@@ -8572,7 +8580,11 @@
 7f37: 06                  byte      6
 
 7f38: bd,01               word    1bd
-7f3a: 0a,ff               word   ff0a
+
+7f3a: 0a                  byte      a
+
+7f3b: ff                  ???   
+
 7f3c: 20,03               word    320
 
 7f3e: 00                  byte      0
@@ -8612,10 +8624,16 @@
 8018: 00,00,00,00,00,00,00,00,00,00,00,00   table   0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    ,  0    
 # Values are degrees of ignition advance; Columns=RPM(716A), Rows=MAP(71BE)        
 
-8024: 00,ff               word   ff00
+8024: 00                  byte      0
+
+8025: ff                  ???   
+
 8026: f6,06               word    6f6
 8028: 00,00               word      0
-802a: 9a,60               word   609a
+
+802a: 9a                  byte     9a
+802b: 60                  byte     60
+
 802c: 80,00               word     80
 802e: f6,00               word     f6
 8030: a4,00               word     a4
