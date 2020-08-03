@@ -1,207 +1,121 @@
   RF2:
-2157: 8b,f3,7e,02,30    cmpw  R30,[Rf2+27e]  
-215e: 8b,f3,80,02,30    cmpw  R30,[Rf2+280]  
-2371: af,f3,85,01,38    ldzbw R38,[Rf2+185]  R38 = (uns)[73a7];
-23a0: af,f3,86,01,38    ldzbw R38,[Rf2+186]  R38 = (uns)[73a8];
-23a5: 4b,f3,88,01,96,3a sb3w  R3a,R96,[Rf2+188] R3a = R96 - [73aa];
-2a4e: 9b,f3,bc,01,54    cmpb  R54,[Rf2+1bc]  
-2a55: af,f3,bc,01,54    ldzbw R54,[Rf2+1bc]  R54 = (uns)[73de];
-2a98: b3,f3,bc,01,58    ldb   R58,[Rf2+1bc]  R58 = [73de];
-2acf: bf,f3,b3,01,56    ldsbw R56,[Rf2+1b3]  R56 = (int)[73d5];
-2ade: af,f3,b4,01,56    ldzbw R56,[Rf2+1b4]  R56 = (uns)[73d6];
-2b4f: a3,f2,06,56       ldw   R56,[Rf2+6]    R56 = [7228];
-2b58: 6b,f2,08,56       sb2w  R56,[Rf2+8]    R56 -= [722a];
-2cbf: b3,f3,96,00,54    ldb   R54,[Rf2+96]   R54 = [72b8];
-2cc4: 7f,f3,62,01,54    ml2b  R54,[Rf2+162]  R54 *= [7384];
-2cc9: 9f,f3,98,00,54    divb  R54,[Rf2+98]   R54 = R54 / [72ba];
-2ceb: 9b,f3,62,01,5c    cmpb  R5c,[Rf2+162]  
-2d32: 9b,f3,98,00,5c    cmpb  R5c,[Rf2+98]   
-2d42: b3,f3,62,01,5c    ldb   R5c,[Rf2+162]  R5c = [7384];
-2d51: 9b,f3,98,00,5c    cmpb  R5c,[Rf2+98]   
-2d61: 9b,f3,62,01,5c    cmpb  R5c,[Rf2+162]  
-2d6b: 9b,f3,96,00,5c    cmpb  R5c,[Rf2+96]   
-2fd7: 9b,f3,98,00,5c    cmpb  R5c,[Rf2+98]   
-3166: 9b,f2,02,1c       cmpb  R1c,[Rf2+2]    
-3175: 9b,f2,03,1c       cmpb  R1c,[Rf2+3]    
-3199: 9b,f3,93,01,b6    cmpb  Rb6,[Rf2+193]  
-31e6: 4b,f2,7e,30,32    sb3w  R32,R30,[Rf2+7e] R32 = R30 - [72a0];
-31fa: 8b,f3,82,00,32    cmpw  R32,[Rf2+82]   
-3217: 8b,f3,80,00,30    cmpw  R30,[Rf2+80]   
-3238: 67,f3,90,01,32    ad2w  R32,[Rf2+190]  R32 += [73b2];
-32a4: b3,f3,8e,01,36    ldb   R36,[Rf2+18e]  R36 = [73b0];
-332a: b3,f3,92,01,36    ldb   R36,[Rf2+192]  R36 = [73b4];
-33b2: b3,f3,97,00,3c    ldb   R3c,[Rf2+97]   R3c = [72b9];
-33b7: 7f,f3,98,00,3c    ml2b  R3c,[Rf2+98]   R3c *= [72ba];
-33bf: 6f,f3,88,00,3c    ml2w  R3c,[Rf2+88]   R3cL *= Injector_Slope;
-33f5: b3,f3,fa,02,39    ldb   R39,[Rf2+2fa]  R39 = [751c];
-3402: 8b,f3,2a,02,34    cmpw  R34,[Rf2+22a]  
-3409: 8b,f3,28,02,34    cmpw  R34,[Rf2+228]  
-348c: b3,f3,68,02,42    ldb   R42,[Rf2+268]  R42 = [748a];
-34ba: b3,f3,fc,02,38    ldb   R38,[Rf2+2fc]  R38 = [751e];
-3525: a3,f3,8a,00,36    ldw   R36,[Rf2+8a]   R36 = [72ac];
-3551: 6f,f2,10,34       ml2w  R34,[Rf2+10]   R34L *= [7232];
-3636: 8b,f3,3c,02,34    cmpw  R34,[Rf2+23c]  
-363d: 8b,f3,3a,02,34    cmpw  R34,[Rf2+23a]  
-366d: 9b,f3,fd,02,30    cmpb  R30,[Rf2+2fd]  
-3674: 9b,f3,fb,02,b2    cmpb  Rb2,[Rf2+2fb]  
-36e5: 45,98,01,f2,32    ad3w  R32,Rf2,198    R32 = 73ba;
-3704: 8b,f3,96,01,38    cmpw  R38,[Rf2+196]  
-370b: 8b,f3,94,01,38    cmpw  R38,[Rf2+194]  
-3791: 9b,f3,fe,02,00    cmpb  0,[Rf2+2fe]    
-3877: a3,f3,88,00,36    ldw   R36,[Rf2+88]   R36 = Injector_Slope;
-38e7: 45,12,00,f2,38    ad3w  R38,Rf2,12     R38 = 7234;                    #Volumetric_Efficiency_Table
-38f6: 4f,f2,0c,3e,3c    ml3w  R3c,R3e,[Rf2+c] R3cL = R3e * Engine_Displacement;
-38fb: 4f,f2,0e,3e,3c    ml3w  R3c,R3e,[Rf2+e] R3cL = R3e * [7230];
-3b41: a3,f3,8c,01,36    ldw   R36,[Rf2+18c]  R36 = [73ae];
-3b6a: 77,f3,a6,01,00    ad2b  0,[Rf2+1a6]    0 += [73c8];
-3b7f: 9b,f3,a8,01,b2    cmpb  Rb2,[Rf2+1a8]  
-3bcf: 9b,f2,02,b1       cmpb  Rb1,[Rf2+2]    
-3bdb: 9b,f2,02,b1       cmpb  Rb1,[Rf2+2]    
-3be1: 9b,f2,03,b1       cmpb  Rb1,[Rf2+3]    
-3bed: 9b,f2,03,b1       cmpb  Rb1,[Rf2+3]    
-3bf3: 9b,f3,8c,00,cc    cmpb  Rcc,[Rf2+8c]   
-3bff: 9b,f3,8d,00,30    cmpb  R30,[Rf2+8d]   
-3c06: 9b,f3,8e,00,ca    cmpb  Rca,[Rf2+8e]   
-3c7d: 9b,f3,91,00,30    cmpb  R30,[Rf2+91]   
-3c89: 9b,f3,90,00,32    cmpb  R32,[Rf2+90]   
-3c9e: 9b,f2,02,b1       cmpb  Rb1,[Rf2+2]    
-3ca4: 9b,f2,03,b1       cmpb  Rb1,[Rf2+3]    
-3caa: 9b,f3,8f,00,cc    cmpb  Rcc,[Rf2+8f]   
-3e09: 8b,f3,92,00,96    cmpw  R96,[Rf2+92]   
-3e10: a3,f3,92,00,96    ldw   R96,[Rf2+92]   R96 = [72b4];
-3e15: 8b,f3,94,00,96    cmpw  R96,[Rf2+94]   
-3e1c: a3,f3,94,00,96    ldw   R96,[Rf2+94]   R96 = [72b6];
-3e2a: 4b,f3,82,01,96,3c sb3w  R3c,R96,[Rf2+182] R3c = R96 - [73a4];
-3e40: b3,f3,a0,00,36    ldb   R36,[Rf2+a0]   R36 = [72c2];
-3ec5: b3,f3,a1,00,36    ldb   R36,[Rf2+a1]   R36 = [72c3];
-3f98: 9b,f3,ea,02,b2    cmpb  Rb2,[Rf2+2ea]  
-3f9f: 9b,f3,eb,02,b2    cmpb  Rb2,[Rf2+2eb]  
-3fb6: 9b,f3,ed,02,b3    cmpb  Rb3,[Rf2+2ed]  
-3fbd: 9b,f3,ec,02,b3    cmpb  Rb3,[Rf2+2ec]  
-3fc9: 8b,f3,ee,02,38    cmpw  R38,[Rf2+2ee]  
-40b9: 9b,f3,f2,02,38    cmpb  R38,[Rf2+2f2]  
-40c8: 8b,f3,f4,02,38    cmpw  R38,[Rf2+2f4]  
-40ef: 9b,f3,f6,02,38    cmpb  R38,[Rf2+2f6]  
-418f: 9b,f3,f1,02,3a    cmpb  R3a,[Rf2+2f1]  
-41c0: 9b,f3,f3,02,00    cmpb  0,[Rf2+2f3]    
-426e: 8b,f3,94,00,96    cmpw  R96,[Rf2+94]   
-4275: a3,f3,94,00,96    ldw   R96,[Rf2+94]   R96 = [72b6];
-434f: 4f,f3,88,00,ae,34 ml3w  R34,Rae,[Rf2+88] R34L = Rae * Injector_Slope;
-43a6: b3,f3,96,00,31    ldb   R31,[Rf2+96]   R31 = [72b8];
-43ad: b3,f3,97,00,34    ldb   R34,[Rf2+97]   R34 = [72b9];
-43b2: 7f,f3,98,00,34    ml2b  R34,[Rf2+98]   R34 *= [72ba];
-43c8: a3,f3,9a,00,3a    ldw   R3a,[Rf2+9a]   R3a = RPM_Limit;
-43d7: 6b,f3,9c,00,3a    sb2w  R3a,[Rf2+9c]   R3a -= RPM_Limit_Hysteresis;
-4415: af,f3,63,01,14    ldzbw R14,[Rf2+163]  R14 = (uns)[7385];
-441a: af,f3,96,00,16    ldzbw R16,[Rf2+96]   R16 = (uns)[72b8];
-4453: 9b,f3,60,01,40    cmpb  R40,[Rf2+160]  
-4465: 9b,f3,64,01,ca    cmpb  Rca,[Rf2+164]  
-446f: a3,f3,5c,01,1a    ldw   R1a,[Rf2+15c]  R1a = [737e];
-4474: 67,f3,5e,01,1a    ad2w  R1a,[Rf2+15e]  R1a += [7380];
-448b: a3,f3,5c,01,1a    ldw   R1a,[Rf2+15c]  R1a = [737e];
-44e6: 9b,f3,65,01,30    cmpb  R30,[Rf2+165]  
-44f0: 9b,f3,61,01,30    cmpb  R30,[Rf2+161]  
-4520: 45,66,01,f2,32    ad3w  R32,Rf2,166    R32 = 7388;
-4538: 45,74,01,f2,32    ad3w  R32,Rf2,174    R32 = 7396;
-4563: af,f3,97,00,1c    ldzbw R1c,[Rf2+97]   R1c = (uns)[72b9];
-4568: 6f,f3,88,00,1c    ml2w  R1c,[Rf2+88]   R1cL *= Injector_Slope;
-45b7: b3,f3,8a,01,36    ldb   R36,[Rf2+18a]  R36 = [73ac];
-45dc: 45,01,01,f2,38    ad3w  R38,Rf2,101    R38 = 7323;
-45fe: 45,a7,00,f2,38    ad3w  R38,Rf2,a7     R38 = 72c9;
-4627: b3,f3,a6,00,14    ldb   R14,[Rf2+a6]   R14 = [72c8];
-4729: a3,f3,a4,01,32    ldw   R32,[Rf2+1a4]  R32 = [73c6];
-47eb: 9b,f3,b2,01,35    cmpb  R35,[Rf2+1b2]  
-47f4: b3,f3,b2,01,30    ldb   R30,[Rf2+1b2]  R30 = [73d4];
-48f9: a3,f3,aa,01,30    ldw   R30,[Rf2+1aa]  R30 = [73cc];
-490f: 6b,f3,ac,01,30    sb2w  R30,[Rf2+1ac]  R30 -= [73ce];
-491c: b3,f3,ae,01,30    ldb   R30,[Rf2+1ae]  R30 = [73d0];
-492b: 7b,f3,af,01,30    sb2b  R30,[Rf2+1af]  R30 -= [73d1];
-4938: 9b,f3,b0,01,b2    cmpb  Rb2,[Rf2+1b0]  
-4944: b3,f3,b0,01,30    ldb   R30,[Rf2+1b0]  R30 = [73d2];
-4949: 7b,f3,b1,01,30    sb2b  R30,[Rf2+1b1]  R30 -= [73d3];
-4968: 9b,f3,a7,01,30    cmpb  R30,[Rf2+1a7]  
-4adf: b3,f3,b6,01,36    ldb   R36,[Rf2+1b6]  R36 = [73d8];
-4b2c: b3,f3,b6,01,36    ldb   R36,[Rf2+1b6]  R36 = [73d8];
-4bac: bf,f3,b3,01,38    ldsbw R38,[Rf2+1b3]  R38 = (int)[73d5];
-4bb9: af,f3,b4,01,38    ldzbw R38,[Rf2+1b4]  R38 = (uns)[73d6];
-4bcc: 8b,f3,be,02,3c    cmpw  R3c,[Rf2+2be]  
-4bd3: a3,f3,be,02,3c    ldw   R3c,[Rf2+2be]  R3c = [74e0]; } } }
-4c04: a3,f3,f8,02,e2    ldw   Re2,[Rf2+2f8]  Re2 = [751a];
-4ca7: 9b,f3,0a,02,cb    cmpb  Rcb,[Rf2+20a]  
-4cb4: 47,f3,04,02,38,32 ad3w  R32,R38,[Rf2+204] R32 = R38 + [7426];
-4ccb: 9b,f3,0a,02,cb    cmpb  Rcb,[Rf2+20a]  
-4cd2: 67,f3,04,02,40    ad2w  R40,[Rf2+204]  R40 += [7426]; }
-4d0b: 8b,f3,c2,02,00    cmpw  0,[Rf2+2c2]    
-4d12: a3,f3,c2,02,36    ldw   R36,[Rf2+2c2]  R36 = [74e4]; } }
-4d3b: 9b,f3,fe,02,00    cmpb  0,[Rf2+2fe]    
-4d4a: 6b,f3,06,02,16    sb2w  R16,[Rf2+206]  R16 -= [7428];
-4ea5: 9b,f3,fe,02,00    cmpb  0,[Rf2+2fe]    
-4fdb: 8b,f3,fc,01,38    cmpw  R38,[Rf2+1fc]  
-5006: 9b,f3,fe,02,00    cmpb  0,[Rf2+2fe]    
-5017: 77,f3,fe,01,38    ad2b  R38,[Rf2+1fe]  R38 += [7420];
-5214: 8b,f3,fa,01,34    cmpw  R34,[Rf2+1fa]  
-521b: a3,f3,fa,01,34    ldw   R34,[Rf2+1fa]  R34 = [741c]; }
-5241: 4f,f3,00,02,3a,38 ml3w  R38,R3a,[Rf2+200] R38L = R3a * [7422];
-524c: 67,f3,02,02,3a    ad2w  R3a,[Rf2+202]  R3a += [7424];
-531b: b3,f3,cc,01,14    ldb   R14,[Rf2+1cc]  R14 = [73ee];
-5320: 7b,f3,cd,01,14    sb2b  R14,[Rf2+1cd]  R14 -= [73ef];
-5325: 8b,f3,ce,01,ae    cmpw  Rae,[Rf2+1ce]  
-5334: b3,f3,cc,01,40    ldb   R40,[Rf2+1cc]  R40 = [73ee];
-534f: 9b,f3,d0,01,00    cmpb  0,[Rf2+1d0]    
-5376: 45,d2,01,f2,32    ad3w  R32,Rf2,1d2    R32 = 73f4;
-53f8: 9b,f2,04,b2       cmpb  Rb2,[Rf2+4]    
-543a: a3,f3,a2,00,38    ldw   R38,[Rf2+a2]   R38 = [72c4];
-5447: 67,f3,a4,00,38    ad2w  R38,[Rf2+a4]   R38 += [72c6];
-545f: b3,f3,b2,01,30    ldb   R30,[Rf2+1b2]  R30 = [73d4];
-558d: 77,f3,84,01,34    ad2b  R34,[Rf2+184]  R34 += [73a6];
-56e5: 4f,f3,ca,01,b8,58 ml3w  R58,Rb8,[Rf2+1ca] R58L = Rb8 * [73ec];
-56f8: 4f,f3,ca,01,be,58 ml3w  R58,Rbe,[Rf2+1ca] R58L = Rbe * [73ec];
-579c: 9b,f2,0a,5a       cmpb  R5a,[Rf2+a]    
-57b9: 9b,f2,0b,5a       cmpb  R5a,[Rf2+b]    
-5926: 8b,f3,ba,01,ae    cmpw  Rae,[Rf2+1ba]  
-5943: 9b,f3,b8,01,b2    cmpb  Rb2,[Rf2+1b8]  
-5a81: b3,f3,93,02,42    ldb   R42,[Rf2+293]  R42 = [74b5];
-5cb5: 45,3c,02,f2,74    ad3w  R74,Rf2,23c    R74 = 745e;
-5dc8: 9b,f3,68,02,1a    cmpb  R1a,[Rf2+268]  
-5dfe: 8b,f3,90,02,42    cmpw  R42,[Rf2+290]  
-5e3f: 9b,f3,75,02,d7    cmpb  Rd7,[Rf2+275]  
-5e46: 9b,f3,72,02,9b    cmpb  R9b,[Rf2+272]  
-5e4d: 9b,f3,73,02,9b    cmpb  R9b,[Rf2+273]  
-5e70: 9b,f3,74,02,18    cmpb  R18,[Rf2+274]  
-5e7c: 8b,f3,36,02,ae    cmpw  Rae,[Rf2+236]  
-5eb7: 9b,f3,32,02,43    cmpb  R43,[Rf2+232]  
-5f12: 9b,f3,2c,02,14    cmpb  R14,[Rf2+22c]  
-5f19: 9b,f3,5a,02,b2    cmpb  Rb2,[Rf2+25a]  
-5f50: 44,f2,14,42       ad3w  R42,R14,Rf2    R42 = R14 + Rf2;
-5f5e: b3,f3,2d,02,3a    ldb   R3a,[Rf2+22d]  R3a = [744f];
-5f6d: 44,f2,14,3a       ad3w  R3a,R14,Rf2    R3a = R14 + Rf2;
-5ff0: 7b,f3,5b,02,3a    sb2b  R3a,[Rf2+25b]  R3a -= [747d];
-602e: a3,f3,8e,02,36    ldw   R36,[Rf2+28e]  R36 = [74b0];
-6111: 9b,f3,68,02,42    cmpb  R42,[Rf2+268]  
-624c: 64,f2,1e          ad2w  R1e,Rf2        R1e += Rf2;
-62a9: 8b,f3,24,02,ac    cmpw  Rac,[Rf2+224]  
-62b6: 8b,f3,26,02,ac    cmpw  Rac,[Rf2+226]  
-6356: a3,f3,0e,02,c6    ldw   Rc6,[Rf2+20e]  Rc6 = [7430];
-6398: 9b,f3,68,02,42    cmpb  R42,[Rf2+268]  
-6497: b3,f3,77,02,d7    ldb   Rd7,[Rf2+277]  Rd7 = [7499];
-64a7: 8b,f3,8a,02,42    cmpw  R42,[Rf2+28a]  
-64ae: 9b,f3,78,02,d7    cmpb  Rd7,[Rf2+278]  
-64b5: 5f,f3,76,02,18,42 ml3b  R42,R18,[Rf2+276] R42W = R18B * [7498]B;
-64be: 57,f3,77,02,42,d7 ad3b  Rd7,R42,[Rf2+277] Rd7 = R42 + [7499];
-6547: a3,f3,6a,02,c6    ldw   Rc6,[Rf2+26a]  Rc6 = [748c];
-654c: a3,f3,c0,02,96    ldw   R96,[Rf2+2c0]  R96 = [74e2];
-658b: af,f3,bc,02,1a    ldzbw R1a,[Rf2+2bc]  R1a = (uns)[74de];
-65a3: a3,f3,0e,02,c6    ldw   Rc6,[Rf2+20e]  Rc6 = [7430];
-65af: 8b,f3,6c,02,1c    cmpw  R1c,[Rf2+26c]  
-65c2: 8b,f3,6e,02,42    cmpw  R42,[Rf2+26e]  
-65d5: 9b,f3,71,02,42    cmpb  R42,[Rf2+271]  
-65ee: b3,f3,70,02,1a    ldb   R1a,[Rf2+270]  R1a = [7492];
-662d: a3,f3,0e,02,c6    ldw   Rc6,[Rf2+20e]  Rc6 = [7430];
-6686: a3,f3,1a,02,36    ldw   R36,[Rf2+21a]  R36 = [743c];
-68f2: 8b,f3,c4,01,16    cmpw  R16,[Rf2+1c4]  
-693c: 8b,f3,c6,01,16    cmpw  R16,[Rf2+1c6]  
-6943: 8b,f3,c8,01,16    cmpw  R16,[Rf2+1c8]  
-6973: 8b,f3,7e,02,34    cmpw  R34,[Rf2+27e]  
-697a: 8b,f3,80,02,34    cmpw  R34,[Rf2+280]  
-699f: 9b,f3,c2,01,cb    cmpb  Rcb,[Rf2+1c2]  
-6b4f: b3,f3,f0,02,3a    ldb   R3a,[Rf2+2f0]  R3a = [7512];
+2157: 8b,f3,7e,02,30      cmpw  R30,[Rf2+27e]    
+215e: 8b,f3,80,02,30      cmpw  R30,[Rf2+280]    
+2a43: af,f3,bc,01,54      ldzbw R54,[Rf2+1bc]    wR54 = [73de]; }
+2a4e: 9b,f3,bc,01,54      cmpb  R54,[Rf2+1bc]    
+2a55: af,f3,bc,01,54      ldzbw R54,[Rf2+1bc]    wR54 = [73de]; }
+2a98: b3,f3,bc,01,58      ldb   R58,[Rf2+1bc]    R58 = [73de];
+2acf: bf,f3,b3,01,56      ldsbw R56,[Rf2+1b3]    swR56 = [73d5];
+2ade: af,f3,b4,01,56      ldzbw R56,[Rf2+1b4]    wR56 = [73d6];
+33f5: b3,f3,fa,02,39      ldb   R39,[Rf2+2fa]    R39 = [751c];
+3402: 8b,f3,2a,02,34      cmpw  R34,[Rf2+22a]    
+3409: 8b,f3,28,02,34      cmpw  R34,[Rf2+228]    
+348c: b3,f3,68,02,42      ldb   R42,[Rf2+268]    R42 = [748a];
+34ba: b3,f3,fc,02,38      ldb   R38,[Rf2+2fc]    R38 = [751e];
+3636: 8b,f3,3c,02,34      cmpw  R34,[Rf2+23c]    
+363d: 8b,f3,3a,02,34      cmpw  R34,[Rf2+23a]    
+366d: 9b,f3,fd,02,30      cmpb  R30,[Rf2+2fd]    
+3674: 9b,f3,fb,02,b2      cmpb  Rb2,[Rf2+2fb]    
+3791: 9b,f3,fe,02,00      cmpb  R0,[Rf2+2fe]     
+3b6a: 77,f3,a6,01,00      ad2b  R0,[Rf2+1a6]     R0 += [73c8];
+3b7f: 9b,f3,a8,01,b2      cmpb  Rb2,[Rf2+1a8]    
+3f98: 9b,f3,ea,02,b2      cmpb  Rb2,[Rf2+2ea]    
+3f9f: 9b,f3,eb,02,b2      cmpb  Rb2,[Rf2+2eb]    
+3fb6: 9b,f3,ed,02,b3      cmpb  Rb3,[Rf2+2ed]    
+3fbd: 9b,f3,ec,02,b3      cmpb  Rb3,[Rf2+2ec]    
+3fc9: 8b,f3,ee,02,38      cmpw  R38,[Rf2+2ee]    
+40b9: 9b,f3,f2,02,38      cmpb  R38,[Rf2+2f2]    
+40c8: 8b,f3,f4,02,38      cmpw  R38,[Rf2+2f4]    
+40ef: 9b,f3,f6,02,38      cmpb  R38,[Rf2+2f6]    
+418f: 9b,f3,f1,02,3a      cmpb  R3a,[Rf2+2f1]    
+41c0: 9b,f3,f3,02,00      cmpb  R0,[Rf2+2f3]     
+47eb: 9b,f3,b2,01,35      cmpb  R35,[Rf2+1b2]    
+47f4: b3,f3,b2,01,30      ldb   R30,[Rf2+1b2]    R30 = [73d4];
+48f9: a3,f3,aa,01,30      ldw   R30,[Rf2+1aa]    R30 = [73cc];
+490f: 6b,f3,ac,01,30      sb2w  R30,[Rf2+1ac]    R30 -= [73ce];
+491c: b3,f3,ae,01,30      ldb   R30,[Rf2+1ae]    R30 = [73d0];
+492b: 7b,f3,af,01,30      sb2b  R30,[Rf2+1af]    R30 -= [73d1];
+4938: 9b,f3,b0,01,b2      cmpb  Rb2,[Rf2+1b0]    
+4944: b3,f3,b0,01,30      ldb   R30,[Rf2+1b0]    R30 = [73d2];
+4949: 7b,f3,b1,01,30      sb2b  R30,[Rf2+1b1]    R30 -= [73d3];
+4968: 9b,f3,a7,01,30      cmpb  R30,[Rf2+1a7]    
+4adf: b3,f3,b6,01,36      ldb   R36,[Rf2+1b6]    R36 = [73d8];
+4b2c: b3,f3,b6,01,36      ldb   R36,[Rf2+1b6]    R36 = [73d8];
+4bac: bf,f3,b3,01,38      ldsbw R38,[Rf2+1b3]    swR38 = [73d5];
+4bb9: af,f3,b4,01,38      ldzbw R38,[Rf2+1b4]    wR38 = [73d6];
+4bcc: 8b,f3,be,02,3c      cmpw  R3c,[Rf2+2be]    
+4bd3: a3,f3,be,02,3c      ldw   R3c,[Rf2+2be]    R3c = [74e0]; } } }
+4c04: a3,f3,f8,02,e2      ldw   Re2,[Rf2+2f8]    Re2 = [751a];
+4ca7: 9b,f3,0a,02,cb      cmpb  Rcb,[Rf2+20a]    
+4cb4: 47,f3,04,02,38,32   ad3w  R32,R38,[Rf2+204] R32 = R38 + [7426];
+4ccb: 9b,f3,0a,02,cb      cmpb  Rcb,[Rf2+20a]    
+4cd2: 67,f3,04,02,40      ad2w  R40,[Rf2+204]    R40 += [7426]; } }
+4d0b: 8b,f3,c2,02,00      cmpw  R0,[Rf2+2c2]     
+4d12: a3,f3,c2,02,36      ldw   R36,[Rf2+2c2]    R36 = [74e4]; } }
+4d3b: 9b,f3,fe,02,00      cmpb  R0,[Rf2+2fe]     
+4d4a: 6b,f3,06,02,16      sb2w  R16,[Rf2+206]    R16 -= [7428];
+4ea5: 9b,f3,fe,02,00      cmpb  R0,[Rf2+2fe]     
+4fdb: 8b,f3,fc,01,38      cmpw  R38,[Rf2+1fc]    
+5006: 9b,f3,fe,02,00      cmpb  R0,[Rf2+2fe]     
+5017: 77,f3,fe,01,38      ad2b  R38,[Rf2+1fe]    R38 += [7420];
+5214: 8b,f3,fa,01,34      cmpw  R34,[Rf2+1fa]    
+521b: a3,f3,fa,01,34      ldw   R34,[Rf2+1fa]    R34 = [741c]; }
+5241: 4f,f3,00,02,3a,38   ml3w  R38,R3a,[Rf2+200] lR38 = R3a * [7422];
+524c: 67,f3,02,02,3a      ad2w  R3a,[Rf2+202]    R3a += [7424];
+531b: b3,f3,cc,01,14      ldb   R14,[Rf2+1cc]    R14 = [73ee];
+5320: 7b,f3,cd,01,14      sb2b  R14,[Rf2+1cd]    R14 -= [73ef];
+5325: 8b,f3,ce,01,ae      cmpw  Rae,[Rf2+1ce]    
+5334: b3,f3,cc,01,40      ldb   R40,[Rf2+1cc]    R40 = [73ee];
+534f: 9b,f3,d0,01,00      cmpb  R0,[Rf2+1d0]     
+5376: 45,d2,01,f2,32      ad3w  R32,Rf2,1d2      R32 = Func_73f4;
+545f: b3,f3,b2,01,30      ldb   R30,[Rf2+1b2]    R30 = [73d4];
+56e5: 4f,f3,ca,01,b8,58   ml3w  R58,Rb8,[Rf2+1ca] lR58 = Rb8 * [73ec];
+56f8: 4f,f3,ca,01,be,58   ml3w  R58,Rbe,[Rf2+1ca] lR58 = Rbe * [73ec];
+5926: 8b,f3,ba,01,ae      cmpw  Rae,[Rf2+1ba]    
+5943: 9b,f3,b8,01,b2      cmpb  Rb2,[Rf2+1b8]    
+5a81: b3,f3,93,02,42      ldb   R42,[Rf2+293]    R42 = [74b5];
+5cb5: 45,3c,02,f2,74      ad3w  R74,Rf2,23c      R74 = 745e;
+5dc8: 9b,f3,68,02,1a      cmpb  R1a,[Rf2+268]    
+5dfe: 8b,f3,90,02,42      cmpw  R42,[Rf2+290]    
+5e3f: 9b,f3,75,02,d7      cmpb  Rd7,[Rf2+275]    
+5e46: 9b,f3,72,02,9b      cmpb  R9b,[Rf2+272]    
+5e4d: 9b,f3,73,02,9b      cmpb  R9b,[Rf2+273]    
+5e70: 9b,f3,74,02,18      cmpb  R18,[Rf2+274]    
+5e7c: 8b,f3,36,02,ae      cmpw  Rae,[Rf2+236]    
+5eb7: 9b,f3,32,02,43      cmpb  R43,[Rf2+232]    
+5f12: 9b,f3,2c,02,14      cmpb  R14,[Rf2+22c]    
+5f19: 9b,f3,5a,02,b2      cmpb  Rb2,[Rf2+25a]    
+5f50: 44,f2,14,42         ad3w  R42,R14,Rf2      R42 = R14 + Rf2;
+5f5e: b3,f3,2d,02,3a      ldb   R3a,[Rf2+22d]    R3a = [744f];
+5f6d: 44,f2,14,3a         ad3w  R3a,R14,Rf2      R3a = R14 + Rf2;
+5ff0: 7b,f3,5b,02,3a      sb2b  R3a,[Rf2+25b]    R3a -= [747d];
+602e: a3,f3,8e,02,36      ldw   R36,[Rf2+28e]    R36 = [74b0];
+624c: 64,f2,1e            ad2w  R1e,Rf2          R1e += Rf2;
+62a9: 8b,f3,24,02,ac      cmpw  Rac,[Rf2+224]    
+62b6: 8b,f3,26,02,ac      cmpw  Rac,[Rf2+226]    
+6356: a3,f3,0e,02,c6      ldw   Rc6,[Rf2+20e]    Rc6 = [7430];
+6398: 9b,f3,68,02,42      cmpb  R42,[Rf2+268]    
+63c6: 8b,f3,16,02,42      cmpw  R42,[Rf2+216]    
+6497: b3,f3,77,02,d7      ldb   Rd7,[Rf2+277]    Rd7 = [7499];
+64a7: 8b,f3,8a,02,42      cmpw  R42,[Rf2+28a]    
+64ae: 9b,f3,78,02,d7      cmpb  Rd7,[Rf2+278]    
+64b5: 5f,f3,76,02,18,42   ml3b  R42,R18,[Rf2+276] wR42 = R18 * [7498];
+64be: 57,f3,77,02,42,d7   ad3b  Rd7,R42,[Rf2+277] Rd7 = R42 + [7499];
+653c: b3,f3,92,02,42      ldb   R42,[Rf2+292]    R42 = [74b4];
+6547: a3,f3,6a,02,c6      ldw   Rc6,[Rf2+26a]    Rc6 = [748c];
+654c: a3,f3,c0,02,96      ldw   R96,[Rf2+2c0]    R96 = [74e2];
+658b: af,f3,bc,02,1a      ldzbw R1a,[Rf2+2bc]    wR1a = [74de];
+65a3: a3,f3,0e,02,c6      ldw   Rc6,[Rf2+20e]    Rc6 = [7430];
+65af: 8b,f3,6c,02,1c      cmpw  R1c,[Rf2+26c]    
+65c2: 8b,f3,6e,02,42      cmpw  R42,[Rf2+26e]    
+65d5: 9b,f3,71,02,42      cmpb  R42,[Rf2+271]    
+65ee: b3,f3,70,02,1a      ldb   R1a,[Rf2+270]    R1a = [7492];
+662d: a3,f3,0e,02,c6      ldw   Rc6,[Rf2+20e]    Rc6 = [7430];
+6686: a3,f3,1a,02,36      ldw   R36,[Rf2+21a]    R36 = [743c];
+68f2: 8b,f3,c4,01,16      cmpw  R16,[Rf2+1c4]    
+693c: 8b,f3,c6,01,16      cmpw  R16,[Rf2+1c6]    
+6943: 8b,f3,c8,01,16      cmpw  R16,[Rf2+1c8]    
+6973: 8b,f3,7e,02,34      cmpw  R34,[Rf2+27e]    
+697a: 8b,f3,80,02,34      cmpw  R34,[Rf2+280]    
+699f: 9b,f3,c2,01,cb      cmpb  Rcb,[Rf2+1c2]    
+6b4f: b3,f3,f0,02,3a      ldb   R3a,[Rf2+2f0]    R3a = [7512];

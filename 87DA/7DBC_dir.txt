@@ -125,20 +125,104 @@ func  71DA 71F1 "Scaler_FN71DA" :W :W V +256
 func  71F2 7205 "FN71F2" :W :W
 func  7206 7221 "FN7206" :W :W
 
-#--RF2----------------------------------------------------------------------TODO
+#--RF2--------------------------------------------------------------------------
 word  7222 7223 "CP_RF2_Header_Points_to_CP_RF4"
-
+byte  7224
+byte  7225
+byte  7226
+fill  7227
+word  7228 7229
+word  722A 722B
+byte  722C
+byte  722D
 word  722E 722F "Engine_Displacement"
-
+word  7230 7231
+word  7232 7233
 table 7234 729F "Volumetric_Efficiency_Table" :Y X O +12 V +2.56
-
+word  72A0 72A1
+word  72A2 72A3
+word  72A4 72A5
+#??
 word  72AA 72AB "Injector_Slope"
-
+word  72AC 72AD
+byte  72AE
+byte  72AF
+byte  72B0
+byte  72B1
+byte  72B2
+byte  72B3
+word  72B4 72B5
+word  72B6 72B7
+byte  72B8
+byte  72B9
+byte  72BA
+fill  72BB
 word  72BC 72BD "RPM_Limit"
 word  72BE 72BF "RPM_Limit_Hysteresis"
-
+#??
+byte  72C2
+byte  72C3
+word  72C4 72C5
+word  72C6 72C7
+byte  72C8
 table 72C9 7322  "TBL72C9" :Y X O +10
 table 7323 737C  "TBL7323" :Y X O +10
+fill  737D
+word  737E 737F
+word  7380 7381
+byte  7382
+byte  7383
+byte  7384
+byte  7385
+byte  7386
+byte  7387
+func  7388 7395 "FN7388" :Y :Y
+func  7396 73A3 "FN7396" :Y :Y
+word  73A4 73A5
+byte  73A6
+byte  73A7
+byte  73A8
+fill  73A9
+word  73AA 73AB
+byte  73AC
+fill  73AD
+word  73AE 73AF
+byte  73B0
+fill  73B1
+word  73B2 73B3
+byte  73B4
+byte  73B5
+word  73B6 73B7
+word  73B8 73B9
+func  73BA 73C3 "FN73BA" :Y :Y
+#??
+word  73C6 73C7
+byte  73C8
+byte  73C9
+byte  73CA
+fill  73CB
+word  73CC 73CD
+word  73CE 73CF
+byte  73D0
+byte  73D1
+byte  73D2
+byte  73D3
+byte  73D4
+byte  73D5
+byte  73D6
+#??
+byte  73D8
+#??
+byte  73DA
+fill  73DB
+word  73DC 73DD
+byte  73DE
+#??
+byte  73E4
+fill  73E5
+word  73E6 73E7
+
+#--TODO--
 
 #--RF4--------------------------------------------------------------------------
 word  7524 7525 "CP_RF4_Header_Points_to_CP_RF6"

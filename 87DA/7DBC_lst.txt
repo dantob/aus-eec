@@ -2262,7 +2262,7 @@
 36da: 37,27,1f            jnb   B7,R27,36fc      if (B7_R27 = 0) goto 36fc;
 36dd: 37,2c,1c            jnb   B7,R2c,36fc      if (B7_R2c = 0) goto 36fc;
 36e0: b3,01,a2,01,34      ldb   R34,[R0+1a2]     R34 = [1a2];
-36e5: 45,98,01,f2,32      ad3w  R32,Rf2,198      R32 = Func_73ba;
+36e5: 45,98,01,f2,32      ad3w  R32,Rf2,198      R32 = FN73BA;
 36ea: ef,5c,f9            call  3049             UUYFuncLU_3049();
 36ed: 74,b4,38            ad2b  R38,Rb4          R38 += Rb4;
 36f0: db,0a               jc    36fc             if (CY = 1) goto 36fc;            #[ jump if (R38+Rb4) overflows]
@@ -3451,13 +3451,13 @@
 451b: 20,2b               sjmp  4548             goto 4548;
 
 451d: b0,a3,34            ldb   R34,Ra3          R34 = Ra3;
-4520: 45,66,01,f2,32      ad3w  R32,Rf2,166      R32 = Func_7388;
+4520: 45,66,01,f2,32      ad3w  R32,Rf2,166      R32 = FN7388;
 4525: ef,21,eb            call  3049             UUYFuncLU_3049();
 4528: c7,01,bb,01,38      stb   R38,[R0+1bb]     [1bb] = R38;
 452d: 31,27,18            jnb   B1,R27,4548      if (B1_R27 = 1)  {
 4530: 71,fd,27            an2b  R27,fd           B1_R27 = 0;
 4533: b3,01,a2,01,34      ldb   R34,[R0+1a2]     R34 = [1a2];
-4538: 45,74,01,f2,32      ad3w  R32,Rf2,174      R32 = Func_7396;
+4538: 45,74,01,f2,32      ad3w  R32,Rf2,174      R32 = FN7396;
 453d: ef,09,eb            call  3049             UUYFuncLU_3049();
 4540: c7,01,ba,01,38      stb   R38,[R0+1ba]     [1ba] = R38;
 4545: 91,02,c8            orb   Rc8,2            B1_Rc8 = 1; }
@@ -7487,7 +7487,7 @@
 7386: 00                  byte      0
 7387: 00                  byte      0
 
-   Func_7388:
+   FN7388:
 7388: ff,4d   func              255, 77
 738a: 80,4d   func              128, 77
 738c: 33,1a   func               51, 26
@@ -7496,7 +7496,7 @@
 7392: 00,01   func                0,  1
 7394: 00,01   func                0,  1
 
-   Func_7396:
+   FN7396:
 7396: ff,4d   func              255, 77
 7398: 7d,46   func              125, 70
 739a: 00,46   func                0, 70
@@ -7533,7 +7533,7 @@
 73b6: 80,f7               word   f780
 73b8: 00,0a               word    a00
 
-   Func_73ba:
+   FN73BA:
 73ba: ff,38   func              255, 56
 73bc: 16,38   func               22, 56
 73be: 06,1c   func                6, 28
