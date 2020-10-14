@@ -20,30 +20,7 @@
 # Bank 0  file offset 2000-ffff, (2000 - ffff)
 ########################################################################
 
-
---NOTES-------------------------------------------------------------------------
- B5_Reg_7C: 0 = normal, 1 = lean cruise
- B6_Reg_8F: autopower/econ switch
- B1_Reg_ED: 0 = Petrol selected, 1 = LPG selected
-
- 086F = current gear auto?
- 0871 = desired gear auto?
- 08CC = Engine Load
- 08CE = Engine RPM
- 08D0 = Engine Load?
-
-Calibration Pointers
-RF0 2060 -> 26DC
-RF2 26DC -> 3518
-RF4 3518 -> 497E
-RF6 497E -> 5178
-RF8 5178 -> 58CA
-RFA 58CA -> 5D2C
-RFC 5D2C -> 7ED6
-RFE 7ED6 -> 80A8
-    80A8 -> 0107 ??
---------------------------------------------------------------------------------
-
+                                                                                   
 02000: ff                 nop                    
 02001: fa                 di                     disable intps;
 02002: 27,fe              sjmp  02002            goto 02002;
@@ -16015,8 +15992,6 @@ RFE 7ED6 -> 80A8
 83f00: c7,68,4c,4d        stb   R4d,[R68+4c]     [9cc] = R4d;
 83f04: f0                 ret                    return;
 
- What is this?? data?
-
 
 83f05: ff                 ???   
 
@@ -17868,8 +17843,6 @@ RFE 7ED6 -> 80A8
 851ec: 96,05,10,06        #args  
 851f0: c3,66,4e,40        stw   R40,[R66+4e]     [8ce] = R40;
 851f4: f0                 ret                    return;
-
- What is this?? data?                                                              
 
 
 851f5: ff,c9,01           ???   
