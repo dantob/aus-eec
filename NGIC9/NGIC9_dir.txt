@@ -222,7 +222,7 @@ byte  13586
 byte  13587
 word  13588 13589
 word  1358A 1358B
-word  1358B 1358C
+word  1358C 1358D
 word  1358E 1358F
 word  13590 13591
 byte  13592
@@ -577,7 +577,7 @@ func  15ABA 15AD9 "SCALER_621"                   :W V +1 :W V +256
 func  15ADA 15AF9 "SCALER_622"                   :W V +1 :W V +256
 table 15AFA 15B1D "TABLE_62X"                    :Y X O +6 V +1
 func  15B1E 15B3D "FUNC_15B1E"                   :W V +1 :W V +1
-func  15B3E 15B55 "SCALER_601"                   :W V +1 :W V +256
+func  15B3E 15B55 "SCALER_601"                   :SW V +1 :W V +256
 func  15B56 15B6D "SCALER_602"                   :W V +1 :W V +256
 table 15B6E 15B7D "TABLE_60X"                    :Y X O +4 V +1
 #-------------------------------------------------------------------------------
