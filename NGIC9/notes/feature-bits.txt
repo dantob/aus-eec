@@ -1,0 +1,133 @@
+vct only?
+1208a  byte    0  petrol         man
+1208a  byte    0  petrol         auto
+1208a  byte    1  petrol         auto    vct
+1208a  byte    1  petrol         man     vct
+1208a  byte    0  dual fuel      auto
+1208a  byte    0  dedicated lpg  auto
+
+manual only?
+120d1  byte    1  petrol         man
+120d1  byte    0  petrol         auto
+120d1  byte    0  petrol         auto    vct
+120d1  byte    1  petrol         man     vct
+120d1  byte    0  dual fuel      auto
+120d1  byte    0  dedicated lpg  auto
+
+vct and dual fuel auto? (vct and dual fuel switch use same output pin)
+1585e  byte    1  duel fuel      auto
+1585e  byte    0  dedicated lpg  auto
+1585e  byte    0  petrol         man
+1585e  byte    0  petrol         auto
+1585e  byte    1  petrol         auto    vct
+1585e  byte    0  petrol         man     vct
+
+auto only?
+15e06  byte    0  petrol         man
+15e06  byte    1  petrol         auto
+15e06  byte    1  petrol         auto    vct
+15e06  byte    0  petrol         man     vct
+15e06  byte    1  dual fuel      auto
+15e06  byte    1  dedicated lpg  auto
+
+manual only?
+15e10  byte    1  petrol         man
+15e10  byte    0  petrol         auto
+15e10  byte    0  petrol         auto    vct
+15e10  byte    1  petrol         man     vct
+15e10  byte    0  dual fuel      auto
+15e10  byte    0  dedicated lpg  auto
+
+auto only?
+15e17  byte    0  petrol         man
+15e17  byte    1  petrol         auto
+15e17  byte    1  petrol         auto    vct
+15e17  byte    0  petrol         man     vct
+15e17  byte    0  dual fuel      auto
+15e17  byte    0  dedicated lpg  auto
+
+petrol only?
+17f5d: byte    1  duel fuel      auto
+17f5d: byte    0  dedicated lpg  auto
+17f5d: byte    1  petrol         man
+17f5d: byte    1  petrol         auto
+17f5d: byte    1  petrol         auto    vct
+17f5d: byte    1  petrol         man     vct
+
+petrol only?
+17f5f: byte    1  duel fuel      auto
+17f5f: byte    0  dedicated lpg  auto
+17f5f: byte    1  petrol         man
+17f5f: byte    1  petrol         auto
+17f5f: byte    1  petrol         auto    vct
+17f5f: byte    1  petrol         man     vct
+
+vct only?
+17f61: byte    0  petrol         man
+17f61: byte    0  petrol         auto
+17f61: byte    1  petrol         auto    vct
+17f61: byte    1  petrol         man     vct
+17f61  byte    0  dual fuel      auto
+17f61  byte    0  dedicated lpg  auto
+
+ded lpg prime?
+17f62: byte    0  duel fuel      auto
+17f62: byte    1  dedicated lpg  auto
+17f62: byte    0  petrol         man
+17f62: byte    0  petrol         auto
+17f62: byte    0  petrol         auto    vct
+17f62: byte    0  petrol         man     vct
+
+lpg only?
+17f63: byte    1  duel fuel      auto
+17f63: byte    1  dedicated lpg  auto
+17f63: byte    0  petrol         man
+17f63: byte    0  petrol         auto
+17f63: byte    0  petrol         auto    vct
+17f63: byte    0  petrol         man     vct
+
+petrol only?
+17f67: byte    1  duel fuel      auto
+17f67: byte    0  dedicated lpg  auto
+17f67: byte    1  petrol         man
+17f67: byte    1  petrol         auto
+17f63: byte    1  petrol         auto    vct
+17f63: byte    1  petrol         man     vct
+
+vct and dual fuel auto?
+17f6a: byte    1  duel fuel      auto
+17f6a: byte    0  dedicated lpg  auto
+17f6a: byte    0  petrol         man
+17f6a: byte    0  petrol         auto
+17f6a: byte    1  petrol         auto    vct
+17f6a: byte    0  petrol         man     vct
+
+--------------------------------------------------------------------------------
+feature flags
+17f5b
+17f5c
+17f5d
+17f5e
+17f5f
+1208a
+1429A "DEDICATED_LPG"
+14299 "LPG_AVAILABLE"
+17f64
+17f65
+17f67
+17ee6
+12419
+1585e
+
+50e
+R95
+R90
+R8f
+R8c
+R4a
+R8e
+R8c
+R87
+R77
+R8b
+R7d
